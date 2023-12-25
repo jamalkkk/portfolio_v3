@@ -1,0 +1,86 @@
+$color-primary: #222;
+$color-negative: #eee;
+
+:root {
+  --primary: #222;
+  --negative: #eee;
+  --primary-transparent: #2228;
+  --negative-transparent: #eee8;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  color: $color-negative;
+  background-color: $color-primary;
+  transition: $base-transition-3;
+  @include custom-cursor("default");
+
+  &.is-dark-theme {
+    @include custom-cursor("default", "_dark");
+  }
+}
+
+* {
+  font-family: Averia Libre, sans-serif;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+
+  @include md {
+    font-size: $font-size;
+  }
+}
+
+h1 {
+  font-size: $font-size-h1-sm;
+
+  @include md {
+    font-size: $font-size-h1;
+  }
+}
+
+h2 {
+  font-size: $font-size-h2;
+}
+
+h3 {
+  font-size: $font-size-h3;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+a {
+  color: $color-primary;
+}
+
+svg {
+  .svg-fill-primary {
+    &,
+    path {
+      fill: $color-primary;
+    }
+  }
+
+  .svg-stroke-primary {
+    &,
+    path {
+      stroke: $color-primary;
+    }
+  }
+
+  .svg-fill-negative {
+    &,
+    path {
+      fill: $color-negative;
+    }
+  }
+}
+
+::selection {
+  background: $color-primary-transparent;
+}

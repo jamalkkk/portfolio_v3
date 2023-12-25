@@ -1,0 +1,137 @@
+.b-home {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start;
+
+    &.is-about-active {
+        .home-about {
+            left: 0;
+        }
+
+        .home-button.is-left {
+            animation: fadeIn .3s ease forwards;
+        }
+    }
+
+    &:not(.is-about-active) {
+        .home-button.is-left {
+            animation: fadeIn .3s ease forwards;
+        }
+    }
+
+    .home-content {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        padding: $page-padding-sm $page-padding-sm * 3;
+
+        @include md {
+            padding: $page-padding-md $page-padding-md * 3;
+        }
+        
+        @include xl {
+            padding: $page-padding $page-padding * 3;
+        }
+    }
+
+    .home-swiper {
+        height: 100%;
+    }
+
+    .home-about {
+        top: 0;
+    }
+
+    .home-slide-about {
+        width: 100%;
+        z-index: $z-index-1;
+
+        @include md {
+            width: 60%;
+        }
+
+        @include lg {
+            width: 50%;
+        }
+
+        @include xxl {
+            width: 40%;
+            max-width: $text-block-width;
+        }
+    }
+
+    .home-ia {
+        left: 0;
+    }
+    
+    .home-button {
+        z-index: $z-index-1;
+        position: absolute;
+        display: flex;
+        padding: $page-padding-sm;
+        justify-content: center;
+        transition: left 300ms ease;
+
+        @include md {
+            padding: $page-padding-md;
+        }
+
+        @include xl {
+            padding: $page-padding;
+        }
+
+        &.is-right {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+        
+            .home-info-info {
+                top: 23%;
+                right: 76%;
+
+                @include lg {
+                    top: 26.1%;
+                }
+
+                @include xl {
+                    right: 70%;
+                }
+            }
+        
+            .home-mute-info {
+                top: 55.1%;
+                right: 76%;
+
+                @include lg {
+                    top: 51.1%;
+                }
+
+                @include xl {
+                    right: 70%;
+                }
+            }
+        }
+
+        &.is-bottom {
+            width: 100%;
+            bottom: 0;
+            opacity: 0;
+            transition: $base-transition;
+
+            &.is-active {
+                opacity: 1;
+            }
+        }
+
+        &.is-left {
+            left: 0;
+        }
+    }
+}

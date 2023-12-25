@@ -1,0 +1,14 @@
+//  svg-background mixin
+// 
+// Usage:
+// 
+// element {
+//     @include svg-background('name');
+// }
+
+@mixin svg-background($name) {
+    background-image: url('~/assets/img/svg/bg/#{$name}.svg');
+    background-repeat: no-repeat;
+    background-position: random(100) * 1% center;
+    background-size: cover;
+}
