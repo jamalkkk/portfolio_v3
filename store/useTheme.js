@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 
 export const useTheme = defineStore("theme", {
   state: () => ({
-    isDarkTheme: false, //ocalStorage?.isDarkTheme === "true",
+    isDarkTheme: false, //localStorage?.isDarkTheme === "true",
     isPageReloaded: false, //localStorage?.isPageReloaded === "true",
     primary: "#222",
     negative: "#eee",

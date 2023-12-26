@@ -9,7 +9,7 @@
             },
         ]"
     >
-        <div ref="container" class="layerpage-container">
+        <div ref="container" class="layout-container">
             <slot />
         </div>
     </div>

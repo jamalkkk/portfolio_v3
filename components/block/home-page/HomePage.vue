@@ -3,7 +3,7 @@
         <home/>
         <projects/>
     </layerpage> -->
-    <home />
+    <Home />
     <div class="pink">Blah blah balh</div>
 </template>
 <script setup lang="ts">

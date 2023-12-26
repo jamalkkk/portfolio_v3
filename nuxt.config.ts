@@ -1,7 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // css: ["assets/css/main.scss"],
-
   vite: {
     css: {
       preprocessorOptions: {
@@ -12,25 +10,16 @@ export default defineNuxtConfig({
     }
   },
   
-  plugins: [
-      "~/plugins/mixins.js",
-      "~/plugins/common.js",
-  ],
-
-  // styleResources: {
-  //     scss: [
-  //       "~assets/scss/variables/*.scss",
-  //       "~assets/scss/mixins/*.scss",
-  //       "~assets/scss/_basics.scss",
-  //     ],
-  // },
+  // plugins: [
+  //     "~/plugins/mixins.js",
+  //     "~/plugins/common.js",
+  // ],
     
   devtools: { enabled: true },
 
   modules: [
     '@pinia/nuxt',
     'nuxt-swiper',
-    // '@nuxtjs/style-resources',
   ],
 
   buildModules: [
