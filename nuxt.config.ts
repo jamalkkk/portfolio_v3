@@ -10,11 +10,6 @@ export default defineNuxtConfig({
     }
   },
   
-  // plugins: [
-  //     "~/plugins/mixins.js",
-  //     "~/plugins/common.js",
-  // ],
-    
   devtools: { enabled: true },
 
   modules: [
@@ -24,5 +19,12 @@ export default defineNuxtConfig({
 
   buildModules: [
     '@nuxtjs/style-resources',
+  ],
+
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
   ],
 })
