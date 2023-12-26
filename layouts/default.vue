@@ -1,4 +1,4 @@
-<style lang="scss" src="./scss/layout.scss"></style>
+<style lang="scss" land="sass" src="./scss/layout.scss"></style>
 
 <template>
     <div

@@ -1,34 +1,39 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: ["~/assets/scss/styles.scss"],
+  // css: ["assets/css/main.scss"],
 
-  // vite: {
-  //   css: {
-  //     preprocessorOptions: {
-  //       scss: {
-  //         additionalData: '@use "~/assets/scss//variables/*.scss" as *;'
-  //       }
-  //     }
-  //   }
-  // },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "~/assets/scss/styles.scss" as *;'
+        }
+      }
+    }
+  },
   
   plugins: [
       "~/plugins/mixins.js",
       "~/plugins/common.js",
-      "~/plugins/strapi.js",
   ],
 
-  styleResources: {
-      scss: [
-          "~/assets/scss/mixins/**/*.scss",
-          "~/assets/scss/variables/**/*.scss",
-      ],
-  },
+  // styleResources: {
+  //     scss: [
+  //       "~assets/scss/variables/*.scss",
+  //       "~assets/scss/mixins/*.scss",
+  //       "~assets/scss/_basics.scss",
+  //     ],
+  // },
     
   devtools: { enabled: true },
 
   modules: [
     '@pinia/nuxt',
-    'nuxt-swiper'
-  ]
+    'nuxt-swiper',
+    // '@nuxtjs/style-resources',
+  ],
+
+  buildModules: [
+    '@nuxtjs/style-resources',
+  ],
 })
