@@ -2,7 +2,7 @@
 
 import { defineStore } from "pinia";
 
-export const useSwiper = defineStore("swiper", {
+export const useSwiperStore = defineStore("swiper-store", {
   state: () => ({
     activeIndex: 0,
     videoSlideIndices: [],

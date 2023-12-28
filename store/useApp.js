@@ -13,6 +13,7 @@ export const useApp = defineStore("app", {
     isDataLoaded: false,
     isProjectLoaded: false,
     shouldScrollToProjects: false,
+    shouldHomeBeActive: true,
     documentBreakpoint: "sm",
     project: {},
     projects: {},

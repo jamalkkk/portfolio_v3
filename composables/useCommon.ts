@@ -2,21 +2,21 @@ import { ref } from 'vue';
 import { useApp } from '~/store/useApp';
 import { useLoader } from '~/store/useLoader';
 import { useSounds } from '~/store/useSounds';
-import { useSwiper } from '~/store/useSwiper';
+import { useSwiperStore } from '~/store/useSwiperStore';
 
 export function useCommon() {
   const app = useApp();
   const loader = useLoader();
   const sounds = useSounds();
-  const swiper = useSwiper();
+  const swiper = useSwiperStore();
   const router = useRouter();
 
-  const { setShouldScrollToProjects, setProject } = app;
+  const { setShouldScrollToProjects, setProject, setDocumentBreakpoint } = app;
   const { setShouldProjectLoaderBeActive } = loader;
-  const { isSupposedActive, setIsActive } = sounds;
+  const { isSoundSupposedActive, setIsSoundActive } = sounds;
   const { resetVideoSlideIndices } = swiper;
 
-  const isSoundSupposedActive = ref(isSupposedActive); // Initialize with appropriate value
+  const isMySoundSupposedActive = ref(isSoundSupposedActive); // Initialize with appropriate value
 
   const scrollToHome = () => {
     const container = document.querySelector<HTMLElement>('.layout-container');
@@ -43,9 +43,9 @@ export function useCommon() {
 
       setProject({});
 
-      if (isSoundSupposedActive.value) {
-        setTimeout(() => setIsActive(true), 500);
-        isSoundSupposedActive.value = false;
+      if (isMySoundSupposedActive.value) {
+        setTimeout(() => setIsSoundActive(true), 500);
+        isMySoundSupposedActive.value = false;
       }
 
       resetVideoSlideIndices();
@@ -60,16 +60,31 @@ export function useCommon() {
     return document.documentElement.clientWidth;
   }
 
-  const getBreakpoint = (size: string): number | null => {
+  const getBreakpoint = (size: string): number => {
     const Breakpoints: Record<string, number> = {
       sm: 576,
       md: 768,
       lg: 992,
       xl: 1200,
-      // Add more breakpoints as needed
     };
     
-    return Breakpoints[size] || null;
+    return Breakpoints[size] || 1200;
+  }
+
+  const setStoreDocumentBreakpoint = () => {
+    const documentWidth = getDocumentWidth();
+      let breakpoint = 'sm';
+
+      if (documentWidth > getBreakpoint('xl')) {
+        breakpoint = 'xl';
+      } else if (documentWidth > getBreakpoint('lg')) {
+        breakpoint = 'lg';
+      } else if (documentWidth > getBreakpoint('md')) {
+        breakpoint = 'md';
+      }
+    
+    console.log("breakpoint", breakpoint)
+     setDocumentBreakpoint(breakpoint);
   }
 
   return {
@@ -80,5 +95,6 @@ export function useCommon() {
     getRandomInt,
     getDocumentWidth,
     getBreakpoint,
+    setStoreDocumentBreakpoint,
   };
 }
