@@ -1,0 +1,17 @@
+.b-headline {
+    font-weight: $font-weight-medium;
+    margin: 0;
+
+    &.is-main-title {
+        font-size: 3.2rem;
+        line-height: 1;
+
+        @include md {
+            font-size: 4rem;
+        }
+    }
+    
+    &.is-inverted {
+        color: $color-negative;
+    }
+}
