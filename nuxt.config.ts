@@ -10,6 +10,25 @@ export default defineNuxtConfig({
     }
   },
   
+  router: {
+    extendRoutes(routes, resolve) {
+        routes.push(
+            {
+                path: "/about",
+                components: {
+                    default: resolve(__dirname, "pages"), // or routes[index].component
+                },
+            },
+            {
+                path: "/projects",
+                components: {
+                    default: resolve(__dirname, "pages"), // or routes[index].component
+                },
+            }
+        );
+    },
+  },
+      
   devtools: { enabled: true },
 
   modules: [

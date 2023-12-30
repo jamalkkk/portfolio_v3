@@ -15,10 +15,10 @@ export const useApp = defineStore("app", {
     shouldScrollToProjects: false,
     shouldHomeBeActive: true,
     documentBreakpoint: "sm",
+    info: {},
     project: {},
     projects: {},
     tags: {},
-    info: {},
   }),
   actions: {
     setData(value) {
@@ -59,6 +59,7 @@ export const useApp = defineStore("app", {
       this.isUserOnPage = !document.hidden;
     },
     toggleIsInfosActive() {
+      // If home is not active, first activate it then activate infos
       if (!this.isInfosActive && !this.isHomeActive) {
         this.isHomeActive = true;
       }

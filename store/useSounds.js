@@ -15,7 +15,7 @@ export const useSounds = defineStore("sounds", {
   }),
   actions: {
     setIsSoundActive(value) {
-      this.isActive = value;
+      this.isSoundActive = value;
       localStorage.isSoundActive = value;
     },
     setIsSoundSupposedActive(value) {

@@ -3,11 +3,12 @@
 <template>
     <div class="b-about">
         <div class="about-container">
-            {{ content }}
-            <headline tag="h1" text="Jamal Khalili" class="mb-5" />
-            <!-- <div class="about-content mb-5" v-html="$md.render(content)" /> -->
-            <!-- <email /> -->
-            <!-- <social-medias /> -->
+            <headline text="Jamal Khalili" class="mb-5" />
+            <div class="about-content mb-5">
+                {{ content }}
+            </div>
+            <email />
+            <social-medias />
         </div>
     </div>
 </template>
@@ -19,6 +20,9 @@ const { info } = useApp();
 const { isDataLoaded } = storeToRefs(useApp());
 
 // @TODO: Fixed info's type
+export type Info = {
+    about: String;
+};
 const content = ref<string>(
     "Hello, I'm a **Multimedia Artist** - who is passionate about creating compelling and engaging media content.\n\nI possess over 5 years of experience in interactive application development, animation, and illustration, gained through a combination of educational projects and industry work.\n\nHire me, I need to keep my plants alive!"
 );

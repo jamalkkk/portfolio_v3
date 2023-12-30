@@ -14,12 +14,13 @@
         {{ text }}
     </component>
 </template>
-
 <script setup lang="ts">
+// import { Headline } from "~/types/common";
+
 const props = defineProps({
     isInverted: { type: Boolean, default: false },
     isMain: { type: Boolean, default: false },
-    tag: { type: String, default: "h1" },
+    tag: { type: String as PropType<"h1" | "h2" | "h3">, default: "h1" },
     text: { type: String, default: "" },
 });
 </script>

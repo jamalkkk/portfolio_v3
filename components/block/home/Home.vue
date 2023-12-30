@@ -28,10 +28,8 @@
                     <about class="home-about" />
                 </SwiperSlide>
                 <SwiperSlide class="slide">
-                    <interactive-animations class="home-ia" />
+                    <!-- <interactive-animations class="home-ia" /> -->
                 </SwiperSlide>
-
-                <SwiperController />
             </Swiper>
         </div>
         <div class="home-button is-right">
@@ -110,41 +108,37 @@
     </div>
 </template>
 <script setup lang="ts">
+import SwiperCore from "swiper"; //@TODO: move type to types
+export type SwiperType = SwiperCore;
 import { useApp } from "~/store/useApp";
 import { useLoader } from "~/store/useLoader";
 import { useSounds } from "~/store/useSounds";
 
+const appStore = useApp();
+const soundsStore = useSounds();
+const { shouldProjectLoaderBeActive } = useLoader();
+const { scrollToProjects } = useCommon();
+
 const {
-    isHomeActive,
     isMainHomeActive,
     isInfosActive,
     isInfoInfoActive,
-    isSmallScreen,
-    shouldHomeBeActive,
     shouldScrollToProjects,
     setShouldScrollToProjects,
     setIsHomeActive,
     toggleShouldHomeBeActive,
     toggleIsInfosActive,
-} = useApp();
-const { shouldProjectLoaderBeActive } = useLoader();
-const { isSoundActive, setIsSoundActive } = useSounds();
+} = appStore;
+const { setIsSoundActive } = soundsStore;
+
+const { isHomeActive, isSmallScreen, shouldHomeBeActive } =
+    storeToRefs(appStore);
+const { isSoundActive } = storeToRefs(soundsStore);
 
 const activeIndex = ref(1);
 const HomeSwiper = ref();
 
-let swiper: any = null;
-
-const swiperOptions = {
-    spaceBetween: 0,
-    speed: 300,
-    parallax: true,
-    slidesPerView: "auto",
-    pagination: false,
-    keyboard: {
-        enabled: true,
-    },
-};
+let swiper: SwiperType = null;
 
 const slideTo = (slide = 1, speed = 300) => {
     swiper.slideTo(slide, speed);
@@ -152,68 +146,73 @@ const slideTo = (slide = 1, speed = 300) => {
 
 const setAllowTouchMove = () => {
     swiper.allowTouchMove = isSmallScreen;
-    console.log("swiper.allowTouchMove", swiper.allowTouchMove);
-    console.log("swiper.isSmallScreen", isSmallScreen);
 };
 
-// const handleKeyPress = (keyCode) => {
-//     if (keyCode === 73) {
-//         toggleIsInfosActive();
-//     } else if (keyCode === 77) {
-//         toggleSound();
-//     }
-// };
-
-// const toggleSound = () => {
-//     setIsSoundActive(!isSoundActive.value);
-// };
-
-// const toggleSlide = () => {
-//     slideTo(isHomeActive.value ? 0 : 1);
-// };
-// import { MySwiper } from "~/types"; // Import the MySwiper type
-
-const handleSlideChange = (swiper: any) => {
-    console.log("handleSlideChange", swiper.activeIndex);
-
+const handleSlideChange = () => {
     activeIndex.value = swiper.activeIndex;
     setIsHomeActive(!!swiper.activeIndex);
 };
-const onSwiper = (swiperObject: any) => {
+
+const toggleSound = () => setIsSoundActive(!isSoundActive.value);
+
+const handleKeyPress = ({ code }: KeyboardEvent) => {
+    switch (code) {
+        case "KeyI":
+            toggleIsInfosActive();
+            break;
+        case "KeyM":
+            toggleSound();
+            break;
+        default:
+            break;
+    }
+};
+
+const onSwiper = (swiperObject: SwiperType) => {
     swiper = swiperObject;
 
-    slideTo(1, 10);
+    const route = useRoute();
+
+    // @TODO: check how paths redirectory works
+    if (route.path === "/about") {
+        setIsHomeActive(false);
+    } else if (route.path === "/projects") {
+        scrollToProjects();
+    } else {
+        slideTo(1, 10);
+    }
+
+    if (shouldScrollToProjects) {
+        scrollToProjects();
+        setShouldScrollToProjects(false);
+    }
 };
 
 const initialiseEvents = () => {
-    // swiper.on("slideChange", handleSlideChange);
-    // swiper.on("keyPress", (keyCode) => handleKeyPress(keyCode));
+    window.addEventListener("keydown", handleKeyPress);
 };
+
+watch(isHomeActive, (value) => {
+    if (value && !activeIndex.value) {
+        slideTo(1);
+    }
+});
+
+watch(isSmallScreen, setAllowTouchMove);
+
+watch(shouldHomeBeActive, (value) => {
+    if (isHomeActive.value !== value) {
+        slideTo(isHomeActive.value ? 0 : 1);
+    }
+});
 
 onMounted(() => {
     initialiseEvents();
-
     setAllowTouchMove();
-
-    // const route = useRoute();
-
-    // if (route.path === "/about") {
-    //     setIsHomeActive(false);
-    // } else if (route.path === "/projects") {
-    //     slideTo(0, 300);
-    // } else {
-    //     slideTo(1, 300);
-    // }
-
-    // if (shouldScrollToProjects.value) {
-    //     slideTo(0, 300);
-    //     setShouldScrollToProjects();
-    // }
 });
 
-// onUnmounted(() => {
-//     swiper.off("slideChange", handleSlideChange);
-//     swiper.off("keyPress", (keyCode) => handleKeyPress(keyCode));
-//     swiper.destroy();
-// });
+onUnmounted(() => {
+    window.removeEventListener("keydown", handleKeyPress);
+    swiper.destroy();
+});
 </script>
