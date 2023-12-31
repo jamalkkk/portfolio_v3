@@ -1,0 +1,37 @@
+.b-light {
+    position: absolute;
+    width: 9%;
+    top: -6%;
+    right: 23%;
+    transform-origin: center top;
+    transform: rotate(0deg);
+
+    &.is-swinging {
+        animation: swingLight cubic-bezier(0.33, 0.01, 0.41, 1.04);
+    }
+
+    @keyframes swingLight {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        20% {
+            transform: rotate(15deg);
+        }
+        40% {
+            transform: rotate(-10deg);
+        }
+        60% {
+            transform: rotate(5deg);
+        }
+        80% {
+            transform: rotate(-3deg);
+        }
+        95% {
+            transform: rotate(0.3deg);
+        }
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+}

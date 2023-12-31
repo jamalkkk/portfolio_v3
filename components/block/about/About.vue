@@ -2,13 +2,13 @@
 
 <template>
     <div class="b-about">
-        <div class="about-container">
-            <headline text="Jamal Khalili" class="mb-5" />
-            <div class="about-content mb-5">
+        <div class="about-container flex flex-col gap-y-5">
+            <Headline text="Jamal Khalili" />
+            <div class="about-content">
                 {{ content }}
             </div>
-            <email />
-            <social-medias />
+            <Email />
+            <SocialMedias />
         </div>
     </div>
 </template>
