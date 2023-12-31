@@ -7,7 +7,7 @@ export default defineNuxtConfig({
           additionalData: '@use "~/assets/scss/styles.scss" as *;'
         }
       }
-    }
+    },
   },
   
   router: {

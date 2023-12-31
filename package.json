@@ -20,7 +20,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
     "nuxt-swiper": "^1.2.2",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
   },
   "overrides": {
     "vue": "latest"
