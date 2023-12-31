@@ -14,7 +14,6 @@
                 ref="HomeSwiper"
                 class="home-swiper"
                 :modules="[SwiperParallax, SwiperKeyboard]"
-                :options="swiperOptions"
                 :slides-per-view="'auto'"
                 :active-index="1"
                 :speed="300"
@@ -25,10 +24,10 @@
                 @slideChange="handleSlideChange"
             >
                 <SwiperSlide class="home-slide-about">
-                    <about class="home-about" />
+                    <About class="home-about" />
                 </SwiperSlide>
                 <SwiperSlide class="slide">
-                    <!-- <interactive-animations class="home-ia" /> -->
+                    <InteractiveAnimations class="home-ia" />
                 </SwiperSlide>
             </Swiper>
         </div>
