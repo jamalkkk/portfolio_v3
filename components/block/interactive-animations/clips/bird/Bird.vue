@@ -2,7 +2,7 @@
 
 <template>
     <div>
-        <Animation 
+        <Animation
             class="b-bird"
             title="bird"
             :shouldBePlaying="isAnimating"
@@ -20,50 +20,41 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: 'Bird',
-    props: {
-        isHovered: {
-            type: Boolean,
-            default: false,
-        },
-        isClicked: {
-            type: Boolean,
-            default: false,
-        },
-    },
-    data () {
-        return {
-            isAnimating: false,
-            hoverTimer: null,
-            hoverTime: 1000,
-        };
-    },
-    computed: {
-        isSoundActive() {
-            return this.$store.state.sounds.isActive;
-        },
-    },
-    watch: {
-         isHovered(value) {
-            if (value && !this.isAnimating) {
-                this.hoverTimer = setTimeout(() => this.isAnimating = true, this.hoverTime);
-            } else {
-                this.clearTimer();
-            }
-        },
-    },
-    methods: {
-        clearTimer() {
-            if (this.hoverTimer) {
-                clearTimeout(this.hoverTimer);
-                this.hoverTimer = null;
-            }
-        },
-        onSegmentComplete() {
-            this.isAnimating = false;
-        },
-    },
-}
+<script setup lang="ts">
+import { useSounds } from "~/store/useSounds";
+
+const soundsStore = useSounds();
+const { setIsSoundActive } = soundsStore;
+
+const props = defineProps({
+    isHovered: { type: Boolean, default: false },
+    isClicked: { type: Boolean, default: false },
+});
+
+const isAnimating = ref(false);
+const hoverTimer = ref<NodeJS.Timeout>();
+const hoverTime = 1000;
+
+watch(
+    () => props.isHovered,
+    (value) => {
+        if (value && !isAnimating.value) {
+            hoverTimer.value = setTimeout(
+                () => (isAnimating.value = true),
+                hoverTime
+            );
+        } else {
+            clearTimer();
+        }
+    }
+);
+
+const clearTimer = () => {
+    if (hoverTimer.value) {
+        clearTimeout(hoverTimer.value);
+        hoverTimer.value = undefined;
+    }
+};
+
+const onSegmentComplete = () => (isAnimating.value = false);
 </script>

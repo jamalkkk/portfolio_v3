@@ -17,7 +17,7 @@
                         :is-hovered="hoveredClip === 'bird'"
                     />
                 </div>
-                <JKSvg
+                <!-- <JKSvg
                     class="ia-scene"
                     :title="`scene${isSmallScreen ? '-sm' : ''}`"
                 />
@@ -41,9 +41,9 @@
                                 'has-hover': listener.hasHover,
                             },
                         ]"
-                        @mouseenter="() => handleMouseEnter(listener.name)"
+                        @mouseenter="handleMouseEnter(listener.name)"
                         @mouseleave="handleMouseLeave"
-                        @click="() => handleClick(listener)"
+                        @click="handleClick(listener)"
                     />
                 </div>
                 <Infos class="ia-infos" />
@@ -53,16 +53,13 @@
                     :volume="0.03"
                     :loop="true"
                     :restart="false"
-                />
+                /> -->
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent, ref, computed, watch } from "vue";
-import { useStore } from "vuex";
-
 const Clips = [
     {
         name: "ball",
@@ -117,31 +114,50 @@ const Listeners = [
     ...Clips,
 ];
 
+// export type ListenerName =
+//     | "ball"
+//     | "bike"
+//     | "bird"
+//     | "books"
+//     | "cat"
+//     | "clock"
+//     | "desktop"
+//     | "headphones"
+//     | "laptop"
+//     | "light"
+//     | "poster";
+
+export type ListenerType = {
+    name: string;
+    hasSound?: boolean;
+    hasHover?: boolean;
+};
+
 import { useApp } from "~/store/useApp";
 import { useLoader } from "~/store/useLoader";
-import { useSound } from "~/store/useSound";
+import { useSounds } from "~/store/useSounds";
 
 const appStore = useApp();
 const loaderStore = useLoader();
-const soundStore = useSound();
+const soundsStore = useSounds();
 const { scrollToProjects } = useCommon();
 
 const {
     isHomeActive,
-    isUserOnPage,
     isInfosActive,
-    isInfoInfoActive,
     isSmallScreen,
     toggleIsInfosActive,
     setIsInfoInfoActive,
 } = appStore;
 const { isLoaderActive } = loaderStore;
-const { isSoundActive, setIsActive } = soundStore;
+const { setIsSoundActive } = soundsStore;
+
+const { isUserOnPage, isInfoInfoActive } = storeToRefs(appStore);
+const { isSoundActive } = storeToRefs(soundsStore);
 
 const shouldBGSoundBePlaying = ref(false);
 const hoveredClip = ref("");
 const clickedClip = ref("");
-const isSoundSupposedActive = isSupposedActive;
 
 watch([isInfoInfoActive, isSoundActive, isUserOnPage], () => {
     setShouldBGSoundBePlaying();
@@ -159,8 +175,9 @@ watch(clickedClip, (value) => {
     }
 });
 
-function handleClick({ name, hasSound }) {
+function handleClick({ name, hasSound }: ListenerType) {
     switch (name) {
+        // Listeners without animation
         case "laptop":
             scrollToProjects();
             break;
@@ -173,6 +190,7 @@ function handleClick({ name, hasSound }) {
             toggleIsInfosActive();
             break;
 
+        // Rest of
         default:
             clickedClip.value = name;
             break;
@@ -183,179 +201,17 @@ function handleClick({ name, hasSound }) {
     }
 }
 
-const handleMouseEnter = (listener) => (hoveredClip.value = listener);
+const handleMouseEnter = (listener: ListenerType) =>
+    (hoveredClip.value = listener.name);
 
 const handleMouseLeave = () => (hoveredClip.value = "");
 
 const setShouldBGSoundBePlaying = () =>
     (shouldBGSoundBePlaying.value = isSoundActive.value && isUserOnPage.value);
 
-const toggleSound = () => setIsActive(!isSoundActive.value);
+const toggleSound = () => setIsSoundActive(!isSoundActive.value);
 
 onMounted(() => {
     setShouldBGSoundBePlaying();
 });
-</script>
-
-
-<script>
-import { mapMutations } from "vuex";
-
-const Clips = [
-    {
-        name: "ball",
-        hasSound: true,
-        hasHover: true,
-    },
-    {
-        name: "bike",
-        hasSound: true,
-        hasHover: true,
-    },
-    {
-        name: "cat",
-        hasSound: true,
-        hasHover: true,
-    },
-    {
-        name: "clock",
-        hasSound: false,
-        hasHover: false,
-    },
-    {
-        name: "poster",
-        hasSound: true,
-        hasHover: false,
-    },
-    {
-        name: "light",
-        hasSound: false,
-        hasHover: false,
-    },
-    {
-        name: "desktop",
-        hasSound: false,
-        hasHover: true,
-    },
-];
-const Listeners = [
-    {
-        name: "bird",
-        hasHover: true,
-    },
-    {
-        name: "laptop",
-    },
-    {
-        name: "headphones",
-    },
-    {
-        name: "books",
-    },
-    ...Clips,
-];
-
-export default {
-    name: "InteractiveAnimations",
-    components: { Clips, Listeners },
-    data() {
-        return {
-            shouldBGSoundBePlaying: false,
-            hoveredClip: "",
-            clickedClip: "",
-            clips: Clips,
-            listeners: Listeners,
-        };
-    },
-    computed: {
-        isHomeActive() {
-            return this.$store.state.isHomeActive;
-        },
-        isUserOnPage() {
-            return this.$store.state.isUserOnPage;
-        },
-        isInfosActive() {
-            return this.$store.state.isInfosActive;
-        },
-        isInfoInfoActive() {
-            return this.$store.state.isInfoInfoActive;
-        },
-        isLoaderActive() {
-            return this.$store.state.loader.isLoaderActive;
-        },
-        isSoundActive() {
-            return this.$store.state.sounds.isActive;
-        },
-        isSoundSupposedActive() {
-            return this.$store.state.sounds.isSupposedActive;
-        },
-        isSmallScreen() {
-            return this.$store.state.isSmallScreen;
-        },
-    },
-    watch: {
-        isInfoInfoActive(value) {
-            if (value) {
-                setTimeout(() => this.setIsInfoInfoActive(false), 4000);
-            }
-        },
-        isSoundActive() {
-            this.setShouldBGSoundBePlaying();
-        },
-        isUserOnPage() {
-            this.setShouldBGSoundBePlaying();
-        },
-        clickedClip(value) {
-            if (value) {
-                setTimeout(() => (this.clickedClip = ""), 1);
-            }
-        },
-    },
-    methods: {
-        handleClick({ name, hasSound }) {
-            switch (name) {
-                case "laptop":
-                    this.scrollToProjects();
-                    break;
-
-                case "headphones":
-                    this.toggleSound();
-                    break;
-
-                case "books":
-                    this.toggleIsInfosActive();
-                    break;
-
-                default:
-                    this.clickedClip = name;
-                    break;
-            }
-
-            if (hasSound && !this.isSoundActive && !this.isInfoInfoActive) {
-                this.setIsInfoInfoActive(true);
-            }
-        },
-        handleMouseEnter(listener) {
-            this.hoveredClip = listener;
-        },
-        handleMouseLeave() {
-            this.hoveredClip = "";
-        },
-        setShouldBGSoundBePlaying() {
-            this.shouldBGSoundBePlaying =
-                this.isSoundActive && this.isUserOnPage;
-        },
-        toggleSound() {
-            this.setIsSoundActive(!this.isSoundActive);
-        },
-        ...mapMutations({
-            setIsInfoInfoActive: "setIsInfoInfoActive",
-            toggleIsInfosActive: "toggleIsInfosActive",
-            setIsSoundActive: "sounds/setIsActive",
-        }),
-    },
-    mounted() {
-        this.setShouldBGSoundBePlaying();
-    },
-};
 </script>
