@@ -13,6 +13,9 @@ export const useSounds = defineStore("sounds", {
     cat: false,
     poster: false,
   }),
+  getters: {
+    isCurrentPlaying: (state, clip) => state[clip],
+  },
   actions: {
     setIsSoundActive(value) {
       this.isSoundActive = value;

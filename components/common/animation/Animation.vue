@@ -3,14 +3,14 @@
 <template>
     <div class="b-animation">
         <Lottie
-            class="animation-lottie"
             ref="lottie"
-            :animationLink="`~/assets/json/${title}.json`"
+            :animationData="`~/assets/json/${title}.json`"
             loop
             autoplay
             @onComplete="complete"
             @onLoopComplete="loopComplete"
             @onAnimationLoaded="setAnimationController"
+            class="animation-lottie"
         />
     </div>
 </template>
@@ -24,7 +24,7 @@ const { isAllAnimationActive } = useAnimationStore;
 const props = defineProps({
     isSegmentForced: { type: Boolean, default: false },
     isSegmentReversed: { type: Boolean, default: false },
-    shouldBePlaying: { type: Boolean, default: false },
+    shouldBePlaying: { type: Boolean, default: true },
     autoplay: { type: Boolean, default: false },
     loop: { type: Boolean, default: false },
     speed: { type: Number, default: 1 },
@@ -34,14 +34,40 @@ const props = defineProps({
     onSegmentComplete: { type: Function, default: null },
 });
 
-const anim = ref(null);
 const isPlaying = ref(false);
 const lottie = ref(null);
+
+watch(
+    () => props.shouldBePlaying,
+    (value) => {
+        if (value) {
+            play();
+        } else {
+            pause();
+        }
+    }
+);
+
+watch(
+    () => props.speed,
+    (value) => setSpeed(value)
+);
+
+watch(
+    () => props.segments,
+    (value) => {
+        if (value.length) {
+            playSegments(value);
+        } else {
+            pause();
+        }
+    }
+);
 
 const setAnimationController = () => {
     setSpeed(props.speed);
 
-    if (props.segments.length) {
+    if (props.segments?.length) {
         playSegments(props.segments);
     }
 };
