@@ -11,7 +11,7 @@
             :speed="1.5"
             :onSegmentComplete="onSegmentComplete"
         />
-        <sound
+        <Sound
             title="bird"
             type="wav"
             :volume="0.1"

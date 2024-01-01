@@ -9,3 +9,5 @@ export type Info = {
     socialMedia: Object,
 }
 
+export type LottieDataType = 'ball' | 'bike' | 'bird' | 'cat' | 'Desktop'
+

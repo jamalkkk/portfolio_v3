@@ -3,10 +3,11 @@
 <template>
     <div class="b-animation">
         <Lottie
+            v-if="isLoaded"
             ref="lottie"
-            :animationData="`~/assets/json/${title}.json`"
-            loop
-            autoplay
+            :animationData="data[title]"
+            :loop="loop"
+            :autoplay="autoplay"
             @onComplete="complete"
             @onLoopComplete="loopComplete"
             @onAnimationLoaded="setAnimationController"
@@ -17,6 +18,20 @@
 
 <script setup lang="ts">
 import { useAnimation } from "~/store/useAnimation";
+
+import BallData from "~/assets/json/ball.json";
+import BikeData from "~/assets/json/bike.json";
+import BirdData from "~/assets/json/bird.json";
+import CatData from "~/assets/json/cat.json";
+import DesktopData from "~/assets/json/desktop.json";
+
+const data = {
+    ball: BallData,
+    bike: BikeData,
+    bird: BirdData,
+    cat: CatData,
+    desktop: DesktopData,
+};
 
 const useAnimationStore = useAnimation();
 const { isAllAnimationActive } = useAnimationStore;
@@ -35,6 +50,7 @@ const props = defineProps({
 });
 
 const isPlaying = ref(false);
+const isLoaded = ref(false);
 const lottie = ref(null);
 
 watch(
@@ -98,4 +114,8 @@ const loopComplete = () => {
         props.onSegmentComplete();
     }
 };
+
+onMounted(() => {
+    isLoaded.value = true;
+});
 </script>
