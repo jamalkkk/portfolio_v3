@@ -23,10 +23,6 @@ const props = defineProps({
         type: Number,
         default: 0.3,
     },
-    type: {
-        type: String,
-        default: "mp3",
-    },
     title: {
         type: String,
         default: "poster",
@@ -46,7 +42,7 @@ const isReady = ref(false);
 const audio = ref<HTMLAudioElement>();
 
 const setUpAudio = async () => {
-    const file = `../../../assets/audio/${props.title}.${props.type}`;
+    const file = `../../../assets/audio/${props.title}.mp3`;
 
     try {
         const audioFile = await import(/* @vite-ignore */ file);

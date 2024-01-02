@@ -6,7 +6,7 @@
 const props = defineProps({
     name: {
         type: String,
-        default: "instagram",
+        default: "info",
     },
 });
 

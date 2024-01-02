@@ -11,7 +11,12 @@
             :speed="1.5"
             :onSegmentComplete="onSegmentComplete"
         />
-        <Sound title="bird" type="wav" :volume="0.1" :shouldBePlaying="true" />
+        <Sound
+            title="bird"
+            type="wav"
+            :volume="0.1"
+            :shouldBePlaying="isAnimating && isSoundActive"
+        />
     </div>
 </template>
 

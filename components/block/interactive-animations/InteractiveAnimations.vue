@@ -13,28 +13,36 @@
             <div class="ia-container">
                 <!-- Bird -->
                 <div class="ia-clips">
-                    <Bird
-                        class="ia-clip"
-                        :is-hovered="hoveredClip === 'bird'"
-                    />
+                    <Bird :isHovered="hoveredClip === 'bird'" class="ia-clip" />
                 </div>
 
-                <!-- Scene -->
+                <!-- Background Scene -->
                 <JKSvg
-                    class="ia-scene"
                     :name="`animation_scene${isSmallScreen ? '-sm' : ''}`"
+                    class="ia-scene"
                 />
-                <!--  <div class="ia-clips">
+
+                <div class="ia-clips">
                     <component
-                        v-for="(clip, i) in clips"
+                        v-for="(clip, i) in Clips"
                         :is="clip.name"
                         :key="i"
                         class="ia-clip"
-                        :is-hovered="hoveredClip === clip.name"
-                        :is-clicked="clickedClip === clip.name"
+                        :isHovered="hoveredClip === clip.name"
+                        :isClicked="clickedClip === clip.name"
+                    />
+                    <Ball
+                        :isHovered="hoveredClip === 'ball'"
+                        :isClicked="clickedClip === 'ball'"
+                        class="ia-clip"
+                    />
+                    <Bike
+                        :isHovered="hoveredClip === 'bike'"
+                        :isClicked="clickedClip === 'bike'"
+                        class="ia-clip"
                     />
                 </div>
-                <div class="ia-listeners">
+                <!--  <div class="ia-listeners">
                     <div
                         v-for="(listener, i) in listeners"
                         :key="i"
@@ -65,40 +73,40 @@
 <script setup lang="ts">
 const Clips = [
     {
-        name: "ball",
+        name: "Ball",
         hasSound: true,
         hasHover: true,
     },
-    {
-        name: "bike",
-        hasSound: true,
-        hasHover: true,
-    },
-    {
-        name: "cat",
-        hasSound: true,
-        hasHover: true,
-    },
-    {
-        name: "clock",
-        hasSound: false,
-        hasHover: false,
-    },
-    {
-        name: "poster",
-        hasSound: true,
-        hasHover: false,
-    },
-    {
-        name: "light",
-        hasSound: false,
-        hasHover: false,
-    },
-    {
-        name: "desktop",
-        hasSound: false,
-        hasHover: true,
-    },
+    // {
+    //     name: "bike",
+    //     hasSound: true,
+    //     hasHover: true,
+    // },
+    // {
+    //     name: "cat",
+    //     hasSound: true,
+    //     hasHover: true,
+    // },
+    // {
+    //     name: "clock",
+    //     hasSound: false,
+    //     hasHover: false,
+    // },
+    // {
+    //     name: "poster",
+    //     hasSound: true,
+    //     hasHover: false,
+    // },
+    // {
+    //     name: "light",
+    //     hasSound: false,
+    //     hasHover: false,
+    // },
+    // {
+    //     name: "desktop",
+    //     hasSound: false,
+    //     hasHover: true,
+    // },
 ];
 const Listeners = [
     {
@@ -193,7 +201,7 @@ function handleClick({ name, hasSound }: ListenerType) {
             toggleIsInfosActive();
             break;
 
-        // Rest of
+        // Rest of listeners
         default:
             clickedClip.value = name;
             break;

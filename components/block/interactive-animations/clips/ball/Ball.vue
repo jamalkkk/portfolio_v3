@@ -1,88 +1,83 @@
-<style lang="scss" src="./ball.scss"></style>
 
 <template>
     <div>
-        <Animation 
-            class="b-ball"
+        <Animation
+            class="b-ball absolute bottom-0"
             title="ball"
             :isSegmentForced="true"
             :loop="false"
-            :segments="segments[activeSegment]"
+            :segments="Segments[activeSegment]"
             :onComplete="onComplete"
         />
-        <sound 
+        <Sound
             title="ball"
             :shouldBePlaying="activeSegment === 'bounce' && isSoundActive"
         />
     </div>
 </template>
+<script setup lang="ts">
+import { useSounds } from "~/store/useSounds";
 
-<script>
-const SEGMENTS = { 
+const soundsStore = useSounds();
+const { isSoundActive } = soundsStore;
+
+const Segments = {
     roll: [1, 192],
     bounce: [193, 288],
 };
 
-export default {
-    name: 'Ball',
-    components: {
-        SEGMENTS,
+const props = defineProps({
+    isHovered: {
+        type: Boolean,
+        default: false,
     },
-    props: {
-        isHovered: {
-            type: Boolean,
-            default: false,
-        },
-        isClicked: {
-            type: Boolean,
-            default: false,
-        },
+    isClicked: {
+        type: Boolean,
+        default: false,
     },
-    data () {
-        return {
-            isAnimating: false,
-            activeSegment: '',
-            segments: SEGMENTS,
-            hoverTimer: null,
-        };
-    },    
-    computed: {
-        isSoundActive() {
-            return this.$store.state.sounds.isActive;
-        },
-    },
-    watch: {
-        segment(value) {
-            this.isAnimating = !!value.length;
-        },
-        isHovered(value) {
-            if (value && !this.isAnimating) {
-                this.hoverTimer = setTimeout(() => {
-                    if (!this.isAnimating) {
-                        this.activeSegment = 'roll';
-                    }
-                }, 1000);
-            } else {
-                this.clearTimer();
-            }
-        },
-        isClicked(value) {
-            if (value && !this.isAnimating) {
-                this.clearTimer();
-                this.activeSegment = 'bounce';
-            }
-        },
-    },
-    methods: {
-        clearTimer() {
-            if (this.hoverTimer) {
-                clearTimeout(this.hoverTimer);
-                this.hoverTimer = null;
-            }
-        },
-        onComplete() {
-            this.activeSegment = '';
-        },
-    },
-}
+});
+
+const isAnimating = ref(false);
+const activeSegment = ref("");
+const hoverTimer = ref<NodeJS.Timeout | null>();
+
+const clearTimer = () => {
+    if (hoverTimer.value) {
+        clearTimeout(hoverTimer.value);
+        hoverTimer.value = null;
+    }
+};
+
+const onComplete = () => {
+    activeSegment.value = "";
+};
+
+watch(
+    () => props.isHovered,
+    (value) => {
+        if (value && !isAnimating.value) {
+            hoverTimer.value = setTimeout(() => {
+                if (!isAnimating.value) {
+                    activeSegment.value = "roll";
+                }
+            }, 1000);
+        } else {
+            clearTimer();
+        }
+    }
+);
+
+watch(
+    () => props.isClicked,
+    (value) => {
+        if (value && !isAnimating.value) {
+            clearTimer();
+            activeSegment.value = "bounce";
+        }
+    }
+);
+
+onBeforeUnmount(() => {
+    clearTimer();
+});
 </script>
