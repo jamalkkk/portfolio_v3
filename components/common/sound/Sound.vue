@@ -40,8 +40,8 @@ const props = defineProps({
         default: () => null,
     },
 });
-const isPlaying = isCurrentPlaying(props.title);
-
+// const isPlaying = isCurrentPlaying, getCurrentPlaying(props.title);
+const isCurrentSoundPlaying = ref(false);
 const isReady = ref(false);
 const audio = ref<HTMLAudioElement>();
 
@@ -49,27 +49,16 @@ const setUpAudio = async () => {
     const file = `../../../assets/audio/${props.title}.${props.type}`;
 
     try {
-        const audioFile = await import(file); /* @vite-ignore */
+        const audioFile = await import(/* @vite-ignore */ file);
         audio.value = new Audio(audioFile.default);
-
+        audio.value.play();
         audio.value.volume = props.volume;
         audio.value.loop = props.loop;
 
-        // audio.value.oncanplay = () => {
-        //     isReady.value = true;
-        // };
-
-        // audio.value.onplay = () => {
-        //     setIsSoundPlaying({ title: props.title, value: true });
-        // };
-
-        // audio.value.onpause = () => {
-        //     setIsSoundPlaying({ title: props.title, value: false });
-        // };
-
-        // audio.value.onended = () => {
-        //     setIsSoundPlaying({ title: props.title, value: false });
-        // };
+        audio.value.oncanplay = () => (isReady.value = true);
+        audio.value.onplay = () => setIsCurrentSoundPlaying(true);
+        audio.value.onpause = () => setIsCurrentSoundPlaying(false);
+        audio.value.onended = () => setIsCurrentSoundPlaying(false);
     } catch (error) {
         console.error("Failed to load audio file:", error);
     }
@@ -90,8 +79,12 @@ const pause = () => {
     }
 };
 
+const setIsCurrentSoundPlaying = (value: boolean) => {
+    isCurrentSoundPlaying.value = value;
+};
+
 watch(isSoundActive, (value) => {
-    if (!value && isPlaying.value) {
+    if (!value && isCurrentSoundPlaying.value) {
         pause();
     }
 });

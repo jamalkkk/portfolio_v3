@@ -18,7 +18,7 @@
         @click="onClick"
         data-cursor-hover
     >
-        <IconSvg :name="name" />
+        <JKSvg :name="name" class="h-[1em] w-[1em]" />
     </component>
 </template>
 <script setup lang="ts">

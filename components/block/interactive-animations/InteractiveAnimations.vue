@@ -11,17 +11,20 @@
     >
         <div class="ia-wrapper">
             <div class="ia-container">
+                <!-- Bird -->
                 <div class="ia-clips">
                     <Bird
                         class="ia-clip"
                         :is-hovered="hoveredClip === 'bird'"
                     />
                 </div>
-                <!-- <JKSvg
+
+                <!-- Scene -->
+                <JKSvg
                     class="ia-scene"
-                    :title="`scene${isSmallScreen ? '-sm' : ''}`"
+                    :name="`animation_scene${isSmallScreen ? '-sm' : ''}`"
                 />
-                <div class="ia-clips">
+                <!--  <div class="ia-clips">
                     <component
                         v-for="(clip, i) in clips"
                         :is="clip.name"

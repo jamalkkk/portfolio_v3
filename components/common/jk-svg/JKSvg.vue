@@ -1,13 +1,16 @@
 <template>
-    <span v-if="svg" class="h-[1em] w-[1em]" v-html="svg" />
+    <div v-if="svg" v-html="svg"></div>
 </template>
 
 <script setup lang="ts">
 const props = defineProps({
-    name: { type: String, default: "instagram" },
+    name: {
+        type: String,
+        default: "instagram",
+    },
 });
 
-// Auto-load icons
+// Auto-load svgs
 const svgs = Object.fromEntries(
     Object.entries(
         import.meta.glob("~/assets/img/svg/*.svg", { as: "raw" })
@@ -17,6 +20,6 @@ const svgs = Object.fromEntries(
     })
 );
 
-// Lazily load the icon
+// Lazily load the svg
 const svg = props.name && (await svgs?.[props.name]?.());
 </script>
