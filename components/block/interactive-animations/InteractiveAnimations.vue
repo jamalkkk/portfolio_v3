@@ -22,15 +22,16 @@
                     class="ia-scene"
                 />
 
+                <!-- Room clips -->
                 <div class="ia-clips">
-                    <component
+                    <!-- <component
                         v-for="(clip, i) in Clips"
                         :is="clip.name"
                         :key="i"
                         class="ia-clip"
                         :isHovered="hoveredClip === clip.name"
                         :isClicked="clickedClip === clip.name"
-                    />
+                    /> -->
                     <Ball
                         :isHovered="hoveredClip === 'ball'"
                         :isClicked="clickedClip === 'ball'"
@@ -39,6 +40,29 @@
                     <Bike
                         :isHovered="hoveredClip === 'bike'"
                         :isClicked="clickedClip === 'bike'"
+                        class="ia-clip"
+                    />
+                    <Cat
+                        :isHovered="hoveredClip === 'cat'"
+                        :isClicked="clickedClip === 'cat'"
+                        class="ia-clip"
+                    />
+                    <Clock
+                        :isHovered="hoveredClip === 'cat'"
+                        :isClicked="clickedClip === 'cat'"
+                        class="ia-clip"
+                    />
+                    <Desktop
+                        :isHovered="hoveredClip === 'desktop'"
+                        :isClicked="clickedClip === 'desktop'"
+                        class="ia-clip"
+                    />
+                    <Light
+                        :isClicked="clickedClip === 'light'"
+                        class="ia-clip"
+                    />
+                    <Poster
+                        :isClicked="clickedClip === 'poster'"
                         class="ia-clip"
                     />
                 </div>

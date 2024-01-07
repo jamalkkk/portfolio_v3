@@ -1,31 +1,47 @@
-<style lang="scss" src="./desktop.scss"></style>
-
 <template>
     <div>
-        <Animation 
-            class="b-desktop"
+        <Animation
             title="desktop"
             :shouldBePlaying="shouldBePlaying"
             :isSegmentForced="isSegmentForced"
             :loop="true"
             :speed="speed"
-            :segments="segments[activeSegment]"
-            :onSegmentComplete="onSegmentComplete"
+            :segments="Segments[activeSegment]"
+            :onSegmentComplete="selectNextSegment"
+            class="absolute top-0 right-0 w-full h-full"
         />
-        <sound 
+        <Sound
             title="desktopType"
-            type="wav"
             :shouldBePlaying="activeSegment === 'type' && isDesktopSoundActive"
             :loop="true"
-            :volume=".1"
+            :volume="0.1"
         />
     </div>
 </template>
 
-<script>
-import { mapMutations } from 'vuex';
 
-const SEGMENTS = { 
+<script setup lang="ts">
+import { useApp } from "~/store/useApp";
+import { useSounds } from "~/store/useSounds";
+
+const appStore = useApp();
+const soundsStore = useSounds();
+const { toggleShouldHomeBeActive } = appStore;
+const { isHomeActive, isUserOnPage } = storeToRefs(appStore);
+const { isSoundActive, activeSounds } = storeToRefs(soundsStore);
+
+const props = defineProps({
+    isHovered: {
+        type: Boolean,
+        default: false,
+    },
+    isClicked: {
+        type: Boolean,
+        default: false,
+    },
+});
+
+const Segments = {
     type: [1, 360],
     coffee: [361, 599],
     look: [600, 960],
@@ -34,124 +50,100 @@ const SEGMENTS = {
     sitdown: [1249, 1296],
 };
 
-export default {
-    name: 'Desktop',
-    components: {
-        SEGMENTS,
-    },
-    props: {
-        isHovered: {
-            type: Boolean,
-            default: false,
-        },
-        isClicked: {
-            type: Boolean,
-            default: false,
-        },
-    },
-    data () {
-        return {
-            isSegmentForced: true,
-            isBeingHovered: false,
-            isDesktopSoundActive: false,
-            shouldBePlaying: true,
-            shouldPlaySegment: '',
-            activeSegment: 'default',
-            speed: 0,
-            orgSpeed: 3,
-            standingSpeed: 2,
-            segmentTimer: null,
-            segments: SEGMENTS,
-        };
-    },
-    computed: {
-        isHomeActive() {
-            return this.$store.state.isHomeActive;
-        },
-        isSoundActive() {
-            return this.$store.state.sounds.isActive;
-        },
-        isUserOnPage() {
-            return this.$store.state.isUserOnPage;
-        },
-    },
-    watch: {
-        isHovered(value) {
-            if (value && !this.shouldPlaySegment) {
-                this.shouldPlaySegment = 'look';
-            }
-        },
-        isClicked(value) {
-            if (value) {
-                this.toggleShouldHomeBeActive();
-            }
-        },
-        isHomeActive(value) {
-            if (value && this.shouldPlaySegment === 'standing') {
-                this.shouldPlaySegment = 'sitdown';
-            } else if (!value && this.shouldPlaySegment !== 'standing'){
-                this.shouldPlaySegment = 'standup';
-            } 
-        },
-        isSoundActive() {
-            this.setIsDesktopSoundBePlaying();
-        },
-        isUserOnPage() {
-            this.setIsDesktopSoundBePlaying();
-        },
-        activeSegment(value) {
-            if (value === 'standing') {
-                this.speed = this.standingSpeed;
-            } else {
-                this.speed = this.orgSpeed;
-            }
-        },
-    },
-    methods: {
-        onSegmentComplete() {
-            this.selectNextSegment();
-        },
-        selectNextSegment() {
-            if (!this.shouldPlaySegment) {
-                this.setRandomSegment();
-            } else {
+const isBeingHovered = ref(false);
+const isDesktopSoundActive = ref(false);
+const shouldBePlaying = ref(true);
+const shouldPlaySegment = ref("");
+const activeSegment = ref("type");
+const speed = ref(0.01);
+const orgSpeed = ref(3);
+const standingSpeed = ref(2);
 
-                switch(this.shouldPlaySegment) {
-                    case 'standup':
-                        this.activeSegment = !this.isHomeActive ? this.shouldPlaySegment : 'type';
-                        this.shouldPlaySegment = this.isHomeActive ? 'sitdown' : 'standing';
-                        break;
+const segmentTimer = ref<NodeJS.Timeout | undefined>(undefined);
 
-                    case 'standing':
-                        this.activeSegment = this.shouldPlaySegment;
-                        this.shouldPlaySegment = this.isHomeActive ? 'sitdown' : 'standing';
-                        break;
+const setIsDesktopSoundBePlaying = () => {
+    isDesktopSoundActive.value = isSoundActive.value && isUserOnPage.value;
+};
 
-                    default:
-                        this.activeSegment = this.shouldPlaySegment;
-                        this.shouldPlaySegment = '';
-                        break;
-                }
-            }
-        },
-        setRandomSegment() {
-            this.resetSegment(false);
-            this.activeSegment = this.getRandomInt(3) === 3 ? 'coffee' : 'type';
-            
-            this.segmentTimer = setTimeout(() => this.resetSegment(true), 2000);
-        },
-        resetSegment(value) {
-            this.shouldBePlaying = value;
-        },
-        setIsDesktopSoundBePlaying() {
-            this.isDesktopSoundActive = this.isSoundActive && this.isUserOnPage;
-        },
-        ...mapMutations({
-            toggleShouldHomeBeActive: 'toggleShouldHomeBeActive',
-        }),
-    },
-    mounted() {
-        this.selectNextSegment();
+const selectNextSegment = () => {
+    if (!shouldPlaySegment.value) {
+        setRandomSegment();
+    } else {
+        switch (shouldPlaySegment.value) {
+            case "standup":
+                activeSegment.value = !isHomeActive
+                    ? shouldPlaySegment.value
+                    : "type";
+                shouldPlaySegment.value = isHomeActive ? "sitdown" : "standing";
+                break;
+            case "standing":
+                activeSegment.value = shouldPlaySegment.value;
+                shouldPlaySegment.value = isHomeActive ? "sitdown" : "standing";
+                break;
+            default:
+                activeSegment.value = shouldPlaySegment.value;
+                shouldPlaySegment.value = "";
+                break;
+        }
     }
-}
+};
+
+const resetSegment = (value: boolean) => {
+    shouldBePlaying.value = value;
+};
+
+const getRandomInt = (max: number) => {
+    return Math.floor(Math.random() * Math.floor(max));
+};
+
+const setRandomSegment = () => {
+    resetSegment(false);
+    activeSegment.value = getRandomInt(3) === 3 ? "coffee" : "type";
+
+    segmentTimer.value = setTimeout(() => resetSegment(true), 2000);
+};
+
+watch(
+    () => props.isHovered,
+    (value) => {
+        if (value && !shouldPlaySegment.value) {
+            shouldPlaySegment.value = "look";
+        }
+    }
+);
+
+watch(
+    () => props.isClicked,
+    (value) => {
+        if (value) {
+            toggleShouldHomeBeActive();
+        }
+    }
+);
+
+watch(isSoundActive, setIsDesktopSoundBePlaying);
+
+watch(isUserOnPage, setIsDesktopSoundBePlaying);
+
+watch(isHomeActive, (value) => {
+    if (value && shouldPlaySegment.value === "standing") {
+        shouldPlaySegment.value = "sitdown";
+    } else if (!value && shouldPlaySegment.value !== "standing") {
+        shouldPlaySegment.value = "standup";
+    }
+});
+
+watch(activeSegment, (value) => {
+    speed.value = value === "standing" ? standingSpeed.value : orgSpeed.value;
+});
+
+onMounted(() => {
+    selectNextSegment();
+});
+
+onUnmounted(() => {
+    if (segmentTimer.value) {
+        clearTimeout(segmentTimer.value);
+    }
+});
 </script>

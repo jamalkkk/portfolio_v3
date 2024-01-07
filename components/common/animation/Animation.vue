@@ -88,20 +88,20 @@ const setAnimationController = () => {
     }
 };
 
-const play = () => lottie.value.play();
+const play = () => lottie.value?.play();
 
-const pause = () => lottie.value.pause();
+const pause = () => lottie.value?.pause();
 
-const setSpeed = (value: number) => lottie.value.setSpeed(value);
+const setSpeed = (value: number) => lottie.value?.setSpeed(value);
 
 const goToAndPlay = (value: number, isFrame: boolean = false) =>
-    lottie.value.goToAndPlay(value, isFrame);
+    lottie.value?.goToAndPlay(value, isFrame);
 
 const goToAndStop = (value: number, isFrame: boolean = false) =>
-    lottie.value.goToAndStop(value, isFrame);
+    lottie.value?.goToAndStop(value, isFrame);
 
 const playSegments = (range: number[]) =>
-    lottie.value.playSegments(range, props.isSegmentForced);
+    lottie.value?.playSegments(range, props.isSegmentForced);
 
 const complete = () => {
     if (props.onComplete) {

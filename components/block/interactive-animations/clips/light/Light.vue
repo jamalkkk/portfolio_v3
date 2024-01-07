@@ -10,65 +10,50 @@
                 },
             ]"
             :style="{ animationDuration: swingTime + 'ms' }"
-            title="light"
+            name="animation_light"
         />
-        <sound
+        <Sound
             title="lightSwitch"
-            type="wav"
             :shouldBePlaying="isSwinging && isSoundActive"
             :volume="0.2"
         />
-        <sound
+        <Sound
             title="lightSwing"
-            type="wav"
             :shouldBePlaying="isSwinging && isSoundActive"
             :volume="0.3"
         />
     </div>
 </template>
 
-<script>
-import { mapMutations } from 'vuex';
+<script setup lang="ts">
+import { useTheme } from "~/store/useTheme";
 
-export default {
-    name: "Light",
-    props: {
-        isHovered: {
-            type: Boolean,
-            default: false,
-        },
-        isClicked: {
-            type: Boolean,
-            default: false,
-        },
+const themeStore = useTheme();
+const { toggleIsDarkTheme } = themeStore;
+
+const props = defineProps({
+    isClicked: {
+        type: Boolean,
+        default: false,
     },
-    data() {
-        return {
-            isSwinging: false,
-            swingTime: 4000,
-        };
-    },
-    computed: {
-        isSoundActive() {
-            return this.$store.state.sounds.isActive;
-        },
-    },
-    watch: {
-        isClicked(value) {
-            if (value && !this.isSwinging) {
-                this.moveLight();
-                this.toggleIsDarktTheme();
-            }
-        },
-    },
-    methods: {
-        moveLight() {
-            this.isSwinging = true;
-            setTimeout(() => (this.isSwinging = false), this.swingTime);
-        },
-        ...mapMutations({
-            toggleIsDarktTheme: 'theme/toggleIsDarktTheme',
-        }),
-    },
+});
+
+const SwingTime = 4000;
+
+const isSwinging = ref(false);
+
+watch(
+    () => props.isClicked,
+    (value) => {
+        if (value && !isSwinging.value) {
+            moveLight();
+            toggleIsDarkTheme();
+        }
+    }
+);
+
+const moveLight = () => {
+    isSwinging.value = true;
+    setTimeout(() => (isSwinging.value = false), SwingTime);
 };
 </script>

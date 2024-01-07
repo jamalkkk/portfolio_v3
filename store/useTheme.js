@@ -11,7 +11,7 @@ export const useTheme = defineStore("theme", {
   actions: {
     toggleIsDarkTheme() {
       this.isDarkTheme = !this.isDarkTheme;
-      //   localStorage?.isDarkTheme = this.isDarkTheme;
+      // localStorage?.isDarkTheme = this.isDarkTheme;
     },
   },
 });
