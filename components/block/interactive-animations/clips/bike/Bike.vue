@@ -7,13 +7,13 @@
             :speed="currentSpeed"
             :loop="true"
         />
-        <sound
+        <Sound
             title="bikeChain"
             :shouldBePlaying="isActive && isSoundActive"
             :loop="true"
             :volume="0.1"
         />
-        <sound title="bikeBell" :shouldBePlaying="shouldBellBePlaying" />
+        <Sound title="bikeBell" :shouldBePlaying="shouldBellBePlaying" />
     </div>
 </template>
 <script setup lang="ts">
@@ -21,6 +21,7 @@ import { useSounds } from "~/store/useSounds";
 
 const soundsStore = useSounds();
 const { isSoundActive } = soundsStore;
+const { activeSounds } = storeToRefs(soundsStore);
 
 const props = defineProps({
     isHovered: {
@@ -33,28 +34,26 @@ const props = defineProps({
     },
 });
 
+const MaxSpeed = 3;
+const SpeedIncrement = 0.05;
+const SpeedIncrementTime = 70;
+const HoverTime = 1000;
+
 const isActive = ref(false);
 const isSpeedingUp = ref(false);
 const isSpeedingDown = ref(false);
 const shouldBePlaying = ref(false);
 const shouldBellBePlaying = ref(false);
 const soundPlaying = ref("");
-const currentSpeed = ref(0);
-const maxSpeed = 3;
-const speedIncrement = 0.05;
-const speedIncrementTime = 70;
-const hoverTime = 1000;
-const hoverTimer = ref<NodeJS.Timeout | null>();
-const interval = ref<NodeJS.Timeout | null>();
-
-const isBellPlaying = computed(() => {
-    return $store.state.sounds.bikeBell;
-});
+const currentSpeed = ref(0.01);
+const hoverTimer = ref<NodeJS.Timeout | undefined>();
+const interval = ref<NodeJS.Timeout | undefined>();
 
 const clearHoverTimer = () => {
-    if (hoverTimer) {
-        clearTimeout(hoverTimer);
-        hoverTimer = null;
+    // if bikce chain sound is playing
+    if (hoverTimer.value) {
+        clearTimeout(hoverTimer.value);
+        hoverTimer.value = undefined;
         shouldBePlaying.value = false;
     }
 };
@@ -66,13 +65,13 @@ const increaseSpeed = () => {
     }
 
     resetSpeedInterval(true);
-    interval = setInterval(() => {
-        if (currentSpeed.value <= maxSpeed) {
-            setSpeed(speedIncrement);
+    interval.value = setInterval(() => {
+        if (currentSpeed.value <= MaxSpeed) {
+            setSpeed(SpeedIncrement);
         } else {
             resetSpeedInterval(false, false);
         }
-    }, speedIncrementTime);
+    }, SpeedIncrementTime);
 };
 
 const decreaseSpeed = () => {
@@ -81,24 +80,27 @@ const decreaseSpeed = () => {
         resetSpeedInterval(false);
     }
 
-    interval = setInterval(() => {
+    interval.value = setInterval(() => {
         if (currentSpeed.value >= 0) {
-            setSpeed(-speedIncrement);
+            setSpeed(-SpeedIncrement);
         } else {
             resetSpeedInterval(false, false);
             isActive.value = false;
         }
-    }, speedIncrementTime);
+    }, SpeedIncrementTime);
 };
 
-const resetSpeedInterval = (isIncrease, isChanging = true) => {
-    clearInterval(interval);
-    interval = null;
+const resetSpeedInterval = (
+    isIncrease: boolean,
+    isChanging: boolean = true
+) => {
+    clearInterval(interval.value);
+    interval.value = undefined;
     isSpeedingUp.value = isIncrease && isChanging;
     isSpeedingDown.value = !isIncrease && isChanging;
 };
 
-const setSpeed = (value) => {
+const setSpeed = (value: number) => {
     currentSpeed.value += value;
 };
 
@@ -106,9 +108,9 @@ watch(
     () => props.isHovered,
     (value) => {
         if (value && !shouldBePlaying.value) {
-            hoverTimer = setTimeout(() => {
+            hoverTimer.value = setTimeout(() => {
                 shouldBePlaying.value = true;
-            }, hoverTime);
+            }, HoverTime);
         } else {
             clearHoverTimer();
         }
@@ -118,14 +120,18 @@ watch(
 watch(
     () => props.isClicked,
     (value) => {
-        if (value && isSoundActive.value && !isBellPlaying.value) {
+        if (
+            value &&
+            isSoundActive &&
+            !activeSounds.value.includes("bikeBell")
+        ) {
             shouldBellBePlaying.value = true;
         }
     }
 );
 
-watch(isBellPlaying, (value) => {
-    if (!value) {
+watch(activeSounds, (value) => {
+    if (!value.includes("bikeBell")) {
         shouldBellBePlaying.value = false;
     }
 });

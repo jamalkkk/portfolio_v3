@@ -6,6 +6,7 @@ export const useSounds = defineStore("sounds", {
   state: () => ({
     isSoundActive: false,
     isSoundSupposedActive: false,
+    activeSounds: ["backgroun"],
     ball: false,
     bikeBell: false,
     bikeChain: false,
@@ -28,6 +29,13 @@ export const useSounds = defineStore("sounds", {
     },
     setIsSoundPlaying({ title, value }) {
       this[title] = value;
+    },
+    setActiveSounds(value, isActive = true) {
+      if (isActive) {
+        this.activeSounds.push(value);
+      } else {
+        this.activeSounds = this.activeSounds.filter((item) => item !== value);
+      }
     },
   },
 });
