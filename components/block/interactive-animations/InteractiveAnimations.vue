@@ -24,14 +24,6 @@
 
                 <!-- Room clips -->
                 <div class="ia-clips">
-                    <!-- <component
-                        v-for="(clip, i) in Clips"
-                        :is="clip.name"
-                        :key="i"
-                        class="ia-clip"
-                        :isHovered="hoveredClip === clip.name"
-                        :isClicked="clickedClip === clip.name"
-                    /> -->
                     <Ball
                         :isHovered="hoveredClip === 'ball'"
                         :isClicked="clickedClip === 'ball'"
@@ -66,22 +58,24 @@
                         class="ia-clip"
                     />
                 </div>
-                <!--  <div class="ia-listeners">
+
+                <!-- Listeners -->
+                <div class="ia-listeners">
                     <div
-                        v-for="(listener, i) in listeners"
+                        v-for="(listener, i) in Listeners"
                         :key="i"
                         :class="[
-                            `ia-listener listener-${listener.name}`,
+                            `ia-listener listener-${listener.name} bg-[#0007]`,
                             {
                                 'has-hover': listener.hasHover,
                             },
                         ]"
-                        @mouseenter="handleMouseEnter(listener.name)"
+                        @mouseenter="handleMouseEnter(listener)"
                         @mouseleave="handleMouseLeave"
                         @click="handleClick(listener)"
                     />
                 </div>
-                <Infos class="ia-infos" />
+                <!--   <Infos class="ia-infos" />
                 <sound
                     title="background"
                     :shouldBePlaying="shouldBGSoundBePlaying"
@@ -97,41 +91,42 @@
 <script setup lang="ts">
 const Clips = [
     {
-        name: "Ball",
+        name: "ball",
         hasSound: true,
         hasHover: true,
     },
-    // {
-    //     name: "bike",
-    //     hasSound: true,
-    //     hasHover: true,
-    // },
-    // {
-    //     name: "cat",
-    //     hasSound: true,
-    //     hasHover: true,
-    // },
-    // {
-    //     name: "clock",
-    //     hasSound: false,
-    //     hasHover: false,
-    // },
-    // {
-    //     name: "poster",
-    //     hasSound: true,
-    //     hasHover: false,
-    // },
-    // {
-    //     name: "light",
-    //     hasSound: false,
-    //     hasHover: false,
-    // },
-    // {
-    //     name: "desktop",
-    //     hasSound: false,
-    //     hasHover: true,
-    // },
+    {
+        name: "bike",
+        hasSound: true,
+        hasHover: true,
+    },
+    {
+        name: "cat",
+        hasSound: true,
+        hasHover: true,
+    },
+    {
+        name: "clock",
+        hasSound: false,
+        hasHover: false,
+    },
+    {
+        name: "poster",
+        hasSound: true,
+        hasHover: false,
+    },
+    {
+        name: "light",
+        hasSound: false,
+        hasHover: false,
+    },
+    {
+        name: "desktop",
+        hasSound: false,
+        hasHover: true,
+    },
 ];
+
 const Listeners = [
     {
         name: "bird",
@@ -206,10 +201,10 @@ watch(isInfoInfoActive, (value) => {
 
 watch(clickedClip, (value) => {
     if (value) {
+        // reset
         setTimeout(() => (clickedClip.value = ""), 1);
     }
 });
-
 function handleClick({ name, hasSound }: ListenerType) {
     switch (name) {
         // Listeners without animation
@@ -236,15 +231,22 @@ function handleClick({ name, hasSound }: ListenerType) {
     }
 }
 
-const handleMouseEnter = (listener: ListenerType) =>
-    (hoveredClip.value = listener.name);
+const handleMouseEnter = (listener: ListenerType) => {
+    hoveredClip.value = listener.name;
+};
 
-const handleMouseLeave = () => (hoveredClip.value = "");
+const handleMouseLeave = () => {
+    // reset
+    hoveredClip.value = "";
+};
 
-const setShouldBGSoundBePlaying = () =>
-    (shouldBGSoundBePlaying.value = isSoundActive.value && isUserOnPage.value);
+const setShouldBGSoundBePlaying = () => {
+    shouldBGSoundBePlaying.value = isSoundActive.value && isUserOnPage.value;
+};
 
-const toggleSound = () => setIsSoundActive(!isSoundActive.value);
+const toggleSound = () => {
+    setIsSoundActive(!isSoundActive.value);
+};
 
 onMounted(() => {
     setShouldBGSoundBePlaying();

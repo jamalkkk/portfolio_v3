@@ -35,6 +35,7 @@ const props = defineProps({
 });
 
 const MaxSpeed = 3;
+const MinSpeed = 0.05;
 const SpeedIncrement = 0.05;
 const SpeedIncrementTime = 70;
 const HoverTime = 1000;
@@ -45,7 +46,7 @@ const isSpeedingDown = ref(false);
 const shouldBePlaying = ref(false);
 const shouldBellBePlaying = ref(false);
 const soundPlaying = ref("");
-const currentSpeed = ref(0.01);
+const currentSpeed = ref(MinSpeed);
 const hoverTimer = ref<NodeJS.Timeout | undefined>();
 const interval = ref<NodeJS.Timeout | undefined>();
 
@@ -81,7 +82,8 @@ const decreaseSpeed = () => {
     }
 
     interval.value = setInterval(() => {
-        if (currentSpeed.value >= 0) {
+        console.log("currnet speed:", currentSpeed.value);
+        if (currentSpeed.value >= MinSpeed) {
             setSpeed(-SpeedIncrement);
         } else {
             resetSpeedInterval(false, false);
@@ -107,6 +109,8 @@ const setSpeed = (value: number) => {
 watch(
     () => props.isHovered,
     (value) => {
+        console.log("value", value);
+
         if (value && !shouldBePlaying.value) {
             hoverTimer.value = setTimeout(() => {
                 shouldBePlaying.value = true;
