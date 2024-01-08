@@ -9,7 +9,7 @@
                     'is-swinging': isSwinging,
                 },
             ]"
-            :style="{ animationDuration: swingTime + 'ms' }"
+            class="duration-[4000ms]"
             name="animation_light"
         />
         <Sound
@@ -45,6 +45,7 @@ const isSwinging = ref(false);
 watch(
     () => props.isClicked,
     (value) => {
+        console.log("vlaue", value);
         if (value && !isSwinging.value) {
             moveLight();
             toggleIsDarkTheme();
@@ -54,6 +55,8 @@ watch(
 
 const moveLight = () => {
     isSwinging.value = true;
+    console.log("isSwinging", isSwinging.value);
+
     setTimeout(() => (isSwinging.value = false), SwingTime);
 };
 </script>
