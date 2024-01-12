@@ -1,73 +1,73 @@
 <style lang="scss" src="./infos.scss"></style>
 
 <template>
-    <div v-if="isActive && !isSmallScreen && isDataLoaded" class="b-infos">
+    <div v-if="isInfosActive && !isSmallScreen" class="b-infos">
         <info
             class="infos-poster"
             arrow="top"
-            :clickText="infoList.poster.click"
+            :clickText="InfosPlacholder.poster.click"
         />
         <info
             class="infos-light"
             arrow="top"
-            :clickText="infoList.light.click"
+            :clickText="InfosPlacholder.light.click"
         />
         <info
             class="infos-cat"
             arrow="bottom"
-            :clickText="infoList.cat.click"
-            :hoverText="infoList.cat.hover"
+            :clickText="InfosPlacholder.cat.click"
+            :hoverText="InfosPlacholder.cat.hover"
         />
         <info
             class="infos-ball"
             arrow="top"
-            :clickText="infoList.ball.click"
-            :hoverText="infoList.ball.hover"
+            :clickText="InfosPlacholder.ball.click"
+            :hoverText="InfosPlacholder.ball.hover"
         />
         <info
             class="infos-bird"
             arrow="right"
-            :hoverText="infoList.bird.hover"
+            :hoverText="InfosPlacholder.bird.hover"
         />
         <info
             class="infos-clock"
             :arrow="documentBreakpoint === 'md' ? 'bottom' : 'left'"
-            :text="infoList.clock.none"
+            :text="InfosPlacholder.clock.none"
         />
         <info
             class="infos-desktop"
             arrow="top"
-            :clickText="infoList.desktop.click"
-            :hoverText="infoList.desktop.hover"
+            :clickText="InfosPlacholder.desktop.click"
+            :hoverText="InfosPlacholder.desktop.hover"
         />
         <info
             class="infos-laptop"
             arrow="top"
-            :clickText="infoList.laptop.click"
-            :hoverText="infoList.laptop.hover"
+            :clickText="InfosPlacholder.laptop.click"
+            :hoverText="InfosPlacholder.laptop.hover"
         />
         <info
             class="infos-headphones"
             arrow="right"
-            :clickText="infoList.headphones.click"
-            :hoverText="infoList.headphones.hover"
+            :clickText="InfosPlacholder.headphones.click"
+            :hoverText="InfosPlacholder.headphones.hover"
         />
         <info
             class="infos-books"
             arrow="top"
-            :clickText="infoList.books.click"
-            :hoverText="infoList.books.hover"
+            :clickText="InfosPlacholder.books.click"
+            :hoverText="InfosPlacholder.books.hover"
         />
         <info
             class="infos-bike"
             arrow="top"
-            :clickText="infoList.bike.click"
-            :hoverText="infoList.bike.hover"
+            :clickText="InfosPlacholder.bike.click"
+            :hoverText="InfosPlacholder.bike.hover"
         />
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 const InfosPlacholder = [
     {
         light: {
@@ -115,52 +115,8 @@ const InfosPlacholder = [
     },
 ];
 
-export default {
-    name: "Infos",
-    components: {
-        InfosPlacholder,
-    },
-    data() {
-        return {
-            isVisible: false,
-            infoList: InfosPlacholder,
-        };
-    },
-    computed: {
-        isActive() {
-            return this.$store.state.isInfosActive;
-        },
-        isSmallScreen() {
-            return this.$store.state.isSmallScreen;
-        },
-        isDataLoaded() {
-            return this.$store.state.isDataLoaded;
-        },
-        documentBreakpoint() {
-            return this.$store.state.documentBreakpoint;
-        },
-        infos() {
-            const { infos } = this.$store.state.info;
-            return infos || InfosPlacholder;
-        },
-    },
-    watch: {
-        isActive(value) {
-            this.isVisible = value;
-        },
-        isDataLoaded() {
-            this.setInfoList();
-        },
-    },
-    methods: {
-        setInfoList() {
-            this.infos.forEach(({ name, action }) => {
-                this.infoList[name] = {};
-                action?.forEach(({ type, text }) => {
-                    this.infoList[name][type] = text;
-                });
-            });
-        },
-    },
-};
+import { useApp } from "~/store/useApp";
+
+const appStore = useApp();
+const { isInfosActive, isSmallScreen } = appStore;
 </script>

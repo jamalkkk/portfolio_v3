@@ -47,7 +47,6 @@
   }
 
   .home-slide-about {
-    background-color: green;
     width: 100%;
     z-index: $z-index-1;
 
@@ -63,10 +62,6 @@
       width: 40%;
       max-width: $text-block-width;
     }
-  }
-
-  .slide {
-    background-color: blue;
   }
 
   .home-ia {

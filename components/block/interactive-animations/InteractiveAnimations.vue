@@ -65,7 +65,7 @@
                         v-for="(listener, i) in Listeners"
                         :key="i"
                         :class="[
-                            `ia-listener listener-${listener.name} bg-[#0007]`,
+                            `ia-listener listener-${listener.name}`,
                             {
                                 'has-hover': listener.hasHover,
                             },
@@ -75,14 +75,18 @@
                         @click="handleClick(listener)"
                     />
                 </div>
-                <!--   <Infos class="ia-infos" />
-                <sound
+
+                <!-- Infos -->
+                <Infos class="ia-infos" />
+
+                <!-- Background sound -->
+                <Sound
                     title="background"
                     :shouldBePlaying="shouldBGSoundBePlaying"
                     :volume="0.03"
                     :loop="true"
                     :restart="false"
-                /> -->
+                />
             </div>
         </div>
     </div>

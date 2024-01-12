@@ -20,14 +20,6 @@
     @include md {
       transform: translateX(-50%);
     }
-
-    // @include lg {
-    //   transform: translateX(-60%);
-    // }
-
-    // @include xxl {
-    //   transform: translateX(-78%);
-    // }
   }
 
   &.is-centered {

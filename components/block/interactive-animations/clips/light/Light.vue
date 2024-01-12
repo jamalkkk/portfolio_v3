@@ -3,13 +3,8 @@
 <template>
     <div>
         <JKSvg
-            :class="[
-                'b-light',
-                {
-                    'is-swinging': isSwinging,
-                },
-            ]"
-            class="duration-[4000ms]"
+            :class="['b-light', isSwinging ? 'is-swinging' : 'is-idle']"
+            :style="{ animationDuration: SwingTime + 'ms' }"
             name="animation_light"
         />
         <Sound
@@ -45,7 +40,6 @@ const isSwinging = ref(false);
 watch(
     () => props.isClicked,
     (value) => {
-        console.log("vlaue", value);
         if (value && !isSwinging.value) {
             moveLight();
             toggleIsDarkTheme();
@@ -55,7 +49,6 @@ watch(
 
 const moveLight = () => {
     isSwinging.value = true;
-    console.log("isSwinging", isSwinging.value);
 
     setTimeout(() => (isSwinging.value = false), SwingTime);
 };

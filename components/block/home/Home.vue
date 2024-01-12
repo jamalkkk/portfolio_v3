@@ -9,6 +9,7 @@
             },
         ]"
     >
+        <!-- Swiper -->
         <div class="home-content">
             <Swiper
                 ref="HomeSwiper"
@@ -31,6 +32,8 @@
                 </SwiperSlide>
             </Swiper>
         </div>
+
+        <!-- Navigation -->
         <div class="home-button is-right">
             <icon
                 v-if="!isSmallScreen"

@@ -13,8 +13,8 @@ html {
 }
 
 body {
-  color: $color-negative;
-  background-color: $color-primary;
+  color: $color-primary;
+  background-color: $color-negative;
   transition: $base-transition-3;
   @include custom-cursor("default");
 

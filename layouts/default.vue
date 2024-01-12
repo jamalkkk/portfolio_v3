@@ -28,6 +28,7 @@ const { isDarkTheme } = storeToRefs(theme);
 const $container = ref<HTMLElement>();
 
 const setProperty = (key: string, value: string) => {
+    console.log("key, value", key, value);
     document.documentElement.style.setProperty(key, value);
 };
 
