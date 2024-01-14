@@ -1,71 +1,71 @@
 .b-info {
+  position: absolute;
+  padding: 0.5rem;
+  background-color: $color-primary;
+  opacity: 0;
+
+  @include lg {
+    padding: 1rem;
+  }
+
+  &.is-active {
+    animation: fadeIn 0.3s ease-in forwards;
+  }
+
+  &::after {
+    content: "";
     position: absolute;
-    padding: .5rem;
-    background-color: $color-primary;
-    opacity: 0;
+    display: block;
+  }
 
-    @include lg {
-        padding: 1rem;
-    }
+  &.has-arrow-top::after {
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    border-bottom: 1rem solid $color-primary;
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-    &.is-active {
-        animation: fadeIn .3s ease-in forwards;
-    }
+  &.has-arrow-top.left::after {
+    left: 0;
+    transform: unset;
+  }
 
-    &::after {
-        content: '';
-        position: absolute;
-        display: block;
-    }
+  &.has-arrow-right::after {
+    border-top: 1rem solid transparent;
+    border-bottom: 1rem solid transparent;
+    border-left: 1rem solid $color-primary;
+    right: -0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-    &.has-arrow-top::after {
-        border-left: 1rem solid transparent;
-        border-right: 1rem solid transparent;
-        border-bottom: 1rem solid $color-primary;
-        top: -1rem;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+  &.has-arrow-bottom::after {
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    border-top: 1rem solid $color-primary;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-    &.has-arrow-top.left::after {
-        left: 0;
-        transform: unset;
-    }
+  &.has-arrow-left::after {
+    border-top: 1rem solid transparent;
+    border-bottom: 1rem solid transparent;
+    border-right: 1rem solid $color-primary;
+    left: -0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-    &.has-arrow-right::after {
-        border-top: 1rem solid transparent;
-        border-bottom: 1rem solid transparent;
-        border-left: 1rem solid $color-primary;
-        right: -1rem;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+  .info-hover,
+  .info-click {
+    display: flex;
+    align-items: baseline;
+  }
 
-    &.has-arrow-bottom::after {
-        border-left: 1rem solid transparent;
-        border-right: 1rem solid transparent;
-        border-top: 1rem solid $color-primary;
-        bottom: -1rem;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    &.has-arrow-left::after {
-        border-top: 1rem solid transparent;
-        border-bottom: 1rem solid transparent;
-        border-right: 1rem solid $color-primary;
-        left: -1rem;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .info-hover,
-    .info-click {
-        display: flex;
-        align-items: baseline;
-    }
-
-    .info-text {
-        margin-left: .5rem; 
-    }
+  .info-text {
+    margin-left: 0.5rem;
+  }
 }

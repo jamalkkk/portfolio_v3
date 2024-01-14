@@ -230,6 +230,7 @@ function handleClick({ name, hasSound }: ListenerType) {
             break;
     }
 
+    // show info icon's "info tag" to tell user thare is more
     if (hasSound && !isSoundActive.value && !isInfoInfoActive.value) {
         setIsInfoInfoActive(true);
     }

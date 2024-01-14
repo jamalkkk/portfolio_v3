@@ -82,7 +82,6 @@ const decreaseSpeed = () => {
     }
 
     interval.value = setInterval(() => {
-        console.log("currnet speed:", currentSpeed.value);
         if (currentSpeed.value >= MinSpeed) {
             setSpeed(-SpeedIncrement);
         } else {
@@ -109,8 +108,6 @@ const setSpeed = (value: number) => {
 watch(
     () => props.isHovered,
     (value) => {
-        console.log("value", value);
-
         if (value && !shouldBePlaying.value) {
             hoverTimer.value = setTimeout(() => {
                 shouldBePlaying.value = true;

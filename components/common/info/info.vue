@@ -4,7 +4,7 @@
     <div
         ref="info"
         :class="[
-            `b-info has-arrow-${arrow}`,
+            `b-info has-arrow-${infoArrow}`,
             {
                 'is-active': isInfosActive && isPartOfInfos,
             },
@@ -13,6 +13,7 @@
             animationDelay: getRandomInt(300) + 'ms',
         }"
     >
+        <!-- Normal text -->
         <JKText
             v-if="text"
             :isXSmall="true"
@@ -20,8 +21,16 @@
             :isInverted="true"
             :text="replaceSpace(text)"
         />
+
+        <!-- Hover Text -->
         <div v-if="hoverText" class="info-hover">
-            <JKText :isXSmall="true" :isBold="true" :isInverted="true" />
+            <JKText
+                :isXSmall="true"
+                :isBold="true"
+                :isInverted="true"
+                :text="`Wave&nbsp;${Divider}`"
+            />
+
             <JKText
                 class="info-text"
                 :isXSmall="true"
@@ -30,8 +39,16 @@
                 :text="replaceSpace(hoverText)"
             />
         </div>
+
+        <!-- Click Text -->
         <div v-if="clickText" class="info-click">
-            <JKText :isXSmall="true" :isBold="true" :isInverted="true" />
+            <JKText
+                :isXSmall="true"
+                :isBold="true"
+                :isInverted="true"
+                :text="`Click&nbsp;${Divider}`"
+            />
+
             <JKText
                 class="info-text"
                 :isXSmall="true"
@@ -52,14 +69,14 @@ const props = defineProps({
         default: true,
     },
     arrow: {
-        type: String,
+        type: String as PropType<"top" | "right" | "bottom" | "left">,
+        default: "bottom",
+    },
+    arrowTablet: {
+        type: String as PropType<"top" | "right" | "bottom" | "left">,
         default: "bottom",
     },
     text: {
-        type: String,
-        default: "",
-    },
-    hoverText: {
         type: String,
         default: "",
     },
@@ -67,11 +84,21 @@ const props = defineProps({
         type: String,
         default: "",
     },
+    hoverText: {
+        type: String,
+        default: "",
+    },
 });
 import { useApp } from "~/store/useApp";
 
 const appStore = useApp();
-const { isInfosActive } = appStore;
+const { isInfosActive, documentBreakpoint } = appStore;
+
+const infoArrow = computed(() =>
+    props.arrowTablet && documentBreakpoint === "md"
+        ? props.arrowTablet
+        : props.arrow
+);
 
 const styleObject = computed(() => ({
     animationDelay: getRandomInt(300) + "ms",

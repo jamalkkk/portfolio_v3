@@ -21,5 +21,12 @@ const svgs = Object.fromEntries(
 );
 
 // Lazily load the svg
-const svg = props.name && (await svgs?.[props.name]?.());
+const svg = ref(props.name && (await svgs?.[props.name]?.()));
+
+watch(
+    () => props.name,
+    async (value) => {
+        svg.value = value && (await svgs?.[value]?.());
+    }
+);
 </script>

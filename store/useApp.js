@@ -8,7 +8,7 @@ export const useApp = defineStore("app", {
     isMainHomeActive: true,
     isUserOnPage: true,
     isInfosActive: false,
-    isInfoInfoActive: false,
+    isInfoInfoActive: false, // For Info Icon's "Info tag"
     isSmallScreen: false,
     isDataLoaded: false,
     isProjectLoaded: false,

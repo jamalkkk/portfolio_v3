@@ -35,7 +35,7 @@
 
         <!-- Navigation -->
         <div class="home-button is-right">
-            <icon
+            <Icon
                 v-if="!isSmallScreen"
                 class="mb-4"
                 :is-button="true"
@@ -44,9 +44,9 @@
                 :tabindex="3"
                 :onClick="toggleIsInfosActive"
             />
-            <icon
+            <Icon
                 :is-button="true"
-                :name="`volume-o${isSoundActive ? 'n' : 'ff'}`"
+                :name="`volume-${isSoundActive ? 'on' : 'off'}`"
                 :size="1"
                 :tabindex="4"
                 :onClick="toggleSound"
@@ -98,7 +98,7 @@
                 :tabindex="1"
                 :on-click="toggleShouldHomeBeActive"
             />
-            <icon
+            <Icon
                 v-else
                 :is-button="true"
                 :size="1"
@@ -123,7 +123,6 @@ const { scrollToProjects } = useCommon();
 
 const {
     isMainHomeActive,
-    isInfosActive,
     isInfoInfoActive,
     shouldScrollToProjects,
     setShouldScrollToProjects,
@@ -133,7 +132,7 @@ const {
 } = appStore;
 const { setIsSoundActive } = soundsStore;
 
-const { isHomeActive, isSmallScreen, shouldHomeBeActive } =
+const { isHomeActive, isSmallScreen, shouldHomeBeActive, isInfosActive } =
     storeToRefs(appStore);
 const { isSoundActive } = storeToRefs(soundsStore);
 

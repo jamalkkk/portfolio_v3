@@ -19,12 +19,33 @@
 
 <script setup lang="ts">
 const props = defineProps({
-    isBig: { type: Boolean, default: false },
-    isSmall: { type: Boolean, default: false },
-    isXSmall: { type: Boolean, default: false },
-    isLight: { type: Boolean, default: false },
-    isBold: { type: Boolean, default: false },
-    isInverted: { type: Boolean, default: false },
-    text: { type: String, default: "" },
+    isBig: {
+        type: Boolean,
+        default: false,
+    },
+    isSmall: {
+        type: Boolean,
+        default: false,
+    },
+    isXSmall: {
+        type: Boolean,
+        default: false,
+    },
+    isLight: {
+        type: Boolean,
+        default: false,
+    },
+    isBold: {
+        type: Boolean,
+        default: false,
+    },
+    isInverted: {
+        type: Boolean,
+        default: false,
+    },
+    text: {
+        type: String,
+        default: "",
+    },
 });
 </script>
