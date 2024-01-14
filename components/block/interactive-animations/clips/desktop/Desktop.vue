@@ -55,7 +55,7 @@ const isDesktopSoundActive = ref(false);
 const shouldBePlaying = ref(true);
 const shouldPlaySegment = ref("");
 const activeSegment = ref("type");
-const speed = ref(0.01);
+const speed = ref(2);
 const orgSpeed = ref(3);
 const standingSpeed = ref(2);
 

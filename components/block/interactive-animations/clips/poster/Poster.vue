@@ -5,8 +5,7 @@
 import { useSounds } from "~/store/useSounds";
 
 const soundsStore = useSounds();
-const { isSoundActive } = soundsStore;
-const { activeSounds } = storeToRefs(soundsStore);
+const { isSoundActive, activeSounds } = storeToRefs(soundsStore);
 
 const props = defineProps({
     isClicked: {

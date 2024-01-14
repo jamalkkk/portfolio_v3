@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 
 export const useSounds = defineStore("sounds", {
   state: () => ({
-    isSoundActive: true,
+    isSoundActive: false,
     isSoundSupposedActive: false,
     activeSounds: ["background"],
     ball: false,

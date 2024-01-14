@@ -22,6 +22,10 @@
 
 <script setup lang="ts">
 import { useTheme } from "~/store/useTheme";
+import { useSounds } from "~/store/useSounds";
+
+const soundsStore = useSounds();
+const { isSoundActive } = storeToRefs(soundsStore);
 
 const themeStore = useTheme();
 const { toggleIsDarkTheme } = themeStore;

@@ -25,6 +25,7 @@ import { useSounds } from "~/store/useSounds";
 
 const soundsStore = useSounds();
 const { setIsSoundActive } = soundsStore;
+const { isSoundActive } = storeToRefs(soundsStore);
 
 const props = defineProps({
     isHovered: { type: Boolean, default: false },

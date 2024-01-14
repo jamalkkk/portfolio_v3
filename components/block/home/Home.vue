@@ -123,7 +123,6 @@ const { scrollToProjects } = useCommon();
 
 const {
     isMainHomeActive,
-    isInfoInfoActive,
     shouldScrollToProjects,
     setShouldScrollToProjects,
     setIsHomeActive,
@@ -132,8 +131,13 @@ const {
 } = appStore;
 const { setIsSoundActive } = soundsStore;
 
-const { isHomeActive, isSmallScreen, shouldHomeBeActive, isInfosActive } =
-    storeToRefs(appStore);
+const {
+    isHomeActive,
+    isSmallScreen,
+    shouldHomeBeActive,
+    isInfosActive,
+    isInfoInfoActive,
+} = storeToRefs(appStore);
 const { isSoundActive } = storeToRefs(soundsStore);
 
 const activeIndex = ref(1);

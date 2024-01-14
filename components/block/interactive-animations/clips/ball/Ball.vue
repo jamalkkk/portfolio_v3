@@ -15,11 +15,12 @@
         />
     </div>
 </template>
+
 <script setup lang="ts">
 import { useSounds } from "~/store/useSounds";
 
 const soundsStore = useSounds();
-const { isSoundActive } = soundsStore;
+const { isSoundActive } = storeToRefs(soundsStore);
 
 const Segments = {
     roll: [1, 192],

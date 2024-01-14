@@ -47,7 +47,7 @@ const setUpAudio = async () => {
     try {
         const audioFile = await import(/* @vite-ignore */ file);
         audio.value = new Audio(audioFile.default);
-        audio.value.play();
+        // audio.value.play();
         audio.value.volume = props.volume;
         audio.value.loop = props.loop;
 
@@ -65,6 +65,8 @@ const play = () => {
         if (props.restart) {
             if (audio.value) audio.value.currentTime = 0;
         }
+
+        console.log("play ", props.title);
         audio.value?.play();
     }
 };
@@ -89,6 +91,8 @@ watch(isSoundActive, (value) => {
 watch(
     () => props.shouldBePlaying,
     (value) => {
+        console.log("shouldBePlaying ", value);
+
         if (value && isSoundActive.value) {
             play();
         } else {

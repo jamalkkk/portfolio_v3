@@ -21,8 +21,7 @@ import { useSounds } from "~/store/useSounds";
 // import { CatSegmentsType } from "~/types/common";
 
 const soundsStore = useSounds();
-const { isSoundActive } = soundsStore;
-const { activeSounds } = storeToRefs(soundsStore);
+const { isSoundActive, activeSounds } = storeToRefs(soundsStore);
 
 const Segments = {
     blink: [1, 216],
