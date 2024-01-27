@@ -36,7 +36,7 @@ const props = defineProps({
         default: () => null,
     },
 });
-// const isPlaying = isCurrentPlaying, getCurrentPlaying(props.title);
+
 const isCurrentSoundPlaying = ref(false);
 const isReady = ref(false);
 const audio = ref<HTMLAudioElement>();
@@ -66,7 +66,6 @@ const play = () => {
             if (audio.value) audio.value.currentTime = 0;
         }
 
-        console.log("play ", props.title);
         audio.value?.play();
     }
 };
@@ -91,8 +90,6 @@ watch(isSoundActive, (value) => {
 watch(
     () => props.shouldBePlaying,
     (value) => {
-        console.log("shouldBePlaying ", value);
-
         if (value && isSoundActive.value) {
             play();
         } else {

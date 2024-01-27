@@ -3,7 +3,7 @@
         <Animation
             class="b-bike"
             title="bike"
-            :shouldBePlaying="isActive"
+            :shouldBePlaying="true"
             :speed="currentSpeed"
             :loop="true"
         />
@@ -34,10 +34,10 @@ const props = defineProps({
 });
 
 const MaxSpeed = 3;
-const MinSpeed = 0.05;
-const SpeedIncrement = 0.05;
+const MinSpeed = 0.03;
+const SpeedIncrement = 0.04;
 const SpeedIncrementTime = 70;
-const HoverTime = 1000;
+const HoverTime = 500;
 
 const isActive = ref(false);
 const isSpeedingUp = ref(false);
@@ -50,7 +50,7 @@ const hoverTimer = ref<NodeJS.Timeout | undefined>();
 const interval = ref<NodeJS.Timeout | undefined>();
 
 const clearHoverTimer = () => {
-    // if bikce chain sound is playing
+    // if bike chain sound is playing
     if (hoverTimer.value) {
         clearTimeout(hoverTimer.value);
         hoverTimer.value = undefined;

@@ -8,12 +8,11 @@
             :shouldBePlaying="isAnimating"
             :autoplay="isAnimating"
             :loop="true"
-            :speed="1.5"
+            :speed="currentSpeed"
             :onSegmentComplete="onSegmentComplete"
         />
         <Sound
             title="bird"
-            type="wav"
             :volume="0.1"
             :shouldBePlaying="isAnimating && isSoundActive"
         />
@@ -28,22 +27,32 @@ const { setIsSoundActive } = soundsStore;
 const { isSoundActive } = storeToRefs(soundsStore);
 
 const props = defineProps({
-    isHovered: { type: Boolean, default: false },
-    isClicked: { type: Boolean, default: false },
+    isHovered: {
+        type: Boolean,
+        default: false,
+    },
+    isClicked: {
+        type: Boolean,
+        default: false,
+    },
 });
+
+const HoverTime = 500;
+const IdleSpeed = 0.00001;
+const ActiveSpeed = 1.7;
 
 const isAnimating = ref(false);
 const hoverTimer = ref<NodeJS.Timeout>();
-const hoverTime = 1000;
+const currentSpeed = ref<Number>(ActiveSpeed);
 
 watch(
     () => props.isHovered,
     (value) => {
         if (value && !isAnimating.value) {
-            hoverTimer.value = setTimeout(
-                () => (isAnimating.value = true),
-                hoverTime
-            );
+            hoverTimer.value = setTimeout(() => {
+                isAnimating.value = true;
+                currentSpeed.value = ActiveSpeed;
+            }, HoverTime);
         } else {
             clearTimer();
         }
@@ -57,5 +66,8 @@ const clearTimer = () => {
     }
 };
 
-const onSegmentComplete = () => (isAnimating.value = false);
+const onSegmentComplete = () => {
+    isAnimating.value = false;
+    currentSpeed.value = IdleSpeed;
+};
 </script>

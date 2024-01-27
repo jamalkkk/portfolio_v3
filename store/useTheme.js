@@ -8,6 +8,10 @@ export const useTheme = defineStore("theme", {
     primary: "#222",
     negative: "#eee",
   }),
+  getters: {
+    // isDarkTheme: (state) => state.false, //,
+    // isPageReloaded: (state) => state.localStorage?.isPageReloaded === "true",
+  },
   actions: {
     toggleIsDarkTheme() {
       this.isDarkTheme = !this.isDarkTheme;

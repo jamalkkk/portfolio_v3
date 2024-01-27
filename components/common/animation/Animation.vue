@@ -37,16 +37,46 @@ const useAnimationStore = useAnimation();
 const { isAllAnimationActive } = useAnimationStore;
 
 const props = defineProps({
-    isSegmentForced: { type: Boolean, default: false },
-    isSegmentReversed: { type: Boolean, default: false },
-    shouldBePlaying: { type: Boolean, default: true },
-    autoplay: { type: Boolean, default: false },
-    loop: { type: Boolean, default: false },
-    speed: { type: Number, default: 1 },
-    title: { type: String, default: "" },
-    segments: { type: Array<number>, default: () => [] },
-    onComplete: { type: Function, default: null },
-    onSegmentComplete: { type: Function, default: null },
+    isSegmentForced: {
+        type: Boolean,
+        default: false,
+    },
+    isSegmentReversed: {
+        type: Boolean,
+        default: false,
+    },
+    shouldBePlaying: {
+        type: Boolean,
+        default: true,
+    },
+    autoplay: {
+        type: Boolean,
+        default: false,
+    },
+    loop: {
+        type: Boolean,
+        default: false,
+    },
+    speed: {
+        type: Number,
+        default: 1,
+    },
+    title: {
+        type: String,
+        default: "",
+    },
+    segments: {
+        type: Array<number>,
+        default: () => [],
+    },
+    onComplete: {
+        type: Function,
+        default: null,
+    },
+    onSegmentComplete: {
+        type: Function,
+        default: null,
+    },
 });
 
 const isPlaying = ref(false);
@@ -92,13 +122,7 @@ const play = () => lottie.value?.play();
 
 const pause = () => lottie.value?.pause();
 
-const setSpeed = (value: number) => lottie.value.setSpeed(value);
-
-const goToAndPlay = (value: number, isFrame: boolean = false) =>
-    lottie.value.goToAndPlay(value, isFrame);
-
-const goToAndStop = (value: number, isFrame: boolean = false) =>
-    lottie.value.goToAndStop(value, isFrame);
+const setSpeed = (value: number) => lottie.value?.setSpeed(value);
 
 const playSegments = (range: number[]) =>
     lottie.value.playSegments(range, props.isSegmentForced);

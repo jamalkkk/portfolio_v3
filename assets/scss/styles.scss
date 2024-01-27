@@ -15,7 +15,7 @@ html {
 body {
   color: $color-primary;
   background-color: $color-negative;
-  transition: $base-transition-3;
+  // transition: $base-transition-3;
   @include custom-cursor("default");
 
   &.is-dark-theme {
@@ -62,6 +62,8 @@ svg {
   .svg-fill-primary {
     &,
     path {
+      // transition: fill 100ms ease-in;
+
       fill: $color-primary;
     }
   }
@@ -69,6 +71,8 @@ svg {
   .svg-stroke-primary {
     &,
     path {
+      // transition: stroke 100ms ease-in;
+
       stroke: $color-primary;
     }
   }
@@ -76,6 +80,8 @@ svg {
   .svg-fill-negative {
     &,
     path {
+      // transition: fill 100ms ease-in;
+
       fill: $color-negative;
     }
   }

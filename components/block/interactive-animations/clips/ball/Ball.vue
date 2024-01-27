@@ -6,6 +6,7 @@
             title="ball"
             :isSegmentForced="true"
             :loop="false"
+            :speed="currentSpeed"
             :segments="Segments[activeSegment]"
             :onComplete="onComplete"
         />
@@ -26,6 +27,8 @@ const Segments = {
     roll: [1, 192],
     bounce: [193, 288],
 };
+const IdleSpeed = 0.00001;
+const ActiveSpeed = 1;
 
 const props = defineProps({
     isHovered: {
@@ -41,6 +44,7 @@ const props = defineProps({
 const isAnimating = ref(false);
 const activeSegment = ref("");
 const hoverTimer = ref<NodeJS.Timeout | null>();
+const currentSpeed = ref<Number>(IdleSpeed);
 
 const clearTimer = () => {
     if (hoverTimer.value) {
@@ -51,6 +55,7 @@ const clearTimer = () => {
 
 const onComplete = () => {
     activeSegment.value = "";
+    currentSpeed.value = IdleSpeed;
 };
 
 watch(
@@ -60,6 +65,7 @@ watch(
             hoverTimer.value = setTimeout(() => {
                 if (!isAnimating.value) {
                     activeSegment.value = "roll";
+                    currentSpeed.value = ActiveSpeed;
                 }
             }, 1000);
         } else {
@@ -74,11 +80,10 @@ watch(
         if (value && !isAnimating.value) {
             clearTimer();
             activeSegment.value = "bounce";
+            currentSpeed.value = ActiveSpeed;
         }
     }
 );
 
-onBeforeUnmount(() => {
-    clearTimer();
-});
+onBeforeUnmount(() => clearTimer());
 </script>

@@ -37,7 +37,7 @@ const props = defineProps({
     },
 });
 
-const SwingTime = 4000;
+const SwingTime = 2000;
 
 const isSwinging = ref(false);
 
