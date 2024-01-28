@@ -13,7 +13,7 @@
             :segments="Segments[activeSegment]"
             :onSegmentComplete="onSegmentComplete"
         />
-        <sound title="cat" :shouldBePlaying="shouldPlaySound" />
+        <Sound title="cat" :shouldBePlaying="shouldPlaySound" />
     </div>
 </template>
 <script setup lang="ts">

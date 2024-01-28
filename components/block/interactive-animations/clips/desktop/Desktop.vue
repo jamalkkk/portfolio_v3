@@ -2,12 +2,14 @@
     <div>
         <Animation
             title="desktop"
-            :shouldBePlaying="shouldBePlaying"
-            :isSegmentForced="isSegmentForced"
+            :shouldBePlaying="true"
+            :isSegmentForce="true"
+            :autoplay="false"
             :loop="true"
             :speed="speed"
             :segments="Segments[activeSegment]"
-            :onSegmentComplete="selectNextSegment"
+            :onSegmentComplete="onSegmentComplete"
+            :onComplete="onComplete"
             class="absolute top-0 right-0 w-full h-full"
         />
         <Sound
@@ -53,7 +55,7 @@ const Segments = {
 const isBeingHovered = ref(false);
 const isDesktopSoundActive = ref(false);
 const shouldBePlaying = ref(true);
-const shouldPlaySegment = ref("");
+const shouldPlaySegment = ref("type");
 const activeSegment = ref("type");
 const speed = ref(2);
 const orgSpeed = ref(3);
@@ -71,14 +73,23 @@ const selectNextSegment = () => {
     } else {
         switch (shouldPlaySegment.value) {
             case "standup":
-                activeSegment.value = !isHomeActive
+                activeSegment.value = !isHomeActive.value
                     ? shouldPlaySegment.value
                     : "type";
-                shouldPlaySegment.value = isHomeActive ? "sitdown" : "standing";
+                shouldPlaySegment.value = isHomeActive.value
+                    ? "sitdown"
+                    : "standing";
+                console.log("standup ", shouldPlaySegment.value);
+
                 break;
             case "standing":
                 activeSegment.value = shouldPlaySegment.value;
-                shouldPlaySegment.value = isHomeActive ? "sitdown" : "standing";
+                shouldPlaySegment.value = isHomeActive.value
+                    ? "sitdown"
+                    : "standing";
+
+                console.log("standup ", shouldPlaySegment.value);
+
                 break;
             default:
                 activeSegment.value = shouldPlaySegment.value;
@@ -86,6 +97,16 @@ const selectNextSegment = () => {
                 break;
         }
     }
+};
+
+const onSegmentComplete = () => {
+    console.log("onSegmentComplete");
+
+    selectNextSegment();
+};
+
+const onComplete = () => {
+    console.log("onComplete");
 };
 
 const resetSegment = (value: boolean) => {
@@ -98,8 +119,8 @@ const getRandomInt = (max: number) => {
 
 const setRandomSegment = () => {
     resetSegment(false);
-    activeSegment.value = getRandomInt(3) === 3 ? "coffee" : "type";
 
+    activeSegment.value = getRandomInt(3) === 2 ? "coffee" : "type";
     segmentTimer.value = setTimeout(() => resetSegment(true), 2000);
 };
 

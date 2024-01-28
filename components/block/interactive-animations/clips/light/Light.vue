@@ -4,7 +4,10 @@
     <div>
         <JKSvg
             :class="['b-light', isSwinging ? 'is-swinging' : 'is-idle']"
-            :style="{ animationDuration: SwingTime + 'ms' }"
+            :style="{
+                animationDuration:
+                    (isSwinging ? SwingTime : SwingTime * 4) + 'ms',
+            }"
             name="animation_light"
         />
         <Sound
@@ -37,7 +40,7 @@ const props = defineProps({
     },
 });
 
-const SwingTime = 2000;
+const SwingTime = 500;
 
 const isSwinging = ref(false);
 
