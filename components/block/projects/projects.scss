@@ -1,0 +1,36 @@
+.b-projects {
+    max-width: $content-width;
+    padding: $page-padding-sm;
+    scroll-snap-align: start;
+
+    @include md {
+        padding: $page-padding;
+    }
+
+    .projects-return {
+        display: flex;
+        margin-bottom: 5rem;
+        justify-content: center;
+        opacity: 0;
+        transition: $base-transition;
+
+        &.is-active {
+            opacity: 1;
+        }
+    }
+
+    .projects-list-row {
+        margin: 0 -2.5rem;
+        justify-content: center;
+    }
+
+    .projects-list-teaser {
+        &:hover {
+            z-index: $z-index-2;
+        }
+    }
+
+    .projects-message {
+        min-height: 28.5rem;
+    }
+}
