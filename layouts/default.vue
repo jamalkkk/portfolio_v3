@@ -56,7 +56,6 @@ const initialiseEventListeners = () => {
 
 watch(isDarkTheme, (value) => {
     setTheme(value);
-    console.log("isDarkTheme changed: ", isDarkTheme);
 });
 
 onMounted(() => {

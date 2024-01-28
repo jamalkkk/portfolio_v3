@@ -9,7 +9,6 @@
             :speed="speed"
             :segments="Segments[activeSegment]"
             :onSegmentComplete="onSegmentComplete"
-            :onComplete="onComplete"
             class="absolute top-0 right-0 w-full h-full"
         />
         <Sound
@@ -56,7 +55,6 @@ const StartSpeed = 10000; // run the first animation very fast
 const NormalSpeed = 3;
 const StandingSpeed = 3;
 
-const isReady = ref(false);
 const isBeingHovered = ref(false);
 const isDesktopSoundActive = ref(false);
 const shouldBePlaying = ref(true);
@@ -71,40 +69,27 @@ const setIsDesktopSoundBePlaying = () => {
 };
 
 const selectNextSegment = () => {
-    console.log("selectNextSegment");
-
     if (!shouldPlaySegment.value) {
         setRandomSegment();
     } else {
         switch (shouldPlaySegment.value) {
             case "standup":
-                console.log("case standup");
                 activeSegment.value = !isHomeActive.value
                     ? shouldPlaySegment.value
                     : "type";
                 shouldPlaySegment.value = isHomeActive.value
                     ? "sitdown"
                     : "standing";
-
-                console.log("standup ", shouldPlaySegment.value);
-
                 break;
 
             case "standing":
-                console.log("case standing");
-
                 activeSegment.value = shouldPlaySegment.value;
                 shouldPlaySegment.value = isHomeActive.value
                     ? "sitdown"
                     : "standing";
-
-                console.log("standing ", shouldPlaySegment.value);
-
                 break;
 
             default:
-                console.log("case default");
-
                 activeSegment.value = shouldPlaySegment.value;
                 shouldPlaySegment.value = "";
                 break;
@@ -113,13 +98,7 @@ const selectNextSegment = () => {
 };
 
 const onSegmentComplete = () => {
-    console.log("Desktop onSegmentComplete");
-
     selectNextSegment();
-};
-
-const onComplete = () => {
-    console.log("onComplete");
 };
 
 const resetSegment = (value: boolean) => {

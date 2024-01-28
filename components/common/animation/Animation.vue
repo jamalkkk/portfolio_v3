@@ -125,7 +125,7 @@ const pause = () => lottie.value?.pause();
 const setSpeed = (value: number) => lottie.value?.setSpeed(value);
 
 const playSegments = (range: number[]) =>
-    lottie.value.playSegments(range, props.isSegmentForced);
+    lottie.value?.playSegments(range, props.isSegmentForced);
 
 const complete = () => {
     if (props.onComplete) {
