@@ -134,6 +134,7 @@ const InfosList: InfoType[] = [
         name: "desktop",
         arrow: "top",
         hover: "Get attention",
+        click: "About me",
     },
     {
         name: "bike",

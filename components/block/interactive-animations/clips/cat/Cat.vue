@@ -9,7 +9,7 @@
             :isSegmentForce="true"
             :autoplay="false"
             :loop="true"
-            :speed="3"
+            :speed="speed"
             :segments="Segments[activeSegment]"
             :onSegmentComplete="onSegmentComplete"
         />
@@ -28,6 +28,9 @@ const Segments = {
     sleep: [217, 384],
 };
 
+const StartSpeed = 10000; // run the first animation very fast
+const NormalSpeed = 3;
+
 const props = defineProps({
     isHovered: {
         type: Boolean,
@@ -39,9 +42,11 @@ const props = defineProps({
     },
 });
 
+const isReady = ref(false);
 const shouldPlayBlink = ref(false);
 const shouldPlaySound = ref(false);
 const activeSegment = ref<"sleep" | "blink">("sleep");
+const speed = ref(StartSpeed);
 
 watch(
     () => props.isHovered,
@@ -71,6 +76,11 @@ watch(activeSounds, (value) => {
 const onSegmentComplete = () => {
     if (!shouldPlayBlink.value) {
         activeSegment.value = "sleep";
+    }
+
+    if (!isReady.value) {
+        isReady.value = true;
+        speed.value = NormalSpeed;
     }
 };
 </script>

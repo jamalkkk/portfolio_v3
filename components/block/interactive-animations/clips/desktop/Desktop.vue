@@ -3,7 +3,7 @@
         <Animation
             title="desktop"
             :shouldBePlaying="true"
-            :isSegmentForce="true"
+            :isSegmentForced="true"
             :autoplay="false"
             :loop="true"
             :speed="speed"
@@ -52,14 +52,17 @@ const Segments = {
     sitdown: [1249, 1296],
 };
 
+const StartSpeed = 10000; // run the first animation very fast
+const NormalSpeed = 3;
+const StandingSpeed = 3;
+
+const isReady = ref(false);
 const isBeingHovered = ref(false);
 const isDesktopSoundActive = ref(false);
 const shouldBePlaying = ref(true);
 const shouldPlaySegment = ref("type");
 const activeSegment = ref("type");
-const speed = ref(2);
-const orgSpeed = ref(3);
-const standingSpeed = ref(2);
+const speed = ref(StartSpeed);
 
 const segmentTimer = ref<NodeJS.Timeout | undefined>(undefined);
 
@@ -68,30 +71,40 @@ const setIsDesktopSoundBePlaying = () => {
 };
 
 const selectNextSegment = () => {
+    console.log("selectNextSegment");
+
     if (!shouldPlaySegment.value) {
         setRandomSegment();
     } else {
         switch (shouldPlaySegment.value) {
             case "standup":
+                console.log("case standup");
                 activeSegment.value = !isHomeActive.value
                     ? shouldPlaySegment.value
                     : "type";
                 shouldPlaySegment.value = isHomeActive.value
                     ? "sitdown"
                     : "standing";
+
                 console.log("standup ", shouldPlaySegment.value);
 
                 break;
+
             case "standing":
+                console.log("case standing");
+
                 activeSegment.value = shouldPlaySegment.value;
                 shouldPlaySegment.value = isHomeActive.value
                     ? "sitdown"
                     : "standing";
 
-                console.log("standup ", shouldPlaySegment.value);
+                console.log("standing ", shouldPlaySegment.value);
 
                 break;
+
             default:
+                console.log("case default");
+
                 activeSegment.value = shouldPlaySegment.value;
                 shouldPlaySegment.value = "";
                 break;
@@ -100,7 +113,7 @@ const selectNextSegment = () => {
 };
 
 const onSegmentComplete = () => {
-    console.log("onSegmentComplete");
+    console.log("Desktop onSegmentComplete");
 
     selectNextSegment();
 };
@@ -155,7 +168,7 @@ watch(isHomeActive, (value) => {
 });
 
 watch(activeSegment, (value) => {
-    speed.value = value === "standing" ? standingSpeed.value : orgSpeed.value;
+    speed.value = value === "standing" ? StandingSpeed : NormalSpeed;
 });
 
 onMounted(() => {
