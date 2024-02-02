@@ -16,9 +16,8 @@
         :target="target"
         :tabindex="tabindex"
         @click="onClick"
-        data-cursor-hover
     >
-        <JKSvg :name="name" class="h-[1em] w-[1em]" />
+        <JKSvg :name="name" class="h-[2em] w-[2em]" />
     </component>
 </template>
 

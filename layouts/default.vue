@@ -10,6 +10,8 @@
         ]"
     >
         <div ref="$container" class="layout-container">
+            <Header :is-home-page="true" />
+
             <slot />
         </div>
     </div>

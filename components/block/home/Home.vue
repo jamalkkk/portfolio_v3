@@ -83,7 +83,7 @@
                 },
             ]"
         >
-            <cta
+            <Cta
                 :is-button="true"
                 text="Projects"
                 :tabindex="5"
@@ -91,7 +91,7 @@
             />
         </div>
         <div class="home-button is-left">
-            <cta
+            <Cta
                 v-if="isHomeActive"
                 :is-button="true"
                 text="About"
@@ -109,6 +109,7 @@
         </div>
     </div>
 </template>
+
 <script setup lang="ts">
 import SwiperCore from "swiper"; //@TODO: move type to types
 export type SwiperType = SwiperCore;
@@ -122,7 +123,6 @@ const { shouldProjectLoaderBeActive } = useLoader();
 const { scrollToProjects } = useCommon();
 
 const {
-    isMainHomeActive,
     shouldScrollToProjects,
     setShouldScrollToProjects,
     setIsHomeActive,
@@ -133,6 +133,7 @@ const { setIsSoundActive } = soundsStore;
 
 const {
     isHomeActive,
+    isMainHomeActive,
     isSmallScreen,
     shouldHomeBeActive,
     isInfosActive,

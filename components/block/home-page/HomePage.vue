@@ -3,6 +3,7 @@
         <projects/>
     </layerpage> -->
     <Home />
+    <Projects />
 </template>
 <script setup lang="ts">
 </script>

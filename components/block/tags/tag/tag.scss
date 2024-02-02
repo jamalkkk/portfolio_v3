@@ -1,0 +1,36 @@
+.b-tag {
+    white-space: nowrap;
+    opacity: .5;
+
+    .b-tags:not(.is-interactive) & {
+        font-size: $font-size-xs;
+
+        @include md {
+            font-size: $font-size-sm;
+        }
+    }
+
+    & + & {
+        margin-left: 1rem;
+
+        @include md {
+            margin-left: 2rem;
+        }
+    }
+
+   .is-interactive & {
+        &.is-selected {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .b-tags:not(.is-interactive) & {
+        @include custom-cursor('default');
+        transform: scale(1);
+    }
+}

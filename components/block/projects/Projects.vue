@@ -10,7 +10,7 @@
                 },
             ]"
         >
-            <icon
+            <Icon
                 class="projects-return-button"
                 :is-button="true"
                 name="return"
@@ -18,8 +18,9 @@
                 :onClick="scrollToHome"
             />
         </div>
-        <tags class="mb-5" />
-        <div class="projects-list container">
+
+        <!-- <Tags class="mb-5" /> -->
+        <!-- <div class="projects-list container">
             <div class="projects-list-row row" v-if="filteredProjects.length">
                 <div
                     v-for="(project, i) in filteredProjects"
@@ -36,73 +37,78 @@
                 class="projects-message row"
                 text="... Oops, someone stole the projects - come back another time once I've got them!"
             />
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script setup lang="ts">
-// import qs from 'qs';
+import { useApp } from "~/store/useApp";
 
-const STRAPI_URL = process.env.strapiUrl;
+const appStore = useApp();
+const { scrollToHome } = useCommon();
 
-const orgProjects = ref([]);
-const allProjects = ref([]);
-const filteredProjects = ref([]);
-let columns = ref(4);
+const { isMainHomeActive } = storeToRefs(appStore);
 
-const isMainHomeActive = computed(() => $store.state.isMainHomeActive);
-const selectedTags = computed(() => $store.state.activeTags.items);
-const projects = computed(() => $store.state.projects);
-const documentBreakpoint = computed(() => $store.state.documentBreakpoint);
+// const STRAPI_URL = process.env.strapiUrl;
 
-const setAllProjects = (hasShuffle = true) => {
-    let size;
-    let remaining = columns.value;
-    allProjects.value = [];
+// const orgProjects = ref([]);
+// const allProjects = ref([]);
+// const filteredProjects = ref([]);
+// let columns = ref(4);
 
-    if (orgProjects.value?.length) {
-        shuffleProjects(orgProjects.value, hasShuffle).forEach(
-            ({ attributes, id }) => {
-                size =
-                    remaining > 1
-                        ? Math.floor(((Math.random() * 3) % 2) + 1)
-                        : 1;
-                remaining -= size;
-                remaining = remaining || columns.value;
+// const isMainHomeActive = computed(() => $store.state.isMainHomeActive);
+// const selectedTags = computed(() => $store.state.activeTags.items);
+// const projects = computed(() => $store.state.projects);
+// const documentBreakpoint = computed(() => $store.state.documentBreakpoint);
 
-                allProjects.value.push({ id, size, ...attributes });
-            }
-        );
-    }
+// const setAllProjects = (hasShuffle = true) => {
+//     let size;
+//     let remaining = columns.value;
+//     allProjects.value = [];
 
-    filteredProjects.value = allProjects.value;
-};
+//     if (orgProjects.value?.length) {
+//         shuffleProjects(orgProjects.value, hasShuffle).forEach(
+//             ({ attributes, id }) => {
+//                 size =
+//                     remaining > 1
+//                         ? Math.floor(((Math.random() * 3) % 2) + 1)
+//                         : 1;
+//                 remaining -= size;
+//                 remaining = remaining || columns.value;
 
-const resetProjects = (value = selectedTags.value) => {
-    if (value.length) {
-        const filteredProjectsArr = [];
+//                 allProjects.value.push({ id, size, ...attributes });
+//             }
+//         );
+//     }
 
-        allProjects.value.forEach((project) => {
-            if (
-                selectedTags.value.some(({ id }) =>
-                    project.tags.data?.some(
-                        (projectTag) => id === projectTag.id
-                    )
-                )
-            ) {
-                filteredProjectsArr.push(project);
-            }
-        });
+//     filteredProjects.value = allProjects.value;
+// };
 
-        filteredProjects.value = filteredProjectsArr;
-    } else {
-        filteredProjects.value = allProjects.value;
-    }
-};
+// const resetProjects = (value = selectedTags.value) => {
+//     if (value.length) {
+//         const filteredProjectsArr = [];
 
-const setColumns = () => {
-    columns.value = documentBreakpoint.value === "md" ? 3 : 4;
-};
+//         allProjects.value.forEach((project) => {
+//             if (
+//                 selectedTags.value.some(({ id }) =>
+//                     project.tags.data?.some(
+//                         (projectTag) => id === projectTag.id
+//                     )
+//                 )
+//             ) {
+//                 filteredProjectsArr.push(project);
+//             }
+//         });
+
+//         filteredProjects.value = filteredProjectsArr;
+//     } else {
+//         filteredProjects.value = allProjects.value;
+//     }
+// };
+
+// const setColumns = () => {
+//     columns.value = documentBreakpoint.value === "md" ? 3 : 4;
+// };
 
 // const shuffleProjects = (list, isActive = true) => {
 //     if (isActive) {
@@ -122,28 +128,28 @@ const setColumns = () => {
 //     "setIsDataLoaded",
 // ]);
 
-onMounted(() => {
-    setColumns();
+// onMounted(() => {
+//     setColumns();
 
-    if (projects.value.length) {
-        orgProjects.value = projects.value;
-        setAllProjects(false);
-    }
-});
+//     if (projects.value.length) {
+//         orgProjects.value = projects.value;
+//         setAllProjects(false);
+//     }
+// });
 
-watch(documentBreakpoint, () => {
-    orgProjects.value = projects.value;
-    setColumns();
-    resetProjects();
-});
+// watch(documentBreakpoint, () => {
+//     orgProjects.value = projects.value;
+//     setColumns();
+//     resetProjects();
+// });
 
-watch(selectedTags, () => {
-    resetProjects();
-});
+// watch(selectedTags, () => {
+//     resetProjects();
+// });
 
-onBeforeUnmount(() => {
-    orgProjects.value = [];
-    allProjects.value = [];
-    filteredProjects.value = [];
-});
+// onBeforeUnmount(() => {
+//     orgProjects.value = [];
+//     allProjects.value = [];
+//     filteredProjects.value = [];
+// });
 </script>
