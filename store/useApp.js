@@ -1,6 +1,7 @@
 // store/app.js
 
 import { defineStore } from "pinia";
+const { MDTags, MDProjects } = useMockData();
 
 export const useApp = defineStore("app", {
   state: () => ({
@@ -17,8 +18,8 @@ export const useApp = defineStore("app", {
     documentBreakpoint: "sm",
     info: {},
     project: {},
-    projects: {},
-    tags: {},
+    projects: MDProjects,
+    tags: MDTags,
   }),
   actions: {
     setData(value) {

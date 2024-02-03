@@ -19,17 +19,23 @@
             />
         </div>
 
-        <!-- <Tags class="mb-5" /> -->
-        <!-- <div class="projects-list container">
-            <div class="projects-list-row row" v-if="filteredProjects.length">
+        <Tags class="mb-5" />
+        <div class="projects-list container">
+            <div
+                class="projects-list-row grid grid-cols-4"
+                v-if="filteredProjects.length"
+            >
                 <div
                     v-for="(project, i) in filteredProjects"
                     :key="i"
-                    :class="`projects-list-teaser col-12 col-md-${
+                    :class="`projects-list-teaser cols-span-${
                         project.size * (12 / columns)
                     } p-0`"
                 >
-                    <lazy-project-teaser :project="project" />
+                    <div class="m-1" style="background-color: aqua">
+                        {{ project.title }}
+                    </div>
+                    <!-- <lazy-project-teaser :project="project" /> -->
                 </div>
             </div>
             <JKText
@@ -37,7 +43,7 @@
                 class="projects-message row"
                 text="... Oops, someone stole the projects - come back another time once I've got them!"
             />
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -47,19 +53,19 @@ import { useApp } from "~/store/useApp";
 const appStore = useApp();
 const { scrollToHome } = useCommon();
 
-const { isMainHomeActive } = storeToRefs(appStore);
+const { isMainHomeActive, projects, documentBreakpoint } =
+    storeToRefs(appStore);
 
 // const STRAPI_URL = process.env.strapiUrl;
 
 // const orgProjects = ref([]);
 // const allProjects = ref([]);
-// const filteredProjects = ref([]);
-// let columns = ref(4);
+const filteredProjects = ref(projects.value);
+const columns = ref(4);
 
 // const isMainHomeActive = computed(() => $store.state.isMainHomeActive);
 // const selectedTags = computed(() => $store.state.activeTags.items);
 // const projects = computed(() => $store.state.projects);
-// const documentBreakpoint = computed(() => $store.state.documentBreakpoint);
 
 // const setAllProjects = (hasShuffle = true) => {
 //     let size;
@@ -106,9 +112,9 @@ const { isMainHomeActive } = storeToRefs(appStore);
 //     }
 // };
 
-// const setColumns = () => {
-//     columns.value = documentBreakpoint.value === "md" ? 3 : 4;
-// };
+const setColumns = () => {
+    columns.value = documentBreakpoint.value === "md" ? 3 : 4;
+};
 
 // const shuffleProjects = (list, isActive = true) => {
 //     if (isActive) {
@@ -128,14 +134,14 @@ const { isMainHomeActive } = storeToRefs(appStore);
 //     "setIsDataLoaded",
 // ]);
 
-// onMounted(() => {
-//     setColumns();
+onMounted(() => {
+    setColumns();
 
-//     if (projects.value.length) {
-//         orgProjects.value = projects.value;
-//         setAllProjects(false);
-//     }
-// });
+    // if (projects.value.length) {
+    //     orgProjects.value = projects.value;
+    //     setAllProjects(false);
+    // }
+});
 
 // watch(documentBreakpoint, () => {
 //     orgProjects.value = projects.value;

@@ -3,12 +3,13 @@
 <template>
     <div
         :class="[
-            'b-tags w-100 p-0 container',
+            'b-tags w-full pt-2 container',
             {
                 'is-interactive': isInteractive,
             },
         ]"
     >
+        <!-- Tags -->
         <div
             v-if="areItemsSet"
             :class="[
@@ -18,20 +19,22 @@
                 },
             ]"
         >
-            <!-- <Tag
+            <Tag
                 v-if="isInteractive"
-                tagName="all"
+                name="all"
                 :isSelected="isAll"
-                :onClick="toggleAll"
+                :onClick="() => (isAll = true)"
             />
             <Tag
-                v-for="(item, i) in items"
+                v-for="(tag, i) in tags"
                 :key="i"
-                :tagName="item.attributes.name"
-                :isSelected="selectedTags.includes(item)"
+                :name="tag"
+                :isSelected="selectedTags.includes(tag)"
                 :onClick="() => toggleSelect(i)"
-            /> -->
+            />
         </div>
+
+        <!-- Line -->
         <JKLine v-if="isInteractive" class="tags-line" :isSingle="true" />
     </div>
 </template>
@@ -60,20 +63,16 @@ const { setTags } = tagsStore;
 const { activeTags } = storeToRefs(tagsStore);
 
 const isAll = ref(true);
-const areItemsSet = ref(false);
-const items = ref([]);
-const selectedTags = ref([]);
+const areItemsSet = ref(true);
+const myTags = ref<String[]>([]);
+const selectedTags = ref<String[]>([]);
 
 const resetSelectedTags = () => {
     selectedTags.value = [];
 };
 
-const toggleAll = () => {
-    isAll.value = !isAll.value;
-};
-
 const toggleSelect = (i: number) => {
-    const tag = items.value[i];
+    const tag = tags.value[i];
 
     if (selectedTags.value.includes(tag)) {
         selectedTags.value.splice(selectedTags.value.indexOf(tag), 1);
@@ -81,33 +80,34 @@ const toggleSelect = (i: number) => {
         selectedTags.value.push(tag);
     }
 
+    // Make change watchable
     selectedTags.value = [...selectedTags.value];
 };
 
-const showProjectTags = () => {
-    items.value = [];
+// const showProjectTags = () => {
+//     items.value = [];
 
-    if ((tags.value as any[]).length) {
-        props.projectTags.forEach((projectTag, i) => {
-            items.value.push(
-                tags.value.filter(
-                    ({ id }: { id: string }) =>
-                        id === (projectTag as { id: string }).id
-                )[0]
-            );
+//     if ((tags.value as any[]).length) {
+//         props.projectTags.forEach((projectTag, i) => {
+//             items.value.push(
+//                 tags.value.filter(
+//                     ({ id }: { id: string }) =>
+//                         id === (projectTag as { id: string }).id
+//                 )[0] as (typeof tags.value)[0]
+//             );
 
-            if (props.projectTags.length === i + 1) {
-                areItemsSet.value = true;
-            }
-        });
-    }
-};
+//             if (props.projectTags.length === i + 1) {
+//                 areItemsSet.value = true;
+//             }
+//         });
+//     }
+// };
 
 const setUpTags = () => {
     if (!areItemsSet.value) {
         if (props.isInteractive) {
-            if ((tags.value as any[]).length) {
-                items.value = tags.value as typeof items.value;
+            if (tags.value.length) {
+                // myTags.value = tags.value;
                 areItemsSet.value = true;
             }
 
@@ -115,23 +115,29 @@ const setUpTags = () => {
                 selectedTags.value = activeTags.value;
             }
         } else {
-            showProjectTags();
+            // showProjectTags();
         }
     }
 };
 
-watchEffect(() => {
-    if (isAll.value) {
-        resetSelectedTags();
+watch(
+    () => isAll.value,
+    (value) => {
+        if (value) {
+            resetSelectedTags();
+        }
     }
-});
+);
 
-watch(selectedTags, (value) => {
-    isAll.value = !value.length;
-    setTags(value);
-});
+watch(
+    () => selectedTags.value,
+    (value) => {
+        isAll.value = !value.length;
+        setTags(value);
+    }
+);
 
-watch(() => props.projectTags, showProjectTags);
+// watch(() => props.projectTags, showProjectTags);
 
 watch(tags, setUpTags);
 

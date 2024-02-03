@@ -83,7 +83,6 @@ export function useCommon() {
         breakpoint = 'md';
       }
     
-    console.log("breakpoint", breakpoint)
      setDocumentBreakpoint(breakpoint);
   }
 
