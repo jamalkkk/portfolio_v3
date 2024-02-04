@@ -18,10 +18,12 @@
             opacity: 1;
         }
     }
-
     .projects-list-row {
-        margin: 0 -2.5rem;
         justify-content: center;
+
+        @include md {
+            margin: 0 -2.5rem;
+        }
     }
 
     .projects-list-teaser {

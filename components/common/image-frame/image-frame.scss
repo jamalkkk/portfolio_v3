@@ -21,9 +21,7 @@
     }
 
     &.aspect-ratio-1 {
-        @include md {
-            aspect-ratio: 1 / 1;
-        }
+        aspect-ratio: 1 / 1;
     }
 
     &.aspect-ratio-2 {

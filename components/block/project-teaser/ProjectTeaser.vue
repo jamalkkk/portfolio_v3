@@ -11,13 +11,17 @@
             ]"
             :size="project.size"
             :image="image"
-            :enlarge-on-hover="true"
+            :img="project.image"
+            :enlargeOnHover="true"
             :isThick="true"
             :isInverted="true"
             :shouldShowImmediately="true"
         >
             <template #content>
                 <div class="project-teaser-wrapper">
+                    <div
+                        class="project-teaser-background absolute inset-0"
+                    ></div>
                     <div class="project-teaser-content">
                         <Headline
                             tag="h3"

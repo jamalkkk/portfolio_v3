@@ -20,11 +20,11 @@
 
 @keyframes teaserFadeIn {
     0% {
-        background-color: transparent;
+        opacity: 0;
     }
 
     100% {
-        background-color:  $color-primary-transparent;
+        opacity: 0.5;
     }
 }
 

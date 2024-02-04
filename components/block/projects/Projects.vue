@@ -22,13 +22,13 @@
         <Tags class="mb-5" />
         <div class="projects-list container">
             <ul
-                class="projects-list-row grid grid-cols-4"
+                class="projects-list-row grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1"
                 v-if="filteredProjects.length"
             >
                 <li
                     v-for="(project, i) in filteredProjects"
                     :key="i"
-                    :class="`projects-list-teaser col-span-${project.size} p-0`"
+                    :class="`projects-list-teaser col-span-1`"
                 >
                     <LazyProjectTeaser :project="project" />
                 </li>
@@ -44,23 +44,29 @@
 
 <script setup lang="ts">
 import { useApp } from "~/store/useApp";
+import { useTags } from "~/store/useTags";
 
+const tagsStore = useTags();
+
+const { activeTags } = storeToRefs(tagsStore);
 const appStore = useApp();
 const { scrollToHome } = useCommon();
+
+type ProjectType = {
+    id: number;
+    title: string;
+    description: string;
+    image: string;
+    tags: string[];
+};
 
 const { isMainHomeActive, projects, documentBreakpoint } =
     storeToRefs(appStore);
 
-// const STRAPI_URL = process.env.strapiUrl;
-
-// const orgProjects = ref([]);
-// const allProjects = ref([]);
-const filteredProjects = ref(projects.value);
-const columns = ref(4);
-
-// const isMainHomeActive = computed(() => $store.state.isMainHomeActive);
-// const selectedTags = computed(() => $store.state.activeTags.items);
-// const projects = computed(() => $store.state.projects);
+// const orgProjects = ref();
+const allProjects = ref<ProjectType[]>(projects.value);
+const filteredProjects = ref<ProjectType[]>(projects.value);
+// const columns = ref(4);
 
 // const setAllProjects = (hasShuffle = true) => {
 //     let size;
@@ -77,41 +83,36 @@ const columns = ref(4);
 //                 remaining -= size;
 //                 remaining = remaining || columns.value;
 
+//                 console.log("size", size);
+
 //                 allProjects.value.push({ id, size, ...attributes });
 //             }
 //         );
 //     }
 
+//     console.log(allProjects.value);
+
 //     filteredProjects.value = allProjects.value;
+//     console.log("filtered projects", filteredProjects.value);
 // };
 
-// const resetProjects = (value = selectedTags.value) => {
-//     if (value.length) {
-//         const filteredProjectsArr = [];
+const resetProjects = (value = activeTags.value) => {
+    if (value.length) {
+        const filteredProjectsArr: ProjectType[] = [];
 
-//         allProjects.value.forEach((project) => {
-//             if (
-//                 selectedTags.value.some(({ id }) =>
-//                     project.tags.data?.some(
-//                         (projectTag) => id === projectTag.id
-//                     )
-//                 )
-//             ) {
-//                 filteredProjectsArr.push(project);
-//             }
-//         });
+        allProjects.value.forEach((project) => {
+            if (activeTags.value.some((tag) => project.tags.includes(tag))) {
+                filteredProjectsArr.push(project);
+            }
+        });
 
-//         filteredProjects.value = filteredProjectsArr;
-//     } else {
-//         filteredProjects.value = allProjects.value;
-//     }
-// };
-
-const setColumns = () => {
-    columns.value = documentBreakpoint.value === "md" ? 3 : 4;
+        filteredProjects.value = filteredProjectsArr;
+    } else {
+        filteredProjects.value = allProjects.value;
+    }
 };
 
-// const shuffleProjects = (list, isActive = true) => {
+// const shuffleProjects = (list: any[], isActive = true) => {
 //     if (isActive) {
 //         for (let i = list.length - 1; i > 0; i--) {
 //             const j = Math.floor(Math.random() * (i + 1));
@@ -130,11 +131,9 @@ const setColumns = () => {
 // ]);
 
 onMounted(() => {
-    setColumns();
-
     // if (projects.value.length) {
     //     orgProjects.value = projects.value;
-    //     setAllProjects(false);
+    // setAllProjects(false);
     // }
 });
 
@@ -144,9 +143,12 @@ onMounted(() => {
 //     resetProjects();
 // });
 
-// watch(selectedTags, () => {
-//     resetProjects();
-// });
+watch(
+    () => activeTags.value,
+    () => {
+        resetProjects();
+    }
+);
 
 // onBeforeUnmount(() => {
 //     orgProjects.value = [];

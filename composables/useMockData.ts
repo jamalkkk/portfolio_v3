@@ -10,7 +10,7 @@ export function useMockData() {
     title: string;
     description: string;
     image: string;
-    size: 1 | 2;
+    tags: string[];
   };
 
   const MDTags = [
@@ -29,42 +29,42 @@ export function useMockData() {
       title: "Project 1",
       description: "Description 1",
       image: "https://via.placeholder.com/200",
-      size: 1,
+      tags: ["animation", "illustration", "web", "design"],
     },
     {
       id: 2,
       title: "Project 2",
       description: "Description 2",
       image: "https://via.placeholder.com/200",
-      size: 1,
+      tags: ["development", "motion", "ux"],
     },
     {
       id: 3,
       title: "Project 3",
       description: "Description 3",
       image: "https://via.placeholder.com/200",
-      size: 2,
+      tags: ["web", "design", "development"],
     },
     {
       id: 4,
       title: "Project 4",
       description: "Description 4",
       image: "https://via.placeholder.com/200",
-      size: 1,
+      tags: ["animation", "illustration", "web", "design"],
     },
     {
       id: 5,
       title: "Project 5",
       description: "Description 5",
       image: "https://via.placeholder.com/200",
-      size: 1,
+      tags: ["development", "motion", "ux"],
     },
     {
       id: 6,
       title: "Project 6",
       description: "Description 6",
       image: "https://via.placeholder.com/200",
-      size: 2,
+      tags: ["web", "design", "development"],
     },
   ];
 

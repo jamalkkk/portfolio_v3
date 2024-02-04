@@ -3,7 +3,7 @@
 <template>
     <div
         :class="[
-            `b-image-frame mx-auto aspect-ratio-${size}`,
+            'b-image-frame mx-auto aspect-ratio-1',
             {
                 'is-clicked': isClicked,
                 'enlarge-on-hover': enlargeOnHover,
@@ -15,14 +15,11 @@
             <Frame
                 class="overflow-revert"
                 :size="size"
-                :isThick="true"
-                :isInverted="true"
+                :isThick="isThick"
+                :isInverted="isInverted"
             >
                 <div class="image-frame-wrapper">
-                    <LazyJKImage
-                        v-if="imageAttributes"
-                        :image="imageAttributes"
-                    />
+                    <LazyJKImage v-if="img" :img="img" />
                 </div>
                 <slot name="content" />
             </Frame>
@@ -39,7 +36,7 @@ const { isActive } = storeToRefs(modalStore);
 const props = defineProps({
     isThick: {
         type: Boolean,
-        default: false,
+        default: true,
     },
     isInverted: {
         type: Boolean,
@@ -60,6 +57,10 @@ const props = defineProps({
     image: {
         type: Object,
         default: () => ({}),
+    },
+    img: {
+        type: String,
+        default: "",
     },
     onClick: {
         type: Function,

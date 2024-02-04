@@ -9,7 +9,7 @@
             :key="i"
             class="frame-line"
             :isThick="isThick"
-            :isinverted="isInverted"
+            :isInverted="isInverted"
             :isPage="isPage"
             :isHalf="size === 2 && i % 2"
             :position="line"

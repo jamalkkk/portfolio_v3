@@ -1,6 +1,4 @@
 .b-project-teaser {
-    padding: 0.5rem;
-
     .project-teaser-frame {
         @include custom-cursor("pointer");
 
@@ -21,9 +19,7 @@
 
         @include md {
             &:hover {
-                .project-teaser-wrapper {
-                    background-color: $color-primary-semi;
-                    opacity: 1;
+                .project-teaser-background {
                     animation: teaserFadeIn 0.5s 0.1s ease-out forwards;
                 }
 
@@ -57,16 +53,22 @@
         transition: $base-transition-3;
     }
 
+    .project-teaser-background {
+        opacity: 0;
+        background-color: $color-primary;
+    }
+
     .project-teaser-content {
+        z-index: 1;
         width: 100%;
         padding: 3rem 4rem 4rem;
-        background-color: $color-primary-transparent;
         transition: $base-transition;
+        text-shadow: 2px 2px $color-primary;
 
         @include md {
-            background-color: transparent;
             transform: scale(1.05);
             opacity: 0;
+            text-shadow: none;
         }
     }
 }
