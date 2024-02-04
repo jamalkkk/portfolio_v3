@@ -1,0 +1,55 @@
+.b-slide-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    padding: 2rem 0.5rem;
+
+    @include md {
+        padding: 1.5rem;
+    }
+
+    &.has-multiple-rows {
+        .slide-content-row {
+            &:last-child {
+                padding-top: 3rem;
+            }
+
+            &:first-of-type {
+                align-self: flex-end;
+            }
+
+            &:last-of-type {
+                align-self: flex-start;
+            }
+        }
+    }
+
+    .slide-content-row {
+        overflow: hidden;
+        max-width: 130vh;
+        max-height: 100%;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+
+        @include md {
+            max-height: unset;
+            overflow: unset;
+        }
+    }
+
+    .slide-content-item {
+        display: flex;
+        align-items: center;
+        max-height: 50%;
+
+        @include md {
+            max-height: unset;
+        }
+
+        &.is-cta {
+            justify-content: center;
+        }
+    }
+}

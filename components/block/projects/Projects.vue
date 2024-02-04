@@ -21,23 +21,18 @@
 
         <Tags class="mb-5" />
         <div class="projects-list container">
-            <div
+            <ul
                 class="projects-list-row grid grid-cols-4"
                 v-if="filteredProjects.length"
             >
-                <div
+                <li
                     v-for="(project, i) in filteredProjects"
                     :key="i"
-                    :class="`projects-list-teaser cols-span-${
-                        project.size * (12 / columns)
-                    } p-0`"
+                    :class="`projects-list-teaser col-span-${project.size} p-0`"
                 >
-                    <div class="m-1" style="background-color: aqua">
-                        {{ project.title }}
-                    </div>
-                    <!-- <lazy-project-teaser :project="project" /> -->
-                </div>
-            </div>
+                    <LazyProjectTeaser :project="project" />
+                </li>
+            </ul>
             <JKText
                 v-else
                 class="projects-message row"

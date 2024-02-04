@@ -1,0 +1,38 @@
+.b-project-slide {
+    &.has-padding {
+        padding: $page-padding * 1.5 $page-padding-sm;
+
+        @include md {
+            padding: $page-padding * 2;
+        }
+    }
+
+    .project-slide-image {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .project-slide-frame {
+        height: 100%;
+
+        @include md {
+            height: unset;
+        }
+    }
+
+    .project-slide-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: grid;
+    }
+}
