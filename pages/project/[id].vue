@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Project Details</h1>
-        <p>Project ID: 1</p>
+        <p>Project ID: {{ route.params.id }}</p>
     </div>
 </template>
 
@@ -9,7 +9,7 @@
 import { useTheme } from "~/store/useTheme";
 const { isDarkTheme, primary } = useTheme();
 
-// const router = useRouter();
+const route = useRoute();
 
 definePageMeta({
     layout: "project",
