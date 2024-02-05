@@ -27,7 +27,7 @@
     position: relative;
     height: 100%;
     width: 100%;
-    padding: $page-padding-sm $page-padding-sm * 3;
+    padding: $page-padding-sm * 0.5;
 
     @include md {
       padding: $page-padding-md $page-padding-md * 3;
@@ -43,6 +43,7 @@
   }
 
   .home-about {
+    padding: $page-padding $page-padding-sm * 0.75;
     top: 0;
   }
 
@@ -71,6 +72,7 @@
   .home-button {
     z-index: $z-index-1;
     position: absolute;
+    bottom: 0;
     display: flex;
     padding: $page-padding-sm;
     justify-content: center;
@@ -86,11 +88,15 @@
 
     &.is-right {
       position: absolute;
-      top: 50%;
       right: 0;
-      transform: translateY(-50%);
       display: flex;
       flex-direction: column;
+
+      @include md {
+        top: 50%;
+        bottom: unset;
+        transform: translateY(-50%);
+      }
 
       .home-info-info {
         top: 23%;
@@ -121,7 +127,6 @@
 
     &.is-bottom {
       width: 100%;
-      bottom: 0;
       opacity: 0;
       transition: $base-transition;
 
@@ -132,6 +137,10 @@
 
     &.is-left {
       left: 0;
+
+      @include md {
+        bottom: unset;
+      }
     }
   }
 }

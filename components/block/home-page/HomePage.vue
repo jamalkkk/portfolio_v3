@@ -1,10 +1,6 @@
 <template>
-    <!-- <layerpage class="b-home-page">
-        <projects/>
-    </layerpage> -->
-    <Home />
-    <Projects />
+    <div>
+        <Home />
+        <Projects />
+    </div>
 </template>
-<script setup lang="ts">
-</script>
-

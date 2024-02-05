@@ -2,13 +2,17 @@
 
 <template>
     <div class="b-about">
-        <div class="about-container flex flex-col gap-y-5">
-            <Headline text="Jamal Khalili" />
-            <div class="about-content">
-                {{ content }}
+        <div class="about-container flex flex-col gap-y-24">
+            <div class="flex flex-col gap-y-4">
+                <Headline text="Jamal Khalili" />
+                <div class="about-content">
+                    {{ content }}
+                </div>
             </div>
-            <Email />
-            <SocialMedias />
+            <div class="flex flex-col gap-y-4">
+                <Email />
+                <SocialMedias />
+            </div>
         </div>
     </div>
 </template>

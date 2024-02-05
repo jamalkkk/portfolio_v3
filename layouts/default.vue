@@ -10,9 +10,10 @@
         ]"
     >
         <div ref="$container" class="layout-container">
-            <Header :is-home-page="true" />
+            <Header :isHomePage="true" />
 
             <slot />
+            <Footer />
         </div>
     </div>
 </template>

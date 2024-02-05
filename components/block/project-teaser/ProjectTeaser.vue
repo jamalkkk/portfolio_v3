@@ -26,7 +26,7 @@
                         <Headline
                             tag="h3"
                             :text="project.title"
-                            :is-inverted="true"
+                            :isInverted="true"
                         />
                         <JKText
                             :isSmall="true"
@@ -69,7 +69,8 @@ const router = useRouter();
 
 const isClicked = ref(false);
 
-const route = computed(() => `/projects/${props.project.id}`);
+const route = computed(() => `/project/${props.project.id}`);
+
 const image = computed(
     () =>
         props.project.image &&

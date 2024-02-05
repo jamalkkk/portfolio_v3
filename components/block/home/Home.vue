@@ -33,49 +33,11 @@
             </Swiper>
         </div>
 
-        <!-- Navigation -->
-        <div class="home-button is-right">
-            <Icon
-                v-if="!isSmallScreen"
-                class="mb-4"
-                :is-button="true"
-                :name="isInfosActive ? 'close' : 'info'"
-                :size="1"
-                :tabindex="3"
-                :onClick="toggleIsInfosActive"
-            />
-            <Icon
-                :is-button="true"
-                :name="`volume-${isSoundActive ? 'on' : 'off'}`"
-                :size="1"
-                :tabindex="4"
-                :onClick="toggleSound"
-            />
-            <Info
-                v-if="!isSmallScreen"
-                :class="[
-                    'home-info-info',
-                    {
-                        'is-active': isInfoInfoActive && !isInfosActive,
-                    },
-                ]"
-                :isPartOfInfos="false"
-                arrow="right"
-                clickText="Show tips"
-            />
-            <Info
-                v-if="!isSmallScreen"
-                :class="[
-                    'home-mute-info',
-                    {
-                        'is-active': isInfoInfoActive,
-                    },
-                ]"
-                arrow="right"
-                clickText="Un/mute sounds"
-            />
-        </div>
+        <!-- Navigations -->
+
+        <!-- Projects Button -->
         <div
+            v-if="isMainHomeActive"
             :class="[
                 'home-button is-bottom',
                 {
@@ -90,7 +52,59 @@
                 :on-click="scrollToProjects"
             />
         </div>
-        <div class="home-button is-left">
+
+        <!-- Info & Sound Buttons -->
+        <div v-if="isMainHomeActive" class="home-button is-right">
+            <!-- Info Button -->
+            <Icon
+                v-if="!isSmallScreen"
+                class="mb-4"
+                :is-button="true"
+                :name="isInfosActive ? 'close' : 'info'"
+                :size="1"
+                :tabindex="3"
+                :onClick="toggleIsInfosActive"
+            />
+
+            <!-- Sound Button -->
+            <Icon
+                :is-button="true"
+                :name="`volume-${isSoundActive ? 'on' : 'off'}`"
+                :size="1"
+                :tabindex="4"
+                :onClick="toggleSound"
+            />
+
+            <!-- Info's info Tag -->
+            <Info
+                v-if="!isSmallScreen"
+                :class="[
+                    'home-info-info',
+                    {
+                        'is-active': isInfoInfoActive && !isInfosActive,
+                    },
+                ]"
+                :isPartOfInfos="false"
+                arrow="right"
+                clickText="Show tips"
+            />
+
+            <!-- Mutes's Info Tag -->
+            <Info
+                v-if="!isSmallScreen"
+                :class="[
+                    'home-mute-info',
+                    {
+                        'is-active': isInfoInfoActive,
+                    },
+                ]"
+                arrow="right"
+                clickText="Un/mute sounds"
+            />
+        </div>
+
+        <!-- About Button -->
+        <div v-if="isMainHomeActive" class="home-button is-left">
             <Cta
                 v-if="isHomeActive"
                 :is-button="true"

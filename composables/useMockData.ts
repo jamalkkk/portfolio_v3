@@ -1,10 +1,4 @@
 export function useMockData() {
-  //   type TagType = {
-  //     atributes: {
-  //       name: string;
-  //     };
-  //   };
-
   type ProjectType = {
     id: number;
     title: string;
@@ -27,43 +21,43 @@ export function useMockData() {
     {
       id: 1,
       title: "Project 1",
-      description: "Description 1",
-      image: "https://via.placeholder.com/200",
+      description: "Description Description  Description 1",
+      image: "https://picsum.photos/400/400",
       tags: ["animation", "illustration", "web", "design"],
     },
     {
       id: 2,
       title: "Project 2",
-      description: "Description 2",
-      image: "https://via.placeholder.com/200",
+      description: "Description Description  Description 2",
+      image: "https://picsum.photos/400/400",
       tags: ["development", "motion", "ux"],
     },
     {
       id: 3,
       title: "Project 3",
-      description: "Description 3",
-      image: "https://via.placeholder.com/200",
+      description: "Description Description  Description 3",
+      image: "https://picsum.photos/400/400",
       tags: ["web", "design", "development"],
     },
     {
       id: 4,
       title: "Project 4",
-      description: "Description 4",
-      image: "https://via.placeholder.com/200",
+      description: "Description Description  Description 4",
+      image: "https://picsum.photos/400/400",
       tags: ["animation", "illustration", "web", "design"],
     },
     {
       id: 5,
       title: "Project 5",
-      description: "Description 5",
-      image: "https://via.placeholder.com/200",
+      description: "Description Description  Description 5",
+      image: "https://picsum.photos/400/400",
       tags: ["development", "motion", "ux"],
     },
     {
       id: 6,
       title: "Project 6",
-      description: "Description 6",
-      image: "https://via.placeholder.com/200",
+      description: "Description Description  Description 6",
+      image: "https://picsum.photos/400/400",
       tags: ["web", "design", "development"],
     },
   ];

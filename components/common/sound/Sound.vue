@@ -1,4 +1,4 @@
-
+<template></template>
 <script setup lang="ts">
 import { useSounds } from "~/store/useSounds";
 

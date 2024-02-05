@@ -1,7 +1,7 @@
 <style lang="scss" src="./email.scss"></style>
 
 <template>
-    <div class="b-email" data-cursor-hover>
+    <div class="b-email flex" data-cursor-hover>
         <JKText
             :class="[
                 'email-note',
@@ -12,7 +12,7 @@
             :is-small="true"
             :text="note"
         />
-        <cta
+        <Cta
             :isButton="true"
             :isText="true"
             :isMedium="true"

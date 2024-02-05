@@ -14,7 +14,7 @@
     left: 50%;
     top: 0;
     bottom: 0;
-    transform: translateX(-50%) scale(2);
+    transform: translateX(-50%) scale(1.4);
     transition: transform 0.3s ease;
 
     @include md {

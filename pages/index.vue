@@ -6,10 +6,6 @@
 import { useTheme } from "~/store/useTheme";
 const { isDarkTheme, primary } = useTheme();
 
-// import { useStore } from "vuex";
-
-// const store = useStore();
-
 const favicon = "/favicon.ico";
 
 const isDarkThemeCopy = computed(() => isDarkTheme);

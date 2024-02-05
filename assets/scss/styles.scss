@@ -10,12 +10,13 @@
 
 html {
   font-size: 10px;
+  background-color: $color-primary;
 }
 
 body {
   color: $color-primary;
   background-color: $color-negative;
-  // transition: $base-transition-3;
+
   @include custom-cursor("default");
 
   &.is-dark-theme {
@@ -42,11 +43,19 @@ h1 {
 }
 
 h2 {
-  font-size: $font-size-h2;
+  font-size: $font-size-h2-sm;
+
+  @include md {
+    font-size: $font-size-h2;
+  }
 }
 
 h3 {
-  font-size: $font-size-h3;
+  font-size: $font-size-h3-sm;
+
+  @include md {
+    font-size: $font-size-h3;
+  }
 }
 
 h1,
@@ -60,6 +69,7 @@ a {
 
 svg {
   .svg-fill-primary {
+
     &,
     path {
       // transition: fill 100ms ease-in;
@@ -69,6 +79,7 @@ svg {
   }
 
   .svg-stroke-primary {
+
     &,
     path {
       // transition: stroke 100ms ease-in;
@@ -78,6 +89,7 @@ svg {
   }
 
   .svg-fill-negative {
+
     &,
     path {
       // transition: fill 100ms ease-in;

@@ -1,0 +1,20 @@
+.b-footer {
+    z-index: $z-index-1;
+    padding-top: 10rem;
+    text-align: center;
+    scroll-snap-align: start;
+
+    .footer-copyright {
+        position: relative;
+        background-color: $color-primary;
+        padding: 1rem 0 2rem;
+    }
+
+    .footer-line {
+        &.b-jk-line {
+            height: auto;
+            top: -1rem;
+            bottom: 4rem;
+        }
+    }
+}

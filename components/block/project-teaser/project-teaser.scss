@@ -61,7 +61,8 @@
     .project-teaser-content {
         z-index: 1;
         width: 100%;
-        padding: 3rem 4rem 4rem;
+        // padding: 3rem 4rem 4rem;
+        padding: $page-padding-sm;
         transition: $base-transition;
         text-shadow: 2px 2px $color-primary;
 
