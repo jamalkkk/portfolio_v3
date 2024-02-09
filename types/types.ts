@@ -6,6 +6,11 @@ export type SwiperType = SwiperCore;
 //  Layout
 export type Headline = "h1" | "h2" | "h3";
 
+export type ImageType = {
+  url: string;
+  alt: string;
+};
+
 // Data Structure
 export type Info = {
   about: String;
@@ -37,11 +42,30 @@ export type DesktopSegmentsType =
   | "sitdown";
 
 // Project
+export type SlideContentType = {
+  type: "text" | "image" | "link";
+  imageSize: number;
+  image: ImageType;
+  text: string;
+  link: string;
+
+  // For now
+  img: string;
+};
+
+export type ProjectSlideType = {
+  type: "video" | "image" | "content";
+  content: SlideContentType[];
+  image: ImageType;
+  video: Object;
+  description: string;
+
+  // For now
+  img: string;
+};
+
 export type ProjectType = {
   title: string;
-  slides: {
-    description: string;
-    images: string[];
-  };
+  slides: ProjectSlideType[];
   tags: string[];
 };

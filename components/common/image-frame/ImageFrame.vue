@@ -58,6 +58,7 @@ const props = defineProps({
         type: Object,
         default: () => ({}),
     },
+    // @TODO: use image instead
     img: {
         type: String,
         default: "",

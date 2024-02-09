@@ -1,9 +1,18 @@
-// store/player.js
+// store/player.ts
 
 import { defineStore } from "pinia";
 
+interface PlayerState {
+  isPlaying: boolean;
+  isPlayerMouseMoving: boolean;
+  isUIHidden: boolean;
+  shouldBePlaying: boolean;
+  shouldBePlayingWhenBack: boolean;
+  activeIndex: number;
+}
+
 export const usePlayer = defineStore("player", {
-  state: () => ({
+  state: (): PlayerState => ({
     isPlaying: false,
     isPlayerMouseMoving: false,
     isUIHidden: false,
@@ -12,26 +21,26 @@ export const usePlayer = defineStore("player", {
     activeIndex: -1,
   }),
   actions: {
-    setIsPlaying(value) {
+    setIsPlaying(value: boolean) {
       this.isPlaying = value;
       this.shouldBePlaying = value;
       this.isUIHidden = value && !this.isPlayerMouseMoving;
     },
-    setIsPlayerMouseMoving(value) {
+    setIsPlayerMouseMoving(value: boolean) {
       this.isPlayerMouseMoving = value;
       this.isUIHidden = !value && this.isPlaying;
     },
-    setShouldBePlaying(value) {
-      this.activeIndex = value;
+    setShouldBePlaying(value: boolean) {
+      this.activeIndex = value ? this.activeIndex : -1;
       this.shouldBePlaying = !this.isPlaying;
     },
-    setShouldBePlayingWhenBack(value) {
+    setShouldBePlayingWhenBack(value: boolean) {
       this.shouldBePlayingWhenBack = value;
     },
-    setActiveIndex(value = -1) {
+    setActiveIndex(value: number = -1) {
       this.activeIndex = value;
     },
-    setIsUIHidden(value) {
+    setIsUIHidden(value: boolean) {
       this.isUIHidden = value;
     },
   },

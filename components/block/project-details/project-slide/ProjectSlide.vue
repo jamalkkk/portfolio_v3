@@ -1,97 +1,74 @@
 <style lang="scss" src="./project-slide.scss"></style>
 
 <template>
-    <swiper-slide 
-        :class="['b-project-slide', {
-            'has-padding': !isVideo,
-            'is-modal-active': isModalActive,
-        }]"
+    <SwiperSlide
+        :class="[
+            'b-project-slide',
+            {
+                'has-padding': !isVideo,
+                'is-modal-active': isModalActive,
+            },
+        ]"
     >
-        <player 
-            v-if="isVideo"
-            :video="slide.video"
-            :index="index"
-        />
-        <div 
-            v-else-if="isImage"
-            class="project-slide-image"
-        >
-            <image-frame
+        <!-- Video Player -->
+
+        <!-- <Player v-if="isVideo" :video="slide.video" :index="index" /> -->
+
+        <!-- Image -->
+        <div v-if="isImage" class="project-slide-image">
+            <ImageFrame
                 class="project-slide-frame"
                 :image="slide.image"
-                :on-click="showModal"
-                :is-thick="true"
-                :is-inverted="true"
+                :img="slide.img"
+                :onClick="showModal"
+                :isThick="true"
+                :isInverted="true"
             />
         </div>
-        <slide-content 
+
+        <!-- Content with images -->
+        <SlideContent
             v-else
             :content="slide.content"
-            :on-frame-click="showModal"
+            :onFrameClick="showModal"
         />
-
-    </swiper-slide>
-
+    </SwiperSlide>
 </template>
+<script setup lang="ts">
+import type { ProjectSlideType } from "~/types/types";
 
-<script>
-import { SwiperSlide } from 'vue-awesome-swiper';
-import { mapMutations } from 'vuex';
+import { useModal } from "~/store/useModal";
+import { useSwiperStore } from "~/store/useSwiperStore";
 
-import 'swiper/css/swiper.css';
+const modalStore = useModal();
+const swiperStore = useSwiperStore();
 
-export default {
-    name: 'ProjectDetails',
-    components: { SwiperSlide },
-    props: {
-        index: {
-            type: Number,
-            default: 0,
-        },
-        slide: {
-            type: Object,
-            default: function () {
-                return {
-                    title: '',
-                };
-            },
-        },        
+const { isModalActive } = storeToRefs(modalStore);
+const { setIsModalActive, setImage } = modalStore;
+const { addVideoSlideIndex } = swiperStore;
+
+const props = defineProps({
+    index: {
+        type: Number,
+        default: 0,
     },
-    computed: {
-        isVideo() {
-            if (this.slide.type === 'video') {
-                this.addVideoSlideIndex(this.index);
-                return true;
-            }
-
-            return false;
-        },
-        isImage() {
-            return this.slide.type === 'image';
-        },
-        isModalActive() {
-            return this.$store.state.modal.isActive;
-        },
-        contentRows() {
-            let rows = [];
-
-            if (this.slide.type === 'content') {
-                rows = this.slide.content.slice(0, 2);
-            }
-
-            return rows;
-        },
+    slide: {
+        type: Object as PropType<ProjectSlideType>,
+        required: true,
     },
-    methods: {
-        showModal(image) {
-            this.setModalImage(image);
-            this.setIsModalActive(true);
-        },
-        ...mapMutations({
-            addVideoSlideIndex: 'swiper/addVideoSlideIndex',
-            setIsModalActive: 'modal/setIsActive',
-            setModalImage: 'modal/setImage',
-        }),
-    },
-}
+});
+
+const isVideo = computed(() => props.slide.type === "video");
+const isImage = computed(() => props.slide.type === "image");
+
+const showModal = (image: any) => {
+    setImage(image);
+    setIsModalActive(true);
+};
+
+onMounted(() => {
+    if (isVideo) {
+        addVideoSlideIndex(props.index);
+    }
+});
 </script>

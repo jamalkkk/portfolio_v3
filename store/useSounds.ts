@@ -1,9 +1,21 @@
-// store/sounds.js
+// store/sounds.ts
 
 import { defineStore } from "pinia";
 
+interface SoundsState {
+  isSoundActive: boolean;
+  isSoundSupposedActive: boolean;
+  activeSounds: string[];
+  ball: boolean;
+  bikeBell: boolean;
+  bikeChain: boolean;
+  background: boolean;
+  cat: boolean;
+  poster: boolean;
+}
+
 export const useSounds = defineStore("sounds", {
-  state: () => ({
+  state: (): SoundsState => ({
     isSoundActive: false,
     isSoundSupposedActive: false,
     activeSounds: ["background"],
@@ -14,23 +26,18 @@ export const useSounds = defineStore("sounds", {
     cat: false,
     poster: false,
   }),
-  getters: {
-    isCurrentPlaying: (state, clip) => {
-      return state[clip];
-    },
-  },
   actions: {
-    setIsSoundActive(value) {
+    setIsSoundActive(value: boolean) {
       this.isSoundActive = value;
       localStorage.isSoundActive = value;
     },
-    setIsSoundSupposedActive(value) {
-      this.isSupposedActive = value;
+    setIsSoundSupposedActive(value: boolean) {
+      this.isSoundSupposedActive = value;
     },
-    setIsSoundPlaying({ title, value }) {
-      this[title] = value;
+    setIsSoundPlaying({ title, value }: { title: string; value: boolean }) {
+      this["title"] = value;
     },
-    setActiveSounds(value, isActive = true) {
+    setActiveSounds(value: string, isActive: boolean = true) {
       if (isActive) {
         this.activeSounds.push(value);
       } else {

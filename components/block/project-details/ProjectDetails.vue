@@ -71,11 +71,11 @@
                 >
                 </LazyProjectSlide>
 
-                <div
+                <!-- <div
                     v-show="hasSwiper"
                     class="project-details-pagination swiper-pagination"
                     slot="pagination"
-                ></div>
+                ></div> -->
             </Swiper>
         </Frame>
         <modal />
@@ -83,19 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import SwiperCore from "swiper";
-//@TODO: move type to types
-type SwiperType = SwiperCore | null;
-
-export type ProjectType = {
-    title: string;
-    slides: {
-        description: string;
-        images: string[];
-    };
-    tags: string[];
-};
-// END
+import type { SwiperType, ProjectType } from "~/types/types";
 
 import { useApp } from "~/store/useApp";
 import { usePlayer } from "~/store/usePlayer";
@@ -117,10 +105,11 @@ const { isUIHidden } = storeToRefs(playerStore);
 const { isModalActive } = storeToRefs(modalStore);
 const { activeIndex, videoSlideIndices } = storeToRefs(swiperStore);
 
-const isPlayerSlide = ref(false);
 const ProjectDetailSwiper = ref();
+
+const isPlayerSlide = ref(false);
 const hasSwiper = ref(false);
-const swiper = ref<SwiperType>(null);
+const swiper = ref<SwiperType>();
 
 // const swiperOptions = {
 //     slidesPerView: "auto",
@@ -147,6 +136,14 @@ const swiper = ref<SwiperType>(null);
 // };
 
 // hasSwiper.value = computed(() => project?.slides?.length > 1);
+
+// const props = defineProps({
+//     id: {
+//         type: String,
+//         default: "0",
+//     },
+// });
+
 watch(
     () => isModalActive.value,
     (value) => {
@@ -161,7 +158,9 @@ watch(
 watch(
     () => isSmallScreen.value,
     (value) => {
-        swiper.value.allowTouchMove = value;
+        if (swiper.value) {
+            swiper.value.allowTouchMove = value;
+        }
     }
 );
 
@@ -172,10 +171,6 @@ watch(
     }
 );
 
-watch(project, (value) => {
-    hasSwiper.value = value.slides?.length > 1;
-});
-
 const onSwiper = (swiperObject: SwiperType) => {
     swiper.value = swiperObject;
 
@@ -183,7 +178,7 @@ const onSwiper = (swiperObject: SwiperType) => {
         swiper.value.allowTouchMove = isSmallScreen.value;
     }
 
-    hasSwiper.value = project?.slides?.length > 1;
+    hasSwiper.value = project.slides?.length > 1;
 };
 
 const initialiseEvents = () => {
@@ -207,6 +202,6 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    swiper.destroy();
+    swiper.value?.destroy();
 });
 </script>

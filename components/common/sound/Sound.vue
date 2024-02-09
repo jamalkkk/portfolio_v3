@@ -3,7 +3,7 @@
 import { useSounds } from "~/store/useSounds";
 
 const soundsStore = useSounds();
-const { setActiveSounds, isCurrentPlaying } = soundsStore;
+const { setActiveSounds } = soundsStore;
 const { isSoundActive } = storeToRefs(soundsStore);
 
 const props = defineProps({

@@ -123,11 +123,9 @@
 </template>
 
 <script setup lang="ts">
-import SwiperCore from "swiper"; //@TODO: move type to types
-export type SwiperType = SwiperCore | null;
+import type { SwiperType, ProjectType } from "~/types/types";
 
 import { useApp } from "~/store/useApp";
-import { useLoader } from "~/store/useLoader";
 import { useSounds } from "~/store/useSounds";
 
 const appStore = useApp();
@@ -155,20 +153,21 @@ const { isSoundActive } = storeToRefs(soundsStore);
 
 const activeIndex = ref(1);
 const HomeSwiper = ref();
-
-let swiper: SwiperType = null;
+const swiper = ref<SwiperType>();
 
 const slideTo = (slide = 1, speed = 300) => {
-    swiper.slideTo(slide, speed);
+    swiper.value?.slideTo(slide, speed);
 };
 
 const setAllowTouchMove = () => {
-    swiper.allowTouchMove = isSmallScreen;
+    if (swiper.value) {
+        swiper.value.allowTouchMove = isSmallScreen.value;
+    }
 };
 
 const handleSlideChange = () => {
-    activeIndex.value = swiper.activeIndex;
-    setIsHomeActive(!!swiper.activeIndex);
+    activeIndex.value = swiper.value?.activeIndex || 0;
+    setIsHomeActive(!!swiper.value?.activeIndex);
 };
 
 const toggleSound = () => setIsSoundActive(!isSoundActive.value);
@@ -187,7 +186,7 @@ const handleKeyPress = ({ code }: KeyboardEvent) => {
 };
 
 const onSwiper = (swiperObject: SwiperType) => {
-    swiper = swiperObject;
+    swiper.value = swiperObject;
 
     const route = useRoute();
 
@@ -216,7 +215,10 @@ watch(isHomeActive, (value) => {
     }
 });
 
-watch(isSmallScreen, setAllowTouchMove);
+watch(
+    () => isSmallScreen.value,
+    (value) => setAllowTouchMove
+);
 
 watch(shouldHomeBeActive, (value) => {
     if (isHomeActive.value !== value) {
@@ -231,6 +233,6 @@ onMounted(() => {
 
 onUnmounted(() => {
     window.removeEventListener("keydown", handleKeyPress);
-    swiper.destroy();
+    swiper.value?.destroy();
 });
 </script>

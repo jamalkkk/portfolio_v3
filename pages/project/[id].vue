@@ -8,7 +8,19 @@
 <script setup lang="ts">
 import { useTheme } from "~/store/useTheme";
 const { isDarkTheme, primary } = useTheme();
+import { useApp } from "~/store/useApp";
+import { usePlayer } from "~/store/usePlayer";
+import { useSwiperStore } from "~/store/useSwiperStore";
+import { useModal } from "~/store/useModal";
 
+const appStore = useApp();
+const playerStore = usePlayer();
+const swiperStore = useSwiperStore();
+const modalStore = useModal();
+
+const { closeProject } = useCommon();
+
+const { project, isDataLoaded } = appStore;
 const route = useRoute();
 
 definePageMeta({
@@ -71,4 +83,8 @@ const setTitle = (title: string) => {
 
 //     return isDarkTheme;
 // };
+
+onMounted(() => {
+    console.log("isDataLoaded", isDataLoaded);
+});
 </script>
