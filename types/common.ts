@@ -35,3 +35,13 @@ export type DesktopSegmentsType =
   | "standup"
   | "standing"
   | "sitdown";
+
+// Project
+export type ProjectType = {
+  title: string;
+  slides: {
+    description: string;
+    images: string[];
+  };
+  tags: string[];
+};

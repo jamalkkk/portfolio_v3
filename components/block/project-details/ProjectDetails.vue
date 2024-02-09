@@ -1,199 +1,212 @@
 <style lang="scss" src="./project-details.scss"></style>
 
 <template>
-    <div 
-        :class="['b-project-details', {
-            'is-player-slide': isPlayerSlide,
-            'is-modal-active': isModalActive,
-            'are-controls-hidden': isUIHidden,
-        }]"
+    <div
+        :class="[
+            'b-project-details',
+            {
+                'is-player-slide': isPlayerSlide,
+                'is-modal-active': isModalActive,
+                'are-controls-hidden': isUIHidden,
+            },
+        ]"
     >
-         <Frame 
-            :is-thick="true"
-            :is-page="true"
-        >
-            <headline 
+        <Frame :is-thick="true" :is-page="true">
+            <!-- Headline -->
+            <Headline
                 class="project-details-title"
                 :text="project.title"
-                :is-main="true"
+                :isMain="true"
             />
-            <icon
+
+            <!-- Navigation Icons -->
+            <Icon
                 class="project-details-close"
                 name="close"
-                :is-button="true"
-                :on-click="closeProject"
-                
+                :isButton="true"
+                :onClick="closeProject"
             />
-            <icon
+            <Icon
                 class="project-details-prev swiper-button-prev"
-                :is-button="true"
+                :isButton="true"
                 name="return"
                 rotate="left"
             />
-            <icon
+            <Icon
                 class="project-details-next swiper-button-next"
-                :is-button="true"
+                :isButton="true"
                 name="return"
             />
+
+            <!-- Tags -->
             <div class="project-details-tags">
-                <tags 
-                    :is-interactive="false"
-                    :project-tags="project.tags"
-                />
+                <Tags :isInteractive="false" :projectTags="project.tags" />
             </div>
-            <swiper 
-                ref="mySwiper" 
+
+            <!-- Swiper -->
+            <Swiper
+                ref="ProjectDetailSwiper"
                 class="project-details-swiper"
-                :options="swiperOptions"
+                :modules="[
+                    SwiperParallax,
+                    SwiperKeyboard,
+                    SwiperPagination,
+                    SwiperNavigation,
+                ]"
+                :slidesPerView="1"
+                :activeIndex="1"
+                :speed="300"
+                :spaceBetween="0"
+                parallax
+                :keyboard="{ enabled: true }"
+                @swiper="onSwiper"
+                @slideChange="handleSlideChange"
+                @keyPress="handleKeyPress"
             >
-                <lazy-project-slide
+                <LazyProjectSlide
                     v-for="(slide, i) in project.slides"
                     :key="i"
                     :index="i"
                     :slide="slide"
-                />
-                <div 
+                >
+                </LazyProjectSlide>
+
+                <div
                     v-show="hasSwiper"
                     class="project-details-pagination swiper-pagination"
                     slot="pagination"
-                />
-            </swiper>
+                ></div>
+            </Swiper>
         </Frame>
-        <modal/>
+        <modal />
     </div>
 </template>
 
-<script>
-import { Swiper, directive } from 'vue-awesome-swiper';
-import { mapMutations } from 'vuex';
+<script setup lang="ts">
+import SwiperCore from "swiper";
+//@TODO: move type to types
+type SwiperType = SwiperCore | null;
 
-// import style (<= Swiper 5.x)
-import 'swiper/css/swiper.css';
+export type ProjectType = {
+    title: string;
+    slides: {
+        description: string;
+        images: string[];
+    };
+    tags: string[];
+};
+// END
 
-export default {
-    name: 'ProjectDetails',
-    components: { Swiper},
-    props: {
-        id: {
-            type: String,
-            default: 'true',
-        },
-    },
-    data() {
-        return {
-            isPlayerSlide: false,
-            hasSwiper: true,
-            swiperOptions: {
-                slidesPerView: "auto",
-                allowTouchMove: false,
-                grabCursor: false,
-                parallax: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    bulletActiveClass: 'is-active',
-                    clickable: true,
-                    renderBullet: function (index, className) {
-                        return `<span class="${className} project-details-bullet">${require(`~/assets/img/svg/bullet${className.includes('active') ? '-active' : ''}.svg?raw`)}</span>`;
-                    },
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                keyboard: {
-                    enabled: true,
-                },
-            },
-        };
-    },
-    directives: {
-        swiper: directive,
-    },
-    computed: {
-        isUIHidden() {
-            return this.$store.state.player.isUIHidden;
-        },
-        isModalActive() {
-            return this.$store.state.modal.isActive;
-        },
-        isSmallScreen() {
-            return this.$store.state.isSmallScreen;
-        },
-        shouldProjectLoaderBeActive() {
-            return this.$store.state.loader.shouldProjectLoaderBeActive;
-        }, 
-        swiper() {
-            return this.$refs.mySwiper.$swiper;
-        },
-        project() {
-            const project = this.$store.state.project;
-            this.hasSwiper = project.slides?.length > 1;
+import { useApp } from "~/store/useApp";
+import { usePlayer } from "~/store/usePlayer";
+import { useSwiperStore } from "~/store/useSwiperStore";
+import { useModal } from "~/store/useModal";
 
-            return project;
-        },
-        activeIndex() {
-            return this.$store.state.swiper.activeIndex;
-        },
-        videoSlideIndices() {
-            return this.$store.state.swiper.videoSlideIndices;
-        },
-    },
-    watch: {
-       isModalActive() {
-            if (this.isModalActive) {
-                this.swiper.keyboard.disable();
-            } else {
-                this.swiper.keyboard.enable();
-            }
-        },
-        isSmallScreen() {
-            this.setAllowTouchMove();
-        },
-        activeIndex(value) {
-            this.isPlayerSlide = this.videoSlideIndices.includes(value);
-        },
-        project(value) {
-            this.hasSwiper = value.slides?.length > 1;
-        },
-    },
-    methods: {
-        initialiseEvents(that) {
-            this.swiper.on('slideChange', () => that.setStoreActiveIndex(that));
-            this.swiper.on('keyPress', (keyCode) => that.handleKeyPress(keyCode));
-        },
-        setStoreActiveIndex(that) {
-            that.setActiveIndex(that.swiper.activeIndex);
-        },
-        setStoreIsSpaceBarPressed(that, keyCode) {
-            if (keyCode === 32) {
-                that.setIsSpaceBarPressed(true);
-            }
-        },
-        setAllowTouchMove() {
-            this.swiper.allowTouchMove = this.isSmallScreen;
-        },
-        handleKeyPress(keyCode) {
-            if (keyCode === 32) {
-                that.setIsSpaceBarPressed(true);
-            } else if (keyCode === 27) {
-                this.closeProject();
-            }
-        },
-        ...mapMutations({
-            setShouldProjectLoaderBeActive: 'loader/setShouldProjectLoaderBeActive',
-            setShouldScrollToProjects: 'setShouldScrollToProjects',
-            setActiveIndex: 'swiper/setActiveIndex',
-            setIsSpaceBarPressed: 'swiper/setIsSpaceBarPressed',
-            toggleShoudlBePlaying: 'player/toggleShoudlBePlaying',
-        }),
-    },
-    destroyed() {
-         this.swiper.off('slideChange', this.setStoreActiveIndex(this));
-         this.swiper.off('keyPress', (keyCode) => this.handleKeyPress(keyCode));
-    },
-    mounted() {
-        this.initialiseEvents(this);
-        this.setAllowTouchMove();
-    },
-}
+const appStore = useApp();
+const playerStore = usePlayer();
+const swiperStore = useSwiperStore();
+const modalStore = useModal();
+
+const { closeProject } = useCommon();
+
+const { project } = appStore;
+const { setActiveIndex, setIsSpaceBarPressed } = swiperStore;
+
+const { isSmallScreen } = storeToRefs(appStore);
+const { isUIHidden } = storeToRefs(playerStore);
+const { isModalActive } = storeToRefs(modalStore);
+const { activeIndex, videoSlideIndices } = storeToRefs(swiperStore);
+
+const isPlayerSlide = ref(false);
+const ProjectDetailSwiper = ref();
+const hasSwiper = ref(false);
+const swiper = ref<SwiperType>(null);
+
+// const swiperOptions = {
+//     slidesPerView: "auto",
+//     allowTouchMove: false,
+//     grabCursor: false,
+//     parallax: true,
+//     pagination: {
+//         el: ".swiper-pagination",
+//         bulletActiveClass: "is-active",
+//         clickable: true,
+//         renderBullet(index: number, className: string) {
+//             return `<span class="${className} project-details-bullet">${require(`~/assets/img/svg/bullet${
+//                 className.includes("active") ? "-active" : ""
+//             }.svg?raw`)}</span>`;
+//         },
+//     },
+//     navigation: {
+//         nextEl: ".swiper-button-next",
+//         prevEl: ".swiper-button-prev",
+//     },
+//     keyboard: {
+//         enabled: true,
+//     },
+// };
+
+// hasSwiper.value = computed(() => project?.slides?.length > 1);
+watch(
+    () => isModalActive.value,
+    (value) => {
+        if (value) {
+            swiper.value?.keyboard.disable();
+        } else {
+            swiper.value?.keyboard.enable();
+        }
+    }
+);
+
+watch(
+    () => isSmallScreen.value,
+    (value) => {
+        swiper.value.allowTouchMove = value;
+    }
+);
+
+watch(
+    () => activeIndex.value,
+    (value) => {
+        isPlayerSlide.value = videoSlideIndices.value.includes(value);
+    }
+);
+
+watch(project, (value) => {
+    hasSwiper.value = value.slides?.length > 1;
+});
+
+const onSwiper = (swiperObject: SwiperType) => {
+    swiper.value = swiperObject;
+
+    if (swiper.value) {
+        swiper.value.allowTouchMove = isSmallScreen.value;
+    }
+
+    hasSwiper.value = project?.slides?.length > 1;
+};
+
+const initialiseEvents = () => {
+    swiper.value?.on("keyPress", handleKeyPress);
+};
+
+const handleSlideChange = () => {
+    setActiveIndex(swiper.value?.activeIndex);
+};
+
+const handleKeyPress = (swiper: any, keyCode: String) => {
+    if (keyCode === "32") {
+        setIsSpaceBarPressed(true);
+    } else if (keyCode === "27") {
+        closeProject();
+    }
+};
+
+onMounted(() => {
+    initialiseEvents();
+});
+
+onUnmounted(() => {
+    swiper.destroy();
+});
 </script>

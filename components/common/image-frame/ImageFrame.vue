@@ -31,7 +31,7 @@
 import { useModal } from "~/store/useModal";
 
 const modalStore = useModal();
-const { isActive } = storeToRefs(modalStore);
+const { isModalActive } = storeToRefs(modalStore);
 
 const props = defineProps({
     isThick: {
@@ -73,7 +73,7 @@ const isClicked = ref(false);
 const imageAttributes = computed(() => props.image?.attributes);
 
 watch(
-    () => isActive.value,
+    () => isModalActive.value,
     (value) => {
         if (isClicked.value && !value) {
             isClicked.value = false;

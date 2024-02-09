@@ -1,4 +1,4 @@
-<style lang="scss" land="sass" src="./scss/layout.scss"></style>
+<style lang="scss" src="./scss/layout.scss"></style>
 
 <template>
     <div
@@ -10,7 +10,7 @@
         ]"
     >
         <div ref="$container" class="layout-container">
-            <Header :isHomePage="true" />
+            <Header />
 
             <slot />
             <Footer />
@@ -23,7 +23,7 @@ import { useApp } from "~/store/useApp";
 import { useLoader } from "~/store/useLoader";
 import { useTheme } from "~/store/useTheme";
 
-const { isDataLoaded, setIsMainHomeActive } = useApp();
+const { setIsMainHomeActive } = useApp();
 const { isLoaderActive } = useLoader();
 const theme = useTheme();
 const { isDarkTheme } = storeToRefs(theme);
@@ -31,7 +31,6 @@ const { isDarkTheme } = storeToRefs(theme);
 const $container = ref<HTMLElement>();
 
 const setProperty = (key: string, value: string) => {
-    console.log("key, value", key, value);
     document.documentElement.style.setProperty(key, value);
 };
 

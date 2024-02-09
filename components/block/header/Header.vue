@@ -24,17 +24,16 @@
 
 <script setup lang="ts">
 import { useApp } from "~/store/useApp";
-import { useSounds } from "~/store/useSounds";
 import { usePlayer } from "~/store/usePlayer";
 
 const appStore = useApp();
 const playerStore = usePlayer();
 
-const { scrollToHome, scrollToProjects, closeProject } = useCommon();
+const { scrollToHome, closeProject } = useCommon();
 
 const { toggleShouldHomeBeActive } = appStore;
 const { isMainHomeActive } = storeToRefs(appStore);
-const isUIHidden = storeToRefs(playerStore);
+const { isUIHidden } = storeToRefs(playerStore);
 
 const props = defineProps({
     isHomePage: {

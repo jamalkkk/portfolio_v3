@@ -15,10 +15,10 @@
                 ref="HomeSwiper"
                 class="home-swiper"
                 :modules="[SwiperParallax, SwiperKeyboard]"
-                :slides-per-view="'auto'"
-                :active-index="1"
+                :slidesPerView="'auto'"
+                :activeIndex="1"
                 :speed="300"
-                :space-betwee="0"
+                :spaceBetween="0"
                 parallax
                 :keyboard="{ enabled: true }"
                 @swiper="onSwiper"
@@ -32,8 +32,6 @@
                 </SwiperSlide>
             </Swiper>
         </div>
-
-        <!-- Navigations -->
 
         <!-- Projects Button -->
         <div
@@ -126,14 +124,14 @@
 
 <script setup lang="ts">
 import SwiperCore from "swiper"; //@TODO: move type to types
-export type SwiperType = SwiperCore;
+export type SwiperType = SwiperCore | null;
+
 import { useApp } from "~/store/useApp";
 import { useLoader } from "~/store/useLoader";
 import { useSounds } from "~/store/useSounds";
 
 const appStore = useApp();
 const soundsStore = useSounds();
-const { shouldProjectLoaderBeActive } = useLoader();
 const { scrollToProjects } = useCommon();
 
 const {

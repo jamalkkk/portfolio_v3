@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 
 export const useModal = defineStore("modal", {
   state: () => ({
-    isActive: false,
+    isModalActive: false,
     image: {},
   }),
   actions: {
@@ -12,7 +12,7 @@ export const useModal = defineStore("modal", {
       if (!value) {
         this.image = {};
       }
-      this.isActive = value;
+      this.isModalActive = value;
     },
     setImage(value) {
       this.image = value;

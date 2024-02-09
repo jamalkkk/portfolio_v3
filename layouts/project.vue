@@ -10,6 +10,8 @@
         ]"
     >
         <div class="layout-container">
+            <Header :isHomePage="false" />
+
             <slot />
         </div>
     </div>
