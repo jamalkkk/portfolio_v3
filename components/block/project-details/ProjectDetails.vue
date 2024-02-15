@@ -45,6 +45,12 @@
                 <Tags :isInteractive="false" :projectTags="project?.tags" />
             </div>
 
+            <!-- Navigation -->
+            <div
+                v-show="hasSwiper"
+                class="project-details-pagination swiper-pagination"
+            ></div>
+
             <!-- Swiper -->
             <Swiper
                 ref="ProjectDetailSwiper"
@@ -55,11 +61,20 @@
                     SwiperPagination,
                     SwiperNavigation,
                 ]"
+                ty
                 :slidesPerView="1"
                 :activeIndex="1"
                 :speed="300"
                 :spaceBetween="0"
+                pror
                 parallax
+                :pagination="{
+                    el: '.swiper-pagination',
+                    type: 'custom',
+                    renderCustom: function (swiper, current, total) {
+                        return current + ' || ' + total;
+                    },
+                }"
                 :keyboard="{ enabled: true }"
                 @swiper="onSwiper"
                 @slideChange="handleSlideChange"
@@ -72,12 +87,6 @@
                     :slide="slide"
                 >
                 </LazyProjectSlide>
-
-                <!-- <div
-                    v-show="hasSwiper"
-                    class="project-details-pagination swiper-pagination"
-                    slot="pagination"
-                ></div> -->
             </Swiper>
         </Frame>
         <modal />
@@ -148,10 +157,12 @@ const props = defineProps({
 watch(
     () => isModalActive.value,
     (value) => {
-        if (value) {
-            swiper.value?.keyboard.disable();
-        } else {
-            swiper.value?.keyboard.enable();
+        if (swiper.value) {
+            if (value) {
+                swiper.value?.keyboard.disable();
+            } else {
+                swiper.value?.keyboard.enable();
+            }
         }
     }
 );
@@ -182,9 +193,17 @@ const onSwiper = (swiperObject: SwiperType) => {
     hasSwiper.value = props.project?.slides?.length > 1;
 };
 
-const slidePrev = () => swiper.value?.slidePrev();
+const slidePrev = () => {
+    if (swiper.value) {
+        swiper.value.slidePrev();
+    }
+};
 
-const slideNext = () => swiper.value?.slideNext();
+const slideNext = () => {
+    if (swiper.value) {
+        swiper.value.slideNext();
+    }
+};
 
 const handleSlideChange = () => {
     setActiveIndex(swiper.value?.activeIndex || 0);
@@ -197,8 +216,6 @@ const handleKeyPress = (swiper: any, keyCode: String) => {
         closeProject();
     }
 };
-
-onMounted(() => console.log("project", props.project));
 
 onUnmounted(() => {
     swiper.value?.destroy();
