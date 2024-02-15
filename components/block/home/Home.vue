@@ -123,7 +123,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SwiperType, ProjectType } from "~/types/types";
+import type { SwiperType } from "~/types/types";
 
 import { useApp } from "~/store/useApp";
 import { useSounds } from "~/store/useSounds";

@@ -11,11 +11,11 @@
             },
         ]"
     >
-        <Frame :is-thick="true" :is-page="true">
+        <Frame v-if="project" :isThick="true" :isPage="true">
             <!-- Headline -->
             <Headline
                 class="project-details-title"
-                :text="project.title"
+                :text="project?.title"
                 :isMain="true"
             />
 
@@ -31,16 +31,18 @@
                 :isButton="true"
                 name="return"
                 rotate="left"
+                :onClick="slidePrev"
             />
             <Icon
                 class="project-details-next swiper-button-next"
                 :isButton="true"
                 name="return"
+                :onClick="slideNext"
             />
 
             <!-- Tags -->
             <div class="project-details-tags">
-                <Tags :isInteractive="false" :projectTags="project.tags" />
+                <Tags :isInteractive="false" :projectTags="project?.tags" />
             </div>
 
             <!-- Swiper -->
@@ -64,7 +66,7 @@
                 @keyPress="handleKeyPress"
             >
                 <LazyProjectSlide
-                    v-for="(slide, i) in project.slides"
+                    v-for="(slide, i) in project?.slides"
                     :key="i"
                     :index="i"
                     :slide="slide"
@@ -97,7 +99,7 @@ const modalStore = useModal();
 
 const { closeProject } = useCommon();
 
-const { project } = appStore;
+const { projects } = appStore;
 const { setActiveIndex, setIsSpaceBarPressed } = swiperStore;
 
 const { isSmallScreen } = storeToRefs(appStore);
@@ -135,14 +137,13 @@ const swiper = ref<SwiperType>();
 //     },
 // };
 
-// hasSwiper.value = computed(() => project?.slides?.length > 1);
-
-// const props = defineProps({
-//     id: {
-//         type: String,
-//         default: "0",
-//     },
-// });
+const props = defineProps({
+    project: {
+        type: Object as PropType<ProjectType>,
+        required: true,
+        default: () => {},
+    },
+});
 
 watch(
     () => isModalActive.value,
@@ -178,15 +179,15 @@ const onSwiper = (swiperObject: SwiperType) => {
         swiper.value.allowTouchMove = isSmallScreen.value;
     }
 
-    hasSwiper.value = project.slides?.length > 1;
+    hasSwiper.value = props.project?.slides?.length > 1;
 };
 
-const initialiseEvents = () => {
-    swiper.value?.on("keyPress", handleKeyPress);
-};
+const slidePrev = () => swiper.value?.slidePrev();
+
+const slideNext = () => swiper.value?.slideNext();
 
 const handleSlideChange = () => {
-    setActiveIndex(swiper.value?.activeIndex);
+    setActiveIndex(swiper.value?.activeIndex || 0);
 };
 
 const handleKeyPress = (swiper: any, keyCode: String) => {
@@ -197,9 +198,7 @@ const handleKeyPress = (swiper: any, keyCode: String) => {
     }
 };
 
-onMounted(() => {
-    initialiseEvents();
-});
+onMounted(() => console.log("project", props.project));
 
 onUnmounted(() => {
     swiper.value?.destroy();

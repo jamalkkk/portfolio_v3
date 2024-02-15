@@ -57,7 +57,7 @@ export type ProjectSlideType = {
   type: "video" | "image" | "content";
   content: SlideContentType[];
   image: ImageType;
-  video: Object;
+  video: string;
   description: string;
 
   // For now
@@ -65,7 +65,10 @@ export type ProjectSlideType = {
 };
 
 export type ProjectType = {
+  id: string;
   title: string;
+  description: string;
+  image: string;
   slides: ProjectSlideType[];
   tags: string[];
 };

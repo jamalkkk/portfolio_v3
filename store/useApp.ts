@@ -1,8 +1,9 @@
 // store/app.ts
 
 import { defineStore } from "pinia";
-// import { useMockData } from "./useMockData"; // Import useMockData from appropriate location
-import type { ProjectSlideType, ProjectType } from "~/types/types";
+const { MDTags, MDProjects } = useMockData();
+
+import type { ProjectType } from "~/types/types";
 
 interface AppState {
   isHomeActive: boolean;
@@ -36,13 +37,9 @@ export const useApp = defineStore("app", {
     shouldHomeBeActive: true,
     documentBreakpoint: "sm",
     info: {},
-    project: {
-      title: "",
-      slides: [],
-      tags: [],
-    },
-    projects: [],
-    tags: [],
+    project: MDProjects[0],
+    projects: MDProjects,
+    tags: MDTags,
   }),
   actions: {
     // setData(value: { type: keyof AppState; data: any }) {
