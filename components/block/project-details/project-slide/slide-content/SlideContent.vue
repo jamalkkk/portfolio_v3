@@ -1,27 +1,39 @@
 <style lang="scss" src="./slide-content.scss"></style>
 
 <template>
-    <div :class="['b-slide-content container']">
-        <div class="slide-content-row row">
+    <div
+        :class="[
+            'b-slide-content flex flex-col justify-center md:flex-row gap-8 ',
+        ]"
+    >
+        <div
+            v-for="(column, i) in columns"
+            :key="i"
+            class="flex flex-col gap-8 justify-center md:w-1/2"
+        >
             <div
-                v-for="(item, i) in items"
-                :key="i"
-                :class="`slide-content-item col-12 col-md-6 is-${item.type}`"
+                v-for="(item, j) in column.items"
+                :key="j"
+                :class="[`slide-content-item is-${item.type}`]"
             >
                 <!-- Image -->
                 <ImageFrame
                     v-if="item.type === 'image'"
-                    class="project-slide-frame"
                     :size="item.imageSize"
                     :img="item.img"
-                    :is-thick="true"
-                    :is-inverted="true"
-                    :on-click="onFrameClick"
+                    :isThick="true"
+                    :isInverted="true"
+                    :isWidthFull="true"
+                    :onClick="onFrameClick"
+                    class="slide-content-image"
                 >
                 </ImageFrame>
 
                 <!-- Text -->
-                <p v-else-if="item.type === 'text'" class="project-slide-text">
+                <p
+                    v-else-if="item.type === 'text'"
+                    class="text-2xl md:text-x3l"
+                >
                     {{ item.text }}
                 </p>
 
@@ -45,7 +57,7 @@ const props = defineProps({
         type: Number,
         default: 1,
     },
-    items: {
+    columns: {
         type: Array as PropType<SlideContentType[]>,
         default: () => [],
     },

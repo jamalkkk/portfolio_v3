@@ -21,23 +21,24 @@
 
             <!-- Navigation Icons -->
             <Icon
+                v-show="isProjectActive"
                 class="project-details-close"
                 name="close"
                 :isButton="true"
-                :onClick="closeProject"
+                :onClick="handleCloseProject"
             />
             <Icon
+                v-show="hasSwiper"
                 class="project-details-prev swiper-button-prev"
                 :isButton="true"
                 name="return"
                 rotate="left"
-                :onClick="slidePrev"
             />
             <Icon
+                v-show="hasSwiper"
                 class="project-details-next swiper-button-next"
                 :isButton="true"
                 name="return"
-                :onClick="slideNext"
             />
 
             <!-- Tags -->
@@ -61,19 +62,20 @@
                     SwiperPagination,
                     SwiperNavigation,
                 ]"
-                ty
                 :slidesPerView="1"
                 :activeIndex="1"
                 :speed="300"
                 :spaceBetween="0"
-                pror
+                :allow-touch-move="true"
                 parallax
                 :pagination="{
                     el: '.swiper-pagination',
-                    type: 'custom',
-                    renderCustom: function (swiper, current, total) {
-                        return current + ' || ' + total;
-                    },
+                    type: 'progressbar',
+                    renderProgressbar: renderProgressbar,
+                }"
+                :navigation="{
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
                 }"
                 :keyboard="{ enabled: true }"
                 @swiper="onSwiper"
@@ -193,16 +195,22 @@ const onSwiper = (swiperObject: SwiperType) => {
     hasSwiper.value = props.project?.slides?.length > 1;
 };
 
-const slidePrev = () => {
-    if (swiper.value) {
-        swiper.value.slidePrev();
-    }
+const isProjectActive = ref(true);
+
+const handleCloseProject = () => {
+    isProjectActive.value = false;
+    closeProject();
 };
 
-const slideNext = () => {
-    if (swiper.value) {
-        swiper.value.slideNext();
-    }
+// const renderBullet = (index: number, className: string) => {
+//     return  `<span class="${className} project-details-bullet">` +
+//     return `<span class="${className} project-details-bullet">${require(`~/assets/img/svg/bullet${
+//         className.includes("active") ? "-active" : ""
+//     }.svg?raw`)}</span>`;
+// };
+
+const renderProgressbar = (progressbarFillClass: string) => {
+    return '<span class="' + progressbarFillClass + '"></span>';
 };
 
 const handleSlideChange = () => {

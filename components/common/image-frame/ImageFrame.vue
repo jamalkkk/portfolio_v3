@@ -7,6 +7,7 @@
             {
                 'is-clicked': isClicked,
                 'enlarge-on-hover': enlargeOnHover,
+                'aspect-ratio-1': !isWidthFull,
             },
         ]"
         @click="frameClick"
@@ -39,6 +40,10 @@ const props = defineProps({
         default: true,
     },
     isInverted: {
+        type: Boolean,
+        default: false,
+    },
+    isWidthFull: {
         type: Boolean,
         default: false,
     },

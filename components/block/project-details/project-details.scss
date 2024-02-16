@@ -8,6 +8,7 @@ $swiper-padding-md: $page-padding-md;
     padding: 0; //$project-padding;
 
     &.is-modal-active {
+
         .project-details-swiper,
         .swiper-wrapper {
             z-index: $z-index-20;
@@ -15,6 +16,7 @@ $swiper-padding-md: $page-padding-md;
     }
 
     &.are-controls-hidden {
+
         .project-details-title,
         .project-details-close,
         .project-details-pagination,
@@ -29,12 +31,12 @@ $swiper-padding-md: $page-padding-md;
     &.is-player-slide {
 
         .project-details-tags {
-            bottom: $swiper-padding-sm * 3;
-    
+            bottom: $swiper-padding-sm * 3.5;
+
             @include md {
                 bottom: $swiper-padding-md * 3;
             }
-    
+
             @include xl {
                 bottom: $swiper-padding;
             }
@@ -82,9 +84,14 @@ $swiper-padding-md: $page-padding-md;
     }
 
     .project-details-pagination {
-        width: auto;
+        position: absolute;
+        width: 10rem;
+        height: 0.5rem;
+        top: unset;
         bottom: $swiper-padding-sm * 2;
         left: 50%;
+        border-radius: 10px;
+        overflow: hidden;
         transform: translateX(-50%);
 
         @include md {
@@ -94,13 +101,18 @@ $swiper-padding-md: $page-padding-md;
         @include xl {
             bottom: $swiper-padding;
         }
+
+        .swiper-pagination-progressbar-fill {
+            border-radius: 10px;
+            background-color: $color-primary;
+        }
     }
 
     .project-details-prev,
     .project-details-next {
         top: unset;
         bottom: 4rem;
-        
+
         &.swiper-button-disabled,
         &::after {
             display: none;
@@ -152,7 +164,7 @@ $swiper-padding-md: $page-padding-md;
         &:active {
             @include custom-cursor('active');
         }
-        
+
         .is-dark-theme & {
             @include custom-cursor('pointer', '_dark');
 
@@ -178,8 +190,9 @@ $swiper-padding-md: $page-padding-md;
     .project-details-tags {
         z-index: $z-index-2;
         position: absolute;
-        bottom: 1rem;
+        bottom: 7rem;
         left: $swiper-padding-sm;
+        right: $swiper-padding-sm;
         transition: $base-transition;
 
         @include md {

@@ -11,7 +11,7 @@
             :isThick="isThick"
             :isInverted="isInverted"
             :isPage="isPage"
-            :isHalf="size === 2 && i % 2"
+            :isHalf="!!(size === 2 && i % 2)"
             :position="line"
         />
     </div>

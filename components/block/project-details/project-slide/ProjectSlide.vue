@@ -15,7 +15,7 @@
         <!-- <Player v-if="isVideo" :video="slide.video" :index="index" /> -->
 
         <!-- Image -->
-        <div v-if="isImage" class="project-slide-image">
+        <div v-if="isImage" class="project-slide-image items-center">
             <ImageFrame
                 class="project-slide-frame"
                 :image="slide.image"
@@ -29,7 +29,7 @@
         <!-- Content with images -->
         <SlideContent
             v-else
-            :content="slide.content"
+            :columns="slide.columns"
             :onFrameClick="showModal"
         />
     </SwiperSlide>

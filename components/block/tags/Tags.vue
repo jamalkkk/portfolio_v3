@@ -13,10 +13,8 @@
         <div
             v-if="areItemsSet"
             :class="[
-                'tags-list',
-                {
-                    'is-pb-3': isInteractive,
-                },
+                'tags-list flex gap-2 ',
+                isInteractive ? 'is-pb-3' : 'flex-wrap',
             ]"
         >
             <Tag

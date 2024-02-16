@@ -10,15 +10,15 @@
         }
     }
 
-    & + & {
-        margin-left: 1rem;
+    // & + & {
+    //     margin-left: 1rem;
 
-        @include md {
-            margin-left: 2rem;
-        }
-    }
+    //     @include md {
+    //         margin-left: 2rem;
+    //     }
+    // }
 
-   .is-interactive & {
+    .is-interactive & {
         &.is-selected {
             transform: scale(1.05);
             opacity: 1;

@@ -18,11 +18,12 @@
             opacity: 1;
         }
     }
+
     .projects-list-row {
         justify-content: center;
 
         @include md {
-            margin: 0 -2.5rem;
+            margin: 0 -.8rem;
         }
     }
 

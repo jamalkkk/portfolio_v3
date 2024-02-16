@@ -42,7 +42,7 @@ export type DesktopSegmentsType =
   | "sitdown";
 
 // Project
-export type SlideContentType = {
+export type ContentItemType = {
   type: "text" | "image" | "link";
   imageSize: number;
   image: ImageType;
@@ -52,10 +52,13 @@ export type SlideContentType = {
   // For now
   img: string;
 };
+export type SlideContentType = {
+  items: ContentItemType[];
+};
 
 export type ProjectSlideType = {
-  type: "video" | "image" | "content";
-  content: SlideContentType[];
+  type: "video" | "image" | "columns";
+  columns: SlideContentType[];
   image: ImageType;
   video: string;
   description: string;

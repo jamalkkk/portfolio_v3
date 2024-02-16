@@ -20,18 +20,34 @@ export function useMockData() {
       tags: ["animation", "illustration", "web", "design"],
       slides: [
         {
-          type: "video",
-          content: [
+          type: "image",
+          columns: [
             {
-              type: "text",
-              imageSize: 0,
-              image: {
-                url: "",
-                alt: "",
-              },
-              text: "",
-              link: "",
-              img: "",
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/400/400",
+                },
+
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
             },
           ],
           image: {
@@ -40,21 +56,40 @@ export function useMockData() {
           },
           video: "",
           description: "",
-          img: "",
+          img: "https://picsum.photos/1200/800",
         },
         {
-          type: "content",
-          content: [
+          type: "columns",
+          columns: [
             {
-              type: "text",
-              imageSize: 0,
-              image: {
-                url: "",
-                alt: "",
-              },
-              text: "blaah blah lah",
-              link: "",
-              img: "",
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/400/400",
+                },
+              ],
             },
           ],
           image: {
