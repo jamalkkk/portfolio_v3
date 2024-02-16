@@ -111,24 +111,15 @@ export function useMockData() {
       slides: [
         {
           type: "video",
-          content: [
-            {
-              type: "text",
-              imageSize: 0,
-              image: {
-                url: "",
-                alt: "",
-              },
-              text: "",
-              link: "",
-              img: "",
-            },
-          ],
+          columns: [],
           image: {
             url: "",
             alt: "",
           },
-          video: "",
+          video: {
+            type: "youtube",
+            videoId: "hHrbgjVySlc",
+          },
           description: "",
           img: "",
         },

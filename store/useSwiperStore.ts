@@ -4,13 +4,13 @@ import { defineStore } from "pinia";
 
 interface SwiperState {
   isSpaceBarPressed: boolean;
-  activeIndex: number;
+  swiperActiveIndex: number;
   videoSlideIndices: number[];
 }
 
 export const useSwiperStore = defineStore("swiper-store", {
   state: (): SwiperState => ({
-    activeIndex: 0,
+    swiperActiveIndex: 0,
     videoSlideIndices: [],
     isSpaceBarPressed: false,
   }),
@@ -24,7 +24,7 @@ export const useSwiperStore = defineStore("swiper-store", {
       this.videoSlideIndices = [];
     },
     setActiveIndex(value: number) {
-      this.activeIndex = value;
+      this.swiperActiveIndex = value;
     },
     setIsSpaceBarPressed(value: boolean) {
       this.isSpaceBarPressed = value;

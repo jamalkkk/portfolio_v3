@@ -8,7 +8,7 @@ interface PlayerState {
   isUIHidden: boolean;
   shouldBePlaying: boolean;
   shouldBePlayingWhenBack: boolean;
-  activeIndex: number;
+  playerActiveIndex: number;
 }
 
 export const usePlayer = defineStore("player", {
@@ -18,7 +18,7 @@ export const usePlayer = defineStore("player", {
     isUIHidden: false,
     shouldBePlaying: false,
     shouldBePlayingWhenBack: false,
-    activeIndex: -1,
+    playerActiveIndex: -1,
   }),
   actions: {
     setIsPlaying(value: boolean) {
@@ -31,14 +31,14 @@ export const usePlayer = defineStore("player", {
       this.isUIHidden = !value && this.isPlaying;
     },
     setShouldBePlaying(value: boolean) {
-      this.activeIndex = value ? this.activeIndex : -1;
+      this.playerActiveIndex = value ? this.playerActiveIndex : -1;
       this.shouldBePlaying = !this.isPlaying;
     },
     setShouldBePlayingWhenBack(value: boolean) {
       this.shouldBePlayingWhenBack = value;
     },
-    setActiveIndex(value: number = -1) {
-      this.activeIndex = value;
+    setPlayerActiveIndex(value: number = -1) {
+      this.playerActiveIndex = value;
     },
     setIsUIHidden(value: boolean) {
       this.isUIHidden = value;

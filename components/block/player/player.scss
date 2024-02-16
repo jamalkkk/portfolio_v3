@@ -1,0 +1,78 @@
+$overlay-bottom-padding: 4.5rem;
+
+.b-player {
+    @include custom-cursor('play');
+
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: $color-negative;
+    transition: $base-transition;
+
+
+    &.is-loading {
+        .player-loader {
+            display: block;
+        }
+    }
+
+    &.is-playing {
+        @include custom-cursor('pause');
+
+        &.is-mouse-hidden .player-overlay {
+            cursor: none !important;
+        }
+
+        .player-wrapper {
+            opacity: 1;
+        }
+
+        .player-controls-play {
+            opacity: 0;
+        }
+    }
+
+    .is-dark-theme & {
+        @include custom-cursor('play', '_dark');
+
+        &.is-playing {
+            @include custom-cursor('pause', '_dark');
+        }
+    }
+
+    .player-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        opacity: .5;
+        transition: $base-transition-2;
+
+        > div,
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+    }
+   
+    .player-overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: $overlay-bottom-padding;
+        left: 0;
+
+        transition: $base-transition-2;
+    }
+   
+    .player-loader {
+        position: absolute;
+        display: none;
+        top: calc(50% + #{$overlay-bottom-padding} / 2);
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .loader-icon {
+            animation: rotateLoader .7s linear infinite;
+        }
+    }
+}

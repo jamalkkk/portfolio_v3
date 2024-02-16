@@ -110,43 +110,18 @@ const modalStore = useModal();
 
 const { closeProject } = useCommon();
 
-const { projects } = appStore;
 const { setActiveIndex, setIsSpaceBarPressed } = swiperStore;
 
 const { isSmallScreen } = storeToRefs(appStore);
 const { isUIHidden } = storeToRefs(playerStore);
 const { isModalActive } = storeToRefs(modalStore);
-const { activeIndex, videoSlideIndices } = storeToRefs(swiperStore);
+const { swiperActiveIndex, videoSlideIndices } = storeToRefs(swiperStore);
 
 const ProjectDetailSwiper = ref();
 
 const isPlayerSlide = ref(false);
 const hasSwiper = ref(false);
 const swiper = ref<SwiperType>();
-
-// const swiperOptions = {
-//     slidesPerView: "auto",
-//     allowTouchMove: false,
-//     grabCursor: false,
-//     parallax: true,
-//     pagination: {
-//         el: ".swiper-pagination",
-//         bulletActiveClass: "is-active",
-//         clickable: true,
-//         renderBullet(index: number, className: string) {
-//             return `<span class="${className} project-details-bullet">${require(`~/assets/img/svg/bullet${
-//                 className.includes("active") ? "-active" : ""
-//             }.svg?raw`)}</span>`;
-//         },
-//     },
-//     navigation: {
-//         nextEl: ".swiper-button-next",
-//         prevEl: ".swiper-button-prev",
-//     },
-//     keyboard: {
-//         enabled: true,
-//     },
-// };
 
 const props = defineProps({
     project: {
@@ -179,9 +154,9 @@ watch(
 );
 
 watch(
-    () => activeIndex.value,
+    () => swiperActiveIndex.value,
     (value) => {
-        isPlayerSlide.value = videoSlideIndices.value.includes(value);
+        // isPlayerSlide.value = videoSlideIndices.value.includes(value);
     }
 );
 

@@ -41,6 +41,12 @@ export type DesktopSegmentsType =
   | "standing"
   | "sitdown";
 
+// Player
+export type VideoType = {
+  type: string;
+  videoId: string;
+};
+
 // Project
 export type ContentItemType = {
   type: "text" | "image" | "link";
@@ -60,7 +66,7 @@ export type ProjectSlideType = {
   type: "video" | "image" | "columns";
   columns: SlideContentType[];
   image: ImageType;
-  video: string;
+  video: VideoType;
   description: string;
 
   // For now

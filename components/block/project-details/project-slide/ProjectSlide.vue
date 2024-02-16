@@ -12,7 +12,7 @@
     >
         <!-- Video Player -->
 
-        <!-- <Player v-if="isVideo" :video="slide.video" :index="index" /> -->
+        <Player v-if="isVideo" :video="slide.video" :index="index" />
 
         <!-- Image -->
         <div v-if="isImage" class="project-slide-image items-center">
