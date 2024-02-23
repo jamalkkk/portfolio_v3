@@ -15,6 +15,8 @@
             <slot />
             <Footer />
         </div>
+
+        <Loader />
     </div>
 </template>
 

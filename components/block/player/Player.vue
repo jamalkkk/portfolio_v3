@@ -45,23 +45,6 @@
                 @playing="handlePlay"
                 @ready="handleIsReady"
             />
-            <!-- <Video
-                v-else
-                ref="$playerWrapper"
-                :player="video.type"
-                :videoId="video.videoId"
-                :height="'100%'"
-                :width="'100%'"
-                :controls="true"
-                :no-cookie="true"
-                :options="vimeoOptions"
-                :player-vars="youtubeOptions"
-                @play="setIsPlaying(true)"
-                @pause="setIsPlaying(false)"
-                @ended="setIsPlaying(false)"
-                @ready="isReady = true"
-                @loaded="isReady = true"
-            /> -->
         </div>
 
         <!-- Overlay -->
@@ -129,15 +112,27 @@ const isYoutube = props.video.type === "youtube";
 const vimeoOptions = { transparent: false, color: negative.value };
 
 const play = () => {
-    isYoutube
-        ? $playerWrapper.value?.player.playVideo()
-        : $playerWrapper.value?.play();
+    try {
+        isYoutube
+            ? // @ts-ignore - ignore error
+              $playerWrapper.value?.player.playVideo()
+            : // @ts-ignore - ignore error
+              $playerWrapper.value?.play();
+    } catch (error) {
+        console.error("Error playing video", error);
+    }
 };
 
 const pause = () => {
-    isYoutube
-        ? $playerWrapper.value?.player.pauseVideo()
-        : $playerWrapper.value?.pause();
+    try {
+        isYoutube
+            ? // @ts-ignore - ignore error
+              $playerWrapper.value?.player.pauseVideo()
+            : // @ts-ignore - ignore error
+              $playerWrapper.value?.pause();
+    } catch (error) {
+        console.error("Error pausing video", error);
+    }
 };
 
 const setStoreShouldBePlaying = () => {

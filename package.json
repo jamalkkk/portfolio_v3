@@ -24,7 +24,6 @@
     "@pinia/nuxt": "^0.5.1",
     "nuxt-swiper": "^1.2.2",
     "sass": "^1.69.5",
-    "vue-video-wrapper": "^1.0.10",
     "vue-vimeo-player": "^1.1.2",
     "vue3-lottie": "^3.2.0",
     "youtube-vue3": "^0.1.15"

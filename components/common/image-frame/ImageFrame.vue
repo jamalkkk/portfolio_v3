@@ -88,7 +88,10 @@ watch(
 );
 
 const frameClick = () => {
-    props.onClick(props.image);
+    // props.onClick(props.image);
+
+    // @TODO: use image instead
+    props.onClick(props.img);
     if (!isClicked.value) {
         isClicked.value = true;
         if (props.shouldShowImmediately) {

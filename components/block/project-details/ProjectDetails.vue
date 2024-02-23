@@ -91,7 +91,9 @@
                 </LazyProjectSlide>
             </Swiper>
         </Frame>
-        <modal />
+
+        <!-- Modal -->
+        <Modal />
     </div>
 </template>
 

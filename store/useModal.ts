@@ -17,6 +17,7 @@ export const useModal = defineStore("modal", {
       if (!value) {
         this.image = {};
       }
+
       this.isModalActive = value;
     },
     setImage(value: Record<string, any>) {
