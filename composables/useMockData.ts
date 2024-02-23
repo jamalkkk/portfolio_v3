@@ -151,7 +151,10 @@ export function useMockData() {
             url: "",
             alt: "",
           },
-          video: "",
+          video: {
+            type: "vimeo",
+            videoId: "915249564",
+          },
           description: "",
           img: "",
         },

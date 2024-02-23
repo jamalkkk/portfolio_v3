@@ -11,27 +11,42 @@
             },
         ]"
     >
+        <!-- Loader -->
         <div class="player-loader">
-            <icon
-                class="loader-icon"
-                name="loader"
-                :is-button="true"
-                :size="3"
-            />
+            <icon class="loader-icon" name="loader" :size="3" />
         </div>
+
+        <!-- Player Wrapper -->
         <div class="player-wrapper">
-            <YoutubeVue3
+            <Youtube
+                v-if="isYoutube"
                 ref="$playerWrapper"
                 :videoid="video.videoId"
-                :loop="flase"
                 :width="480"
                 :height="320"
-                @ended="setIsPlaying(false)"
-                @paused="setIsPlaying(false)"
-                @played="setIsPlaying(true)"
+                :controls="1"
+                @ended="handlePause"
+                @paused="handlePause"
+                @played="handlePlay"
+                @ready="handleIsReady"
             />
-            <!-- <VueVideoWrapper
-            
+
+            <Vimeo
+                v-else
+                ref="$playerWrapper"
+                :video-id="video.videoId"
+                :autoplay="true"
+                height="100%"
+                width="100%"
+                :options="vimeoOptions"
+                @ended="handlePause"
+                @pause="handlePause"
+                @play="handlePlay"
+                @playing="handlePlay"
+                @ready="handleIsReady"
+            />
+            <!-- <Video
+                v-else
                 ref="$playerWrapper"
                 :player="video.type"
                 :videoId="video.videoId"
@@ -48,6 +63,8 @@
                 @loaded="isReady = true"
             /> -->
         </div>
+
+        <!-- Overlay -->
         <div
             class="player-overlay"
             @click="setStoreShouldBePlaying"
@@ -72,7 +89,6 @@ const {
     setShouldBePlaying,
     setIsPlayerMouseMoving,
     setShouldBePlayingWhenBack,
-    setPlayerActiveIndex,
 } = playerStore;
 
 const { setIsSpaceBarPressed } = swiperStore;
@@ -104,40 +120,28 @@ const props = defineProps({
 const $playerWrapper = ref<HTMLElement>();
 
 const isReady = ref(false);
-const isSlideActive = ref(false);
+const isSlideActive = ref(props.index == swiperActiveIndex.value);
 const isPlayerPlaying = ref(false);
 const mouseMovingTimeout = ref<NodeJS.Timeout | null>(null);
-const youtubeOptions = ref({ controls: 1 });
-const duration = ref(0);
 
-const isYoutube = computed(() => props.video.type === "youtube");
+const isYoutube = props.video.type === "youtube";
 
-const vimeoOptions = computed(() => {
-    return { transparent: false, color: negative.value };
-});
+const vimeoOptions = { transparent: false, color: negative.value };
 
 const play = () => {
-    if (isYoutube.value) {
-        $playerWrapper.value?.player.playVideo();
-    } else {
-        $playerWrapper.value?.play();
-    }
+    isYoutube
+        ? $playerWrapper.value?.player.playVideo()
+        : $playerWrapper.value?.play();
 };
 
 const pause = () => {
-    if (isYoutube.value) {
-        $playerWrapper.value?.player.pauseVideo();
-    } else {
-        $playerWrapper.value?.pause();
-    }
+    isYoutube
+        ? $playerWrapper.value?.player.pauseVideo()
+        : $playerWrapper.value?.pause();
 };
 
 const setStoreShouldBePlaying = () => {
-    if (isReady.value) {
-        setShouldBePlaying(
-            props.index === (swiperActiveIndex.value ? props.index : -1)
-        );
-    }
+    setShouldBePlaying(!isPlayerPlaying.value);
 };
 
 const setStoreShouldBePlayingWhenBack = (value: boolean) => {
@@ -155,17 +159,17 @@ const setStoreShouldBePlayingWhenBack = (value: boolean) => {
     }
 };
 
-// const handleIsReady = () => {
-//     isReady.value = true;
-// };
+const handleIsReady = () => {
+    isReady.value = true;
+};
 
-// const handlePlay = () => {
-//     setIsPlaying(true);
-// };
+const handlePlay = () => {
+    setIsPlaying(true);
+};
 
-// const handlePause = () => {
-//     setIsPlaying(false);
-// };
+const handlePause = () => {
+    setIsPlaying(false);
+};
 
 const handleMousemove = () => {
     if (!mouseMovingTimeout.value) {
@@ -183,21 +187,26 @@ const handlePageLeave = () => {
 };
 
 const initialiseEventListeners = () => {
+    if (!isReady.value && isYoutube) {
+        setTimeout(() => {
+            handleIsReady();
+        }, 1000);
+    }
     window.addEventListener("visibilitychange", handlePageLeave);
 };
 
-watch(
-    () => isReady.value,
-    (value) => {
-        isPlayerPlaying.value =
-            value && swiperActiveIndex.value === props.index;
-    }
-);
+// watch(
+//     () => isReady.value,
+//     (value) => {
+//         // isPlayerPlaying.value =
+//         //     value && swiperActiveIndex.value === props.index;
+//     }
+// );
 
 watch(
     () => isPlaying.value,
-    () => {
-        duration.value = 200;
+    (value) => {
+        isPlayerPlaying.value = value && isSlideActive.value;
     }
 );
 
@@ -214,6 +223,7 @@ watch(
 watch(
     () => shouldBePlaying.value,
     (value) => {
+        console.log("isSlideActive.value", isSlideActive.value);
         if (value) {
             if (isSlideActive.value) {
                 play();

@@ -29,6 +29,10 @@ export default defineNuxtConfig({
     },
   },
 
+  build: {
+    vendor: ["vue-vimeo-player", "vue-video-wrapper"],
+  },
+
   devtools: { enabled: true },
 
   modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "nuxt-swiper"],
