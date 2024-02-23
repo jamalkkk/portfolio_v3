@@ -195,10 +195,13 @@ const handleSlideChange = () => {
 };
 
 const handleKeyPress = (swiper: any, keyCode: String) => {
-    if (keyCode === "32") {
-        setIsSpaceBarPressed(true);
-    } else if (keyCode === "27") {
-        closeProject();
+    switch (`${keyCode}`) {
+        case "32":
+            setIsSpaceBarPressed(true);
+            break;
+        case "27":
+            closeProject();
+            break;
     }
 };
 

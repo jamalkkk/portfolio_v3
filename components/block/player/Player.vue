@@ -22,9 +22,9 @@
                 v-if="isYoutube"
                 ref="$playerWrapper"
                 :videoid="video.videoId"
-                :width="480"
-                :height="320"
+                :autoplay="false"
                 :controls="1"
+                :no-cookie="true"
                 @ended="handlePause"
                 @paused="handlePause"
                 @played="handlePlay"
@@ -35,9 +35,10 @@
                 v-else
                 ref="$playerWrapper"
                 :video-id="video.videoId"
-                :autoplay="true"
                 height="100%"
                 width="100%"
+                :autoplay="false"
+                muted
                 :options="vimeoOptions"
                 @ended="handlePause"
                 @pause="handlePause"
@@ -108,7 +109,6 @@ const isPlayerPlaying = ref(false);
 const mouseMovingTimeout = ref<NodeJS.Timeout | null>(null);
 
 const isYoutube = props.video.type === "youtube";
-
 const vimeoOptions = { transparent: false, color: negative.value };
 
 const play = () => {
@@ -182,11 +182,13 @@ const handlePageLeave = () => {
 };
 
 const initialiseEventListeners = () => {
+    // Youtube player does not emit ready event
     if (!isReady.value && isYoutube) {
         setTimeout(() => {
             handleIsReady();
         }, 1000);
     }
+
     window.addEventListener("visibilitychange", handlePageLeave);
 };
 
@@ -218,7 +220,6 @@ watch(
 watch(
     () => shouldBePlaying.value,
     (value) => {
-        console.log("isSlideActive.value", isSlideActive.value);
         if (value) {
             if (isSlideActive.value) {
                 play();

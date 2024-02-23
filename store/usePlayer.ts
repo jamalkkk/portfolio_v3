@@ -24,11 +24,11 @@ export const usePlayer = defineStore("player", {
     setIsPlaying(value: boolean) {
       this.isPlaying = value;
       this.shouldBePlaying = value;
-      this.isUIHidden = value && !this.isPlayerMouseMoving;
+      this.setIsUIHidden(value && !this.isPlayerMouseMoving);
     },
     setIsPlayerMouseMoving(value: boolean) {
       this.isPlayerMouseMoving = value;
-      this.isUIHidden = !value && this.isPlaying;
+      this.setIsUIHidden(!value && this.isPlaying);
     },
     setShouldBePlaying(value: boolean) {
       this.playerActiveIndex = value ? this.playerActiveIndex : -1;

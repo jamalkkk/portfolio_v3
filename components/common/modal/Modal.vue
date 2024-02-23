@@ -12,7 +12,7 @@
         @keydown.esc="escapeModal"
     >
         <div class="modal-container" @click="closeModal">
-            <LazyJKImage :img="image" />
+            <LazyJKImage ref="$image" :img="image" id="modal-image" />
             <!-- <LazyJKImage :image="image"  /> -->
         </div>
     </div>
@@ -23,17 +23,24 @@ import { useTheme } from "~/store/useTheme";
 
 const modalStore = useModal();
 const themeStore = useTheme();
+
 const { negative } = storeToRefs(themeStore);
 
 const { setIsModalActive } = modalStore;
 const { isModalActive, image } = storeToRefs(modalStore);
 
+const $image = ref<HTMLElement>();
+
 const isActive = ref(false);
 
-const closeModal = (e: KeyboardEvent | MouseEvent) => {
+const closeModal = (event: KeyboardEvent | MouseEvent) => {
     if (
-        (e as KeyboardEvent).keyCode === 27 ||
-        (!e.keyCode && e.target !== image.value)
+        ["Escape", "ArrowLeft", "ArrowRight"].includes(
+            (event as KeyboardEvent).code
+        ) ||
+        (!(event as KeyboardEvent).code &&
+            //@ts-ignore
+            (event as MouseEvent).target?.id !== "modal-image")
     ) {
         isActive.value = false;
         setTimeout(() => {

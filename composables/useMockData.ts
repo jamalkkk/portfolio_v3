@@ -62,6 +62,20 @@ export function useMockData() {
           img: "https://picsum.photos/1200/800",
         },
         {
+          type: "video",
+          columns: [],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "youtube",
+            videoId: "hHrbgjVySlc",
+          },
+          description: "",
+          img: "",
+        },
+        {
           type: "columns",
           columns: [
             {
@@ -90,7 +104,7 @@ export function useMockData() {
                   },
                   text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
                   link: "",
-                  img: "https://picsum.photos/400/400",
+                  img: "https://picsum.photos/1400/1400",
                 },
               ],
             },
