@@ -28,7 +28,14 @@
                     <About class="home-about" />
                 </SwiperSlide>
                 <SwiperSlide class="slide">
-                    <InteractiveAnimations class="home-ia" />
+                    <InteractiveAnimations
+                        class="home-ia transition"
+                        :class="
+                            isHomeActive
+                                ? 'opacity-100'
+                                : 'opacity-50 md:opacity-70'
+                        "
+                    />
                 </SwiperSlide>
             </Swiper>
         </div>

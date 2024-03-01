@@ -2,7 +2,7 @@
 
 <template>
     <div class="b-about">
-        <div class="about-container flex flex-col gap-y-24">
+        <div class="about-container flex flex-col gap-y-24 px-4">
             <div class="flex flex-col gap-y-4">
                 <Headline text="Jamal Khalili" />
                 <div class="about-content">

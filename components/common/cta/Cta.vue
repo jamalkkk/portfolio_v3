@@ -23,7 +23,7 @@
         data-cursor-hover
     >
         {{ text }}
-        <JKLine v-show="hasUnderline" :isSingle="true" />
+        <JKLine v-if="hasUnderline" :isSingle="true" />
     </component>
 </template>
 
