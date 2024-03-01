@@ -93,6 +93,15 @@ $swiper-padding-md: $page-padding-md;
         border-radius: 10px;
         overflow: hidden;
         transform: translateX(-50%);
+        background-color: transparent;
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: $color-primary;
+            opacity: .4;
+        }
 
         @include md {
             bottom: $swiper-padding;
@@ -190,12 +199,13 @@ $swiper-padding-md: $page-padding-md;
     .project-details-tags {
         z-index: $z-index-2;
         position: absolute;
-        bottom: 7rem;
+        bottom: 6rem;
         left: $swiper-padding-sm;
         right: $swiper-padding-sm;
         transition: $base-transition;
 
         @include md {
+            bottom: 7rem;
             left: $swiper-padding-md
         }
 

@@ -16,7 +16,7 @@
             <Footer />
         </div>
 
-        <Loader />
+        <!-- <Loader /> -->
     </div>
 </template>
 
@@ -30,24 +30,9 @@ const { isLoaderActive } = useLoader();
 const theme = useTheme();
 const { isDarkTheme } = storeToRefs(theme);
 
+const { setTheme } = useCommon();
+
 const $container = ref<HTMLElement>();
-
-const setProperty = (key: string, value: string) => {
-    document.documentElement.style.setProperty(key, value);
-};
-
-const setTheme = (isDark: boolean = false) => {
-    const primary = isDark ? "negative" : "primary";
-    const negative = !isDark ? "negative" : "primary";
-
-    setProperty("--primary", theme[primary]);
-    setProperty("--negative", theme[negative]);
-    setProperty("--primary-transparent", `${theme[primary]}a`);
-    setProperty("--negative-transparent", `${theme[negative]}a`);
-
-    document.body.classList.add(`is-${isDark ? "dark" : "light"}-theme`);
-    document.body.classList.remove(`is-${isDark ? "light" : "dark"}-theme`);
-};
 
 const handleScroll = () => {
     const top = $container.value?.scrollTop || 0;
@@ -58,9 +43,7 @@ const initialiseEventListeners = () => {
     $container.value?.addEventListener("scroll", handleScroll);
 };
 
-watch(isDarkTheme, (value) => {
-    setTheme(value);
-});
+watch(isDarkTheme, (value) => setTheme(value));
 
 onMounted(() => {
     setTheme(isDarkTheme.value);

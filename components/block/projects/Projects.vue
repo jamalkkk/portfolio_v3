@@ -20,7 +20,7 @@
         </div>
 
         <Tags class="mb-5" />
-        <div class="projects-list container">
+        <div class="projects-list">
             <ul
                 class="projects-list-row grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1"
                 v-if="filteredProjects.length"

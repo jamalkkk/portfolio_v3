@@ -6,7 +6,7 @@ export function useMockData() {
     "illustration",
     "web",
     "design",
-    // "development",
+    "development",
     // "motion",
     // "ux",
     // "ui",
@@ -23,6 +23,1347 @@ export function useMockData() {
   ];
 
   const MDProjects: ProjectType[] = [
+    {
+      id: "1",
+      title: "Project 1",
+      description: "Lorem Ipusum blahd kseded 1",
+      image: "https://picsum.photos/400/400",
+      tags: ["animation", "illustration", "web", "design"],
+      slides: [
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Sirmod tempest Lorem Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1300/1300",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1400/1400",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "video",
+          columns: [
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/400/400",
+                },
+
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "vimeo",
+            videoId: "915249564",
+          },
+          description: "",
+          img: "https://picsum.photos/1200/800",
+        },
+        {
+          type: "video",
+          columns: [],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "youtube",
+            videoId: "hHrbgjVySlc",
+          },
+          description: "",
+          img: "",
+        },
+      ],
+    },
+    {
+      id: "1",
+      title: "Project 1",
+      description: "Lorem Ipusum blahd kseded 1",
+      image: "https://picsum.photos/400/400",
+      tags: ["animation", "illustration", "web", "design"],
+      slides: [
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Sirmod tempest Lorem Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1300/1300",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1400/1400",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "video",
+          columns: [
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/400/400",
+                },
+
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "vimeo",
+            videoId: "915249564",
+          },
+          description: "",
+          img: "https://picsum.photos/1200/800",
+        },
+        {
+          type: "video",
+          columns: [],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "youtube",
+            videoId: "hHrbgjVySlc",
+          },
+          description: "",
+          img: "",
+        },
+      ],
+    },
+    {
+      id: "1",
+      title: "Project 1",
+      description: "Lorem Ipusum blahd kseded 1",
+      image: "https://picsum.photos/400/400",
+      tags: ["animation", "illustration", "web", "design"],
+      slides: [
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Sirmod tempest Lorem Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1300/1300",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1400/1400",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "video",
+          columns: [
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/400/400",
+                },
+
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "vimeo",
+            videoId: "915249564",
+          },
+          description: "",
+          img: "https://picsum.photos/1200/800",
+        },
+        {
+          type: "video",
+          columns: [],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "youtube",
+            videoId: "hHrbgjVySlc",
+          },
+          description: "",
+          img: "",
+        },
+      ],
+    },
+    {
+      id: "1",
+      title: "Project 1",
+      description: "Lorem Ipusum blahd kseded 1",
+      image: "https://picsum.photos/400/400",
+      tags: ["animation", "illustration", "web", "design"],
+      slides: [
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Sirmod tempest Lorem Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1300/1300",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1400/1400",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "video",
+          columns: [
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/400/400",
+                },
+
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "vimeo",
+            videoId: "915249564",
+          },
+          description: "",
+          img: "https://picsum.photos/1200/800",
+        },
+        {
+          type: "video",
+          columns: [],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "youtube",
+            videoId: "hHrbgjVySlc",
+          },
+          description: "",
+          img: "",
+        },
+      ],
+    },
+    {
+      id: "1",
+      title: "Project 1",
+      description: "Lorem Ipusum blahd kseded 1",
+      image: "https://picsum.photos/400/400",
+      tags: ["animation", "illustration", "web", "design"],
+      slides: [
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Sirmod tempest Lorem Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1300/1300",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1400/1400",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "video",
+          columns: [
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/400/400",
+                },
+
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "vimeo",
+            videoId: "915249564",
+          },
+          description: "",
+          img: "https://picsum.photos/1200/800",
+        },
+        {
+          type: "video",
+          columns: [],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "youtube",
+            videoId: "hHrbgjVySlc",
+          },
+          description: "",
+          img: "",
+        },
+      ],
+    },
+    {
+      id: "1",
+      title: "Project 1",
+      description: "Lorem Ipusum blahd kseded 1",
+      image: "https://picsum.photos/400/400",
+      tags: ["animation", "illustration", "web", "design"],
+      slides: [
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Sirmod tempest Lorem Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1300/1300",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1400/1400",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "video",
+          columns: [
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/400/400",
+                },
+
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "vimeo",
+            videoId: "915249564",
+          },
+          description: "",
+          img: "https://picsum.photos/1200/800",
+        },
+        {
+          type: "video",
+          columns: [],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "youtube",
+            videoId: "hHrbgjVySlc",
+          },
+          description: "",
+          img: "",
+        },
+      ],
+    },
+    {
+      id: "1",
+      title: "Project 1",
+      description: "Lorem Ipusum blahd kseded 1",
+      image: "https://picsum.photos/400/400",
+      tags: ["animation", "illustration", "web", "design"],
+      slides: [
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Sirmod tempest Lorem Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1300/1300",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1400/1400",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "video",
+          columns: [
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/400/400",
+                },
+
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "vimeo",
+            videoId: "915249564",
+          },
+          description: "",
+          img: "https://picsum.photos/1200/800",
+        },
+        {
+          type: "video",
+          columns: [],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "youtube",
+            videoId: "hHrbgjVySlc",
+          },
+          description: "",
+          img: "",
+        },
+      ],
+    },
+    {
+      id: "1",
+      title: "Project 1",
+      description: "Lorem Ipusum blahd kseded 1",
+      image: "https://picsum.photos/400/400",
+      tags: ["animation", "illustration", "web", "design"],
+      slides: [
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Sirmod tempest Lorem Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1300/1300",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1400/1400",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "video",
+          columns: [
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/400/400",
+                },
+
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "vimeo",
+            videoId: "915249564",
+          },
+          description: "",
+          img: "https://picsum.photos/1200/800",
+        },
+        {
+          type: "video",
+          columns: [],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "youtube",
+            videoId: "hHrbgjVySlc",
+          },
+          description: "",
+          img: "",
+        },
+      ],
+    },
+    {
+      id: "1",
+      title: "Project 1",
+      description: "Lorem Ipusum blahd kseded 1",
+      image: "https://picsum.photos/400/400",
+      tags: ["animation", "illustration", "web", "design"],
+      slides: [
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Sirmod tempest Lorem Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1300/1300",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "columns",
+          columns: [
+            {
+              items: [
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/1400/1400",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: "",
+          description: "",
+          img: "",
+        },
+        {
+          type: "video",
+          columns: [
+            {
+              items: [
+                {
+                  type: "image",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: "Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "https://picsum.photos/400/400",
+                },
+
+                {
+                  type: "text",
+                  imageSize: 0,
+                  image: {
+                    url: "",
+                    alt: "",
+                  },
+                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  link: "",
+                  img: "",
+                },
+              ],
+            },
+          ],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "vimeo",
+            videoId: "915249564",
+          },
+          description: "",
+          img: "https://picsum.photos/1200/800",
+        },
+        {
+          type: "video",
+          columns: [],
+          image: {
+            url: "",
+            alt: "",
+          },
+          video: {
+            type: "youtube",
+            videoId: "hHrbgjVySlc",
+          },
+          description: "",
+          img: "",
+        },
+      ],
+    },
     {
       id: "1",
       title: "Project 1",

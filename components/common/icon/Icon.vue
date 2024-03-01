@@ -17,7 +17,7 @@
         :tabindex="tabindex"
         @click="onClick"
     >
-        <JKSvg :name="name" class="h-[2em] w-[2em]" />
+        <JKSvg :name="name" class="h-full w-full" />
     </component>
 </template>
 

@@ -4,7 +4,7 @@ import { defineStore } from "pinia";
 interface ThemeState {
   isDarkTheme: boolean;
   isPageReloaded: boolean;
-  isRandomTheme: boolean;
+  isThemeSet: boolean;
   originalPrimary: string;
   originalNegative: string;
   primary: string;
@@ -16,7 +16,7 @@ export const useTheme = defineStore("theme", {
   state: (): ThemeState => ({
     isDarkTheme: false, //localStorage?.isDarkTheme === "true",
     isPageReloaded: false, //localStorage?.isPageReloaded === "true",
-    isRandomTheme: false,
+    isThemeSet: false,
     originalPrimary: "#222",
     originalNegative: "#eee",
     primary: "#222",
@@ -25,39 +25,32 @@ export const useTheme = defineStore("theme", {
   }),
   actions: {
     toggleIsDarkTheme() {
+      const { getRandomColorTheme, saveThemeColorsInStorage } = useCommon();
+
       this.isDarkTheme = !this.isDarkTheme;
-      // localStorage?.isDarkTheme = this.isDarkTheme;
 
       // every 2nd - 6th click trigger random colors
-      if (this.count % 6 > 1) {
-        const randomColor = getRandomColor();
+      const isRandomTheme = this.count % 6 > 1;
+      this.primary = isRandomTheme
+        ? getRandomColorTheme().primary
+        : this.originalPrimary;
+      this.negative = isRandomTheme
+        ? getRandomColorTheme().negative
+        : this.originalNegative;
 
-        this.primary = randomColor;
-        this.negative = getContrastColor(randomColor);
-      } else {
-        this.primary = this.originalPrimary;
-        this.negative = this.originalNegative;
-      }
+      this.setThemeColors({ primary: this.primary, negative: this.negative });
+
+      saveThemeColorsInStorage(this.primary, this.negative);
 
       this.count++;
     },
+    setThemeColors(theme: { primary: string; negative: string } | null) {
+      if (!theme) return;
+
+      this.primary = theme.primary;
+      this.negative = theme.negative;
+
+      this.isThemeSet = true;
+    },
   },
 });
-
-const getRandomColor = (): string => {
-  let color = Math.floor(Math.random() * 16777215).toString(16);
-
-  while (color.length < 6) {
-    color += "9"; // in case it is shorter than 6 hex digits
-  }
-
-  return `#${color}`;
-};
-
-const getContrastColor = (hexColor: string): string => {
-  let r = parseInt(hexColor.substr(2, 2), 16);
-  let g = parseInt(hexColor.substr(4, 2), 16);
-  let b = parseInt(hexColor.substr(6, 2), 16);
-  let yiq = (r * 299 + g * 587 + b * 114) / 1000;
-  return yiq >= 128 ? "#222" : "#eee";
-};

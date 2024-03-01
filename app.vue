@@ -6,19 +6,26 @@
 
 <script setup lang="ts">
 import { useApp } from "~/store/useApp";
+import { useTheme } from "~/store/useTheme";
 
 const { toggleIsUserOnPage } = useApp();
-const { setStoreDocumentBreakpoint } = useCommon();
+const { init, setTheme } = useCommon();
+
+const theme = useTheme();
+const { isDarkTheme } = storeToRefs(theme);
+
+watch(isDarkTheme, (value) => {
+    // setTheme(value);
+});
 
 onMounted(() => {
-    setStoreDocumentBreakpoint();
+    init();
+    // setTheme(isDarkTheme.value);
 
     window.addEventListener("visibilitychange", toggleIsUserOnPage);
-    window.addEventListener("resize", setStoreDocumentBreakpoint);
 });
 
 onUnmounted(() => {
     window.removeEventListener("visibilitychange", toggleIsUserOnPage);
-    window.removeEventListener("resize", setStoreDocumentBreakpoint);
 });
 </script>

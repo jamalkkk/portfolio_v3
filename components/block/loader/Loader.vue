@@ -45,6 +45,7 @@
                     <JKText
                         v-if="!isPageLoaded"
                         class="loader-text"
+                        :isSecondaryFont="true"
                         :text="loadingMessage"
                     />
                 </div>
