@@ -35,7 +35,20 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
-  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "nuxt-swiper"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@pinia/nuxt",
+    "nuxt-swiper",
+    [
+      "@nuxtjs/google-fonts",
+      {
+        families: {
+          "Averia+Libre": [300, 400, 700],
+          "Maven Pro": [400, 500],
+        },
+      },
+    ],
+  ],
 
   buildModules: ["@nuxtjs/style-resources"],
 

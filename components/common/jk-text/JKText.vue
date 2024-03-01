@@ -12,6 +12,7 @@
                 'is-light': isLight,
                 'is-bold': isBold,
                 'is-inverted': isInverted,
+                'is-secondary-font': isSecondaryFont,
             },
         ]"
     ></div>
@@ -40,6 +41,10 @@ const props = defineProps({
         default: false,
     },
     isInverted: {
+        type: Boolean,
+        default: false,
+    },
+    isSecondaryFont: {
         type: Boolean,
         default: false,
     },

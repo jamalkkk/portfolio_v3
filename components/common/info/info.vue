@@ -19,6 +19,7 @@
             :isXSmall="true"
             :isLight="true"
             :isInverted="true"
+            :isSecondaryFont="true"
             :text="replaceSpace(text)"
         />
 
@@ -36,6 +37,7 @@
                 :isXSmall="true"
                 :isLight="true"
                 :isInverted="true"
+                :isSecondaryFont="true"
                 :text="replaceSpace(hoverText)"
             />
         </div>
@@ -54,6 +56,7 @@
                 :isXSmall="true"
                 :isLight="true"
                 :isInverted="true"
+                :isSecondaryFont="true"
                 :text="replaceSpace(clickText)"
             />
         </div>

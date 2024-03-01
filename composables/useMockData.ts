@@ -26,7 +26,7 @@ export function useMockData() {
     {
       id: "1",
       title: "Project 1",
-      description: "Description Description  Description 1",
+      description: "Lorem Ipusum blahd kseded 1",
       image: "https://picsum.photos/400/400",
       tags: ["animation", "illustration", "web", "design"],
       slides: [
@@ -42,7 +42,7 @@ export function useMockData() {
                     url: "",
                     alt: "",
                   },
-                  text: " eirmod tempest Lorem ipsum dolor sit amet.",
+                  text: "Sirmod tempest Lorem Lorem ipsum dolor sit amet, coneos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet ipsum dolor sit amet.",
                   link: "",
                   img: "",
                 },
@@ -175,7 +175,7 @@ export function useMockData() {
     {
       id: "2",
       title: "Project 2",
-      description: "Description Description  Description 2",
+      description: "Lorem Ipusum blahd kseded 2",
       image: "https://picsum.photos/400/400",
       tags: ["development", "motion", "ux"],
       slides: [
@@ -198,7 +198,7 @@ export function useMockData() {
     {
       id: "3",
       title: "Project 3",
-      description: "Description Description  Description 3",
+      description: "Lorem Ipusum blahd kseded 3",
       image: "https://picsum.photos/400/400",
       tags: ["web", "design", "development"],
       slides: [
@@ -233,7 +233,7 @@ export function useMockData() {
     {
       id: "4",
       title: "Project 4",
-      description: "Description Description  Description 4",
+      description: "Lorem Ipusum blahd kseded 4",
       image: "https://picsum.photos/400/400",
       tags: ["animation", "illustration", "web", "design"],
       slides: [
@@ -265,7 +265,7 @@ export function useMockData() {
     {
       id: "5",
       title: "Project 5",
-      description: "Description Description  Description 5",
+      description: "Lorem Ipusum blahd kseded 5",
       image: "https://picsum.photos/400/400",
       tags: ["development", "motion", "ux"],
       slides: [

@@ -16,6 +16,7 @@
                     :isSmall="true"
                     :isLight="true"
                     :isInverted="true"
+                    :isSecondaryFont="true"
                     :text="`Copyright &copy; ${
                         new Date().getFullYear() + Copyright
                     }`"
@@ -25,6 +26,7 @@
                     :isXSmall="true"
                     :isLight="true"
                     :isInverted="true"
+                    :isSecondaryFont="true"
                     text="Built with &#10084; by Jamal Khalili"
                     class="md:text-left md:order-first"
                 />

@@ -5,9 +5,7 @@
         <div class="about-container flex flex-col gap-y-24 px-4">
             <div class="flex flex-col gap-y-4">
                 <Headline text="Jamal Khalili" />
-                <div class="about-content">
-                    {{ content }}
-                </div>
+                <p class="about-content" v-html="content"></p>
             </div>
             <div class="flex flex-col gap-y-4">
                 <Email />
@@ -28,7 +26,7 @@ export type Info = {
     about: String;
 };
 const content = ref<string>(
-    "Hello, I'm a **Multimedia Artist** - who is passionate about creating compelling and engaging media content.\n\nI possess over 5 years of experience in interactive application development, animation, and illustration, gained through a combination of educational projects and industry work.\n\nHire me, I need to keep my plants alive!"
+    "Hello, I'm a Multimedia Artist — who is passionate about creating compelling and engaging media content.\n\nI possess over 5 years of experience in interactive application development, animation, and illustration, gained through a combination of educational projects and industry work.</br></br>Hire me, I need to keep my plants alive!"
 );
 
 watch(isDataLoaded, (value) => {

@@ -25,9 +25,19 @@ body {
 }
 
 * {
-  font-family: Averia Libre, sans-serif;
+  font-family: $font-family-primary;
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
+
+  @include md {
+    font-size: $font-size;
+  }
+}
+
+p {
+  font-family: $font-family-secondary;
+  font-size: $font-size-sm;
+  font-weight: 400;
 
   @include md {
     font-size: $font-size;

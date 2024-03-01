@@ -32,6 +32,7 @@
                             :isSmall="true"
                             :isLight="true"
                             :isInverted="true"
+                            :isSecondaryFont="true"
                             :text="project.description"
                         />
                     </div>
