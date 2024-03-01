@@ -58,6 +58,7 @@ export type ContentItemType = {
   // For now
   img: string;
 };
+
 export type SlideContentType = {
   items: ContentItemType[];
 };

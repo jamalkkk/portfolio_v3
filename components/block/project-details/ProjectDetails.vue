@@ -113,7 +113,7 @@ const modalStore = useModal();
 const { closeProject } = useCommon();
 
 const { setActiveIndex, setIsSpaceBarPressed } = swiperStore;
-const { setIsModalActive } = modalStore;
+const { setIsModalActive, setProjectImages } = modalStore;
 
 const { isSmallScreen } = storeToRefs(appStore);
 const { isUIHidden } = storeToRefs(playerStore);
@@ -199,6 +199,37 @@ const handleKeyPress = (swiper: any, keyCode: String) => {
             break;
     }
 };
+
+const setAllImagesInModal = (project: ProjectType): string[] => {
+    const images: string[] = [];
+
+    // Iterate through each slide
+    for (const slide of project.slides) {
+        // Add slide image
+        if (slide.type === "image" && slide.img) {
+            images.push(slide.img);
+        } else if (slide.type === "columns") {
+            // Iterate through each column in the slide
+            for (const column of slide.columns) {
+                // Iterate through each item in the column
+                for (const item of column.items) {
+                    // If the item type is 'image', add its image
+                    if (item.type === "image") {
+                        images.push(item.img);
+                    }
+                }
+            }
+        }
+    }
+
+    setProjectImages(images);
+    return images;
+};
+
+onMounted(() => {
+    const images = setAllImagesInModal(props.project);
+    console.log("images", images);
+});
 
 onUnmounted(() => {
     swiper.value?.destroy();
