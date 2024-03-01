@@ -113,6 +113,7 @@ const modalStore = useModal();
 const { closeProject } = useCommon();
 
 const { setActiveIndex, setIsSpaceBarPressed } = swiperStore;
+const { setIsModalActive } = modalStore;
 
 const { isSmallScreen } = storeToRefs(appStore);
 const { isUIHidden } = storeToRefs(playerStore);
@@ -177,14 +178,8 @@ const isProjectActive = ref(true);
 const handleCloseProject = () => {
     isProjectActive.value = false;
     closeProject();
+    setIsModalActive(false);
 };
-
-// const renderBullet = (index: number, className: string) => {
-//     return  `<span class="${className} project-details-bullet">` +
-//     return `<span class="${className} project-details-bullet">${require(`~/assets/img/svg/bullet${
-//         className.includes("active") ? "-active" : ""
-//     }.svg?raw`)}</span>`;
-// };
 
 const renderProgressbar = (progressbarFillClass: string) => {
     return '<span class="' + progressbarFillClass + '"></span>';

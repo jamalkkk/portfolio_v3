@@ -10,10 +10,13 @@
         padding: 1rem 0 2rem;
     }
 
+    .footer-content {
+        max-width: $content-width;
+    }
+
     .footer-line {
         &.b-jk-line {
             height: auto;
-            top: -1rem;
             bottom: 4rem;
         }
     }

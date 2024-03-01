@@ -12,7 +12,13 @@
         @keydown.esc="escapeModal"
     >
         <div class="modal-container" @click="closeModal">
-            <LazyJKImage ref="$image" :img="image" id="modal-image" />
+            <LazyJKImage
+                ref="$image"
+                :img="image"
+                id="modal-image"
+                class="opacity-0 transition duration-500"
+                :class="{ 'opacity-100': isActive }"
+            />
             <!-- <LazyJKImage :image="image"  /> -->
         </div>
     </div>
@@ -52,6 +58,8 @@ const closeModal = (event: KeyboardEvent | MouseEvent) => {
 watch(
     () => isModalActive.value,
     (value) => {
+        console.log(value);
+
         if (value) {
             setTimeout(() => {
                 isActive.value = value;

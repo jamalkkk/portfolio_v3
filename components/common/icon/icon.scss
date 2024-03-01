@@ -17,6 +17,7 @@
 
     &:focus-visible {
         outline: $cta-outline !important;
+        outline-offset: 2px;
     }
 
     &:active {

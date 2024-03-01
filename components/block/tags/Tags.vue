@@ -13,7 +13,7 @@
         <div
             v-if="areItemsSet"
             :class="[
-                'tags-list flex gap-2 ',
+                'tags-list flex gap-5 ',
                 isInteractive ? 'is-pb-3' : 'flex-wrap',
             ]"
         >
@@ -33,7 +33,7 @@
         </div>
 
         <!-- Line -->
-        <JKLine v-if="isInteractive" class="tags-line" :isSingle="true" />
+        <!-- <JKLine v-if="isInteractive" class="tags-line" :isSingle="true" /> -->
     </div>
 </template>
 

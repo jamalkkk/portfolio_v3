@@ -9,6 +9,17 @@ export function useMockData() {
     "development",
     "motion",
     "ux",
+    "ui",
+    "frontend",
+    "backend",
+    "fullstack",
+    "wordpress",
+    "react",
+    "vue",
+    "angular",
+    "svelte",
+    "node",
+    "express",
   ];
 
   const MDProjects: ProjectType[] = [
