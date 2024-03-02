@@ -27,7 +27,7 @@
                     :isLight="true"
                     :isInverted="true"
                     :isSecondaryFont="true"
-                    text="Built with &#10084; by Jamal Khalili"
+                    text="Created with &#10084; by Jamal Khalili"
                     class="md:text-left md:order-first"
                 />
             </div>

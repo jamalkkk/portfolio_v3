@@ -137,13 +137,20 @@ export function useCommon() {
       return null; // No colors stored
     }
 
-    return { primary, negative };
+    const count = localStorage.getItem("count") || "";
+
+    return { primary, negative, count };
   };
 
   // Save theme colors to local storage
-  const saveThemeColorsInStorage = (primary: string, negative: string) => {
+  const saveThemeColorsInStorage = (
+    primary: string,
+    negative: string,
+    count: number
+  ) => {
     localStorage.setItem("primary", primary);
     localStorage.setItem("negative", negative);
+    localStorage.setItem("count", count.toString());
   };
 
   const setProperty = (key: string, value: string) => {
