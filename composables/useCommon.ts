@@ -15,7 +15,7 @@ export function useCommon() {
   const { setShouldScrollToProjects, setProject, setDocumentBreakpoint } = app;
   const { setShouldProjectLoaderBeActive } = loader;
   const { isSoundSupposedActive, setIsSoundActive } = sounds;
-  const { setThemeColors } = theme;
+  const { originalPrimary, originalNegative, setThemeColors } = theme;
   const { resetVideoSlideIndices } = swiper;
 
   const isMySoundSupposedActive = ref(isSoundSupposedActive); // Initialize with appropriate value
@@ -106,7 +106,7 @@ export function useCommon() {
     const g = parseInt(hexColor.substr(3, 2), 16);
     const b = parseInt(hexColor.substr(5, 2), 16);
     const yiq = (r * 299 + g * 587 + b * 114) / 1000;
-    return yiq >= 128 ? "#222" : "#eee";
+    return yiq >= 128 ? originalPrimary : originalNegative;
   };
 
   const getRandomColorTheme = () => {
