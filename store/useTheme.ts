@@ -14,8 +14,8 @@ interface ThemeState {
 
 export const useTheme = defineStore("theme", {
   state: (): ThemeState => ({
-    isDarkTheme: false, //localStorage?.isDarkTheme === "true",
-    isPageReloaded: false, //localStorage?.isPageReloaded === "true",
+    isDarkTheme: false,
+    isPageReloaded: false,
     isThemeSet: false,
     originalPrimary: "#222",
     originalNegative: "#eee",
@@ -37,19 +37,30 @@ export const useTheme = defineStore("theme", {
       this.primary = isRandomTheme ? primary : this.originalPrimary;
       this.negative = isRandomTheme ? negative : this.originalNegative;
 
-      this.setThemeColors({
+      this.count++;
+
+      const storageTheme = {
+        isDarkTheme: this.isDarkTheme,
         primary: this.primary,
         negative: this.negative,
         count: this.count.toString(),
-      });
-      this.count++;
-      saveThemeColorsInStorage(this.primary, this.negative, this.count);
+      };
+
+      this.setThemeColors(storageTheme);
+
+      saveThemeColorsInStorage(storageTheme);
     },
     setThemeColors(
-      theme: { primary: string; negative: string; count: string } | null
+      theme: {
+        isDarkTheme: boolean;
+        primary: string;
+        negative: string;
+        count: string;
+      } | null
     ) {
       if (!theme) return;
 
+      this.isDarkTheme = theme.isDarkTheme;
       this.primary = theme.primary;
       this.negative = theme.negative;
       this.count = theme.count?.length ? parseInt(theme.count) : 0;

@@ -1,4 +1,3 @@
-import { ref } from "vue";
 import { useApp } from "~/store/useApp";
 import { useLoader } from "~/store/useLoader";
 import { useSounds } from "~/store/useSounds";
@@ -118,39 +117,14 @@ export function useCommon() {
 
   // Load theme colors from local storage if available
   const loadThemeColorsFromStorage = () => {
-    let primary;
-    let negative;
+    const storedTheme = localStorage.getItem("theme");
 
-    const storedPrimaryColor = localStorage.getItem("primary");
-
-    if (storedPrimaryColor) {
-      primary = storedPrimaryColor;
-    } else {
-      return null; // No colors stored
-    }
-
-    const storednegativeColor = localStorage.getItem("negative");
-
-    if (storednegativeColor) {
-      negative = storednegativeColor;
-    } else {
-      return null; // No colors stored
-    }
-
-    const count = localStorage.getItem("count") || "";
-
-    return { primary, negative, count };
+    return storedTheme ? JSON.parse(storedTheme) : null; // No colors stored
   };
 
-  // Save theme colors to local storage
-  const saveThemeColorsInStorage = (
-    primary: string,
-    negative: string,
-    count: number
-  ) => {
-    localStorage.setItem("primary", primary);
-    localStorage.setItem("negative", negative);
-    localStorage.setItem("count", count.toString());
+  // Save theme to local storage
+  const saveThemeColorsInStorage = (theme: object) => {
+    localStorage.setItem("theme", JSON.stringify(theme));
   };
 
   const setProperty = (key: string, value: string) => {
