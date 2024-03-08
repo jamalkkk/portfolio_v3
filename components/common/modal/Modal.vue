@@ -70,12 +70,10 @@ const handleKeyPress = (event: KeyboardEvent) => {
 };
 
 const prevImage = () => {
-    console.log("prevImage");
     setImage(activeImageIndex.value - 1);
 };
 
 const nextImage = () => {
-    console.log("nextImage");
     setImage(activeImageIndex.value + 1);
 };
 

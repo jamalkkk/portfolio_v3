@@ -25,6 +25,11 @@ const title = ref(
     }`
 );
 
+const storyapi = useStoryApi();
+// const { data } = await storyapi.get("cdn/stories", { version: "draft" });
+
+// console.log("fate", data);
+
 // This will be reactive when you change title/description above
 useHead({
     title: title,

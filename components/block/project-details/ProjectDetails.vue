@@ -228,7 +228,6 @@ const setAllImagesInModal = (project: ProjectType): string[] => {
 
 onMounted(() => {
     const images = setAllImagesInModal(props.project);
-    console.log("images", images);
 });
 
 onUnmounted(() => {

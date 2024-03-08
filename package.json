@@ -7,6 +7,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:https": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -23,8 +24,10 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "@storyblok/nuxt": "^6.0.6",
     "nuxt-swiper": "^1.2.2",
     "sass": "^1.69.5",
+    "storyblok-js-client": "^6.7.1",
     "vue-vimeo-player": "^1.1.2",
     "vue3-lottie": "^3.2.0",
     "youtube-vue3": "^0.1.15"
