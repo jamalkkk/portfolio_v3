@@ -10,13 +10,19 @@ import { useTheme } from "~/store/useTheme";
 
 const { toggleIsUserOnPage } = useApp();
 const { init } = useCommon();
+const route = useRoute();
 
 const theme = useTheme();
 const { isDarkTheme, negative } = storeToRefs(theme);
 
-const title = ref("Jamal Khalili — Multimedia Artist");
 const description = ref(
     "Jamal Khalili is a Multimedia Artist, with extensive knowledge and experience in creating engaing mixed media. His expertise includes creative development, animation, and illustration."
+);
+
+const title = ref(
+    `Jamal Khalili — ${
+        route.path.includes("project") ? "Project" : "Multimedia Artist"
+    }`
 );
 
 // This will be reactive when you change title/description above
@@ -67,10 +73,20 @@ watch(
     }
 );
 
+watchEffect(() => {
+    title.value = `Jamal Khalili — ${
+        route.path.includes("project") ? "Project" : "Multimedia Artist"
+    }`;
+
+    useHead({
+        title: title,
+    });
+});
+
 useSeoMeta({
     title,
-    ogTitle: title,
     description,
+    ogTitle: title,
     ogDescription: description,
     ogImage: "/meta.png",
     ogImageWidth: 1200,
