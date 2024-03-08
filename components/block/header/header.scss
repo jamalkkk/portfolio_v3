@@ -1,0 +1,65 @@
+.b-header {
+    z-index: $z-index-2;
+    top: 0;
+    left: 0;
+    transition: $base-transition;
+    position: relative;
+
+    &.is-main-home-active {
+        .header-setting {
+            visibility: visible;
+            opacity: 1;
+            transition: $base-transition;
+        }
+
+        .header-logo {
+            left: 50%;
+            transform: translateX(-50%);
+            transition: unset;
+            animation: fadeIn .3s ease forwards;
+        }
+    }
+
+    &:not(.is-main-home-active){
+        animation: fadeIn .3s ease forwards;
+    }
+
+    &.are-controls-hidden {
+        .header-logo {
+            opacity: 0;
+        }
+    }
+
+    .header-setting {
+        position: absolute;
+        top: $page-padding;
+        left: $page-padding;
+        display: flex;
+        flex-direction: column;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .header-info {
+        left: 118%;
+        top: 51%;
+    }
+
+    .header-logo {
+        position: absolute;
+        top: $page-padding-sm;
+        left: $page-padding-sm;
+        transform: translateX(0);
+        transition: unset;
+
+        @include md {
+            top: $page-padding-md;
+            left: $page-padding-md;
+        }
+
+        @include xl {
+            top: $page-padding;
+            left: $page-padding;
+        }
+    }
+}

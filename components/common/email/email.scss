@@ -1,0 +1,15 @@
+.b-email {
+    position: relative;
+    display: inline-block;
+
+    .email-note {
+        position: absolute;
+        top: -1.5rem;
+        opacity: 0;
+        transition: $base-transition;
+
+        &.is-active {
+            opacity: .5;
+        }
+    }
+}

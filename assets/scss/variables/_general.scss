@@ -1,0 +1,9 @@
+$base-transition: all 0.1s ease-in;
+$base-transition-2: all 0.2s ease-out;
+$base-transition-3: all 0.3s ease-in;
+$base-transition-10: all 1s ease-in;
+$base-transition-150: all 15s cubic-bezier(0.22, 0.71, 0.32, 0.88);
+$base-transition-150-speed: 15s cubic-bezier(0.22, 0.71, 0.32, 0.88);
+$base-transition-speed: 0.1s ease-in;
+
+$cta-outline: $color-primary dotted 2px;

@@ -1,0 +1,69 @@
+.b-image-frame {
+    @include custom-cursor('pointer');
+
+    width: 100%;
+    background-color: $color-primary-semi;
+
+    &:active {
+        @include custom-cursor('active');
+    }
+    
+    .is-dark-theme & {
+        @include custom-cursor('pointer', '_dark');
+
+        &:active {
+            @include custom-cursor('active', '_dark');
+        }
+    }
+
+    &.aspect-ratio-0 {
+        align-self: center;
+    }
+
+    &.aspect-ratio-1 {
+        aspect-ratio: 1 / 1;
+    }
+
+    &.aspect-ratio-2 {
+        aspect-ratio: 2 / 1;
+    }
+
+    &.is-clicked {
+        .image-frame-container
+        .project-teaser-wrapper {
+            background-color: $color-primary !important;
+        }
+    }
+
+    &.enlarge-on-hover:hover {
+        img {
+            transform: scale(1.2);
+            transition: $base-transition;
+        }
+    }
+
+    .image-frame-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .image-frame-frame {
+        overflow: unset;
+    }
+
+    .image-frame-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border: 1px solid $color-negative;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: $base-transition;
+        }
+    }
+}

@@ -1,0 +1,216 @@
+$swiper-padding: $page-padding;
+$swiper-padding-sm: $page-padding-sm;
+$swiper-padding-md: $page-padding-md;
+
+.b-project-details {
+    height: 100vh;
+    width: 100vw;
+    padding: 0; //$project-padding;
+
+    &.is-modal-active {
+
+        .project-details-swiper,
+        .swiper-wrapper {
+            z-index: $z-index-20;
+        }
+    }
+
+    &.are-controls-hidden {
+
+        .project-details-title,
+        .project-details-close,
+        .project-details-pagination,
+        .project-details-prev,
+        .project-details-next,
+        .project-details-tags,
+        .frame-line {
+            opacity: 0;
+        }
+    }
+
+    &.is-player-slide {
+
+        .project-details-tags {
+            bottom: $swiper-padding-sm * 3.5;
+
+            @include md {
+                bottom: $swiper-padding-md * 3;
+            }
+
+            @include xl {
+                bottom: $swiper-padding;
+            }
+        }
+    }
+
+    .project-details-title {
+        z-index: $z-index-2;
+        position: absolute;
+        top: $swiper-padding-sm;
+        left: 50%;
+        text-align: center;
+        transform: translateX(-50%);
+        transition: $base-transition;
+
+        @include md {
+            top: $swiper-padding-md;
+        }
+
+        @include xl {
+            top: $swiper-padding;
+        }
+    }
+
+    .project-details-close {
+        z-index: $z-index-2;
+        position: absolute;
+        top: $page-padding-sm;
+        right: $page-padding-sm;
+
+        @include md {
+            top: $page-padding-md;
+            right: $page-padding-md;
+        }
+
+        @include xl {
+            top: $page-padding;
+            right: $page-padding;
+        }
+    }
+
+    .project-details-swiper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .project-details-pagination {
+        position: absolute;
+        width: 10rem;
+        height: 0.5rem;
+        top: unset;
+        bottom: $swiper-padding-sm * 2;
+        left: 50%;
+        border-radius: 10px;
+        overflow: hidden;
+        transform: translateX(-50%);
+        background-color: transparent;
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: $color-primary;
+            opacity: .4;
+        }
+
+        @include md {
+            bottom: $swiper-padding;
+        }
+
+        @include xl {
+            bottom: $swiper-padding;
+        }
+
+        .swiper-pagination-progressbar-fill {
+            border-radius: 10px;
+            background-color: $color-primary;
+        }
+    }
+
+    .project-details-prev,
+    .project-details-next {
+        top: unset;
+        bottom: 4rem;
+
+        &.swiper-button-disabled,
+        &::after {
+            display: none;
+        }
+
+        @include md {
+            display: inline-flex;
+            top: 50%;
+            bottom: unset;
+            transform: translateY(50%);
+        }
+    }
+
+    .project-details-prev {
+        left: $swiper-padding-sm;
+        transition: $base-transition;
+
+        @include md {
+            left: $swiper-padding-md;
+        }
+
+        @include xl {
+            left: $swiper-padding;
+        }
+    }
+
+    .project-details-next {
+        right: $swiper-padding-sm;
+        transition: $base-transition;
+
+        @include md {
+            right: $swiper-padding-md;
+        }
+
+        @include xl {
+            right: $swiper-padding;
+        }
+    }
+
+    .project-details-bullet {
+        @include custom-cursor('pointer');
+
+        height: 100%;
+        background-color: transparent;
+        opacity: .5;
+        transition: $base-transition;
+        width: .6rem;
+
+        &:active {
+            @include custom-cursor('active');
+        }
+
+        .is-dark-theme & {
+            @include custom-cursor('pointer', '_dark');
+
+            &:active {
+                @include custom-cursor('active', '_dark');
+            }
+        }
+
+        @include md {
+            width: .8rem;
+        }
+
+        &.is-active {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        svg {
+            fill: $color-primary;
+        }
+    }
+
+    .project-details-tags {
+        z-index: $z-index-2;
+        position: absolute;
+        bottom: 6rem;
+        left: $swiper-padding-sm;
+        right: $swiper-padding-sm;
+        transition: $base-transition;
+
+        @include md {
+            bottom: 7rem;
+            left: $swiper-padding-md
+        }
+
+        @include xl {
+            left: $swiper-padding;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+.b-social-medias {
+    padding: 2rem 0;
+
+    .social-medias-icon {
+        & + .social-medias-icon {
+            margin-left: 2rem;
+        }
+    }
+}

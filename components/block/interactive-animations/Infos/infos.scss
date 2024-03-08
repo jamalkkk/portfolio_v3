@@ -1,0 +1,152 @@
+.b-infos {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    @include md {
+        .infos-poster {
+            top: 33%;
+            right: 73.5%;
+        }
+
+        .infos-light {
+            top: 24%;
+            right: 15.5%;
+        }
+
+        .infos-cat {
+            bottom: 26%;
+            left: 0;
+        }
+
+        .infos-ball {
+            right: 3.5%;
+            bottom: 2%;
+        }
+
+        .infos-bird {
+            top: 19%;
+            right: 63%;
+        }
+
+        .infos-clock {
+            top: 0;
+            right: 7%;
+        }
+
+        .infos-desktop {
+            bottom: 21%;
+            right: 39.5%;
+        }
+
+        .infos-bike {
+            bottom: 26%;
+            right: 15%;
+        }
+
+        .infos-laptop,
+        .infos-books,
+        .infos-headphones {
+            display: none;
+        }
+    }
+
+    @include lg {
+        .infos-poster {
+            top: 31%;
+            right: 75.5%;
+        }
+
+        .infos-light {
+            top: 23%;
+            right: 18.2%;
+        }
+
+        .infos-cat {
+            bottom: 25%;
+            left: 1%;
+        }
+
+        .infos-ball {
+            right: 6%;
+            bottom: 5%;
+        }
+
+        .infos-bird {
+            top: 19%;
+            right: 63%;
+        }
+
+        .infos-clock {
+            top: 10.4%;
+            right: 0;
+        }
+
+        .infos-desktop {
+            bottom: 25%;
+            right: 41.5%;
+        }
+
+        .infos-laptop {
+            display: block;
+            bottom: 8%;
+            right: 43%;
+        }
+
+        .infos-headphones {
+            display: block;
+            bottom: 14%;
+            left: 22%;
+        }
+
+        .infos-books {
+            display: block;
+            bottom: 5%;
+            right: 24%;
+        }
+
+        .infos-bike {
+            bottom: 30%;
+            right: 10%;
+        }
+    }
+
+    @include xl {
+        .infos-poster {
+            right: 77.5%;
+        }
+
+        .infos-light {
+            right: 20.2%;
+        }
+
+        .infos-cat {
+            left: 2%;
+        }
+
+        .infos-ball {
+            right: 7.5%;
+            bottom: 8%;
+        }
+
+        .infos-bird {
+            top: 19%;
+            right: 63%;
+        }
+
+        .infos-clock {
+            top: 11.4%;
+            right: 2.6%;
+        }
+
+        .infos-desktop {
+            right: 43.5%;
+        }
+
+        .infos-bike {
+            bottom: 30%;
+            right: 10%;
+        }
+    }
+}

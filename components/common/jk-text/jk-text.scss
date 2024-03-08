@@ -1,0 +1,33 @@
+.b-jk-text {
+    margin: 0;
+    font-size: $font-size;
+    color: $color-primary;
+
+    &.is-big {
+        font-size: $font-size-big;
+    }
+
+    &.is-small {
+        font-size: $font-size-small;
+    }
+
+    &.is-x-small {
+        font-size: $font-size-x-small;
+    }
+
+    &.is-light {
+        font-weight: $font-weight-light;
+    }
+
+    &.is-bold {
+        font-weight: $font-weight-bold;
+    }
+
+    &.is-inverted {
+        color: $color-negative;
+    }
+
+    &.is-secondary-font {
+        font-family: $font-family-secondary;
+    }
+}

@@ -1,0 +1,58 @@
+.b-cta {
+    @include custom-cursor("pointer");
+
+    position: relative;
+    display: inline-block;
+    border: 0;
+    padding: 0;
+    font-size: $font-size-link-sm;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    background: transparent;
+    transition: all $base-transition-speed, transfrom 50ms ease-in;
+
+    @include md {
+        font-size: $font-size-link;
+    }
+
+    &:hover {
+        color: $color-primary;
+        text-decoration: none;
+    }
+
+    &:focus-visible {
+        outline: $cta-outline !important;
+    }
+
+    &:active {
+        @include custom-cursor("active");
+
+        transform: scale(0.97);
+    }
+
+    &:active,
+    &.is-hovered,
+    &.has-hover:hover {
+        opacity: 0.5;
+    }
+
+    &.is-hovered:hover {
+        opacity: 1;
+    }
+
+    &.is-medium {
+        font-weight: $font-weight-medium;
+    }
+
+    &.is-text {
+        font-size: $font-size;
+    }
+
+    .is-dark-theme & {
+        @include custom-cursor("pointer", "_dark");
+
+        &:active {
+            @include custom-cursor("active", "_dark");
+        }
+    }
+}
