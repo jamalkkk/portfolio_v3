@@ -9,19 +9,81 @@ import { useApp } from "~/store/useApp";
 import { useTheme } from "~/store/useTheme";
 
 const { toggleIsUserOnPage } = useApp();
-const { init, setTheme } = useCommon();
+const { init } = useCommon();
 
 const theme = useTheme();
-const { isDarkTheme } = storeToRefs(theme);
+const { isDarkTheme, negative } = storeToRefs(theme);
 
-watch(isDarkTheme, (value) => {
-    // setTheme(value);
+const title = ref("Jamal Khalili — Multimedia Artist");
+const description = ref(
+    "Jamal Khalili is a Multimedia Artist, with extensive knowledge and experience in creating engaing mixed media. His expertise includes creative development, animation, and illustration."
+);
+
+// This will be reactive when you change title/description above
+useHead({
+    title: title,
+    meta: [
+        {
+            name: "description",
+            content: description,
+        },
+        {
+            charset: "utf-8",
+        },
+        { name: "format-detection", content: "telephone=no" },
+        {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1",
+        },
+    ],
+    link: [
+        {
+            rel: "icon",
+            type: "image/x-icon",
+            href: `/favicon_${
+                negative.value === "#222" ? "dark" : "light"
+            }.ico`,
+        },
+    ],
+    htmlAttrs: {
+        lang: "en",
+    },
+});
+
+watch(
+    () => isDarkTheme.value,
+    () => {
+        useHead({
+            link: [
+                {
+                    rel: "icon",
+                    type: "image/x-icon",
+                    href: `/favicon_${
+                        negative.value === "#222" ? "dark" : "light"
+                    }.ico`,
+                },
+            ],
+        });
+    }
+);
+
+useSeoMeta({
+    title,
+    ogTitle: title,
+    description,
+    ogDescription: description,
+    ogImage: "/meta.png",
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    ogImageAlt: "An illustration of the Mutlimedia Artist Jamal Khalili",
+    ogUrl: "https://jamalkhalili.com",
+    ogType: "website",
+    ogSiteName: "Jamal Khalili",
+    twitterCard: "summary_large_image",
 });
 
 onMounted(() => {
     init();
-    // setTheme(isDarkTheme.value);
-
     window.addEventListener("visibilitychange", toggleIsUserOnPage);
 });
 

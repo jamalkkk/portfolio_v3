@@ -13,29 +13,5 @@ const isDarkThemeCopy = computed(() => isDarkTheme);
 definePageMeta({
     layout: "default",
 });
-
-// @TODO: Change selected favicon
-// import { useHead } from "@nuxtjs/composition-api";
-
-// const head = useHead();
-// head.link = [
-//     {
-//         hid: "icon",
-//         rel: "icon",
-//         type: "image/x-icon",
-//         href: favicon,
-//     },
-// ];
-
-// watch(isDarkTheme, (value) => {
-//     head.link = [
-//         {
-//             hid: "icon",
-//             rel: "icon",
-//             type: "image/x-icon",
-//             href: value ? "/favicon_dark.ico" : "/favicon.ico",
-//         },
-//     ];
-// });
 </script>
 
