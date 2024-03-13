@@ -7,8 +7,12 @@
 <script setup lang="ts">
 import { useApp } from "~/store/useApp";
 import { useTheme } from "~/store/useTheme";
+import { type ISbStoryData } from "storyblok-js-client";
+import type { ISettings } from "~/types/types";
+import { Value } from "sass";
 
-const { toggleIsUserOnPage } = useApp();
+const { getStory } = useStoryblokClient();
+const { toggleIsUserOnPage, setSettings } = useApp();
 const { init } = useCommon();
 const route = useRoute();
 
@@ -25,10 +29,13 @@ const title = ref(
     }`
 );
 
-const storyapi = useStoryApi();
-// const { data } = await storyapi.get("cdn/stories", { version: "draft" });
+const getSBSettings = async () => {
+    let settings: ISbStoryData<ISettings> | null = await getStory("/settings");
 
-// console.log("fate", data);
+    if (settings?.content) {
+        setSettings(settings?.content);
+    }
+};
 
 // This will be reactive when you change title/description above
 useHead({
@@ -105,6 +112,8 @@ useSeoMeta({
 
 onMounted(() => {
     init();
+
+    getSBSettings();
     window.addEventListener("visibilitychange", toggleIsUserOnPage);
 });
 

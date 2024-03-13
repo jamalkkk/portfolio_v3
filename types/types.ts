@@ -1,3 +1,4 @@
+import type { ISbRichtext } from "storyblok-js-client";
 import SwiperCore from "swiper";
 
 // Plugins
@@ -81,4 +82,21 @@ export type ProjectType = {
   image: string;
   slides: ProjectSlideType[];
   tags: string[];
+};
+
+// Storyblok
+export type ILink = {
+  icon: string;
+  url: string;
+  alt: string;
+};
+
+export type SBGlobal = {
+  // about
+  name: string;
+  about: ISbRichtext;
+  social_media: ILink[];
+
+  // footer
+  created_by: string;
 };
