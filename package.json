@@ -25,6 +25,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
     "@storyblok/nuxt": "^6.0.6",
+    "@types/node": "^20.11.27",
     "nuxt-swiper": "^1.2.2",
     "sass": "^1.69.5",
     "storyblok-js-client": "^6.7.1",

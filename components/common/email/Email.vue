@@ -33,9 +33,6 @@ const note = ref("Copy me");
 const isNoteActive = ref(false);
 const isCopied = ref(false);
 
-// Simulating the store data for demonstration
-const info = ref("info@example.com");
-
 watch(isCopied, (value) => {
     if (value) {
         note.value = "Email copied!";
@@ -44,10 +41,6 @@ watch(isCopied, (value) => {
             note.value = "Copy me";
         }, 500);
     }
-});
-
-watch(info, (value) => {
-    text.value = value;
 });
 
 const copy = () => {

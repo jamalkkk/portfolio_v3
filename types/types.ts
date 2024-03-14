@@ -85,7 +85,7 @@ export type ProjectType = {
 };
 
 // Storyblok
-export type ILink = {
+export type ISocialLink = {
   icon: string;
   url: string;
   alt: string;
@@ -94,8 +94,8 @@ export type ILink = {
 export type SBGlobal = {
   // about
   name: string;
-  about: ISbRichtext;
-  social_media: ILink[];
+  about: ISbRichtext | null;
+  social_media: ISocialLink[] | [];
 
   // footer
   created_by: string;

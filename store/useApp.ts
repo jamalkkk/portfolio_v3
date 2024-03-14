@@ -3,7 +3,7 @@
 import { defineStore } from "pinia";
 const { MDTags, MDProjects } = useMockData();
 
-import type { ProjectType, ISettings } from "~/types/types";
+import type { ProjectType, SBGlobal } from "~/types/types";
 
 interface AppState {
   isHomeActive: boolean;
@@ -21,7 +21,7 @@ interface AppState {
   project: ProjectType; // Define appropriate type for project
   projects: ProjectType[]; // Define appropriate type for projects
   tags: any[]; // Define appropriate type for tags
-  settings: ISettings;
+  global: SBGlobal;
 }
 
 export const useApp = defineStore("app", {
@@ -41,15 +41,16 @@ export const useApp = defineStore("app", {
     project: MDProjects[0],
     projects: MDProjects,
     tags: MDTags,
-    settings: {
+    global: {
       name: "",
-      text: "",
-      email: "",
+      about: null,
+      social_media: [],
+      created_by: "",
     },
   }),
   actions: {
-    setSettings(value: ISettings) {
-      this.settings = value;
+    setGlobal(value: SBGlobal) {
+      this.global = value;
     },
     setProject(value: any) {
       this.project = value;

@@ -8,21 +8,20 @@
 import { useApp } from "~/store/useApp";
 import { useTheme } from "~/store/useTheme";
 import { type ISbStoryData } from "storyblok-js-client";
-import type { ISettings } from "~/types/types";
-import { Value } from "sass";
+import type { SBGlobal } from "~/types/types";
 
 const { getStory } = useStoryblokClient();
-const { toggleIsUserOnPage, setSettings } = useApp();
+const { toggleIsUserOnPage, setGlobal } = useApp();
 const { init } = useCommon();
 const route = useRoute();
 
 const theme = useTheme();
 const { isDarkTheme, negative } = storeToRefs(theme);
 
+// Meta data
 const description = ref(
     "Jamal Khalili is a Multimedia Artist, with extensive knowledge and experience in creating engaing mixed media. His expertise includes creative development, animation, and illustration."
 );
-
 const title = ref(
     `Jamal Khalili — ${
         route.path.includes("project") ? "Project" : "Multimedia Artist"
@@ -30,10 +29,10 @@ const title = ref(
 );
 
 const getSBSettings = async () => {
-    let settings: ISbStoryData<ISettings> | null = await getStory("/settings");
+    let global: ISbStoryData<SBGlobal> | null = await getStory("/global");
 
-    if (settings?.content) {
-        setSettings(settings?.content);
+    if (global?.content) {
+        setGlobal(global?.content);
     }
 };
 
