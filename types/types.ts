@@ -100,3 +100,10 @@ export type SBGlobal = {
   // footer
   created_by: string;
 };
+
+export type SBTags = {
+  dimension_value: string | null;
+  id: number;
+  name: string;
+  value: string;
+};

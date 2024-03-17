@@ -19,15 +19,14 @@
         >
             <Tag
                 v-if="isInteractive"
-                name="all"
                 :isSelected="isAll"
                 :onClick="() => (isAll = true)"
             />
             <Tag
                 v-for="(tag, i) in tags"
                 :key="i"
-                :name="tag"
-                :isSelected="selectedTags.includes(tag)"
+                :item="tag"
+                :isSelected="selectedTags.includes(tag.value)"
                 :onClick="() => toggleSelect(i)"
             />
         </div>
@@ -72,10 +71,10 @@ const resetSelectedTags = () => {
 const toggleSelect = (i: number) => {
     const tag = tags.value[i];
 
-    if (selectedTags.value.includes(tag)) {
-        selectedTags.value.splice(selectedTags.value.indexOf(tag), 1);
+    if (selectedTags.value.includes(tag.value)) {
+        selectedTags.value.splice(selectedTags.value.indexOf(tag.value), 1);
     } else {
-        selectedTags.value.push(tag);
+        selectedTags.value.push(tag.value);
     }
 
     // Make change watchable

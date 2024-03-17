@@ -8,10 +8,10 @@
 import { useApp } from "~/store/useApp";
 import { useTheme } from "~/store/useTheme";
 import { type ISbStoryData } from "storyblok-js-client";
-import type { SBGlobal } from "~/types/types";
+import type { SBGlobal, SBTags } from "~/types/types";
 
-const { getStory } = useStoryblokClient();
-const { toggleIsUserOnPage, setGlobal } = useApp();
+const { getStory, getDatasource } = useStoryblokClient();
+const { toggleIsUserOnPage, setGlobal, setTags } = useApp();
 const { init } = useCommon();
 const route = useRoute();
 
@@ -28,11 +28,17 @@ const title = ref(
     }`
 );
 
-const getSBSettings = async () => {
+const getStoryblokData = async () => {
     let global: ISbStoryData<SBGlobal> | null = await getStory("/global");
+    let tags: ISbStoryData<SBTags[]> | null = await getDatasource("tags");
 
     if (global?.content) {
         setGlobal(global?.content);
+    }
+
+    if (tags?.length) {
+        // setGlobal(global?.content);
+        setTags(tags);
     }
 };
 
@@ -112,7 +118,7 @@ useSeoMeta({
 onMounted(() => {
     init();
 
-    getSBSettings();
+    getStoryblokData();
     window.addEventListener("visibilitychange", toggleIsUserOnPage);
 });
 

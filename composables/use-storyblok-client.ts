@@ -8,8 +8,6 @@ export function useStoryblokClient() {
   const config = useRuntimeConfig();
   const storyblokApi = useStoryblokApi();
 
-  console.log("storyblokApi", storyblokApi);
-
   const getStory = async <T>(
     path: string,
     params?: IStoryblokClientParams
@@ -28,7 +26,23 @@ export function useStoryblokClient() {
     }
   };
 
+  const getDatasource = async <T>(
+    datasource: string
+  ): Promise<ISbStoryData<T> | null> => {
+    try {
+      const { data } = await storyblokApi.get("cdn/datasource_entries", {
+        datasource: datasource,
+      });
+
+      return data.datasource_entries;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
   return {
     getStory,
+    getDatasource,
   };
 }
