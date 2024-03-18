@@ -1,30 +1,33 @@
 <template>
     <div>
-        <ProjectDetails :project="project" />
+        <ProjectDetails v-if="project?.slides" :project="project" />
     </div>
 </template>
 
 <script setup lang="ts">
 import { useApp } from "~/store/useApp";
-import type { ProjectType } from "~/types/types";
+import type { ISbStoryData, IContentTypes } from "storyblok-js-client";
+import type { SBProjectDetails } from "~/types/types";
 
-const appStore = useApp();
-
-const { projects } = appStore;
+const { getStory } = useStoryblokClient();
 
 const route = useRoute();
+
+let story: ISbStoryData<IContentTypes> | null = await getStory(route.path);
+
+const projectDetails = ref<SBProjectDetails>(story?.content?.body[0]);
+
+console.log("projectDetails", projectDetails.value);
 
 definePageMeta({
     layout: "project",
 });
 
-let title = "Jamal Khalili";
-let description = "";
-let favicon = "/favicon.ico";
-
-const project = projects.find((project) => project.id === route.params.id);
+const project = projectDetails.value; //projects.find((project) => project.id === route.params.id);
 
 const setTitle = (title: string) => {
     title = `${title} • ${title}`;
 };
+
+onMounted;
 </script>

@@ -84,26 +84,74 @@ export type ProjectType = {
   tags: string[];
 };
 
-// Storyblok
+/*
+  Storyblok
+*/
 export type ISocialLink = {
   icon: string;
   url: string;
   alt: string;
 };
 
-export type SBGlobal = {
-  // about
+export type IInfo = {
   name: string;
+  normal: string;
+  hover: string;
+  click: string;
+  arrow: "top" | "right" | "bottom" | "left";
+};
+
+export type ISound = {
+  name: string;
+  audio: ISbAsset;
+};
+
+export type SBGlobal = {
+  //  general
+  name: string;
+
+  // about
   about: ISbRichtext | null;
   social_media: ISocialLink[] | [];
+
+  // animation
+  infos: IInfo[];
+  sounds: ISound[];
 
   // footer
   created_by: string;
 };
 
-export type SBTags = {
+export type SBTag = {
   dimension_value: string | null;
   id: number;
   name: string;
   value: string;
 };
+
+export type SBProjectDetails = {
+  component: "project-details";
+  title: string;
+  description_short: string;
+  slides: IColumns; // | IImage | IVideo;
+  tags: string;
+};
+
+// Project
+export type IColumns = {
+  component: "columns";
+  // items: {
+
+  // }
+};
+
+// export type SBProjectDetails = {
+//   type: "text" | "image" | "link";
+//   imageSize: number;
+//   image: ImageType;
+//   text: string;
+//   link: string;
+
+//   // For now
+//   img: string;
+// };

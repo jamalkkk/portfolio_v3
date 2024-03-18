@@ -2,6 +2,7 @@ import { type ISbStoryData } from "storyblok-js-client";
 
 type IStoryblokClientParams = {
   resolveRelations?: string[];
+  startsWith: string;
 };
 
 export function useStoryblokClient() {
@@ -17,9 +18,27 @@ export function useStoryblokClient() {
         version: "published",
         resolve_links: "url",
         resolve_relations: params?.resolveRelations,
+        // starts_with: params?.startsWith,
       });
 
       return data.story;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
+  const getProjectStory = async <T>(
+    path: string,
+    params?: IStoryblokClientParams
+  ): Promise<ISbStoryData<T> | null> => {
+    try {
+      const { data } = await storyblokApi.get(`cdn/stories/`, {
+        version: "published",
+        starts_with: "project/",
+      });
+
+      return data.stories;
     } catch (error) {
       console.error(error);
       return null;
@@ -43,6 +62,7 @@ export function useStoryblokClient() {
 
   return {
     getStory,
+    getProjectStory,
     getDatasource,
   };
 }

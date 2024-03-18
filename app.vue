@@ -8,9 +8,9 @@
 import { useApp } from "~/store/useApp";
 import { useTheme } from "~/store/useTheme";
 import { type ISbStoryData } from "storyblok-js-client";
-import type { SBGlobal, SBTags } from "~/types/types";
+import type { SBGlobal, SBTag, SBProjectDetails } from "~/types/types";
 
-const { getStory, getDatasource } = useStoryblokClient();
+const { getStory, getProjectStory, getDatasource } = useStoryblokClient();
 const { toggleIsUserOnPage, setGlobal, setTags } = useApp();
 const { init } = useCommon();
 const route = useRoute();
@@ -30,14 +30,17 @@ const title = ref(
 
 const getStoryblokData = async () => {
     let global: ISbStoryData<SBGlobal> | null = await getStory("/global");
-    let tags: ISbStoryData<SBTags[]> | null = await getDatasource("tags");
+    let projects: ISbStoryData<SBProjectDetails[]> | null =
+        await getProjectStory("/", { startsWith: "project/" });
+    let tags: ISbStoryData<SBTag[]> | null = await getDatasource("tags");
+
+    console.log("projects", projects);
 
     if (global?.content) {
         setGlobal(global?.content);
     }
 
     if (tags?.length) {
-        // setGlobal(global?.content);
         setTags(tags);
     }
 };
