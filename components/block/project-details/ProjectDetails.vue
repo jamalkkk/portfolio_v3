@@ -11,7 +11,15 @@
             },
         ]"
     >
-        <Frame v-if="project" :isThick="true" :isPage="true">
+        <Frame
+            v-if="project"
+            :isThick="true"
+            :isPage="true"
+            class="transition duration-500"
+            :class="{
+                'bg-[#222]': !isProjectLoaded,
+            }"
+        >
             <!-- Headline -->
             <Headline
                 class="project-details-title"
@@ -122,6 +130,9 @@ const { swiperActiveIndex, videoSlideIndices } = storeToRefs(swiperStore);
 
 const ProjectDetailSwiper = ref();
 
+// const isLoading = ref(true);
+const isProjectActive = ref(true);
+const isProjectLoaded = ref(false);
 const isPlayerSlide = ref(false);
 const hasSwiper = ref(false);
 const swiper = ref<SwiperType>();
@@ -172,8 +183,6 @@ const onSwiper = (swiperObject: SwiperType) => {
 
     hasSwiper.value = props.project?.slides?.length > 1;
 };
-
-const isProjectActive = ref(true);
 
 const handleCloseProject = () => {
     isProjectActive.value = false;
@@ -226,8 +235,15 @@ const setAllImagesInModal = (project: ProjectType): string[] => {
     return images;
 };
 
+const revealProject = () => {
+    setTimeout(() => {
+        isProjectLoaded.value = true;
+    }, 200);
+};
+
 onMounted(() => {
-    const images = setAllImagesInModal(props.project);
+    revealProject();
+    // const images = setAllImagesInModal(props.project);
 });
 
 onUnmounted(() => {

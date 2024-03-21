@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { useApp } from "~/store/useApp";
 import { useTheme } from "~/store/useTheme";
-import { type ISbStoryData } from "storyblok-js-client";
+import type { ISbStoryData } from "storyblok-js-client";
 import type { SBGlobal, SBTag, SBProjectDetails } from "~/types/types";
 
 const { getStory, getProjectStory, getDatasource } = useStoryblokClient();
@@ -30,11 +30,11 @@ const title = ref(
 
 const getStoryblokData = async () => {
     let global: ISbStoryData<SBGlobal> | null = await getStory("/global");
-    let projects: ISbStoryData<SBProjectDetails[]> | null =
-        await getProjectStory("/", { startsWith: "project/" });
+    // let projects: ISbStoryData<SBProjectDetails[]> | null =
+    // await getProjectStory("/", { startsWith: "project/" });
     let tags: ISbStoryData<SBTag[]> | null = await getDatasource("tags");
 
-    console.log("projects", projects);
+    // console.log("projects", projects);
 
     if (global?.content) {
         setGlobal(global?.content);

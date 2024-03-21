@@ -1,6 +1,10 @@
 <template>
     <div>
-        <ProjectDetails v-if="project?.slides" :project="project" />
+        <ProjectDetails
+            v-if="project?.slides"
+            :project="project"
+            :isProjectLoaded="isProjectLoaded"
+        />
     </div>
 </template>
 
@@ -15,19 +19,10 @@ const route = useRoute();
 
 let story: ISbStoryData<IContentTypes> | null = await getStory(route.path);
 
-const projectDetails = ref<SBProjectDetails>(story?.content?.body[0]);
-
-console.log("projectDetails", projectDetails.value);
+const isProjectLoaded = ref(false);
+const project = ref<SBProjectDetails>(story?.content?.body[0]);
 
 definePageMeta({
     layout: "project",
 });
-
-const project = projectDetails.value; //projects.find((project) => project.id === route.params.id);
-
-const setTitle = (title: string) => {
-    title = `${title} • ${title}`;
-};
-
-onMounted;
 </script>

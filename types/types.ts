@@ -135,6 +135,8 @@ export type SBProjectDetails = {
   description_short: string;
   slides: IColumns; // | IImage | IVideo;
   tags: string;
+
+  slug?: string;
 };
 
 // Project

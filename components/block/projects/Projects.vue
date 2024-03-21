@@ -45,11 +45,14 @@
 <script setup lang="ts">
 import { useApp } from "~/store/useApp";
 import { useTags } from "~/store/useTags";
+import type { ISbStoryData } from "storyblok-js-client";
+import type { SBProjectDetails } from "~/types/types";
 
 const tagsStore = useTags();
 
 const { activeTags } = storeToRefs(tagsStore);
 const appStore = useApp();
+const { getProjectStory } = useStoryblokClient();
 const { scrollToHome } = useCommon();
 
 type ProjectType = {
@@ -64,8 +67,8 @@ const { isMainHomeActive, projects, documentBreakpoint } =
     storeToRefs(appStore);
 
 // const orgProjects = ref();
-const allProjects = ref<ProjectType[]>(projects.value);
-const filteredProjects = ref<ProjectType[]>(projects.value);
+const allProjects = ref<SBProjectDetails[]>([]);
+const filteredProjects = ref<SBProjectDetails[]>([]);
 // const columns = ref(4);
 
 // const setAllProjects = (hasShuffle = true) => {
@@ -95,6 +98,20 @@ const filteredProjects = ref<ProjectType[]>(projects.value);
 //     filteredProjects.value = allProjects.value;
 //     console.log("filtered projects", filteredProjects.value);
 // };
+
+const getStoryblokData = async () => {
+    let projects: ISbStoryData<SBProjectDetails[]> | null =
+        await getProjectStory("/", { startsWith: "project/" });
+
+    if (Array.isArray(projects) && projects?.length) {
+        projects?.forEach((project: any, index: number) => {
+            allProjects.value[index] = project?.content?.body[0];
+            allProjects.value[index].slug = project?.full_slug;
+        });
+
+        filteredProjects.value = allProjects.value;
+    }
+};
 
 const resetProjects = (value = activeTags.value) => {
     if (value.length) {
@@ -131,6 +148,7 @@ const resetProjects = (value = activeTags.value) => {
 // ]);
 
 onMounted(() => {
+    getStoryblokData();
     // if (projects.value.length) {
     //     orgProjects.value = projects.value;
     // setAllProjects(false);

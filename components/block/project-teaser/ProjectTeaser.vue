@@ -70,14 +70,7 @@ const router = useRouter();
 
 const isClicked = ref(false);
 
-const route = computed(() => `/project/${props.project.id}`);
-
-const image = computed(
-    () =>
-        props.project.image &&
-        props.project.image.data &&
-        props.project.image.data[0]
-);
+const image = computed(() => props.project?.image?.data[0]);
 
 const showProject = () => {
     isClicked.value = true;
@@ -89,6 +82,6 @@ const showProject = () => {
         setIsSoundActive(false);
     }
 
-    setTimeout(() => router.push(route.value), 300);
+    setTimeout(() => router.push(`/${props.project.slug}`), 100);
 };
 </script>
