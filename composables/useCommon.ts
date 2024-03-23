@@ -13,7 +13,7 @@ export function useCommon() {
   const swiper = useSwiperStore();
 
   const { setShouldScrollToProjects, setProject, setDocumentBreakpoint } = app;
-  const { setShouldProjectLoaderBeActive } = loader;
+  const { setShouldProjectLoaderBeActive, setIsLoaderTransitioning } = loader;
   const { isSoundSupposedActive, setIsSoundActive } = sounds;
   const { originalPrimary, originalNegative, setThemeColors } = theme;
   const { resetVideoSlideIndices } = swiper;
@@ -36,7 +36,8 @@ export function useCommon() {
 
   // Project page
   const closeProject = (scrollToProjects = true) => {
-    setShouldProjectLoaderBeActive(true);
+    // setShouldProjectLoaderBeActive(true);
+    setIsLoaderTransitioning(true);
 
     if (scrollToProjects) {
       setShouldScrollToProjects(true);

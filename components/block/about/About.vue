@@ -23,7 +23,8 @@ const { AboutText } = useBackupData();
 const appStore = useApp();
 const { global } = storeToRefs(appStore);
 
-const isReady = ref<boolean>(false);
+// @todo: fix logic when coming back from projects
+const isReady = ref<boolean>(global.value?.sounds);
 
 watch(
     () => global.value,

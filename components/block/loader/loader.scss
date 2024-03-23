@@ -9,6 +9,7 @@ $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
     left: 0;
     right: 0;
     bottom: 0;
+    transition: $base-transition-3;
 
     .is-dark-theme & {
         @include custom-cursor("default", "_dark");
@@ -93,6 +94,14 @@ $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
 
         .loader-button {
             opacity: 0;
+        }
+    }
+
+    &.is-transitioning {
+        opacity: 1 !important;
+
+        &.is-active {
+            background-color: $color-primary !important;
         }
     }
 

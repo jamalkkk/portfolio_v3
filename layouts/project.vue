@@ -1,29 +1,22 @@
 <style lang="scss" land="sass" src="./scss/layout.scss"></style>
 
 <template>
-    <div
-        :class="[
-            'b-layout',
-            {
-                'is-loader-active': isLoaderActive,
-            },
-        ]"
-    >
+    <div class="'b-layout'">
         <div class="layout-container">
             <Header :isHomePage="false" />
 
             <slot />
         </div>
+
+        <Loader />
     </div>
 </template>
 
 <script setup lang="ts">
-import { useLoader } from "~/store/useLoader";
 import { useTheme } from "~/store/useTheme";
 
 const theme = useTheme();
 const { isDarkTheme } = storeToRefs(theme);
-const { isLoaderActive } = useLoader();
 
 const { setTheme } = useCommon();
 

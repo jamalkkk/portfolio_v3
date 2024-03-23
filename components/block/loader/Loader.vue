@@ -2,7 +2,7 @@
 
 <template>
     <div
-        v-if="isLoaderActive || isProjectLoaderActive"
+        v-if="isLoaderActive || isProjectLoaderActive || isPageTransitioning"
         :class="[
             'b-loader',
             {
@@ -13,10 +13,17 @@
                 'is-fading-in': isProjectFadingIn,
                 'is-loaded': isProjectLoaderLoaded,
                 'is-fading-out': isProjectFadingOut,
+                'is-transitioning': isPageTransitioning,
+                'is-active': isPageTransitioning && isTransitioningActive,
             },
         ]"
     >
-        <Frame class="loader-frame" :is-thick="true" :is-page="true">
+        <Frame
+            v-if="!isPageTransitioning"
+            class="loader-frame"
+            :is-thick="true"
+            :is-page="true"
+        >
             <div v-if="!isProjectLoaderActive" class="loader-container">
                 <div class="loader-face">
                     <JKSvg name="animation_face" />
@@ -68,7 +75,7 @@ const loaderStore = useLoader();
 
 const { setIsLoaderActive, setShouldProjectLoaderBeActive } = loaderStore;
 const { isDataLoaded, isProjectLoaded } = storeToRefs(appStore);
-const { isLoaderActive, shouldProjectLoaderBeActive } =
+const { isLoaderActive, isLoaderTransitioning, shouldProjectLoaderBeActive } =
     storeToRefs(loaderStore);
 
 const LOAD_TIME = 1000;
@@ -83,6 +90,9 @@ const isProjectLoaderActive = ref(false);
 const isProjectFadingIn = ref(false);
 const isProjectLoaderLoaded = ref(false);
 const isProjectFadingOut = ref(false);
+
+const isPageTransitioning = ref(false);
+const isTransitioningActive = ref(false);
 
 const getRandomInt = (max: number) => {
     return Math.floor(Math.random() * max);
@@ -126,8 +136,6 @@ const showProjectLoader = () => {
 };
 
 const hideProjectLoader = () => {
-    // isProjectLoaderActive.value = true;
-    // isProjectLoaderLoaded.value = true;
     setTimeout(() => (isProjectFadingOut.value = true), 1);
     setTimeout(() => {
         resetProjectLoader();
@@ -162,6 +170,25 @@ watch(
     (value) => {
         if (value) {
             isFirstTimeLoader();
+        }
+    }
+);
+
+watch(
+    () => isLoaderTransitioning.value,
+    (value) => {
+        //@TODO: Polish off transitiion logic
+
+        if (value) {
+            isPageTransitioning.value = true;
+            setTimeout(() => {
+                isTransitioningActive.value = true;
+            }, 1);
+        } else {
+            isTransitioningActive.value = false;
+            setTimeout(() => {
+                isPageTransitioning.value = false;
+            }, 300);
         }
     }
 );

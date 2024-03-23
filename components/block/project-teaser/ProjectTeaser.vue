@@ -55,7 +55,7 @@ const { scrollToProjects } = useCommon();
 
 const { setIsSoundActive, setIsSoundSupposedActive } = soundsStore;
 const { setIsUIHidden } = playerStore;
-const { shouldProjectLoaderBeActive, setShouldProjectLoaderBeActive } =
+const { setIsLoaderTransitioning, setShouldProjectLoaderBeActive } =
     loaderStore;
 const { isSoundActive } = storeToRefs(soundsStore);
 
@@ -81,6 +81,8 @@ const showProject = () => {
         setIsSoundSupposedActive(true);
         setIsSoundActive(false);
     }
+
+    setIsLoaderTransitioning(true);
 
     setTimeout(() => router.push(`/${props.project.slug}`), 100);
 };

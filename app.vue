@@ -8,9 +8,9 @@
 import { useApp } from "~/store/useApp";
 import { useTheme } from "~/store/useTheme";
 import type { ISbStoryData } from "storyblok-js-client";
-import type { SBGlobal, SBTag, SBProjectDetails } from "~/types/types";
+import type { SBGlobal, SBTag } from "~/types/types";
 
-const { getStory, getProjectStory, getDatasource } = useStoryblokClient();
+const { getStory, getDatasource } = useStoryblokClient();
 const { toggleIsUserOnPage, setGlobal, setTags } = useApp();
 const { init } = useCommon();
 const route = useRoute();

@@ -109,6 +109,7 @@
 import type { SwiperType, ProjectType } from "~/types/types";
 
 import { useApp } from "~/store/useApp";
+import { useLoader } from "~/store/useLoader";
 import { usePlayer } from "~/store/usePlayer";
 import { useSwiperStore } from "~/store/useSwiperStore";
 import { useModal } from "~/store/useModal";
@@ -117,9 +118,11 @@ const appStore = useApp();
 const playerStore = usePlayer();
 const swiperStore = useSwiperStore();
 const modalStore = useModal();
+const loaderStore = useLoader();
 
 const { closeProject } = useCommon();
 
+const { setIsLoaderTransitioning } = loaderStore;
 const { setActiveIndex, setIsSpaceBarPressed } = swiperStore;
 const { setIsModalActive, setProjectImages } = modalStore;
 
@@ -236,6 +239,8 @@ const setAllImagesInModal = (project: ProjectType): string[] => {
 };
 
 const revealProject = () => {
+    setIsLoaderTransitioning(false);
+
     setTimeout(() => {
         isProjectLoaded.value = true;
     }, 200);
@@ -243,7 +248,7 @@ const revealProject = () => {
 
 onMounted(() => {
     revealProject();
-    // const images = setAllImagesInModal(props.project);
+    const images = setAllImagesInModal(props.project);
 });
 
 onUnmounted(() => {
