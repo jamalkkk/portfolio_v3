@@ -27,8 +27,9 @@ import { useTheme } from "~/store/useTheme";
 
 const { setIsMainHomeActive } = useApp();
 const loaderStore = useLoader();
-const { isLoaderActive, setIsLoaderTransitioning } = loaderStore;
+const { setIsLoaderTransitioning } = loaderStore;
 const theme = useTheme();
+const { isLoaderActive, isLoaderTransitioning } = storeToRefs(loaderStore);
 const { isDarkTheme } = storeToRefs(theme);
 
 const { setTheme } = useCommon();
@@ -47,9 +48,12 @@ const initialiseEventListeners = () => {
 watch(isDarkTheme, (value) => setTheme(value));
 
 onMounted(() => {
-    setIsLoaderTransitioning(false);
     setTheme(isDarkTheme.value);
     initialiseEventListeners();
+
+    setTimeout(() => {
+        setIsLoaderTransitioning(false);
+    }, 300);
 });
 
 onUnmounted(() => {

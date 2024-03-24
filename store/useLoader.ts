@@ -19,6 +19,8 @@ export const useLoader = defineStore("loader", {
       this.isLoaderActive = value;
     },
     setIsLoaderTransitioning(value: boolean) {
+      console.log("setIsLoaderTransitioning", value);
+
       this.isLoaderTransitioning = value;
     },
     setShouldProjectLoaderBeActive(value: boolean) {

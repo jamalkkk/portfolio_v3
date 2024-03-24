@@ -84,6 +84,6 @@ const showProject = () => {
 
     setIsLoaderTransitioning(true);
 
-    setTimeout(() => router.push(`/${props.project.slug}`), 100);
+    setTimeout(() => router.push(`/${props.project.slug}`), 300);
 };
 </script>

@@ -11,15 +11,7 @@
             },
         ]"
     >
-        <Frame
-            v-if="project"
-            :isThick="true"
-            :isPage="true"
-            class="transition duration-500"
-            :class="{
-                'bg-[#222]': !isProjectLoaded,
-            }"
-        >
+        <Frame v-if="project" :isThick="true" :isPage="true">
             <!-- Headline -->
             <Headline
                 class="project-details-title"
@@ -239,10 +231,11 @@ const setAllImagesInModal = (project: ProjectType): string[] => {
 };
 
 const revealProject = () => {
-    setIsLoaderTransitioning(false);
-
     setTimeout(() => {
         isProjectLoaded.value = true;
+        setTimeout(() => {
+            setIsLoaderTransitioning(false);
+        }, 300);
     }, 200);
 };
 

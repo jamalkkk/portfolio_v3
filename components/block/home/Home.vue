@@ -207,7 +207,7 @@ const onSwiper = (swiperObject: SwiperType) => {
     }
 
     if (shouldScrollToProjects) {
-        scrollToProjects();
+        scrollToProjects(false);
         setShouldScrollToProjects(false);
     }
 };

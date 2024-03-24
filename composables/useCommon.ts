@@ -26,18 +26,17 @@ export function useCommon() {
     container?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const scrollToProjects = () => {
+  const scrollToProjects = (isSmooth = true) => {
     const container = document.querySelector<HTMLElement>(".layout-container");
     container?.scrollTo({
       top: document.documentElement.clientHeight,
-      behavior: "smooth",
+      behavior: isSmooth ? "smooth" : "instant",
     });
   };
 
   // Project page
   const closeProject = (scrollToProjects = true) => {
-    // setShouldProjectLoaderBeActive(true);
-    setIsLoaderTransitioning(true);
+    setShouldProjectLoaderBeActive(true);
 
     if (scrollToProjects) {
       setShouldScrollToProjects(true);

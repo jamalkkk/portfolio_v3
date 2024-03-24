@@ -13,8 +13,7 @@
                 'is-fading-in': isProjectFadingIn,
                 'is-loaded': isProjectLoaderLoaded,
                 'is-fading-out': isProjectFadingOut,
-                'is-transitioning': isPageTransitioning,
-                'is-active': isPageTransitioning && isTransitioningActive,
+                'has-primary-background': isPageTransitioning,
             },
         ]"
     >
@@ -42,13 +41,13 @@
                     <JKLine class="loader-line" :is-centered="false" />
                 </div>
                 <div class="loader-content">
-                    <cta
+                    <!-- <cta
                         v-if="!hasStorePageAlreadyLoaded"
                         class="loader-button"
                         :isButton="true"
                         text="Let's go"
                         :onClick="hideLoader"
-                    />
+                    /> -->
                     <JKText
                         v-if="!isPageLoaded"
                         class="loader-text"
@@ -91,8 +90,7 @@ const isProjectFadingIn = ref(false);
 const isProjectLoaderLoaded = ref(false);
 const isProjectFadingOut = ref(false);
 
-const isPageTransitioning = ref(false);
-const isTransitioningActive = ref(false);
+const isPageTransitioning = ref(isLoaderTransitioning.value);
 
 const getRandomInt = (max: number) => {
     return Math.floor(Math.random() * max);
@@ -127,6 +125,7 @@ const completeLoader = () => {
 
 const hideLoader = () => {
     isFadingOut.value = true;
+
     setTimeout(() => setIsLoaderActive(false), 500);
 };
 
@@ -136,9 +135,13 @@ const showProjectLoader = () => {
 };
 
 const hideProjectLoader = () => {
-    setTimeout(() => (isProjectFadingOut.value = true), 1);
+    console.log("hideProjectLoader");
+
     setTimeout(() => {
-        resetProjectLoader();
+        isProjectFadingOut.value = true;
+        console.log("done doenn deone");
+
+        setTimeout(resetProjectLoader, 300);
     }, 300);
 };
 
@@ -179,16 +182,10 @@ watch(
     (value) => {
         //@TODO: Polish off transitiion logic
 
-        if (value) {
-            isPageTransitioning.value = true;
-            setTimeout(() => {
-                isTransitioningActive.value = true;
-            }, 1);
-        } else {
-            isTransitioningActive.value = false;
+        if (!value) {
             setTimeout(() => {
                 isPageTransitioning.value = false;
-            }, 300);
+            }, 600);
         }
     }
 );
@@ -211,6 +208,7 @@ onMounted(() => {
 
     //@TODO: Remove after CMS is fixed
     setTimeout(() => {
+        console.log("is hiding");
         hideLoader();
         hasPageAlreadyLoaded.value = true;
     }, LOAD_TIME);

@@ -97,12 +97,8 @@ $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
         }
     }
 
-    &.is-transitioning {
-        opacity: 1 !important;
-
-        &.is-active {
-            background-color: $color-primary !important;
-        }
+    &.has-primary-background {
+        background-color: $color-primary !important;
     }
 
     .loader-frame {
