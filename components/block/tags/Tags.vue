@@ -17,8 +17,9 @@
                 isInteractive ? 'is-pb-3' : 'flex-wrap',
             ]"
         >
+
+        <template v-if="isInteractive">
             <Tag
-                v-if="isInteractive"
                 :isSelected="isAll"
                 :onClick="() => (isAll = true)"
             />
@@ -26,13 +27,18 @@
                 v-for="(tag, i) in tags"
                 :key="i"
                 :item="tag"
-                :isSelected="selectedTags.includes(tag.value)"
+                :isSelected="selectedTags.includes(tag?.value)"
                 :onClick="() => toggleSelect(i)"
             />
+            </template>
+            <template v-else>
+                <Tag
+                    v-for="(tag, i) in projectTags"
+                    :key="i"
+                    :text="tag"
+                />
+            </template>
         </div>
-
-        <!-- Line -->
-        <!-- <JKLine v-if="isInteractive" class="tags-line" :isSingle="true" /> -->
     </div>
 </template>
 
@@ -43,7 +49,7 @@ const props = defineProps({
         default: true,
     },
     projectTags: {
-        type: Array,
+        type: Array as PropType<string[]>,
         default: () => [],
     },
 });
@@ -81,25 +87,6 @@ const toggleSelect = (i: number) => {
     selectedTags.value = [...selectedTags.value];
 };
 
-// const showProjectTags = () => {
-//     items.value = [];
-
-//     if ((tags.value as any[]).length) {
-//         props.projectTags.forEach((projectTag, i) => {
-//             items.value.push(
-//                 tags.value.filter(
-//                     ({ id }: { id: string }) =>
-//                         id === (projectTag as { id: string }).id
-//                 )[0] as (typeof tags.value)[0]
-//             );
-
-//             if (props.projectTags.length === i + 1) {
-//                 areItemsSet.value = true;
-//             }
-//         });
-//     }
-// };
-
 const setUpTags = () => {
     if (!areItemsSet.value) {
         if (props.isInteractive) {
@@ -111,8 +98,6 @@ const setUpTags = () => {
             if (activeTags.value.length) {
                 selectedTags.value = activeTags.value;
             }
-        } else {
-            // showProjectTags();
         }
     }
 };

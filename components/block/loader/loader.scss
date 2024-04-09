@@ -10,6 +10,7 @@ $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
     right: 0;
     bottom: 0;
     transition: $base-transition-3;
+    transition: background-color 3s ease-in-out;
 
     .is-dark-theme & {
         @include custom-cursor("default", "_dark");
@@ -99,6 +100,10 @@ $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
 
     &.has-primary-background {
         background-color: $color-primary !important;
+    }
+
+    &.is-changing-color {
+        background-color: #222 !important;
     }
 
     .loader-frame {

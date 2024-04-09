@@ -57,7 +57,7 @@ export const useApp = defineStore("app", {
     setGlobal(value: SBGlobal) {
       this.global = value;
     },
-    setTags(value: SBTags[]) {
+    setTags(value: SBTag[]) {
       this.tags = value;
     },
     setProjects(value: SBProjectDetails[]) {

@@ -11,13 +11,13 @@
         :isButton="true"
         :hasHover="false"
         :hasUnderline="false"
-        :text="`#${item?.name || 'all'}`"
+        :text="`#${item?.name || text || 'all'}`"
         :onClick="onClick"
     />
 </template>
 
 <script setup lang="ts">
-import type { SBTags } from "~/types/types";
+import type { SBTag } from "~/types/types";
 
 const props = defineProps({
     isSelected: {
@@ -25,8 +25,12 @@ const props = defineProps({
         default: false,
     },
     item: {
-        type: Object as PropType<SBTags>,
-        requird: true,
+        type: Object as PropType<SBTag>,
+        requird: false,
+    },
+    text: {
+        type: String,
+        default: '',
     },
     onClick: {
         type: Function,

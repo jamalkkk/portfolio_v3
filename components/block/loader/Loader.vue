@@ -13,6 +13,8 @@
                 'is-fading-in': isProjectFadingIn,
                 'is-loaded': isProjectLoaderLoaded,
                 'is-fading-out': isProjectFadingOut,
+
+                'is-changing-color': isChangingColor && false,
                 'has-primary-background': isPageTransitioning,
             },
         ]"
@@ -41,13 +43,12 @@
                     <JKLine class="loader-line" :is-centered="false" />
                 </div>
                 <div class="loader-content">
-                    <!-- <cta
-                        v-if="!hasStorePageAlreadyLoaded"
+                    <Cta
                         class="loader-button"
                         :isButton="true"
                         text="Let's go"
                         :onClick="hideLoader"
-                    /> -->
+                    />
                     <JKText
                         v-if="!isPageLoaded"
                         class="loader-text"
@@ -68,14 +69,18 @@
 <script setup lang="ts">
 import { useApp } from "~/store/useApp";
 import { useLoader } from "~/store/useLoader";
+import { useTheme } from "~/store/useTheme";
 
 const appStore = useApp();
 const loaderStore = useLoader();
+const themeStore = useTheme();
+
 
 const { setIsLoaderActive, setShouldProjectLoaderBeActive } = loaderStore;
 const { isDataLoaded, isProjectLoaded } = storeToRefs(appStore);
 const { isLoaderActive, isLoaderTransitioning, shouldProjectLoaderBeActive } =
     storeToRefs(loaderStore);
+const { isThemeSet } = storeToRefs(themeStore);
 
 const LOAD_TIME = 1000;
 
@@ -91,10 +96,9 @@ const isProjectLoaderLoaded = ref(false);
 const isProjectFadingOut = ref(false);
 
 const isPageTransitioning = ref(isLoaderTransitioning.value);
+const isChangingColor = ref(true);
 
-const getRandomInt = (max: number) => {
-    return Math.floor(Math.random() * max);
-};
+const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 
 const loadingMessage = computed(() => {
     const dot = '<span class="loader-dot">.</span>';
@@ -135,12 +139,8 @@ const showProjectLoader = () => {
 };
 
 const hideProjectLoader = () => {
-    console.log("hideProjectLoader");
-
     setTimeout(() => {
         isProjectFadingOut.value = true;
-        console.log("done doenn deone");
-
         setTimeout(resetProjectLoader, 300);
     }, 300);
 };
@@ -180,8 +180,6 @@ watch(
 watch(
     () => isLoaderTransitioning.value,
     (value) => {
-        //@TODO: Polish off transitiion logic
-
         if (!value) {
             setTimeout(() => {
                 isPageTransitioning.value = false;
@@ -199,6 +197,15 @@ watch(
     }
 );
 
+watch(
+    () => isThemeSet.value,
+    (value) => {
+        if (value) {
+            isChangingColor.value = false;
+        }
+    }
+);
+
 onMounted(() => {
     if (shouldProjectLoaderBeActive.value) {
         hideProjectLoader();
@@ -208,7 +215,6 @@ onMounted(() => {
 
     //@TODO: Remove after CMS is fixed
     setTimeout(() => {
-        console.log("is hiding");
         hideLoader();
         hasPageAlreadyLoaded.value = true;
     }, LOAD_TIME);

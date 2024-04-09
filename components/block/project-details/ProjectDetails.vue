@@ -15,7 +15,7 @@
             <!-- Headline -->
             <Headline
                 class="project-details-title"
-                :text="project?.title"
+                :text="project.title"
                 :isMain="true"
             />
 
@@ -229,6 +229,8 @@ const setAllImagesInModal = (project: ProjectType): string[] => {
     setProjectImages(images);
     return images;
 };
+
+console.log("project", props.project);
 
 const revealProject = () => {
     setTimeout(() => {
