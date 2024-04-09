@@ -1,10 +1,10 @@
 <style lang="scss" src="./about.scss"></style>
 
 <template>
-    <div v-if="isReady" class="b-about">
+    <div v-if="global?.about" class="b-about">
         <div class="about-container flex flex-col gap-y-24 px-4">
             <div class="flex flex-col gap-y-4">
-                <Headline :text="global?.name" />
+                <Headline :text="global.name" />
                 <UtilRichtext :text="global.about || AboutText" />
             </div>
             <div class="flex flex-col gap-y-4">
@@ -23,15 +23,7 @@ const { AboutText } = useBackupData();
 const appStore = useApp();
 const { global } = storeToRefs(appStore);
 
-// @todo: fix logic when coming back from projects
-const isReady = ref<boolean>(global.value?.sounds);
-
-watch(
-    () => global.value,
-    (value) => {
-        if (value) {
-            isReady.value = true;
-        }
-    }
-);
+onMounted(() => {
+    console.log("About mounted", global.value);
+})
 </script>

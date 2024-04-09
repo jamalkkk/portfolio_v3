@@ -53,7 +53,7 @@ onMounted(() => {
 
     setTimeout(() => {
         setIsLoaderTransitioning(false);
-    }, 300);
+    }, 900);
 });
 
 onUnmounted(() => {

@@ -235,14 +235,11 @@ const revealProject = () => {
         isProjectLoaded.value = true;
         setTimeout(() => {
             setIsLoaderTransitioning(false);
-        }, 300);
+        }, 600);
     }, 200);
 };
 
-onMounted(() => {
-    revealProject();
-    const images = setAllImagesInModal(props.project);
-});
+onMounted(revealProject);
 
 onUnmounted(() => {
     swiper.value?.destroy();

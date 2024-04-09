@@ -12,7 +12,7 @@ export function useCommon() {
   const theme = useTheme();
   const swiper = useSwiperStore();
 
-  const { setShouldScrollToProjects, setProject, setDocumentBreakpoint } = app;
+  const { setShouldScrollToProjects, setProject, setDocumentBreakpoint, setIsMainHomeActive } = app;
   const { setShouldProjectLoaderBeActive, setIsLoaderTransitioning } = loader;
   const { isSoundSupposedActive, setIsSoundActive } = sounds;
   const { originalPrimary, originalNegative, setThemeColors } = theme;
@@ -37,15 +37,16 @@ export function useCommon() {
   // Project page
   const closeProject = (scrollToProjects = true) => {
     setShouldProjectLoaderBeActive(true);
+    setIsLoaderTransitioning(true);
 
     if (scrollToProjects) {
       setShouldScrollToProjects(true);
+    } else {
+      setIsMainHomeActive(true);
     }
 
     setTimeout(() => {
       router.push("/");
-
-      setProject({});
 
       if (isMySoundSupposedActive.value) {
         setTimeout(() => setIsSoundActive(true), 500);
