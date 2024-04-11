@@ -54,7 +54,8 @@ export function useCommon() {
       }
 
       resetVideoSlideIndices();
-    }, 300);
+    // }, 300);
+    }, 0);
   };
 
   const getRandomInt = (max: number, min: number = 0): number => {

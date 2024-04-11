@@ -37,7 +37,7 @@ export const useApp = defineStore("app", {
     isInfosActive: false,
     isInfoInfoActive: false,
     isSmallScreen: false,
-    isDataLoaded: true,
+    isDataLoaded: false,
     isProjectLoaded: false,
     shouldScrollToProjects: false,
     shouldHomeBeActive: true,
@@ -56,6 +56,7 @@ export const useApp = defineStore("app", {
   actions: {
     setGlobal(value: SBGlobal) {
       this.global = value;
+      this.isDataLoaded = true;
     },
     setTags(value: SBTag[]) {
       this.tags = value;

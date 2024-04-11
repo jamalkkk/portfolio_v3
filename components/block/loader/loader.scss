@@ -1,5 +1,11 @@
 $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
 
+.b-starter {
+    @apply absolute inset-0 z-10;
+
+    background-color: $color-primary;
+}
+
 .b-loader {
     @include custom-cursor("default");
 
@@ -83,6 +89,10 @@ $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
 
         .loader-button {
             opacity: 1;
+
+            &:hover {
+                opacity: 0.5;
+            }
         }
 
         .loader-text {

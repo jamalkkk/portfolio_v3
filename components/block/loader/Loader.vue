@@ -1,69 +1,64 @@
 <style lang="scss" src="./loader.scss"></style>
 
 <template>
-    <div
-        v-if="isLoaderActive || isProjectLoaderActive || isPageTransitioning"
-        :class="[
-            'b-loader',
-            {
-                'is-project-loader': isProjectLoaderActive,
-                'is-page-loading': isPageLoading && !isProjectLoaderActive,
-                'is-page-loaded': isPageLoaded && !isProjectLoaderActive,
-                'is-page-fading-out': isFadingOut && !isProjectLoaderActive,
-                'is-fading-in': isProjectFadingIn,
-                'is-loaded': isProjectLoaderLoaded,
-                'is-fading-out': isProjectFadingOut,
+  <div v-if="!isReady" class="b-starter"></div>
 
-                'is-changing-color': isChangingColor && false,
-                'has-primary-background': isPageTransitioning,
-            },
-        ]"
+  <div
+    v-else-if="isLoaderActive || isProjectLoaderActive || isLoaderTransitioning"
+    :class="[
+      'b-loader',
+      {
+        'is-project-loader': isProjectLoaderActive,
+        'is-page-loading': isPageLoading && !isProjectLoaderActive,
+        'is-page-loaded': isPageLoaded && !isProjectLoaderActive,
+        'is-page-fading-out': isFadingOut && !isProjectLoaderActive,
+        'is-fading-in': isProjectFadingIn,
+        'is-loaded': isProjectLoaderLoaded,
+        'is-fading-out': isProjectFadingOut,
+
+        'has-primary-background': isPageTransitioning,
+      },
+    ]"
+  >
+    <Frame
+      v-if="!isPageTransitioning"
+      class="loader-frame"
+      :is-thick="true"
+      :is-page="true"
     >
-        <Frame
-            v-if="!isPageTransitioning"
-            class="loader-frame"
-            :is-thick="true"
-            :is-page="true"
-        >
-            <div v-if="!isProjectLoaderActive" class="loader-container">
-                <div class="loader-face">
-                    <JKSvg name="animation_face" />
-                    <div class="loader-eyes">
-                        <JKSvg
-                            class="loader-eye eye-left"
-                            name="animation_eye"
-                        />
-                        <JKSvg
-                            class="loader-eye eye-right"
-                            name="animation_eye"
-                        />
-                    </div>
-                </div>
-                <div class="loader-line-wrapper">
-                    <JKLine class="loader-line" :is-centered="false" />
-                </div>
-                <div class="loader-content">
-                    <Cta
-                        class="loader-button"
-                        :isButton="true"
-                        text="Let's go"
-                        :onClick="hideLoader"
-                    />
-                    <JKText
-                        v-if="!isPageLoaded"
-                        class="loader-text"
-                        :isSecondaryFont="true"
-                        :text="loadingMessage"
-                    />
-                </div>
-            </div>
-            <JKText
-                class="loader-note"
-                text="View me on desktop to have the best experience."
-                :isXSmall="true"
-            />
-        </Frame>
-    </div>
+      <div v-if="!isProjectLoaderActive" class="loader-container">
+        <div class="loader-face">
+          <JKSvg name="animation_face" />
+          <div class="loader-eyes">
+            <JKSvg class="loader-eye eye-left" name="animation_eye" />
+            <JKSvg class="loader-eye eye-right" name="animation_eye" />
+          </div>
+        </div>
+        <div class="loader-line-wrapper">
+          <JKLine class="loader-line" :is-centered="false" />
+        </div>
+        <div class="loader-content">
+          <Cta
+            class="loader-button"
+            :isButton="true"
+            text="Let's go"
+            :onClick="hideLoader"
+          />
+          <JKText
+            v-if="!isPageLoaded"
+            class="loader-text"
+            :isSecondaryFont="true"
+            :text="loadingMessage"
+          />
+        </div>
+      </div>
+      <JKText
+        class="loader-note"
+        text="View me on desktop to have the best experience."
+        :isXSmall="true"
+      />
+    </Frame>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -75,17 +70,17 @@ const appStore = useApp();
 const loaderStore = useLoader();
 const themeStore = useTheme();
 
-
 const { setIsLoaderActive, setShouldProjectLoaderBeActive } = loaderStore;
 const { isDataLoaded, isProjectLoaded } = storeToRefs(appStore);
 const { isLoaderActive, isLoaderTransitioning, shouldProjectLoaderBeActive } =
-    storeToRefs(loaderStore);
+  storeToRefs(loaderStore);
 const { isThemeSet } = storeToRefs(themeStore);
 
 const LOAD_TIME = 1000;
 
 const { MDMessages } = useMockData();
 
+const isReady = ref(false);
 const isPageLoading = ref(true);
 const isPageLoaded = ref(false);
 const isFadingOut = ref(false);
@@ -101,126 +96,122 @@ const isChangingColor = ref(true);
 const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 
 const loadingMessage = computed(() => {
-    const dot = '<span class="loader-dot">.</span>';
-    return `${
-        MDMessages[getRandomInt(MDMessages.length - 1)]
-    }${dot}${dot}${dot}`;
+  const dot = '<span class="loader-dot">.</span>';
+  return `${MDMessages[getRandomInt(MDMessages.length - 1)]}${dot}${dot}${dot}`;
 });
 
 const isFirstTimeLoader = () => {
-    if (localStorage.hasPageAlreadyLoaded) {
-        setTimeout(() => {
-            hideLoader();
-            hasPageAlreadyLoaded.value = true;
-        }, 300);
-    }
+  if (localStorage.hasPageAlreadyLoaded) {
+    setTimeout(() => {
+      hideLoader();
+      hasPageAlreadyLoaded.value = true;
+    }, 300);
+  }
 };
 
 const completeLoader = () => {
-    setTimeout(
-        () => {
-            isPageLoaded.value = true;
-            isPageLoading.value = false;
-            localStorage.hasPageAlreadyLoaded = true;
-        },
-        hasPageAlreadyLoaded.value ? 0 : LOAD_TIME
-    );
+  setTimeout(
+    () => {
+      isPageLoaded.value = true;
+      isPageLoading.value = false;
+      localStorage.hasPageAlreadyLoaded = true;
+    },
+    hasPageAlreadyLoaded.value ? 0 : LOAD_TIME
+  );
 };
 
 const hideLoader = () => {
-    isFadingOut.value = true;
+  isFadingOut.value = true;
 
-    setTimeout(() => setIsLoaderActive(false), 500);
+  setTimeout(() => setIsLoaderActive(false), 500);
 };
 
 const showProjectLoader = () => {
-    isProjectLoaderActive.value = true;
-    setTimeout(() => (isProjectFadingIn.value = true), 1);
+  isProjectLoaderActive.value = true;
+  setTimeout(() => (isProjectFadingIn.value = true), 1);
 };
 
 const hideProjectLoader = () => {
-    setTimeout(() => {
-        isProjectFadingOut.value = true;
-        setTimeout(resetProjectLoader, 300);
-    }, 300);
+  setTimeout(() => {
+    isProjectFadingOut.value = true;
+    setTimeout(resetProjectLoader, 300);
+//   }, 300);
+  }, 0);
 };
 
 const handleKeyStroke = (e: KeyboardEvent) => {
-    if ([32, 13].includes(e.keyCode) && isPageLoaded.value) {
-        hideLoader();
-    }
+  if ([32, 13].includes(e.keyCode) && isPageLoaded.value) {
+    hideLoader();
+  }
 };
 
 const resetProjectLoader = () => {
-    isProjectLoaderActive.value = false;
-    isProjectLoaderLoaded.value = false;
-    isProjectFadingOut.value = false;
-    setShouldProjectLoaderBeActive(false);
+  isProjectLoaderActive.value = false;
+  isProjectLoaderLoaded.value = false;
+  isProjectFadingOut.value = false;
+//   setShouldProjectLoaderBeActive(false);
 };
 
 watch(
-    () => isDataLoaded.value,
-    (value) => {
-        if (value) {
-            completeLoader();
-            isFirstTimeLoader();
-        }
+  () => isDataLoaded.value,
+  (value) => {
+    if (value) {
+      completeLoader();
+      isFirstTimeLoader();
     }
+  }
 );
 
 watch(
-    () => isProjectLoaded.value,
-    (value) => {
-        if (value) {
-            isFirstTimeLoader();
-        }
+  () => isProjectLoaded.value,
+  (value) => {
+    if (value) {
+      isFirstTimeLoader();
     }
+  }
 );
 
 watch(
-    () => isLoaderTransitioning.value,
-    (value) => {
-        if (!value) {
-            setTimeout(() => {
-                isPageTransitioning.value = false;
-            }, 600);
-        }
+  () => isLoaderTransitioning.value,
+  (value) => {
+    if (!value) {
+      setTimeout(() => {
+        // isPageTransitioning.value = false;
+      }, 300);
     }
+  }
 );
 
 watch(
-    () => shouldProjectLoaderBeActive.value,
-    (value) => {
-        if (value) {
-            showProjectLoader();
-        }
+  () => shouldProjectLoaderBeActive.value,
+  (value) => {
+    if (value) {
+      showProjectLoader();
+
     }
+  }
 );
 
 watch(
-    () => isThemeSet.value,
-    (value) => {
-        if (value) {
-            isChangingColor.value = false;
-        }
+  () => isThemeSet.value,
+  (value) => {
+    if (value) {
+      isChangingColor.value = false;
     }
+  }
 );
 
 onMounted(() => {
-    if (shouldProjectLoaderBeActive.value) {
-        hideProjectLoader();
-    }
+  isReady.value = true;
 
-    window.addEventListener("keyup", handleKeyStroke);
+  if (shouldProjectLoaderBeActive.value) {
+    hideProjectLoader();
+  }
 
-    //@TODO: Remove after CMS is fixed
-    setTimeout(() => {
-        hideLoader();
-        hasPageAlreadyLoaded.value = true;
-    }, LOAD_TIME);
+  window.addEventListener("keyup", handleKeyStroke);
 });
 
 onUnmounted(() => {
-    window.removeEventListener("keyup", handleKeyStroke);
+  window.removeEventListener("keyup", handleKeyStroke);
 });
 </script>

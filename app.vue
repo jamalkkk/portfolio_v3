@@ -30,8 +30,6 @@ const title = ref(
 
 const getStoryblokData = async () => {
     let global: ISbStoryData<SBGlobal> | null = await getStory("/global");
-    // let projects: ISbStoryData<SBProjectDetails[]> | null =
-    // await getProjectStory("/", { startsWith: "project/" });
     let tags: ISbStoryData<SBTag[]> | null = await getDatasource("tags");
 
     // console.log("projects", projects);
