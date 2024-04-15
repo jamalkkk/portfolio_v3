@@ -45,11 +45,10 @@ import { usePlayer } from "~/store/usePlayer";
 const soundsStore = useSounds();
 const playerStore = usePlayer();
 const loaderStore = useLoader();
-const { scrollToProjects } = useCommon();
 
 const { setIsSoundActive, setIsSoundSupposedActive } = soundsStore;
 const { setIsUIHidden } = playerStore;
-const { setIsLoaderTransitioning, setShouldProjectLoaderBeActive } =
+const { setIsLoaderTransitioning } =
   loaderStore;
 const { isSoundActive } = storeToRefs(soundsStore);
 
@@ -75,9 +74,10 @@ const showProject = () => {
     setIsSoundActive(false);
   }
 
-//   setIsLoaderTransitioning(true);
-setShouldProjectLoaderBeActive(true);
+  setIsLoaderTransitioning(true);
 
-  router.push(`/${props.project.slug}`)
+  setTimeout(() => {
+    router.push(`/${props.project.slug}`);
+  }, 500);
 };
 </script>

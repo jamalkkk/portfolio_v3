@@ -1,32 +1,25 @@
 <style lang="scss" src="./loader.scss"></style>
 
 <template>
-  <div v-if="!isReady" class="b-starter"></div>
+  <div
+    v-if="isFaderActive"
+    class="b-fader"
+    :class="{ 'is-transitioning': isFaderTransitioning }"
+  ></div>
 
   <div
-    v-else-if="isLoaderActive || isProjectLoaderActive || isLoaderTransitioning"
+    v-else-if="isLoaderActive"
     :class="[
       'b-loader',
       {
-        'is-project-loader': isProjectLoaderActive,
-        'is-page-loading': isPageLoading && !isProjectLoaderActive,
-        'is-page-loaded': isPageLoaded && !isProjectLoaderActive,
-        'is-page-fading-out': isFadingOut && !isProjectLoaderActive,
-        'is-fading-in': isProjectFadingIn,
-        'is-loaded': isProjectLoaderLoaded,
-        'is-fading-out': isProjectFadingOut,
-
-        'has-primary-background': isPageTransitioning,
+        'is-page-loading': isPageLoading,
+        'is-page-loaded': isPageLoaded,
+        'is-page-fading-out': isFadingOut,
       },
     ]"
   >
-    <Frame
-      v-if="!isPageTransitioning"
-      class="loader-frame"
-      :is-thick="true"
-      :is-page="true"
-    >
-      <div v-if="!isProjectLoaderActive" class="loader-container">
+    <Frame class="loader-frame" :is-thick="true" :is-page="true">
+      <div class="loader-container">
         <div class="loader-face">
           <JKSvg name="animation_face" />
           <div class="loader-eyes">
@@ -70,27 +63,23 @@ const appStore = useApp();
 const loaderStore = useLoader();
 const themeStore = useTheme();
 
-const { setIsLoaderActive, setShouldProjectLoaderBeActive } = loaderStore;
+const { setIsLoaderActive, setIsLoaderTransitioning } = loaderStore;
 const { isDataLoaded, isProjectLoaded } = storeToRefs(appStore);
-const { isLoaderActive, isLoaderTransitioning, shouldProjectLoaderBeActive } =
-  storeToRefs(loaderStore);
+const { isLoaderActive, isLoaderTransitioning } = storeToRefs(loaderStore);
 const { isThemeSet } = storeToRefs(themeStore);
 
 const LOAD_TIME = 1000;
 
 const { MDMessages } = useMockData();
 
-const isReady = ref(false);
+const isFaderActive = ref(true);
+const isFaderTransitioning = ref(true);
+
 const isPageLoading = ref(true);
 const isPageLoaded = ref(false);
 const isFadingOut = ref(false);
 const hasPageAlreadyLoaded = ref(false);
-const isProjectLoaderActive = ref(false);
-const isProjectFadingIn = ref(false);
-const isProjectLoaderLoaded = ref(false);
-const isProjectFadingOut = ref(false);
 
-const isPageTransitioning = ref(isLoaderTransitioning.value);
 const isChangingColor = ref(true);
 
 const getRandomInt = (max: number) => Math.floor(Math.random() * max);
@@ -126,30 +115,18 @@ const hideLoader = () => {
   setTimeout(() => setIsLoaderActive(false), 500);
 };
 
-const showProjectLoader = () => {
-  isProjectLoaderActive.value = true;
-  setTimeout(() => (isProjectFadingIn.value = true), 1);
-};
-
-const hideProjectLoader = () => {
+const hideFader = () => {
+  isFaderTransitioning.value = false;
   setTimeout(() => {
-    isProjectFadingOut.value = true;
-    setTimeout(resetProjectLoader, 300);
-//   }, 300);
-  }, 0);
+    isFaderActive.value = false;
+    setIsLoaderTransitioning(false);
+  }, 600);
 };
 
 const handleKeyStroke = (e: KeyboardEvent) => {
   if ([32, 13].includes(e.keyCode) && isPageLoaded.value) {
     hideLoader();
   }
-};
-
-const resetProjectLoader = () => {
-  isProjectLoaderActive.value = false;
-  isProjectLoaderLoaded.value = false;
-  isProjectFadingOut.value = false;
-//   setShouldProjectLoaderBeActive(false);
 };
 
 watch(
@@ -174,23 +151,16 @@ watch(
 watch(
   () => isLoaderTransitioning.value,
   (value) => {
-    if (!value) {
-      setTimeout(() => {
-        // isPageTransitioning.value = false;
-      }, 300);
-    }
-  }
-);
-
-watch(
-  () => shouldProjectLoaderBeActive.value,
-  (value) => {
     if (value) {
-      showProjectLoader();
+      isFaderActive.value = true;
 
+      setTimeout(() => {
+        isFaderTransitioning.value = true;
+      }, 1);
     }
   }
 );
+
 
 watch(
   () => isThemeSet.value,
@@ -202,10 +172,12 @@ watch(
 );
 
 onMounted(() => {
-  isReady.value = true;
+  // Show fader only when tranistioning between pages
+  isFaderTransitioning.value = isLoaderTransitioning.value;
+  isFaderActive.value = isLoaderTransitioning.value;
 
-  if (shouldProjectLoaderBeActive.value) {
-    hideProjectLoader();
+  if (isLoaderTransitioning.value) {
+    hideFader();
   }
 
   window.addEventListener("keyup", handleKeyStroke);

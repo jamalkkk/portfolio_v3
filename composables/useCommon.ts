@@ -12,8 +12,8 @@ export function useCommon() {
   const theme = useTheme();
   const swiper = useSwiperStore();
 
-  const { setShouldScrollToProjects, setProject, setDocumentBreakpoint, setIsMainHomeActive } = app;
-  const { setShouldProjectLoaderBeActive, setIsLoaderTransitioning } = loader;
+  const { setShouldScrollToProjects, setDocumentBreakpoint, setIsMainHomeActive } = app;
+  const { setIsLoaderTransitioning } = loader;
   const { isSoundSupposedActive, setIsSoundActive } = sounds;
   const { originalPrimary, originalNegative, setThemeColors } = theme;
   const { resetVideoSlideIndices } = swiper;
@@ -36,7 +36,6 @@ export function useCommon() {
 
   // Project page
   const closeProject = (scrollToProjects = true) => {
-    setShouldProjectLoaderBeActive(true);
     setIsLoaderTransitioning(true);
 
     if (scrollToProjects) {
@@ -54,8 +53,7 @@ export function useCommon() {
       }
 
       resetVideoSlideIndices();
-    // }, 300);
-    }, 0);
+    }, 300);
   };
 
   const getRandomInt = (max: number, min: number = 0): number => {
