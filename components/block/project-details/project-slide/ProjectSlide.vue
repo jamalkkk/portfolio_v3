@@ -11,16 +11,14 @@
         ]"
     >
         <!-- Video Player -->
-
-        <Player v-if="isVideo" :video="slide.video" :index="index" />
+        <Player v-if="isVideo" :video="(slide as VideoType)" :index="index" />
 
         <!-- Image -->
         <div v-if="isImage" class="project-slide-image items-center">
             <ImageFrame
                 class="project-slide-frame"
-                :image="slide.image"
-                :img="slide.img"
-                :onClick="showModal"
+                :image="(slide as ImageType)"
+                :onClick="() => showModal((slide as ImageType).image)"
                 :isThick="true"
                 :isInverted="true"
             />
@@ -29,13 +27,13 @@
         <!-- Content with images -->
         <SlideContent
             v-else
-            :columns="slide.columns"
+            :blok="(slide as ColumnsType)"
             :onFrameClick="showModal"
         />
     </SwiperSlide>
 </template>
 <script setup lang="ts">
-import type { ProjectSlideType } from "~/types/types";
+import type { ColumnsType, VideoType, ImageType } from "~/types/types";
 
 import { useModal } from "~/store/useModal";
 import { useSwiperStore } from "~/store/useSwiperStore";
@@ -53,15 +51,15 @@ const props = defineProps({
         default: 0,
     },
     slide: {
-        type: Object as PropType<ProjectSlideType>,
+        type: Object as PropType<VideoType | ImageType | ColumnsType>,
         required: true,
     },
 });
 
-const isVideo = computed(() => props.slide.type === "video");
-const isImage = computed(() => props.slide.type === "image");
+const isVideo = computed(() => props.slide.component === "video");
+const isImage = computed(() => props.slide.component === "image");
 
-const showModal = (image: any) => {
+const showModal = (image: ISbAsset) => {
     setImage(image);
     setIsModalActive(true);
 };

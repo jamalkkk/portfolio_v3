@@ -20,7 +20,8 @@
                 :isInverted="isInverted"
             >
                 <div class="image-frame-wrapper">
-                    <LazyJKImage v-if="img" :img="img" />
+                    <LazyJKImage :image="image.image" />
+                    <!-- <LazyJKImage v-if="img" :img="img" :image="image.image" /> -->
                 </div>
                 <slot name="content" />
             </Frame>
@@ -30,6 +31,7 @@
 
 <script setup lang="ts">
 import { useModal } from "~/store/useModal";
+import type { ImageType } from "~/types/types";
 
 const modalStore = useModal();
 const { isModalActive } = storeToRefs(modalStore);
@@ -60,7 +62,7 @@ const props = defineProps({
         default: 0,
     },
     image: {
-        type: Object,
+        type: Object as PropType<ImageType>,
         default: () => ({}),
     },
     // @TODO: use image instead
@@ -101,4 +103,8 @@ const frameClick = () => {
         }
     }
 };
+
+onMounted(() => {
+  console.log("image 2", props.image);
+});
 </script>

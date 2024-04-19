@@ -8,8 +8,8 @@ export type SwiperType = SwiperCore;
 export type Headline = "h1" | "h2" | "h3";
 
 export type ImageType = {
-  url: string;
-  alt: string;
+  component: "image";
+  image: ISbAsset;
 };
 
 // Data Structure
@@ -44,15 +44,16 @@ export type DesktopSegmentsType =
 
 // Player
 export type VideoType = {
+  component: "video";
   type: string;
-  videoId: string;
+  id: string;
 };
 
 // Project
 export type ContentItemType = {
   type: "text" | "image" | "link";
   imageSize: number;
-  image: ImageType;
+  image: ISbAsset;
   text: string;
   link: string;
 
@@ -60,19 +61,15 @@ export type ContentItemType = {
   img: string;
 };
 
-export type SlideContentType = {
-  items: ContentItemType[];
+export type ColumnType = {
+  component: "column";
+  items: (ContentItemType | ISbAsset)[];
 };
 
-export type ProjectSlideType = {
-  type: "video" | "image" | "columns";
-  columns: SlideContentType[];
-  image: ImageType;
-  video: VideoType;
-  description: string;
 
-  // For now
-  img: string;
+export type ColumnsType = {
+  component: "columns";
+  columns: ColumnType[];
 };
 
 export type ProjectType = {
@@ -80,7 +77,7 @@ export type ProjectType = {
   title: string;
   description: string;
   image: string;
-  slides: ProjectSlideType[];
+  slides: (VideoType | ImageType | ColumnsType)[];
   tags: string[];
 };
 

@@ -204,24 +204,24 @@ const handleKeyPress = (swiper: any, keyCode: String) => {
 };
 
 const setAllImagesInModal = () => {
-  const images: string[] = [];
+  const images: ISbAsset[] = [];
 
   // Iterate through each slide
   for (const slide of props.project?.slides) {
     // Add slide image
-    if (slide.type === "image" && slide.img) {
-      images.push(slide.img);
-    } else if (slide.type === "columns") {
+    if (slide.component === "image" && slide.image) {
+      images.push(slide.image);
+    } else if (slide.component === "column") {
       // Iterate through each column in the slide
-      for (const column of slide.columns) {
-        // Iterate through each item in the column
-        for (const item of column.items) {
-          // If the item type is 'image', add its image
-          if (item.type === "image") {
-            images.push(item.img);
-          }
-        }
-      }
+      // for (const column of slide.columns) {
+      //   // Iterate through each item in the column
+      //   for (const item of column.items) {
+      //     // If the item type is 'image', add its image
+      //     if (item.type === "image") {
+      //       images.push(item.img);
+      //     }
+      //   }
+      // }
     }
   }
 

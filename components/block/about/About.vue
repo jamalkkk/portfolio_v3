@@ -22,8 +22,4 @@ const { AboutText } = useBackupData();
 
 const appStore = useApp();
 const { global } = storeToRefs(appStore);
-
-onMounted(() => {
-    console.log("About mounted", global.value);
-})
 </script>
