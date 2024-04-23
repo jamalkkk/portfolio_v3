@@ -3,7 +3,7 @@
 <template>
     <div
         :class="[
-            'b-image-frame mx-auto aspect-ratio-1',
+            'b-image-frame mx-auto',
             {
                 'is-clicked': isClicked,
                 'enlarge-on-hover': enlargeOnHover,
@@ -103,8 +103,4 @@ const frameClick = () => {
         }
     }
 };
-
-onMounted(() => {
-  console.log("image 2", props.image);
-});
 </script>

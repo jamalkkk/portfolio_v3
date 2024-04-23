@@ -21,6 +21,7 @@
                 :onClick="() => showModal((slide as ImageType).image)"
                 :isThick="true"
                 :isInverted="true"
+                :size="2"
             />
         </div>
 

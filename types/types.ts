@@ -42,34 +42,19 @@ export type DesktopSegmentsType =
   | "standing"
   | "sitdown";
 
+// Project
+export type ColumnsType = {
+  component: "columns";
+  columns: {
+    items: (ISbRichtext | ISbAsset)[];
+  }[];
+};
+
 // Player
 export type VideoType = {
   component: "video";
   type: string;
   id: string;
-};
-
-// Project
-export type ContentItemType = {
-  type: "text" | "image" | "link";
-  imageSize: number;
-  image: ISbAsset;
-  text: string;
-  link: string;
-
-  // For now
-  img: string;
-};
-
-export type ColumnType = {
-  component: "column";
-  items: (ContentItemType | ISbAsset)[];
-};
-
-
-export type ColumnsType = {
-  component: "columns";
-  columns: ColumnType[];
 };
 
 export type ProjectType = {
@@ -144,13 +129,3 @@ export type IColumns = {
   // }
 };
 
-// export type SBProjectDetails = {
-//   type: "text" | "image" | "link";
-//   imageSize: number;
-//   image: ImageType;
-//   text: string;
-//   link: string;
-
-//   // For now
-//   img: string;
-// };

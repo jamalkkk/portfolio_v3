@@ -1,11 +1,11 @@
 <style lang="scss" src="./slide-content.scss"></style>
 
 <template>
-  <div class="b-slide-content flex flex-col justify-center md:flex-row gap-8">
+  <div class="b-slide-content flex flex-col justify-center lg:flex-row gap-3 lg:gap-16">
     <div
       v-for="(column, i) in blok.columns"
       :key="i"
-      class="flex flex-col gap-8 justify-center md:w-1/2"
+      class="flex flex-col gap-4 lg:gap-8 justify-center lg:w-1/2 lg:overflow-y-scroll"
     >
       <div
         v-for="(item, j) in column.items"
@@ -15,8 +15,7 @@
         <!-- Image -->
         <ImageFrame
           v-if="item.image"
-          :size="item.imageSize"
-          :img="item.img"
+          :size="2"
           :image="item"
           :isThick="true"
           :isInverted="true"
@@ -26,25 +25,29 @@
         >
         </ImageFrame>
 
-        <!-- Text -->
-        <p v-else-if="item.type === 'text'" class="text-2xl md:text-x3l">
-          {{ item.text }}
-        </p>
+
+        <UtilRichtext v-else :text="item.text" />
+
 
         <!-- CTA -->
-        <Cta
+        <!-- <Cta
           v-else
           class="project-slide-cta"
           :text="item.text"
           :to="item.link"
-        />
+        /> -->
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { ColumnsType, ColumnType } from "~/types/types";
+import type { ColumnsType } from "~/types/types";
+import { useApp } from "~/store/useApp";
+
+
+const appStore = useApp();
+const { global } = storeToRefs(appStore);
 
 const props = defineProps({
   size: {
