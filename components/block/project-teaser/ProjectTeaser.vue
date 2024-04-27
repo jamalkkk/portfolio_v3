@@ -10,8 +10,7 @@
         },
       ]"
       :size="project.size"
-      :image="image"
-      :img="project.image"
+      :image="{ component: 'image', image: project.teaser }"
       :enlargeOnHover="true"
       :isThick="true"
       :isInverted="true"
@@ -48,8 +47,7 @@ const loaderStore = useLoader();
 
 const { setIsSoundActive, setIsSoundSupposedActive } = soundsStore;
 const { setIsUIHidden } = playerStore;
-const { setIsLoaderTransitioning } =
-  loaderStore;
+const { setIsLoaderTransitioning } = loaderStore;
 const { isSoundActive } = storeToRefs(soundsStore);
 
 const props = defineProps({
@@ -63,7 +61,9 @@ const router = useRouter();
 
 const isClicked = ref(false);
 
-const image = computed(() => props.project?.image?.data[0]);
+const image = computed(() => props.project?.teaser);
+
+console.log("image", props.project?.teaser);
 
 const showProject = () => {
   isClicked.value = true;

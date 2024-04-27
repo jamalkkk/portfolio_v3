@@ -21,7 +21,6 @@
             >
                 <div class="image-frame-wrapper">
                     <LazyJKImage :image="image.image" />
-                    <!-- <LazyJKImage v-if="img" :img="img" :image="image.image" /> -->
                 </div>
                 <slot name="content" />
             </Frame>
@@ -75,6 +74,7 @@ const props = defineProps({
         default: () => null,
     },
 });
+
 
 const isClicked = ref(false);
 

@@ -43,10 +43,21 @@ export type DesktopSegmentsType =
   | "sitdown";
 
 // Project
+export type ColumnTextType = {
+  component: "column-text";
+  text: ISbRichtext;
+};
+
+export type ColumnImageType = {
+  component: "column-image";
+  image: ISbAsset;
+};
+
+
 export type ColumnsType = {
   component: "columns";
   columns: {
-    items: (ISbRichtext | ISbAsset)[];
+    items: (ColumnTextType | ColumnImageType)[];
   }[];
 };
 

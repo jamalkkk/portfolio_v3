@@ -19,7 +19,7 @@
                 class="opacity-0 transition duration-500"
                 :class="{ 'opacity-100': isActive }"
             /> -->
-            <LazyJKImage :image="image"  />
+            <LazyJKImage :image="currentImage"  />
         </div>
     </div>
 </template>

@@ -211,17 +211,17 @@ const setAllImagesInModal = () => {
     // Add slide image
     if (slide.component === "image" && slide.image) {
       images.push(slide.image);
-    } else if (slide.component === "column") {
+    } else if (slide.component === "columns") {
       // Iterate through each column in the slide
-      // for (const column of slide.columns) {
-      //   // Iterate through each item in the column
-      //   for (const item of column.items) {
-      //     // If the item type is 'image', add its image
-      //     if (item.type === "image") {
-      //       images.push(item.img);
-      //     }
-      //   }
-      // }
+      for (const column of slide.columns) {
+        // Iterate through each item in the column
+        for (const item of column.items) {
+          // If the item type is 'image', add its image
+          if (item.component === "column-image") {
+            images.push(item.image);
+          }
+        }
+      }
     }
   }
 

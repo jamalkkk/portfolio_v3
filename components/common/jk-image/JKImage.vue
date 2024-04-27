@@ -10,11 +10,9 @@ const props = defineProps({
         type: Object as PropType<ISbAsset>,
         default: () => ({}),
     },
-    img: {
-        type: String,
-        default: "",
-    },
 });
+
+console.log("image", props.image);
 
 // const src = computed(() => props.image?.url);
 // const alt = computed(() => props.image?.alternativeText);

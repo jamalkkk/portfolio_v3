@@ -1,5 +1,6 @@
+<style lang="scss" src="./util-richtext.scss"></style>
 <template>
-    <div v-if="content" v-html="content" class="flex flex-col gap-4 [&_*]:text-2xl"></div>
+    <div v-if="content" v-html="content" class="b-util-richtext"></div>
 </template>
 
 <script setup lang="ts">
