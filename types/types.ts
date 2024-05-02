@@ -92,6 +92,7 @@ export type IInfo = {
   hover: string;
   click: string;
   arrow: "top" | "right" | "bottom" | "left";
+  arrow_tablet: "top" | "right" | "bottom" | "left";
 };
 
 export type ISound = {
