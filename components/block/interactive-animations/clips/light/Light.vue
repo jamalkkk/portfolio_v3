@@ -26,12 +26,16 @@
 <script setup lang="ts">
 import { useTheme } from "~/store/useTheme";
 import { useSounds } from "~/store/useSounds";
+import { useLoader } from "~/store/useLoader";
 
 const soundsStore = useSounds();
 const { isSoundActive } = storeToRefs(soundsStore);
 
 const themeStore = useTheme();
 const { toggleIsDarkTheme } = themeStore;
+
+const loaderStore = useLoader();
+const { isLoaderActive } = storeToRefs(loaderStore);
 
 const props = defineProps({
     isClicked: {
@@ -53,6 +57,13 @@ watch(
         }
     }
 );
+
+// Uncomment to enable light swinging after loader is done
+// watch( () => isLoaderActive.value, (value) => {
+//     if (!value) {
+//         moveLight();
+//     }
+// });
 
 const moveLight = () => {
     isSwinging.value = true;

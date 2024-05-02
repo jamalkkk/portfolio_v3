@@ -23,10 +23,10 @@ interface AppState {
   shouldHomeBeActive: boolean;
   documentBreakpoint: string;
   info: any; // Define appropriate type for info
-  project: ProjectType; // Define appropriate type for project
-  projects: SBProjectDetails[]; // Define appropriate type for projects
+  // project: ProjectType; // Define appropriate type for project
+  projects: SBProjectDetails[] | []; // Define appropriate type for projects
   tags: SBTag[]; // Define appropriate type for tags
-  global: SBGlobal;
+  global: SBGlobal | {};
 }
 
 export const useApp = defineStore("app", {
@@ -43,15 +43,10 @@ export const useApp = defineStore("app", {
     shouldHomeBeActive: true,
     documentBreakpoint: "sm",
     info: {},
-    project: MDProjects[0],
-    projects: MDProjects,
+    // project: MDProjects[0],
+    projects: [],
     tags: MDTags,
-    global: {
-      name: "",
-      about: null,
-      social_media: [],
-      created_by: "",
-    },
+    global: {},
   }),
   actions: {
     setGlobal(value: SBGlobal) {

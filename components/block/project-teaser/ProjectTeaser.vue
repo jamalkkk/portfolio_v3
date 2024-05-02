@@ -61,10 +61,6 @@ const router = useRouter();
 
 const isClicked = ref(false);
 
-const image = computed(() => props.project?.teaser);
-
-console.log("image", props.project?.teaser);
-
 const showProject = () => {
   isClicked.value = true;
   setIsUIHidden(false);

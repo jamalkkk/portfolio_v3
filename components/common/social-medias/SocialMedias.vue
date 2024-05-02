@@ -3,25 +3,24 @@
 <template>
     <div class="b-social-medias">
         <icon
-            v-for="(sm, i) in socials"
+            v-for="(social, i) in socials"
             :key="i"
             class="social-medias-icon"
-            :name="sm.name"
-            :to="sm.link"
+            :name="social.icon"
+            :to="social.url"
         />
     </div>
 </template>
 <script setup lang="ts">
 import { useApp } from "~/store/useApp";
-import { useLoader } from "~/store/useLoader";
-import { useSounds } from "~/store/useSounds";
 
 const appStore = useApp();
 
-const { info } = storeToRefs(appStore);
+const { global } = storeToRefs(appStore);
 
 const socials = computed(() => {
-    const { socialMedia } = info.value;
+    const { social_media: socialMedia } = global.value;
+
     return (
         socialMedia || [
             {
