@@ -1,5 +1,15 @@
 $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
 
+.b-fader {
+    @apply absolute inset-0 z-10 opacity-0 transition duration-300 ease-out;
+
+    background-color: $color-primary;
+
+    &.is-transitioning {
+        opacity: 1;
+    }
+}
+
 .b-loader {
     @include custom-cursor("default");
 
@@ -9,43 +19,12 @@ $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
     left: 0;
     right: 0;
     bottom: 0;
+    background-color: $color-negative;
+    animation: loaderFadeIn 0.3s ease-in forwards;
+    transition: $base-transition;
 
     .is-dark-theme & {
         @include custom-cursor("default", "_dark");
-    }
-
-    &:not(.is-project-loader) {
-        background-color: $color-negative;
-        animation: loaderFadeIn 0.3s ease-in forwards;
-        transition: $base-transition;
-    }
-
-    &.is-project-loader {
-        opacity: 1;
-        background-color: transparent;
-        transition: $base-transition-3;
-
-        &.is-loaded,
-        &.is-fading-in {
-            opacity: 1;
-
-            .loader-frame {
-                background-color: $color-primary;
-            }
-        }
-
-        &.is-fading-out {
-            opacity: 0;
-
-            .loader-frame {
-                background-color: transparent;
-            }
-        }
-
-        .loader-frame {
-            background-color: transparent;
-            transition: $base-transition-3;
-        }
     }
 
     &.is-page-loading {
@@ -81,6 +60,10 @@ $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
 
         .loader-button {
             opacity: 1;
+
+            &:hover {
+                opacity: 0.5;
+            }
         }
 
         .loader-text {
@@ -88,7 +71,7 @@ $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
         }
     }
 
-    &.is-page-fading-out:not(.is-project-loader) {
+    &.is-page-fading-out {
         animation: loaderFadeOut 0.3s 0.1s ease-in forwards;
 
         .loader-button {

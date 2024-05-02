@@ -1,3 +1,4 @@
+import type { ISbRichtext } from "storyblok-js-client";
 import SwiperCore from "swiper";
 
 // Plugins
@@ -7,8 +8,8 @@ export type SwiperType = SwiperCore;
 export type Headline = "h1" | "h2" | "h3";
 
 export type ImageType = {
-  url: string;
-  alt: string;
+  component: "image";
+  image: ISbAsset;
 };
 
 // Data Structure
@@ -41,37 +42,30 @@ export type DesktopSegmentsType =
   | "standing"
   | "sitdown";
 
+// Project
+export type ColumnTextType = {
+  component: "column-text";
+  text: ISbRichtext;
+};
+
+export type ColumnImageType = {
+  component: "column-image";
+  image: ISbAsset;
+};
+
+
+export type ColumnsType = {
+  component: "columns";
+  columns: {
+    items: (ColumnTextType | ColumnImageType)[];
+  }[];
+};
+
 // Player
 export type VideoType = {
+  component: "video";
   type: string;
-  videoId: string;
-};
-
-// Project
-export type ContentItemType = {
-  type: "text" | "image" | "link";
-  imageSize: number;
-  image: ImageType;
-  text: string;
-  link: string;
-
-  // For now
-  img: string;
-};
-
-export type SlideContentType = {
-  items: ContentItemType[];
-};
-
-export type ProjectSlideType = {
-  type: "video" | "image" | "columns";
-  columns: SlideContentType[];
-  image: ImageType;
-  video: VideoType;
-  description: string;
-
-  // For now
-  img: string;
+  id: string;
 };
 
 export type ProjectType = {
@@ -79,6 +73,71 @@ export type ProjectType = {
   title: string;
   description: string;
   image: string;
-  slides: ProjectSlideType[];
+  slides: (VideoType | ImageType | ColumnsType)[];
   tags: string[];
 };
+
+/*
+  Storyblok
+*/
+export type ISocialLink = {
+  icon: string;
+  url: string;
+  alt: string;
+};
+
+export type IInfo = {
+  name: string;
+  normal: string;
+  hover: string;
+  click: string;
+  arrow: "top" | "right" | "bottom" | "left";
+  arrow_tablet: "top" | "right" | "bottom" | "left";
+};
+
+export type ISound = {
+  name: string;
+  audio: ISbAsset;
+};
+
+export type SBGlobal = {
+  //  general
+  name: string;
+
+  // about
+  about: ISbRichtext | null;
+  social_media: ISocialLink[] | [];
+
+  // animation
+  infos: IInfo[];
+  sounds: ISound[];
+
+  // footer
+  created_by: string;
+};
+
+export type SBTag = {
+  dimension_value: string | null;
+  id: number;
+  name: string;
+  value: string;
+};
+
+export type SBProjectDetails = {
+  component: "project-details";
+  title: string;
+  description_short: string;
+  slides: IColumns; // | IImage | IVideo;
+  tags: string;
+
+  slug?: string;
+};
+
+// Project
+export type IColumns = {
+  component: "columns";
+  // items: {
+
+  // }
+};
+

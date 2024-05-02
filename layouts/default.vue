@@ -16,7 +16,7 @@
             <Footer />
         </div>
 
-        <!-- <Loader /> -->
+        <Loader />
     </div>
 </template>
 
@@ -26,8 +26,10 @@ import { useLoader } from "~/store/useLoader";
 import { useTheme } from "~/store/useTheme";
 
 const { setIsMainHomeActive } = useApp();
-const { isLoaderActive } = useLoader();
+const loaderStore = useLoader();
+const { setIsLoaderTransitioning } = loaderStore;
 const theme = useTheme();
+const { isLoaderActive, isLoaderTransitioning } = storeToRefs(loaderStore);
 const { isDarkTheme } = storeToRefs(theme);
 
 const { setTheme } = useCommon();
@@ -48,6 +50,10 @@ watch(isDarkTheme, (value) => setTheme(value));
 onMounted(() => {
     setTheme(isDarkTheme.value);
     initialiseEventListeners();
+
+    setTimeout(() => {
+        setIsLoaderTransitioning(false);
+    }, 900);
 });
 
 onUnmounted(() => {

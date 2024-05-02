@@ -958,7 +958,7 @@
 
 "@nuxtjs/google-fonts@^3.1.3":
   version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/google-fonts/-/google-fonts-3.1.3.tgz#c00d4adaa028b39747783bd61b13b06dffc7c99f"
+  resolved "https://registry.npmjs.org/@nuxtjs/google-fonts/-/google-fonts-3.1.3.tgz"
   integrity sha512-gHwstHXQKd/r9O2WnQR4UJbi7Rfb9No1/gF4gqP+y18h1DAAZUOYPBF5EAPGjZKgDOW2XbZHP8Rw3oSDTpIT1A==
   dependencies:
     "@nuxt/kit" "^3.8.2"
@@ -1293,6 +1293,27 @@
   resolved "https://registry.npmjs.org/@sindresorhus/merge-streams/-/merge-streams-1.0.0.tgz"
   integrity sha512-rUV5WyJrJLoloD4NDN1V1+LDMDWOa4OTsT4yYJwQNpTU6FWxkxHpL7eu4w+DmiH8x/EAM1otkPE1+LaspIbplw==
 
+"@storyblok/js@^3.0.7":
+  version "3.0.7"
+  resolved "https://registry.npmjs.org/@storyblok/js/-/js-3.0.7.tgz"
+  integrity sha512-m6MpUhjEpDWMKftyjJhTkthd/I6LZ9xhuT/Wxa1e99Cf4niVC5jgMVPQ5tOsUgn3D8BKNL+6PI3hEj5dGKB9xw==
+  dependencies:
+    storyblok-js-client "^6.7.1"
+
+"@storyblok/nuxt@^6.0.6":
+  version "6.0.6"
+  resolved "https://registry.npmjs.org/@storyblok/nuxt/-/nuxt-6.0.6.tgz"
+  integrity sha512-kf/E3GYkH6YErM8G2p/GDSY9Ad8rrEfXmFFpqTekbx/mzqKWps7J0P7IZjuwBXU7vsaSYGmmi7GRmdeMrwHcLw==
+  dependencies:
+    "@storyblok/vue" "^8.0.0"
+
+"@storyblok/vue@^8.0.0":
+  version "8.0.7"
+  resolved "https://registry.npmjs.org/@storyblok/vue/-/vue-8.0.7.tgz"
+  integrity sha512-JrqFC/vuZJyzZCzkdPpLgD1USsJVcKW5K1o5Df2dN0nrvdMsE5zcfRNnkK2uP8xXIT610/H5qwxnrvBAT2CmSw==
+  dependencies:
+    "@storyblok/js" "^3.0.7"
+
 "@trysound/sax@0.2.0":
   version "0.2.0"
   resolved "https://registry.npmjs.org/@trysound/sax/-/sax-0.2.0.tgz"
@@ -1328,10 +1349,10 @@
   resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.5.tgz"
   integrity sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==
 
-"@types/node@*":
-  version "20.10.5"
-  resolved "https://registry.npmjs.org/@types/node/-/node-20.10.5.tgz"
-  integrity sha512-nNPsNE65wjMxEKI93yOP+NPGGBJz/PoN3kZsVLee0XMiJolxSekEVD8wRwBUBqkwc7UWop0edW50yrCQW4CyRw==
+"@types/node@*", "@types/node@^20.11.27":
+  version "20.11.27"
+  resolved "https://registry.npmjs.org/@types/node/-/node-20.11.27.tgz"
+  integrity sha512-qyUZfMnCg1KEz57r7pzFtSGt49f6RPkPBis3Vo4PbS7roQEDn22hiHzl/Lo1q4i4hDEgBJmBF/NTNg2XR0HbFg==
   dependencies:
     undici-types "~5.26.4"
 
@@ -3117,7 +3138,7 @@ globby@^14.0.0:
 
 google-fonts-helper@^3.4.1:
   version "3.4.1"
-  resolved "https://registry.yarnpkg.com/google-fonts-helper/-/google-fonts-helper-3.4.1.tgz#9670494011945347e5694ee8169c628c10a6685b"
+  resolved "https://registry.npmjs.org/google-fonts-helper/-/google-fonts-helper-3.4.1.tgz"
   integrity sha512-unq9c1NF771916DrVR2MTpMJ5iHiMSjMBApErjhWT1FZIE+7x+Qik+w6cYi5jw/KtHELz+tyGAKgQetTU9wrlA==
   dependencies:
     deepmerge "^4.3.1"
@@ -5786,6 +5807,11 @@ std-env@^3.4.3, std-env@^3.5.0:
   version "3.7.0"
   resolved "https://registry.npmjs.org/std-env/-/std-env-3.7.0.tgz"
   integrity sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==
+
+storyblok-js-client@^6.7.1:
+  version "6.7.1"
+  resolved "https://registry.npmjs.org/storyblok-js-client/-/storyblok-js-client-6.7.1.tgz"
+  integrity sha512-VOobZkor6BESji2MJUuO5jTIZeCWMUMR2LZtdSEEAtUDUfKwA88lGqDVMQqtWZ8nD7NzhZ6S7qvdv5Or9HZXRw==
 
 streamx@^2.15.0:
   version "2.15.6"

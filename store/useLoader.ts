@@ -4,20 +4,20 @@ import { defineStore } from "pinia";
 
 interface LoaderState {
   isLoaderActive: boolean;
-  shouldProjectLoaderBeActive: boolean;
+  isLoaderTransitioning: boolean;
 }
 
 export const useLoader = defineStore("loader", {
   state: (): LoaderState => ({
     isLoaderActive: true,
-    shouldProjectLoaderBeActive: false,
+    isLoaderTransitioning: false,
   }),
   actions: {
     setIsLoaderActive(value: boolean) {
       this.isLoaderActive = value;
     },
-    setShouldProjectLoaderBeActive(value: boolean) {
-      this.shouldProjectLoaderBeActive = value;
+    setIsLoaderTransitioning(value: boolean) {
+      this.isLoaderTransitioning = value;
     },
   },
 });

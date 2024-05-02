@@ -21,7 +21,7 @@
             <Youtube
                 v-if="isYoutube"
                 ref="$playerWrapper"
-                :videoid="video.videoId"
+                :videoid="video.id"
                 :autoplay="false"
                 :controls="1"
                 :no-cookie="true"
@@ -34,7 +34,7 @@
             <Vimeo
                 v-else
                 ref="$playerWrapper"
-                :video-id="video.videoId"
+                :video-id="video.id"
                 height="100%"
                 width="100%"
                 :autoplay="false"

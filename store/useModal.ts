@@ -4,28 +4,34 @@ import { defineStore } from "pinia";
 
 interface ModalState {
   isModalActive: boolean;
-  image: string;
-  projectImages: string[]; // List of all images in the project
+  image: ISbAsset;
+  projectImages: ISbAsset[]; // List of all images in the project
 }
 
 export const useModal = defineStore("modal", {
   state: (): ModalState => ({
     isModalActive: false,
-    image: {},
+    image: {
+      filename: "",
+      alt: "",
+    },
     projectImages: [],
   }),
   actions: {
     setIsModalActive(value: boolean) {
       if (!value) {
-        this.image = {};
+        this.image = {
+          filename: "",
+          alt: "",
+        };
       }
 
       this.isModalActive = value;
     },
-    setImage(value: Record<string, any>) {
+    setImage(value: ISbAsset) {
       this.image = value;
     },
-    setProjectImages(value: string[]) {
+    setProjectImages(value: ISbAsset[]) {
       this.projectImages = value;
     },
   },

@@ -77,7 +77,7 @@ const props = defineProps({
     },
     arrowTablet: {
         type: String as PropType<"top" | "right" | "bottom" | "left">,
-        default: "bottom",
+        default: "",
     },
     text: {
         type: String,
@@ -97,16 +97,6 @@ import { useApp } from "~/store/useApp";
 const appStore = useApp();
 const { isInfosActive, documentBreakpoint } = appStore;
 
-const infoArrow = computed(() =>
-    props.arrowTablet && documentBreakpoint === "md"
-        ? props.arrowTablet
-        : props.arrow
-);
-
-const styleObject = computed(() => ({
-    animationDelay: getRandomInt(300) + "ms",
-}));
-
 const replaceSpace = (text: string) => {
     return text.replace(/\s/g, "&nbsp;");
 };
@@ -114,4 +104,18 @@ const replaceSpace = (text: string) => {
 const getRandomInt = (max: number) => {
     return Math.floor(Math.random() * max);
 };
+
+const infoArrow = ref(props.arrow);
+// set infor arrow function
+const setInfoArrow = () => {
+    infoArrow.value = props.arrowTablet && documentBreakpoint === "md"
+        ? props.arrowTablet
+        : props.arrow;
+};
+
+//  on resize reset infow arrow
+onMounted(() => {
+    setInfoArrow();
+    window.addEventListener("resize", setInfoArrow);
+});
 </script>

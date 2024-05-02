@@ -2,24 +2,12 @@ import type { ProjectType } from "~/types/types";
 
 export function useMockData() {
   const MDTags = [
-    "animation",
-    "illustration",
-    "web",
-    "design",
-    "development",
-    // "motion",
-    // "ux",
-    // "ui",
-    // "frontend",
-    // "backend",
-    // "fullstack",
-    // "wordpress",
-    // "react",
-    // "vue",
-    // "angular",
-    // "svelte",
-    // "node",
-    // "express",
+    {
+      name: "animation",
+      id: 12121,
+      value: "animation",
+      dimension_value: null,
+    },
   ];
 
   const MDProjects: ProjectType[] = [

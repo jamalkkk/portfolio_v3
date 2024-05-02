@@ -12,8 +12,8 @@ export function useCommon() {
   const theme = useTheme();
   const swiper = useSwiperStore();
 
-  const { setShouldScrollToProjects, setProject, setDocumentBreakpoint } = app;
-  const { setShouldProjectLoaderBeActive } = loader;
+  const { setShouldScrollToProjects, setDocumentBreakpoint, setIsMainHomeActive } = app;
+  const { setIsLoaderTransitioning } = loader;
   const { isSoundSupposedActive, setIsSoundActive } = sounds;
   const { originalPrimary, originalNegative, setThemeColors } = theme;
   const { resetVideoSlideIndices } = swiper;
@@ -26,26 +26,26 @@ export function useCommon() {
     container?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const scrollToProjects = () => {
+  const scrollToProjects = (isSmooth = true) => {
     const container = document.querySelector<HTMLElement>(".layout-container");
     container?.scrollTo({
       top: document.documentElement.clientHeight,
-      behavior: "smooth",
+      behavior: isSmooth ? "smooth" : "instant",
     });
   };
 
   // Project page
   const closeProject = (scrollToProjects = true) => {
-    setShouldProjectLoaderBeActive(true);
+    setIsLoaderTransitioning(true);
 
     if (scrollToProjects) {
       setShouldScrollToProjects(true);
+    } else {
+      setIsMainHomeActive(true);
     }
 
     setTimeout(() => {
       router.push("/");
-
-      setProject({});
 
       if (isMySoundSupposedActive.value) {
         setTimeout(() => setIsSoundActive(true), 500);

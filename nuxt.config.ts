@@ -1,5 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+const config = {
+  IS_PREVIEW: process.env.IS_PREVIEW,
+  STORYBLOK_ACCESS_TOCKEN:
+    process.env.STORYBLOK_ACCESS_TOCKEN || "H9kIQxFrYDoMhtQ9XOj6FAtt",
+};
+
 export default defineNuxtConfig({
+  // env: {
+  //   STORYBLOK_ACCESS_TOCKEN: process.env.STORYBLOK_ACCESS_TOCKEN || "", // Replace 'default_value' with your default value
+  // },
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -46,6 +57,12 @@ export default defineNuxtConfig({
           "Averia+Libre": [300, 400, 700],
           "Maven Pro": [400, 500],
         },
+      },
+    ],
+    [
+      "@storyblok/nuxt",
+      {
+        accessToken: config.STORYBLOK_ACCESS_TOCKEN,
       },
     ],
   ],

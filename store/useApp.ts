@@ -3,7 +3,12 @@
 import { defineStore } from "pinia";
 const { MDTags, MDProjects } = useMockData();
 
-import type { ProjectType } from "~/types/types";
+import type {
+  ProjectType,
+  SBGlobal,
+  SBProjectDetails,
+  SBTag,
+} from "~/types/types";
 
 interface AppState {
   isHomeActive: boolean;
@@ -18,9 +23,10 @@ interface AppState {
   shouldHomeBeActive: boolean;
   documentBreakpoint: string;
   info: any; // Define appropriate type for info
-  project: ProjectType; // Define appropriate type for project
-  projects: ProjectType[]; // Define appropriate type for projects
-  tags: any[]; // Define appropriate type for tags
+  // project: ProjectType; // Define appropriate type for project
+  projects: SBProjectDetails[] | []; // Define appropriate type for projects
+  tags: SBTag[]; // Define appropriate type for tags
+  global: SBGlobal | {};
 }
 
 export const useApp = defineStore("app", {
@@ -31,20 +37,28 @@ export const useApp = defineStore("app", {
     isInfosActive: false,
     isInfoInfoActive: false,
     isSmallScreen: false,
-    isDataLoaded: true,
+    isDataLoaded: false,
     isProjectLoaded: false,
     shouldScrollToProjects: false,
     shouldHomeBeActive: true,
     documentBreakpoint: "sm",
     info: {},
-    project: MDProjects[0],
-    projects: MDProjects,
+    // project: MDProjects[0],
+    projects: [],
     tags: MDTags,
+    global: {},
   }),
   actions: {
-    // setData(value: { type: keyof AppState; data: any }) {
-    //   this[value.type] = value.data;
-    // },
+    setGlobal(value: SBGlobal) {
+      this.global = value;
+      this.isDataLoaded = true;
+    },
+    setTags(value: SBTag[]) {
+      this.tags = value;
+    },
+    setProjects(value: SBProjectDetails[]) {
+      this.projects = value;
+    },
     setProject(value: any) {
       this.project = value;
       this.isProjectLoaded = !!value.title;

@@ -3,7 +3,7 @@
 <template>
     <div
         :class="[
-            'b-image-frame mx-auto aspect-ratio-1',
+            'b-image-frame mx-auto',
             {
                 'is-clicked': isClicked,
                 'enlarge-on-hover': enlargeOnHover,
@@ -20,7 +20,7 @@
                 :isInverted="isInverted"
             >
                 <div class="image-frame-wrapper">
-                    <LazyJKImage v-if="img" :img="img" />
+                    <LazyJKImage :image="image.image" />
                 </div>
                 <slot name="content" />
             </Frame>
@@ -30,6 +30,7 @@
 
 <script setup lang="ts">
 import { useModal } from "~/store/useModal";
+import type { ImageType } from "~/types/types";
 
 const modalStore = useModal();
 const { isModalActive } = storeToRefs(modalStore);
@@ -60,7 +61,7 @@ const props = defineProps({
         default: 0,
     },
     image: {
-        type: Object,
+        type: Object as PropType<ImageType>,
         default: () => ({}),
     },
     // @TODO: use image instead
@@ -73,6 +74,7 @@ const props = defineProps({
         default: () => null,
     },
 });
+
 
 const isClicked = ref(false);
 

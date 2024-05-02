@@ -7,23 +7,41 @@
 <script setup lang="ts">
 import { useApp } from "~/store/useApp";
 import { useTheme } from "~/store/useTheme";
+import type { ISbStoryData } from "storyblok-js-client";
+import type { SBGlobal, SBTag } from "~/types/types";
 
-const { toggleIsUserOnPage } = useApp();
+const { getStory, getDatasource } = useStoryblokClient();
+const { toggleIsUserOnPage, setGlobal, setTags } = useApp();
 const { init } = useCommon();
 const route = useRoute();
 
 const theme = useTheme();
 const { isDarkTheme, negative } = storeToRefs(theme);
 
+// Meta data
 const description = ref(
     "Jamal Khalili is a Multimedia Artist, with extensive knowledge and experience in creating engaing mixed media. His expertise includes creative development, animation, and illustration."
 );
-
 const title = ref(
     `Jamal Khalili — ${
         route.path.includes("project") ? "Project" : "Multimedia Artist"
     }`
 );
+
+const getStoryblokData = async () => {
+    let global: ISbStoryData<SBGlobal> | null = await getStory("/global");
+    let tags: ISbStoryData<SBTag[]> | null = await getDatasource("tags");
+
+    // console.log("projects", projects);
+
+    if (global?.content) {
+        setGlobal(global?.content);
+    }
+
+    if (tags?.length) {
+        setTags(tags);
+    }
+};
 
 // This will be reactive when you change title/description above
 useHead({
@@ -100,6 +118,8 @@ useSeoMeta({
 
 onMounted(() => {
     init();
+
+    getStoryblokData();
     window.addEventListener("visibilitychange", toggleIsUserOnPage);
 });
 

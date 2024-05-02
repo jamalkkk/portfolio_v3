@@ -12,14 +12,14 @@
         @keydown="prevImage()"
     >
         <div class="modal-container" @click="closeModal">
-            <LazyJKImage
+            <!-- <LazyJKImage
                 ref="$image"
                 :img="currentImage"
                 id="modal-image"
                 class="opacity-0 transition duration-500"
                 :class="{ 'opacity-100': isActive }"
-            />
-            <!-- <LazyJKImage :image="image"  /> -->
+            /> -->
+            <LazyJKImage :image="currentImage"  />
         </div>
     </div>
 </template>
@@ -39,7 +39,7 @@ const $image = ref<HTMLElement>();
 
 const isActive = ref(false);
 const activeImageIndex = ref<number>(-1);
-const currentImage = ref<string>();
+const currentImage = ref<ISbAsset>();
 
 const closeModal = (event: KeyboardEvent | MouseEvent) => {
     if (
@@ -70,12 +70,10 @@ const handleKeyPress = (event: KeyboardEvent) => {
 };
 
 const prevImage = () => {
-    console.log("prevImage");
     setImage(activeImageIndex.value - 1);
 };
 
 const nextImage = () => {
-    console.log("nextImage");
     setImage(activeImageIndex.value + 1);
 };
 
@@ -103,6 +101,7 @@ watch(
 );
 
 onMounted(() => {
+    // log images 
     window.addEventListener("keyup", handleKeyPress);
 });
 
