@@ -2,18 +2,18 @@
 
 <script setup lang="ts">
 // Imports
-import background from "~/public/audios/background.mp3";
-import ball from "~/public/audios/ball.mp3";
-import bikeBell from "~/public/audios/bikeBell.mp3";
-import bikeChain from "~/public/audios/bikeChain.mp3";
-import bird from "~/public/audios/bird.mp3";
-import cat from "~/public/audios/cat.mp3";
-import desktop from "~/public/audios/desktop.mp3";
-import desktopType from "~/public/audios/desktopType.mp3";
-import lightSwitch from "~/public/audios/lightSwitch.mp3";
-import poster_1 from "~/public/audios/poster_1.mp3";
-import poster_2 from "~/public/audios/poster_2.mp3";
-import poster_3 from "~/public/audios/poster_3.mp3";
+import background from "/audios/background.mp3";
+import ball from "/audios/ball.mp3";
+import bikeBell from "/audios/bikeBell.mp3";
+import bikeChain from "/audios/bikeChain.mp3";
+import bird from "/audios/bird.mp3";
+import cat from "/audios/cat.mp3";
+import desktop from "/audios/desktop.mp3";
+import desktopType from "/audios/desktopType.mp3";
+import lightSwitch from "/audios/lightSwitch.mp3";
+import poster_1 from "/audios/poster_1.mp3";
+import poster_2 from "/audios/poster_2.mp3";
+import poster_3 from "/audios/poster_3.mp3";
 
 // Object containing audio files
 const audioFiles = {
