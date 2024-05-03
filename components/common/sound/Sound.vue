@@ -1,5 +1,36 @@
 <template></template>
+
 <script setup lang="ts">
+// Imports
+import background from "@/src/audios/background.mp3";
+import ball from "@/src/audios/ball.mp3";
+import bikeBell from "@/src/audios/bikeBell.mp3";
+import bikeChain from "@/src/audios/bikeChain.mp3";
+import bird from "@/src/audios/bird.mp3";
+import cat from "@/src/audios/cat.mp3";
+import desktop from "@/src/audios/desktop.mp3";
+import desktopType from "@/src/audios/desktopType.mp3";
+import lightSwitch from "@/src/audios/lightSwitch.mp3";
+import poster_1 from "@/src/audios/poster_1.mp3";
+import poster_2 from "@/src/audios/poster_2.mp3";
+import poster_3 from "@/src/audios/poster_3.mp3";
+
+// Object containing audio files
+const audioFiles = {
+    background,
+    ball,
+    bikeBell,
+    bikeChain,
+    bird,
+    cat,
+    desktop,
+    desktopType,
+    lightSwitch,
+    poster_1,
+    poster_2,
+    poster_3,
+};
+
 import { useSounds } from "~/store/useSounds";
 
 const soundsStore = useSounds();
@@ -39,41 +70,26 @@ const props = defineProps({
 
 const isCurrentSoundPlaying = ref(false);
 const isReady = ref(false);
-const audio = ref();
+const audio = ref<HTMLAudioElement>();
 
 const setUpAudio = async () => {
-    const file = `../../../audios/${props.title}.mp3`;
+    // const file = `../../../public/audios/${props.title}.mp3`;
 
     try {
-        // const audioFile = await import(/* @vite-ignore */ file);
-        // audio.value = new Audio(audioFile.default);
+        const audioFile = await import(
+            /* @vite-ignore */ audioFiles[props.title]
+        );
+        audio.value = new Audio(audioFile.default);
 
-        // Fetch the audio file from the serverless function
-        const response = await fetch(`/api/audio?title=${props.title}`);
+        audio.value.volume = props.volume;
+        audio.value.loop = props.loop;
 
-        // Check if the request was successful
-        if (!response.ok) {
-            throw new Error("Failed to fetch audio file");
-        }
-
-        // Convert the audio stream into a Blob
-        const audioBlob = await response.blob();
-
-        // Create an object URL for the audio Blob
-        const audioUrl = URL.createObjectURL(audioBlob);
-
-        // Create an Audio object with the object URL
-        const audioElement = new Audio(audioUrl);
-
-        audioElement.volume = props.volume;
-        audioElement.loop = props.loop;
-
-        audioElement.oncanplay = () => (isReady.value = true);
-        audioElement.onplay = () => setIsCurrentSoundPlaying(true);
-        audioElement.onpause = () => setIsCurrentSoundPlaying(false);
-        audioElement.onended = () => setIsCurrentSoundPlaying(false);
+        audio.value.oncanplay = () => (isReady.value = true);
+        audio.value.onplay = () => setIsCurrentSoundPlaying(true);
+        audio.value.onpause = () => setIsCurrentSoundPlaying(false);
+        audio.value.onended = () => setIsCurrentSoundPlaying(false);
     } catch (error) {
-        console.error("Failed to load audio file:", error);
+        console.error("Failed to load audio file:", props.title, error);
     }
 };
 

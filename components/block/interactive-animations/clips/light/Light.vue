@@ -15,11 +15,6 @@
             :shouldBePlaying="isSwinging && isSoundActive"
             :volume="0.2"
         />
-        <Sound
-            title="lightSwing"
-            :shouldBePlaying="isSwinging && isSoundActive"
-            :volume="0.3"
-        />
     </div>
 </template>
 
