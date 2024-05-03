@@ -49,7 +49,7 @@ const setUpAudio = async () => {
         // audio.value = new Audio(audioFile.default);
 
         // Fetch the audio file from the serverless function
-        const response = await fetch(`/api/audio?title=${props.title}`);
+        const response = await fetch(`/audios?title=${props.title}`);
 
         // Check if the request was successful
         if (!response.ok) {
