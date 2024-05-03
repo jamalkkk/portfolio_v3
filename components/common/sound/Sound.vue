@@ -39,22 +39,39 @@ const props = defineProps({
 
 const isCurrentSoundPlaying = ref(false);
 const isReady = ref(false);
-const audio = ref<HTMLAudioElement>();
+const audio = ref();
 
 const setUpAudio = async () => {
     const file = `../../../audios/${props.title}.mp3`;
 
     try {
-        const audioFile = await import(/* @vite-ignore */ file);
-        audio.value = new Audio(audioFile.default);
+        // const audioFile = await import(/* @vite-ignore */ file);
+        // audio.value = new Audio(audioFile.default);
 
-        audio.value.volume = props.volume;
-        audio.value.loop = props.loop;
+        // Fetch the audio file from the serverless function
+        const response = await fetch(`/api/audio?title=${props.title}`);
 
-        audio.value.oncanplay = () => (isReady.value = true);
-        audio.value.onplay = () => setIsCurrentSoundPlaying(true);
-        audio.value.onpause = () => setIsCurrentSoundPlaying(false);
-        audio.value.onended = () => setIsCurrentSoundPlaying(false);
+        // Check if the request was successful
+        if (!response.ok) {
+            throw new Error("Failed to fetch audio file");
+        }
+
+        // Convert the audio stream into a Blob
+        const audioBlob = await response.blob();
+
+        // Create an object URL for the audio Blob
+        const audioUrl = URL.createObjectURL(audioBlob);
+
+        // Create an Audio object with the object URL
+        const audioElement = new Audio(audioUrl);
+
+        audioElement.volume = props.volume;
+        audioElement.loop = props.loop;
+
+        audioElement.oncanplay = () => (isReady.value = true);
+        audioElement.onplay = () => setIsCurrentSoundPlaying(true);
+        audioElement.onpause = () => setIsCurrentSoundPlaying(false);
+        audioElement.onended = () => setIsCurrentSoundPlaying(false);
     } catch (error) {
         console.error("Failed to load audio file:", error);
     }

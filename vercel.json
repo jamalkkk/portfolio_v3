@@ -1,0 +1,8 @@
+{
+  "routes": [
+    {
+      "src": "/api/audio",
+      "dest": "/server/api/audio.js"
+    }
+  ]
+}

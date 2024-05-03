@@ -16,7 +16,6 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           additionalData: '@use "~/assets/scss/styles.scss" as *;',
-          // additionalData: '@use (from "@rollup/plugin-alias")("~/assets/scss/common.scss" as "~/assets/scss/styles.scss");',
         },
       },
     },
@@ -72,9 +71,7 @@ export default defineNuxtConfig({
 
   styleResources: {
     // Globally import your common styles file
-    scss: [
-      '~/assets/scss/common.scss',
-    ],
+    scss: ["~/assets/scss/common.scss"],
   },
 
   components: [
