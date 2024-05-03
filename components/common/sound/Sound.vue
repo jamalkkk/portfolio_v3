@@ -42,12 +42,12 @@ const isReady = ref(false);
 const audio = ref<HTMLAudioElement>();
 
 const setUpAudio = async () => {
-    const file = `../../../assets/audio/${props.title}.mp3`;
+    const file = `../../../audios/${props.title}.mp3`;
 
     try {
         const audioFile = await import(/* @vite-ignore */ file);
         audio.value = new Audio(audioFile.default);
-        // audio.value.play();
+
         audio.value.volume = props.volume;
         audio.value.loop = props.loop;
 
