@@ -2,18 +2,18 @@
 
 <script setup lang="ts">
 // Imports
-import background from "@/src/audios/background.mp3";
-import ball from "@/src/audios/ball.mp3";
-import bikeBell from "@/src/audios/bikeBell.mp3";
-import bikeChain from "@/src/audios/bikeChain.mp3";
-import bird from "@/src/audios/bird.mp3";
-import cat from "@/src/audios/cat.mp3";
-import desktop from "@/src/audios/desktop.mp3";
-import desktopType from "@/src/audios/desktopType.mp3";
-import lightSwitch from "@/src/audios/lightSwitch.mp3";
-import poster_1 from "@/src/audios/poster_1.mp3";
-import poster_2 from "@/src/audios/poster_2.mp3";
-import poster_3 from "@/src/audios/poster_3.mp3";
+import background from "~/assets/audios/background.mp3";
+import ball from "~/assets/audios/ball.mp3";
+import bikeBell from "~/assets/audios/bikeBell.mp3";
+import bikeChain from "~/assets/audios/bikeChain.mp3";
+import bird from "~/assets/audios/bird.mp3";
+import cat from "~/assets/audios/cat.mp3";
+import desktop from "~/assets/audios/desktop.mp3";
+import desktopType from "~/assets/audios/desktopType.mp3";
+import lightSwitch from "~/assets/audios/lightSwitch.mp3";
+import poster_1 from "~/assets/audios/poster_1.mp3";
+import poster_2 from "~/assets/audios/poster_2.mp3";
+import poster_3 from "~/assets/audios/poster_3.mp3";
 
 // Object containing audio files
 const audioFiles = {
@@ -76,10 +76,10 @@ const setUpAudio = async () => {
     // const file = `../../../public/audios/${props.title}.mp3`;
 
     try {
-        const audioFile = await import(
-            /* @vite-ignore */ audioFiles[props.title]
-        );
-        audio.value = new Audio(audioFile.default);
+        // const audioFile = await import(
+        //     /* @vite-ignore */ audioFiles[props.title]
+        // );
+        audio.value = new Audio(audioFiles[props.title]);
 
         audio.value.volume = props.volume;
         audio.value.loop = props.loop;
@@ -132,6 +132,6 @@ watch(
 );
 
 onMounted(async () => {
-    setUpAudio();
+    setTimeout(setUpAudio, 10);
 });
 </script>
