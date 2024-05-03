@@ -73,13 +73,11 @@ const isReady = ref(false);
 const audio = ref<HTMLAudioElement>();
 
 const setUpAudio = async () => {
-    const file = `../../../public/audios/${props.title}.mp3`;
+    const file = `~/audios/${props.title}.mp3`;
 
     try {
-        // const audioFile = await import(
-        //     /* @vite-ignore */ audioFiles[props.title]
-        // );
-        audio.value = new Audio(audioFiles[props.title]);
+        const audioFile = await import(/* @vite-ignore */ file);
+        audio.value = new Audio(audioFile);
 
         audio.value.volume = props.volume;
         audio.value.loop = props.loop;
