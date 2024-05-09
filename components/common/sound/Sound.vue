@@ -25,7 +25,7 @@ const props = defineProps({
     },
     title: {
         type: String,
-        default: "poster",
+        default: "background",
     },
     onPlay: {
         type: Function,
@@ -42,32 +42,16 @@ const isReady = ref(false);
 const audio = ref();
 
 const setUpAudio = async () => {
-    const file = `../../../assets/audios/${props.title}.mp3`;
-
     try {
-        const audioFile = await import(/* @vite-ignore */ file);
-        audio.value = new Audio(audioFile.default);
-        audio.value.play();
-        // Fetch the audio file from the serverless function
-        // const response = await fetch(`/audios?title=${props.title}`);
+        const sourceElement = document.createElement("source");
 
-        // Check if the request was successful
-        // if (!response.ok) {
-        //     throw new Error("Failed to fetch audio file");
-        // }
-
-        // Convert the audio stream into a Blob
-        // const audioBlob = await response.blob();
-
-        // Create an object URL for the audio Blob
-        // const audioUrl = URL.createObjectURL(audioBlob);
-
-        // Create an Audio object with the object URL
-        // const audioElement = new Audio(audioUrl);
+        audio.value = new Audio();
+        audio.value.src = `https://jamalkkk.github.io/${props.title}.mp3`;
+        audio.value.type = "audio/mpeg";
+        audio.value.appendChild(sourceElement);
 
         audio.value.volume = props.volume;
         audio.value.loop = props.loop;
-
         audio.value.oncanplay = () => (isReady.value = true);
         audio.value.onplay = () => setIsCurrentSoundPlaying(true);
         audio.value.onpause = () => setIsCurrentSoundPlaying(false);
