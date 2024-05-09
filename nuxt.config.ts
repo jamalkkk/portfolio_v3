@@ -2,15 +2,10 @@
 
 const config = {
   IS_PREVIEW: process.env.IS_PREVIEW,
-  STORYBLOK_ACCESS_TOCKEN:
-    process.env.STORYBLOK_ACCESS_TOCKEN || "H9kIQxFrYDoMhtQ9XOj6FAtt",
+  STORYBLOK_ACCESS_TOCKEN: process.env.STORYBLOK_ACCESS_TOCKEN,
 };
 
 export default defineNuxtConfig({
-  // env: {
-  //   STORYBLOK_ACCESS_TOCKEN: process.env.STORYBLOK_ACCESS_TOCKEN || "", // Replace 'default_value' with your default value
-  // },
-
   vite: {
     css: {
       preprocessorOptions: {
