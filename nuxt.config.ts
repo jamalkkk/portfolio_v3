@@ -42,6 +42,15 @@ export default defineNuxtConfig({
 
   build: {
     vendor: ["vue-vimeo-player", "vue-video-wrapper"],
+    extend(config) {
+      config.module.rules.push({
+        test: /\.mp3$/i,
+        loader: "file-loader",
+        options: {
+          name: "[path][name].[ext]",
+        },
+      });
+    },
   },
 
   devtools: { enabled: true },

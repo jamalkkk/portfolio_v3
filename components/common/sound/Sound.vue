@@ -42,36 +42,36 @@ const isReady = ref(false);
 const audio = ref();
 
 const setUpAudio = async () => {
-    const file = `../../../audios/${props.title}.mp3`;
+    const file = `../../../assets/audios/${props.title}.mp3`;
 
     try {
-        // const audioFile = await import(/* @vite-ignore */ file);
-        // audio.value = new Audio(audioFile.default);
-
+        const audioFile = await import(/* @vite-ignore */ file);
+        audio.value = new Audio(audioFile.default);
+        audio.value.play();
         // Fetch the audio file from the serverless function
-        const response = await fetch(`/audios?title=${props.title}`);
+        // const response = await fetch(`/audios?title=${props.title}`);
 
         // Check if the request was successful
-        if (!response.ok) {
-            throw new Error("Failed to fetch audio file");
-        }
+        // if (!response.ok) {
+        //     throw new Error("Failed to fetch audio file");
+        // }
 
         // Convert the audio stream into a Blob
-        const audioBlob = await response.blob();
+        // const audioBlob = await response.blob();
 
         // Create an object URL for the audio Blob
-        const audioUrl = URL.createObjectURL(audioBlob);
+        // const audioUrl = URL.createObjectURL(audioBlob);
 
         // Create an Audio object with the object URL
-        const audioElement = new Audio(audioUrl);
+        // const audioElement = new Audio(audioUrl);
 
-        audioElement.volume = props.volume;
-        audioElement.loop = props.loop;
+        audio.value.volume = props.volume;
+        audio.value.loop = props.loop;
 
-        audioElement.oncanplay = () => (isReady.value = true);
-        audioElement.onplay = () => setIsCurrentSoundPlaying(true);
-        audioElement.onpause = () => setIsCurrentSoundPlaying(false);
-        audioElement.onended = () => setIsCurrentSoundPlaying(false);
+        audio.value.oncanplay = () => (isReady.value = true);
+        audio.value.onplay = () => setIsCurrentSoundPlaying(true);
+        audio.value.onpause = () => setIsCurrentSoundPlaying(false);
+        audio.value.onended = () => setIsCurrentSoundPlaying(false);
     } catch (error) {
         console.error("Failed to load audio file:", error);
     }
