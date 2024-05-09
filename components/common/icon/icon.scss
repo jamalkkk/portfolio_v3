@@ -1,0 +1,103 @@
+.b-icon {
+    @include custom-cursor("pointer");
+
+    display: inline-flex;
+    width: 4rem;
+    height: 4rem;
+    border: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background: unset;
+    transition: $base-transition;
+
+    &:hover {
+        opacity: 0.5;
+    }
+
+    &:focus-visible {
+        outline: $cta-outline !important;
+        outline-offset: 2px;
+    }
+
+    &:active {
+        @include custom-cursor("active");
+
+        svg {
+            transform: scale(0.97);
+        }
+    }
+
+    &.size-1 {
+        width: 2rem;
+        height: 2rem;
+
+        @include md {
+            width: 2.2rem;
+            height: 2.2rem;
+        }
+    }
+
+    &.size-2 {
+        width: 3rem;
+        height: 3rem;
+
+        @include md {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+    }
+
+    &.size-3 {
+        width: 5rem;
+        height: 5rem;
+
+        @include md {
+            width: 6rem;
+            height: 6rem;
+        }
+    }
+
+    &.size-4 {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    &.rotate-top {
+        svg {
+            transform: rotate(-90deg);
+        }
+    }
+
+    &.rotate-left {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+
+    &.has-stroke {
+        svg {
+            fill: transparent;
+            stroke: $color-primary;
+        }
+    }
+
+    .is-dark-theme & {
+        @include custom-cursor("pointer", "_dark");
+
+        &:active {
+            @include custom-cursor("active", "_dark");
+        }
+    }
+
+    svg {
+        width: 100%;
+        height: 100%;
+        fill: $color-primary;
+        transition: $base-transition;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

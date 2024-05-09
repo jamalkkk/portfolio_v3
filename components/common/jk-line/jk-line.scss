@@ -1,0 +1,72 @@
+.b-jk-line {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    
+    &.is-centered {
+        justify-content: center;
+    }
+    
+    &.is-top,
+    &.is-bottom {
+        overflow-x: hidden;
+        height: 1.1rem;
+
+        svg {
+            min-width: 140rem;
+        }   
+
+        &.is-page {
+            svg {
+                position: absolute;
+            }  
+        }
+    }
+
+
+    &.is-right,
+    &.is-left {
+        overflow-y: hidden;
+        width: 1.1rem;
+        height: calc(100% + 2px);
+        top: -1px;
+
+        svg {
+            width: 100%;
+            min-height: 130rem;
+        }  
+    }
+
+    &.is-inverted {
+        svg {
+            fill: $color-negative;
+        }
+    }
+
+    &.is-top {
+        top: 0;
+        transform: rotate(180deg);
+    }
+
+    &.is-bottom {
+        bottom: 0px;
+
+        &.is-single {
+            height: .5rem;
+        }
+    }
+
+    &.is-right {
+        right: -1px;
+    }
+
+    &.is-left {
+        left: -1px;
+        transform: rotate(180deg);
+    }
+
+    svg {
+        fill: $color-primary;
+        width: 100%;
+    }
+}

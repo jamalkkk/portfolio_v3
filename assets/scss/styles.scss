@@ -1,0 +1,114 @@
+@import "variables/index";
+@import "mixins/index";
+
+:root {
+  --primary: #222;
+  --negative: #eee;
+  --primary-transparent: #2228;
+  --negative-transparent: #eee8;
+}
+
+html {
+  font-size: 10px;
+  background-color: $color-primary;
+}
+
+body {
+  color: $color-primary;
+  background-color: $color-negative;
+
+  @include custom-cursor("default");
+
+  &.is-dark-theme {
+    @include custom-cursor("default", "_dark");
+  }
+}
+
+* {
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+
+  @include md {
+    font-size: $font-size;
+  }
+}
+
+p {
+  font-family: $font-family-secondary;
+  font-size: $font-size-sm;
+  font-weight: 400;
+
+  @include md {
+    font-size: $font-size;
+  }
+}
+
+h1 {
+  font-size: $font-size-h1-sm;
+
+  @include md {
+    font-size: $font-size-h1;
+  }
+}
+
+h2 {
+  font-size: $font-size-h2-sm;
+
+  @include md {
+    font-size: $font-size-h2;
+  }
+}
+
+h3 {
+  font-size: $font-size-h3-sm;
+
+  @include md {
+    font-size: $font-size-h3;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+a {
+  color: $color-primary;
+}
+
+svg {
+  .svg-fill-primary {
+
+    &,
+    path {
+      // transition: fill 100ms ease-in;
+
+      fill: $color-primary;
+    }
+  }
+
+  .svg-stroke-primary {
+
+    &,
+    path {
+      // transition: stroke 100ms ease-in;
+
+      stroke: $color-primary;
+    }
+  }
+
+  .svg-fill-negative {
+
+    &,
+    path {
+      // transition: fill 100ms ease-in;
+
+      fill: $color-negative;
+    }
+  }
+}
+
+::selection {
+  background: $color-primary-transparent;
+}

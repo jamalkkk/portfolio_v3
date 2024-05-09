@@ -1,0 +1,19 @@
+// assets/scss/variables/_colors.scss
+// Theme colors
+$color-primary: var(--primary);
+$color-negative: var(--negative);
+$color-primary-transparent: var(--primary-transparent);
+$color-negative-transparent: var(--negative-transparent);
+
+// Transparent colors
+$color-primary-semi: rgba($color-primary, 0.5);
+$color-primary-semi-2: rgba($color-primary, 0.2);
+$color-primary-semi-8: rgba($color-primary, 0.8);
+$color-negative-semi-8: rgba(#eee, 0.8);
+
+:export {
+  primaryColor: $color-primary;
+  primarySemiColor: $color-primary-semi;
+  negativeColor: $color-negative;
+  negativeSemiColor: $color-negative-semi-8;
+}

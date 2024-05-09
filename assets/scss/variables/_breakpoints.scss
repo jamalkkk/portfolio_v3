@@ -1,0 +1,28 @@
+// Small tablets and large smartphones (landscape view)
+$sm: 576;
+
+// Small tablets (portrait view)
+$md: 768;
+
+// Tablets and small desktops
+$lg: 992;
+
+// Large tablets and desktops
+$xl: 1200;
+
+// Very large screens
+$xxl: 1630;
+
+$screen-sm-min: #{$sm + px};
+$screen-md-min: #{$md + px};
+$screen-lg-min: #{$lg + px};
+$screen-xl-min: #{$xl + px};
+$screen-xxl-min: #{$xxl + px};
+
+:export {
+    sm: $sm;
+    md: $md;
+    lg: $lg;
+    xl: $xl;
+    xxl: $xxl;
+}

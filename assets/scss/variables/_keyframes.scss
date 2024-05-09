@@ -1,0 +1,164 @@
+@keyframes rotateLoader {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes teaserFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes contentFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+
+    }
+}
+
+@keyframes popup {
+    0% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(2);
+    }
+}
+
+// Loader
+
+@keyframes loaderFadeIn {
+    0% {
+        background-color: $color-primary;
+    }
+
+    100% {
+        background-color: $color-negative;
+    }
+}
+
+@keyframes projectLoaderFadeIn {
+    0% {
+        background-color: transparent;
+    }
+
+    100% {
+        background-color: $color-primary;
+    }
+}
+
+@keyframes loaderFadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes eyeLeftLoading {
+    0% {
+        top: 60.1%;
+        left: 24%;
+    }
+
+    100% {
+        top: 60.4%;
+        left: 30%;
+    }
+}
+
+@keyframes eyeRightLoading {
+    0% {
+        top: 61.3%;
+        right: 33%;
+    }
+
+    100% {
+        top: 61%;
+        right: 27%;
+    }
+}
+
+@keyframes eyeLeftLoaded {
+    0% {
+        top: 60.4%;
+        left: 30%;
+    }
+
+    100% {
+        top: 60.5%;
+        left: 31.5%;
+    }
+}
+
+@keyframes eyeRightLoaded {
+    0% {
+        top: 61%;
+        right: 27%;
+    }
+
+    100% {
+        top: 60.9%;
+        right: 25%;
+    }
+}
+
+@keyframes lineLoading {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 70%;
+    }
+}
+
+@keyframes lineLoaded {
+    0% {
+        width: 70%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes shakeMuteInfo {
+    0% {
+        right: 70%;
+    }
+
+    100% {
+        right: 80%;
+    }
+}

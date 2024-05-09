@@ -1,0 +1,10 @@
+.b-frame {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+    .frame-line {
+        z-index: $z-index-1;
+    }
+}

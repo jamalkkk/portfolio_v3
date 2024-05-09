@@ -1,0 +1,23 @@
+.b-layout {
+  // background-color: $color-negative;
+  height: 100vh;
+
+  &.has-frame {
+    margin: $page-padding;
+
+    .layout-container {
+      margin: 0;
+    }
+  }
+
+  &.is-loader-active {
+    overflow: hidden;
+  }
+
+  .layout-container {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100%;
+    scroll-snap-type: y mandatory;
+  }
+}

@@ -1,0 +1,11 @@
+//  custom-cursor mixin
+// 
+// Usage:
+// 
+// element {
+//     @include custom-cursor('name');
+// }
+
+@mixin custom-cursor($name, $theme: '') {
+    cursor: url('~/assets/img/cursor-#{$name}#{$theme}.png'), auto !important;
+}
