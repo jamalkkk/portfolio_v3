@@ -116,6 +116,6 @@ watch(
 );
 
 onMounted(async () => {
-    // setUpAudio();
+    setUpAudio();
 });
 </script>
