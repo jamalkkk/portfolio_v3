@@ -69,11 +69,6 @@ export default defineNuxtConfig({
 
   buildModules: ["@nuxtjs/style-resources"],
 
-  styleResources: {
-    // Globally import your common styles file
-    scss: ["~/assets/scss/common.scss"],
-  },
-
   components: [
     {
       path: "~/components",

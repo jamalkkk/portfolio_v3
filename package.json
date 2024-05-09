@@ -5,6 +5,7 @@
   "main": "dist/index",
   "types": "dist/index",
   "scripts": {
+    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 webpack",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "dev:https": "NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
