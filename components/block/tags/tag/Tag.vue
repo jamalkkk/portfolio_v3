@@ -11,7 +11,7 @@
         :isButton="true"
         :hasHover="false"
         :hasUnderline="false"
-        :text="`#${item?.name || text || 'all'}`"
+        :text="`#${item?.name || text || 'All'}`"
         :onClick="onClick"
     />
 </template>
@@ -30,7 +30,7 @@ const props = defineProps({
     },
     text: {
         type: String,
-        default: '',
+        default: "",
     },
     onClick: {
         type: Function,

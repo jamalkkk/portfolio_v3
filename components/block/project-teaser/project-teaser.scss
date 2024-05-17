@@ -51,22 +51,23 @@
         left: 0;
         align-items: flex-end;
         transition: $base-transition-3;
-
-        // background-color: $color-primary;
     }
 
     .project-teaser-background {
-        opacity: 0;
+        opacity: 0.9;
         background-color: $color-primary;
+        background: linear-gradient(to top, $color-primary 10%, transparent 90%);
+
+        @include md {
+            opacity: 0;
+        }
     }
 
     .project-teaser-content {
         z-index: 1;
         width: 100%;
-        // padding: 3rem 4rem 4rem;
         padding: $page-padding-sm;
         transition: $base-transition;
-        text-shadow: 2px 2px $color-primary;
 
         @include md {
             transform: scale(1.05);

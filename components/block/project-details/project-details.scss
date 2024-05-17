@@ -199,18 +199,12 @@ $swiper-padding-md: $page-padding-md;
     .project-details-tags {
         z-index: $z-index-2;
         position: absolute;
-        bottom: 6rem;
-        left: $swiper-padding-sm;
-        right: $swiper-padding-sm;
+        top: 5rem;
+        width: 100%;
         transition: $base-transition;
 
         @include md {
-            bottom: 7rem;
-            left: $swiper-padding-md
-        }
-
-        @include xl {
-            left: $swiper-padding;
+            top: 9rem;
         }
     }
 }

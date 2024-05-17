@@ -11,26 +11,22 @@
         ]"
     >
         <!-- Video Player -->
-        <Player v-if="isVideo" :video="(slide as VideoType)" :index="index" />
+        <Player v-if="isVideo" :video="slide" :index="index" />
 
         <!-- Image -->
         <div v-if="isImage" class="project-slide-image items-center">
             <ImageFrame
                 class="project-slide-frame"
-                :image="(slide as ImageType)"
-                :onClick="() => showModal((slide as ImageType).image)"
+                :image="slide"
+                :onClick="() => showModal(slide.image)"
                 :isThick="true"
                 :isInverted="true"
-                :size="2"
+                :size="1140"
             />
         </div>
 
         <!-- Content with images -->
-        <SlideContent
-            v-else
-            :blok="(slide as ColumnsType)"
-            :onFrameClick="showModal"
-        />
+        <SlideContent v-else :blok="slide" :onFrameClick="showModal" />
     </SwiperSlide>
 </template>
 <script setup lang="ts">

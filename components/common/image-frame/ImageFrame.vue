@@ -20,7 +20,11 @@
                 :isInverted="isInverted"
             >
                 <div class="image-frame-wrapper">
-                    <LazyJKImage :image="image.image" />
+                    <LazyJKImage
+                        :image="image.image"
+                        :size="size"
+                        :isOnlyWdith="isOnlyWdith"
+                    />
                 </div>
                 <slot name="content" />
             </Frame>
@@ -48,6 +52,10 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+    isOnlyWdith: {
+        type: Boolean,
+        default: true,
+    },
     shouldShowImmediately: {
         type: Boolean,
         default: false,
@@ -64,17 +72,11 @@ const props = defineProps({
         type: Object as PropType<ImageType>,
         default: () => ({}),
     },
-    // @TODO: use image instead
-    img: {
-        type: String,
-        default: "",
-    },
     onClick: {
         type: Function,
         default: () => null,
     },
 });
-
 
 const isClicked = ref(false);
 

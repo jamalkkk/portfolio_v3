@@ -2,6 +2,7 @@
     margin: 2px;
     white-space: nowrap;
     opacity: .5;
+    text-transform: capitalize;
 
     .b-tags:not(.is-interactive) & {
         font-size: $font-size-xs;
@@ -10,14 +11,6 @@
             font-size: $font-size-sm;
         }
     }
-
-    // & + & {
-    //     margin-left: 1rem;
-
-    //     @include md {
-    //         margin-left: 2rem;
-    //     }
-    // }
 
     .is-interactive & {
         &.is-selected {
