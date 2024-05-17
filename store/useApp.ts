@@ -23,7 +23,6 @@ interface AppState {
   shouldHomeBeActive: boolean;
   documentBreakpoint: string;
   info: any; // Define appropriate type for info
-  // project: ProjectType; // Define appropriate type for project
   projects: SBProjectDetails[] | []; // Define appropriate type for projects
   tags: SBTag[]; // Define appropriate type for tags
   global: SBGlobal | {};
@@ -43,7 +42,6 @@ export const useApp = defineStore("app", {
     shouldHomeBeActive: true,
     documentBreakpoint: "sm",
     info: {},
-    // project: MDProjects[0],
     projects: [],
     tags: MDTags,
     global: {},
@@ -58,10 +56,6 @@ export const useApp = defineStore("app", {
     },
     setProjects(value: SBProjectDetails[]) {
       this.projects = value;
-    },
-    setProject(value: any) {
-      this.project = value;
-      this.isProjectLoaded = !!value.title;
     },
     setIsDataLoaded(value: boolean) {
       this.isDataLoaded = value;

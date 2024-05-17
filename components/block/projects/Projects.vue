@@ -36,7 +36,7 @@
             <JKText
                 v-else
                 class="projects-message row"
-                text="... Oops, someone stole the projects - come back another time once I've got them!"
+                text="... Oops! Well, that's embarrasing."
             />
         </div>
     </div>
@@ -55,53 +55,20 @@ const appStore = useApp();
 const { getProjectStory } = useStoryblokClient();
 const { scrollToHome } = useCommon();
 
-type ProjectType = {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    tags: string[];
-};
+const { setProjects } = appStore;
+const { isMainHomeActive, projects } = storeToRefs(appStore);
 
-const { isMainHomeActive, projects, documentBreakpoint } =
-    storeToRefs(appStore);
-
-// const orgProjects = ref();
 const allProjects = ref<SBProjectDetails[]>([]);
 const filteredProjects = ref<SBProjectDetails[]>([]);
-// const columns = ref(4);
 
-// const setAllProjects = (hasShuffle = true) => {
-//     let size;
-//     let remaining = columns.value;
-//     allProjects.value = [];
-
-//     if (orgProjects.value?.length) {
-//         shuffleProjects(orgProjects.value, hasShuffle).forEach(
-//             ({ attributes, id }) => {
-//                 size =
-//                     remaining > 1
-//                         ? Math.floor(((Math.random() * 3) % 2) + 1)
-//                         : 1;
-//                 remaining -= size;
-//                 remaining = remaining || columns.value;
-
-//                 console.log("size", size);
-
-//                 allProjects.value.push({ id, size, ...attributes });
-//             }
-//         );
-//     }
-
-//     console.log(allProjects.value);
-
-//     filteredProjects.value = allProjects.value;
-//     console.log("filtered projects", filteredProjects.value);
-// };
+const sortProjects = (projects: SBProjectDetails[]) =>
+    [...projects].sort((a, b) => parseInt(b.priority) - parseInt(a.priority));
 
 const getStoryblokData = async () => {
     let projects: ISbStoryData<SBProjectDetails[]> | null =
-        await getProjectStory("/", { startsWith: "project/" });
+        await getProjectStory("/", {
+            startsWith: "project/",
+        });
 
     if (Array.isArray(projects) && projects?.length) {
         projects?.forEach((project: any, index: number) => {
@@ -109,13 +76,14 @@ const getStoryblokData = async () => {
             allProjects.value[index].slug = project?.full_slug;
         });
 
-        filteredProjects.value = allProjects.value;
+        filteredProjects.value = sortProjects(allProjects.value);
+        setProjects(filteredProjects.value);
     }
 };
 
 const resetProjects = (value = activeTags.value) => {
     if (value.length) {
-        const filteredProjectsArr: ProjectType[] = [];
+        const filteredProjectsArr: SBProjectDetails[] = [];
 
         allProjects.value.forEach((project) => {
             if (activeTags.value.some((tag) => project.tags.includes(tag))) {
@@ -123,54 +91,22 @@ const resetProjects = (value = activeTags.value) => {
             }
         });
 
-        filteredProjects.value = filteredProjectsArr;
+        filteredProjects.value = sortProjects(filteredProjectsArr);
     } else {
-        filteredProjects.value = allProjects.value;
+        filteredProjects.value = sortProjects(allProjects.value);
     }
 };
 
-// const shuffleProjects = (list: any[], isActive = true) => {
-//     if (isActive) {
-//         for (let i = list.length - 1; i > 0; i--) {
-//             const j = Math.floor(Math.random() * (i + 1));
-//             const temp = list[i];
-//             list[i] = list[j];
-//             list[j] = temp;
-//         }
-//     }
-
-//     return list;
-// };
-
-// const { setData, setIsDataLoaded } = mapMutations([
-//     "setData",
-//     "setIsDataLoaded",
-// ]);
-
-onMounted(() => {
-    getStoryblokData();
-    // if (projects.value.length) {
-    //     orgProjects.value = projects.value;
-    // setAllProjects(false);
-    // }
-});
-
-// watch(documentBreakpoint, () => {
-//     orgProjects.value = projects.value;
-//     setColumns();
-//     resetProjects();
-// });
-
 watch(
     () => activeTags.value,
-    () => {
-        resetProjects();
-    }
+    () => resetProjects()
 );
 
-// onBeforeUnmount(() => {
-//     orgProjects.value = [];
-//     allProjects.value = [];
-//     filteredProjects.value = [];
-// });
+onMounted(() => {
+    if (projects.value?.length) {
+        filteredProjects.value = projects.value;
+    } else {
+        getStoryblokData();
+    }
+});
 </script>
