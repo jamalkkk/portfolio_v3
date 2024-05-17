@@ -53,7 +53,6 @@ export type ColumnImageType = {
   image: ISbAsset;
 };
 
-
 export type ColumnsType = {
   component: "columns";
   columns: {
@@ -71,10 +70,10 @@ export type VideoType = {
 export type ProjectType = {
   id: string;
   title: string;
-  description: string;
   image: string;
   slides: (VideoType | ImageType | ColumnsType)[];
   tags: string[];
+  priority: string;
 };
 
 /*
@@ -129,6 +128,7 @@ export type SBProjectDetails = {
   description_short: string;
   slides: IColumns; // | IImage | IVideo;
   tags: string;
+  priority: string;
 
   slug?: string;
 };
@@ -140,4 +140,3 @@ export type IColumns = {
 
   // }
 };
-

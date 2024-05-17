@@ -37,9 +37,11 @@
     .slide-content-item {
         display: flex;
         align-items: center;
+        justify-content: center;
 
-        &.is-cta {
-            justify-content: center;
+         @include md {
+            max-height: unset;
+            overflow: unset;
         }
 
 

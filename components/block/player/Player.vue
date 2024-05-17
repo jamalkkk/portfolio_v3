@@ -109,7 +109,7 @@ const isPlayerPlaying = ref(false);
 const mouseMovingTimeout = ref<NodeJS.Timeout | null>(null);
 
 const isYoutube = props.video.type === "youtube";
-const vimeoOptions = { transparent: false, color: negative.value };
+const vimeoOptions = { transparent: false, color: "333333", title: false };
 
 const play = () => {
     try {

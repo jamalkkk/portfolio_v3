@@ -4,9 +4,7 @@
     <div
         :class="[
             'b-tags w-full pt-2 container',
-            {
-                'is-interactive': isInteractive,
-            },
+            isInteractive ? 'is-interactive' : 'mx-auto',
         ]"
     >
         <!-- Tags -->
@@ -14,29 +12,21 @@
             v-if="areItemsSet"
             :class="[
                 'tags-list flex gap-x-2 md:gap-x-5 ',
-                isInteractive ? 'is-pb-3' : 'flex-wrap',
+                isInteractive ? 'is-pb-3' : 'flex-wrap justify-center',
             ]"
         >
-
-        <template v-if="isInteractive">
-            <Tag
-                :isSelected="isAll"
-                :onClick="() => (isAll = true)"
-            />
-            <Tag
-                v-for="(tag, i) in tags"
-                :key="i"
-                :item="tag"
-                :isSelected="selectedTags.includes(tag?.value)"
-                :onClick="() => toggleSelect(i)"
-            />
+            <template v-if="isInteractive">
+                <Tag :isSelected="isAll" :onClick="() => (isAll = true)" />
+                <Tag
+                    v-for="(tag, i) in tags"
+                    :key="i"
+                    :item="tag"
+                    :isSelected="selectedTags.includes(tag?.value)"
+                    :onClick="() => toggleSelect(i)"
+                />
             </template>
             <template v-else>
-                <Tag
-                    v-for="(tag, i) in projectTags"
-                    :key="i"
-                    :text="tag"
-                />
+                <Tag v-for="(tag, i) in projectTags" :key="i" :text="tag" />
             </template>
         </div>
     </div>
