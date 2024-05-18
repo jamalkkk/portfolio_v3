@@ -10,7 +10,7 @@
         ]"
     >
         <div class="ia-wrapper">
-            <div class="ia-container">
+            <div v-if="isLoaded" class="ia-container">
                 <!-- Bird -->
                 <div class="ia-clips">
                     <Bird :isHovered="hoveredClip === 'bird'" class="ia-clip" />
@@ -148,19 +148,6 @@ const Listeners = [
     ...Clips,
 ];
 
-// export type ListenerName =
-//     | "ball"
-//     | "bike"
-//     | "bird"
-//     | "books"
-//     | "cat"
-//     | "clock"
-//     | "desktop"
-//     | "headphones"
-//     | "laptop"
-//     | "light"
-//     | "poster";
-
 export type ListenerType = {
     name: string;
     hasSound?: boolean;
@@ -189,6 +176,7 @@ const { setIsSoundActive } = soundsStore;
 const { isUserOnPage, isInfoInfoActive } = storeToRefs(appStore);
 const { isSoundActive } = storeToRefs(soundsStore);
 
+const isLoaded = ref(false);
 const shouldBGSoundBePlaying = ref(false);
 const hoveredClip = ref("");
 const clickedClip = ref("");
@@ -254,6 +242,7 @@ const toggleSound = () => {
 };
 
 onMounted(() => {
+    isLoaded.value = true;
     setShouldBGSoundBePlaying();
 });
 </script>
