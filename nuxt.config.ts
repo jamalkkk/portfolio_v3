@@ -6,11 +6,13 @@ const config = {
 };
 
 export default defineNuxtConfig({
+  css: ["@/assets/scss/main.scss"],
+
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "~/assets/scss/styles.scss" as *;',
+          additionalData: '@import "~/assets/scss/_imports.scss";',
         },
       },
     },
