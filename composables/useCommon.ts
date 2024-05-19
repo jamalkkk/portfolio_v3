@@ -127,7 +127,7 @@ export function useCommon() {
   };
 
   // Save theme to local storage
-  const saveThemeColorsInStorage = (theme: any) => {
+  const saveThemeColorsInStorage = (theme: object) => {
     localStorage.setItem("theme", JSON.stringify(theme));
   };
 
