@@ -6,15 +6,17 @@
         :class="[
             'b-icon',
             `size-${size}`,
-            `rotate-${rotate}`,
             {
                 'is-button': isButton,
                 'has-stroke': hasStroke,
+                [`rotate-${rotate}`]: rotate,
             },
         ]"
         :href="to"
         :target="target"
         :tabindex="tabindex"
+        :role="tag === 'button' ? 'button' : ''"
+        :ariaLabel="tag === 'a' ? `Link to ${to}` : ''"
         @click="onClick"
     >
         <JKSvg :name="name" class="h-full w-full" />

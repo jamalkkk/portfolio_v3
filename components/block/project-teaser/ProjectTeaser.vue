@@ -9,7 +9,7 @@
                     'is-clicked': isClicked,
                 },
             ]"
-            :size="500"
+            :size="400"
             :isOnlyWdith="false"
             :image="{ component: 'image', image: project.teaser }"
             :enlargeOnHover="true"
@@ -24,17 +24,10 @@
                     ></div>
                     <div class="project-teaser-content">
                         <Headline
-                            tag="h3"
+                            tag="h2"
                             :text="project.title"
                             :isInverted="true"
                         />
-                        <!-- <JKText
-              :isSmall="true"
-              :isLight="true"
-              :isInverted="true"
-              :isSecondaryFont="true"
-              :text="project.description"
-            /> -->
                     </div>
                 </div>
             </template>
