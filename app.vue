@@ -84,6 +84,27 @@ watch(
                         negative.value === "#222" ? "dark" : "light"
                     }.ico`,
                 },
+                // DNS prefetch for Storyblok domains
+                { rel: "dns-prefetch", href: "//storyblok.com" },
+                { rel: "dns-prefetch", href: "//api.storyblok.com" },
+                { rel: "dns-prefetch", href: "//a.storyblok.com" },
+
+                // Preconnect to Storyblok domains
+                {
+                    rel: "preconnect",
+                    href: "//storyblok.com",
+                    crossorigin: "anonymous",
+                },
+                {
+                    rel: "preconnect",
+                    href: "https://api.storyblok.com",
+                    crossorigin: "anonymous",
+                },
+                {
+                    rel: "preconnect",
+                    href: "https://a.storyblok.com",
+                    crossorigin: "anonymous",
+                },
             ],
         });
     }

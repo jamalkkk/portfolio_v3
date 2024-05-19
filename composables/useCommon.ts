@@ -12,7 +12,11 @@ export function useCommon() {
   const theme = useTheme();
   const swiper = useSwiperStore();
 
-  const { setShouldScrollToProjects, setDocumentBreakpoint, setIsMainHomeActive } = app;
+  const {
+    setShouldScrollToProjects,
+    setDocumentBreakpoint,
+    setIsMainHomeActive,
+  } = app;
   const { setIsLoaderTransitioning } = loader;
   const { isSoundSupposedActive, setIsSoundActive } = sounds;
   const { originalPrimary, originalNegative, setThemeColors } = theme;
@@ -123,7 +127,7 @@ export function useCommon() {
   };
 
   // Save theme to local storage
-  const saveThemeColorsInStorage = (theme: object) => {
+  const saveThemeColorsInStorage = (theme: any) => {
     localStorage.setItem("theme", JSON.stringify(theme));
   };
 
@@ -149,6 +153,11 @@ export function useCommon() {
     setThemeColors(loadThemeColorsFromStorage());
 
     window.addEventListener("resize", setStoreDocumentBreakpoint);
+
+    console.log(
+      `%cHey hey, curious explorer! 🕵️‍♂️\n\nI see you're inspecting my website. If you have any questions or need assistance, feel free to reach out directly ;)\n\nHappy coding!`,
+      `color: #aaa; font-size: 12px; font-weight: bold;`
+    );
   };
 
   return {
