@@ -1,7 +1,7 @@
 <style lang="scss" src="./project-teaser.scss"></style>
 
 <template>
-    <div class="b-project-teaser" @click="showProject">
+    <a class="b-project-teaser" @click="showProject">
         <ImageFrame
             :class="[
                 'project-teaser-frame',
