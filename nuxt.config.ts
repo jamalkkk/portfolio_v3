@@ -45,8 +45,8 @@ export default defineNuxtConfig({
 
   modules: [
     "@nuxtjs/tailwindcss",
-    "@pinia/nuxt",
     "nuxt-swiper",
+    "@pinia/nuxt",
     [
       "@nuxtjs/google-fonts",
       {
@@ -62,9 +62,27 @@ export default defineNuxtConfig({
         accessToken: config.STORYBLOK_ACCESS_TOCKEN,
       },
     ],
+    "@nuxt/image",
   ],
 
   buildModules: ["@nuxtjs/style-resources"],
+
+  nitro: {
+    compressPublicAssets: true,
+  },
+
+  pwa: {
+    manifest: {
+      name: "Jamal Khalili — Multimedia Artist",
+      short_name: "Jamal Khalili",
+      description: "Mixed media works of the Mutlimedia Artist Jamal Khalili",
+      lang: "en",
+      useWebmanifestExtension: false,
+      background_color: "#aaaaaa",
+      theme_color: "#222222",
+      icons: ["meta.png", "meta_256.png"],
+    },
+  },
 
   components: [
     {
@@ -72,4 +90,8 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+
+  image: {
+    // Options
+  },
 });
