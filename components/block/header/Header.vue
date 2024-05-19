@@ -16,7 +16,7 @@
             class="header-logo"
             name="logo"
             :size="2"
-            :tabindex="2"
+            :tabindex="0"
             :onClick="handleLogoClick"
         />
     </div>

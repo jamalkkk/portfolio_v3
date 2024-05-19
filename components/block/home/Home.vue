@@ -56,7 +56,7 @@
             <Cta
                 :is-button="true"
                 text="Projects"
-                :tabindex="5"
+                :tabindex="0"
                 :onClick="scrollToProjects"
             />
         </div>
@@ -70,7 +70,7 @@
                 :is-button="true"
                 :name="isInfosActive ? 'close' : 'info'"
                 :size="1"
-                :tabindex="3"
+                :tabindex="0"
                 :onClick="toggleIsInfosActive"
             />
 
@@ -79,7 +79,7 @@
                 :is-button="true"
                 :name="`volume-${isSoundActive ? 'on' : 'off'}`"
                 :size="1"
-                :tabindex="4"
+                :tabindex="0"
                 :onClick="toggleSound"
             />
 
@@ -117,7 +117,7 @@
                 v-if="isHomeActive"
                 :is-button="true"
                 text="About"
-                :tabindex="1"
+                :tabindex="0"
                 :on-click="toggleShouldHomeBeActive"
             />
             <Icon
@@ -125,7 +125,7 @@
                 :is-button="true"
                 :size="1"
                 name="return"
-                :tabindex="6"
+                :tabindex="0"
                 :onClick="toggleShouldHomeBeActive"
             />
         </div>

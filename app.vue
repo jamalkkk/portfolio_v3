@@ -32,8 +32,6 @@ const getStoryblokData = async () => {
     let global: ISbStoryData<SBGlobal> | null = await getStory("/global");
     let tags: ISbStoryData<SBTag[]> | null = await getDatasource("tags");
 
-    // console.log("projects", projects);
-
     if (global?.content) {
         setGlobal(global?.content);
     }
@@ -109,7 +107,7 @@ useSeoMeta({
     ogImage: "/meta.png",
     ogImageWidth: 1200,
     ogImageHeight: 630,
-    ogImageAlt: "An illustration of the Mutlimedia Artist Jamal Khalili",
+    ogImageAlt: "Mixed media works of the Mutlimedia Artist Jamal Khalili",
     ogUrl: "https://jamalkhalili.com",
     ogType: "website",
     ogSiteName: "Jamal Khalili",
