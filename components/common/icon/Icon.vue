@@ -16,7 +16,7 @@
         :target="target"
         :tabindex="tabindex"
         :role="tag === 'button' ? 'button' : ''"
-        :ariaLabel="`${tag === 'a' ? 'Link' : 'Button'} with and icon`"
+        :aria-label="`${tag === 'a' ? 'Link' : 'Button'} with an icon`"
         @click="onClick"
     >
         <JKSvg :name="name" class="h-full w-full" />

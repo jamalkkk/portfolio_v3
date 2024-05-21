@@ -1,12 +1,21 @@
 <style lang="scss" src="./project-teaser.scss"></style>
 
 <template>
-    <div class="b-project-teaser" @click="showProject">
+    <div
+        class="b-project-teaser"
+        @click="showProject"
+        tabindex="0"
+        role="button"
+        @focus="isHoverd = true"
+        @blur="isHoverd = false"
+        @keydown.enter="showProject"
+    >
         <ImageFrame
             :class="[
                 'project-teaser-frame',
                 {
                     'is-clicked': isClicked,
+                    'is-hoverd': isHoverd,
                 },
             ]"
             :size="400"
@@ -60,6 +69,7 @@ const props = defineProps({
 const router = useRouter();
 
 const isClicked = ref(false);
+const isHoverd = ref(false);
 
 const showProject = () => {
     isClicked.value = true;
