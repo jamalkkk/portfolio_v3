@@ -17,10 +17,7 @@
                 </div>
 
                 <!-- Background Scene -->
-                <JKSvg
-                    :name="`animation_scene${isSmallScreen ? '-sm' : ''}`"
-                    class="ia-scene"
-                />
+                <JKSvg name="animation_scene" class="ia-scene" />
 
                 <!-- Room clips -->
                 <div class="ia-clips">
