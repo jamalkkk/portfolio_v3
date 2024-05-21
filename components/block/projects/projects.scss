@@ -1,39 +1,39 @@
 .b-projects {
-    max-width: $content-width;
-    padding: $page-padding-sm;
+  max-width: $content-width;
+  padding: $page-padding-sm;
+
+  @include md {
+    padding: $page-padding;
     scroll-snap-align: start;
+  }
+
+  .projects-return {
+    display: flex;
+    margin-bottom: 5rem;
+    justify-content: center;
+    opacity: 0;
+    transition: $base-transition;
+
+    &.is-active {
+      opacity: 1;
+    }
+  }
+
+  .projects-list-row {
+    justify-content: center;
 
     @include md {
-        padding: $page-padding;
+      margin: 0 -0.8rem;
     }
+  }
 
-    .projects-return {
-        display: flex;
-        margin-bottom: 5rem;
-        justify-content: center;
-        opacity: 0;
-        transition: $base-transition;
-
-        &.is-active {
-            opacity: 1;
-        }
+  .projects-list-teaser {
+    &:hover {
+      z-index: $z-index-2;
     }
+  }
 
-    .projects-list-row {
-        justify-content: center;
-
-        @include md {
-            margin: 0 -.8rem;
-        }
-    }
-
-    .projects-list-teaser {
-        &:hover {
-            z-index: $z-index-2;
-        }
-    }
-
-    .projects-message {
-        min-height: 28.5rem;
-    }
+  .projects-message {
+    min-height: 28.5rem;
+  }
 }

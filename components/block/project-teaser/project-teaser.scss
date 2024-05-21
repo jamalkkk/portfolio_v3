@@ -1,78 +1,80 @@
 .b-project-teaser {
-    .project-teaser-frame {
-        @include custom-cursor("pointer");
+  .project-teaser-frame {
+    @include custom-cursor("pointer");
 
-        transform-origin: center;
-        transition: $base-transition;
+    transform-origin: center;
+    transition: $base-transition;
 
-        &:active {
-            @include custom-cursor("active");
-        }
-
-        .is-dark-theme & {
-            @include custom-cursor("pointer", "_dark");
-
-            &:active {
-                @include custom-cursor("active", "_dark");
-            }
-        }
-
-        @include md {
-            &:hover {
-                .project-teaser-background {
-                    animation: teaserFadeIn 0.5s 0.1s ease-out forwards;
-                }
-
-                .project-teaser-content {
-                    animation: contentFadeIn 0.2s 0.1s ease-in forwards;
-                }
-            }
-        }
-
-        &.is-clicked {
-            .project-teaser-wrapper {
-                animation: unset;
-                opacity: 1;
-                background-color: $color-primary;
-            }
-
-            .project-teaser-content {
-                animation: contentFadeIn 0.3s reverse forwards;
-            }
-        }
+    &:active {
+      @include custom-cursor("active");
     }
 
-    .project-teaser-wrapper {
-        position: absolute;
-        display: flex;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        align-items: flex-end;
-        transition: $base-transition-3;
+    .is-dark-theme & {
+      @include custom-cursor("pointer", "_dark");
+
+      &:active {
+        @include custom-cursor("active", "_dark");
+      }
     }
 
-    .project-teaser-background {
-        opacity: 0.9;
+    @include md {
+      &:hover,
+      &.is-hoverd {
+        .project-teaser-background {
+          animation: teaserFadeIn 0.5s 0.1s ease-out forwards;
+        }
+
+        .project-teaser-content {
+          animation: contentFadeIn 0.2s 0.1s ease-in forwards;
+        }
+      }
+    }
+
+    &.is-clicked {
+      .project-teaser-wrapper {
+        animation: unset;
+        opacity: 1;
         background-color: $color-primary;
-        background: linear-gradient(to top, $color-primary 10%, transparent 90%);
+      }
 
-        @include md {
-            opacity: 0;
-        }
+      .project-teaser-content {
+        animation: contentFadeIn 0.3s reverse forwards;
+      }
     }
+  }
 
-    .project-teaser-content {
-        z-index: 1;
-        width: 100%;
-        padding: $page-padding-sm;
-        transition: $base-transition;
+  .project-teaser-wrapper {
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    align-items: flex-end;
+    transition: $base-transition-3;
+  }
 
-        @include md {
-            transform: scale(1.05);
-            opacity: 0;
-            text-shadow: none;
-        }
+  .project-teaser-background {
+    opacity: 0.9;
+    background-color: $color-primary;
+    background: linear-gradient(to top, $color-primary 10%, transparent 50%);
+
+    @include md {
+      opacity: 0;
+      background: linear-gradient(to top, $color-primary 10%, transparent 90%);
     }
+  }
+
+  .project-teaser-content {
+    z-index: 1;
+    width: 100%;
+    padding: $page-padding-sm;
+    transition: $base-transition;
+
+    @include md {
+      transform: scale(1.05);
+      opacity: 0;
+      text-shadow: none;
+    }
+  }
 }
