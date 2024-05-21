@@ -22,16 +22,6 @@
     }
   }
 
-  &.is-centered {
-    .ia-wrapper {
-      transform: translateX(-47%) scale(3);
-
-      @include md {
-        transform: translateX(-50%);
-      }
-    }
-  }
-
   .ia-container,
   .ia-clips,
   .ia-listeners {
