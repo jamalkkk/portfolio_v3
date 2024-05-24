@@ -85,6 +85,8 @@ const resetProjects = (value = activeTags.value) => {
     if (value.length) {
         const filteredProjectsArr: SBProjectDetails[] = [];
 
+        console.log("projects all of", allProjects.value);
+
         allProjects.value.forEach((project) => {
             if (activeTags.value.some((tag) => project.tags.includes(tag))) {
                 filteredProjectsArr.push(project);
@@ -92,8 +94,10 @@ const resetProjects = (value = activeTags.value) => {
         });
 
         filteredProjects.value = sortProjects(filteredProjectsArr);
+        console.log("projects fitlerd", filteredProjects.value);
     } else {
         filteredProjects.value = sortProjects(allProjects.value);
+        console.log("projects all", filteredProjects.value);
     }
 };
 
@@ -104,6 +108,7 @@ watch(
 
 onMounted(() => {
     if (projects.value?.length) {
+        allProjects.value = projects.value;
         filteredProjects.value = projects.value;
     } else {
         getStoryblokData();
