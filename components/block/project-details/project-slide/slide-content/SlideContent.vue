@@ -22,7 +22,7 @@
                     :isThick="true"
                     :isInverted="true"
                     :isWidthFull="true"
-                    :onClick="onFrameClick"
+                    :onClick="() => showModal(item.image)"
                     class="slide-content-image"
                 >
                 </ImageFrame>
@@ -40,9 +40,13 @@
 <script setup lang="ts">
 import type { ColumnsType } from "~/types/types";
 import { useApp } from "~/store/useApp";
+import { useModal } from "~/store/useModal";
 
 const appStore = useApp();
+const modalStore = useModal();
+
 const { global } = storeToRefs(appStore);
+const { setIsModalActive, setImage } = modalStore;
 
 const props = defineProps({
     size: {
@@ -58,4 +62,11 @@ const props = defineProps({
         default: () => null,
     },
 });
+
+const showModal = (image: ISbAsset) => {
+    console.log("Dlide image", image);
+
+    setImage(image);
+    setIsModalActive(true);
+};
 </script>

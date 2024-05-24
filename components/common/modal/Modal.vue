@@ -12,14 +12,7 @@
         @keydown="prevImage()"
     >
         <div class="modal-container" @click="closeModal">
-            <!-- <LazyJKImage
-                ref="$image"
-                :img="currentImage"
-                id="modal-image"
-                class="opacity-0 transition duration-500"
-                :class="{ 'opacity-100': isActive }"
-            /> -->
-            <LazyJKImage :image="currentImage"  />
+            <LazyJKImage :image="currentImage" />
         </div>
     </div>
 </template>
@@ -101,7 +94,6 @@ watch(
 );
 
 onMounted(() => {
-    // log images 
     window.addEventListener("keyup", handleKeyPress);
 });
 
