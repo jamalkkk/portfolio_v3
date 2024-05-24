@@ -104,6 +104,7 @@ watch(
 
 onMounted(() => {
     if (projects.value?.length) {
+        allProjects.value = projects.value;
         filteredProjects.value = projects.value;
     } else {
         getStoryblokData();
