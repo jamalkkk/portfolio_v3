@@ -5,12 +5,11 @@
         :class="[
             'b-image-frame mx-auto',
             {
-                'is-clicked': isClicked,
                 'enlarge-on-hover': enlargeOnHover,
                 'aspect-ratio-1': !isWidthFull,
             },
         ]"
-        @click="frameClick"
+        @click="onClick"
     >
         <div class="image-frame-container">
             <Frame
@@ -77,32 +76,4 @@ const props = defineProps({
         default: () => null,
     },
 });
-
-const isClicked = ref(false);
-
-const imageAttributes = computed(() => props.image?.attributes);
-
-watch(
-    () => isModalActive.value,
-    (value) => {
-        if (isClicked.value && !value) {
-            isClicked.value = false;
-        }
-    }
-);
-
-const frameClick = () => {
-    // props.onClick(props.image);
-
-    // @TODO: use image instead
-    props.onClick(props.img);
-    if (!isClicked.value) {
-        isClicked.value = true;
-        if (props.shouldShowImmediately) {
-            setTimeout(() => {
-                isClicked.value = false;
-            }, 200);
-        }
-    }
-};
 </script>

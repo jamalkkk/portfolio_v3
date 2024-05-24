@@ -26,7 +26,7 @@
         </div>
 
         <!-- Content with images -->
-        <SlideContent v-else :blok="slide" :onFrameClick="showModal" />
+        <SlideContent v-else :blok="slide" />
     </SwiperSlide>
 </template>
 <script setup lang="ts">
