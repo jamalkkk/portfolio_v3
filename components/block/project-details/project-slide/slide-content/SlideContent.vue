@@ -64,8 +64,6 @@ const props = defineProps({
 });
 
 const showModal = (image: ISbAsset) => {
-    console.log("Dlide image", image);
-
     setImage(image);
     setIsModalActive(true);
 };

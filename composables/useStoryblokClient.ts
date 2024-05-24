@@ -9,6 +9,8 @@ export function useStoryblokClient() {
   const config = useRuntimeConfig();
   const storyblokApi = useStoryblokApi();
 
+  const PROJECTS_PER_PAGE = 100; // Max
+
   const getStory = async <T>(
     path: string,
     params?: IStoryblokClientParams
@@ -18,7 +20,6 @@ export function useStoryblokClient() {
         version: "published",
         resolve_links: "url",
         resolve_relations: params?.resolveRelations,
-        // starts_with: params?.startsWith,
       });
 
       return data.story;
@@ -36,6 +37,7 @@ export function useStoryblokClient() {
       const { data } = await storyblokApi.get(`cdn/stories/`, {
         version: "published",
         starts_with: "project/",
+        per_page: PROJECTS_PER_PAGE,
       });
 
       return data.stories;
