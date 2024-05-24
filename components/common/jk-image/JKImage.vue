@@ -3,7 +3,7 @@
         class="lazyload"
         :src="`${image.filename}\\m\\${
             size ? `${size}x${isOnlyWdith ? '0' : size}` : ''
-        }`"
+        }/filters:quality(40)`"
         :alt="image.alt"
         sizes="50vw lg:270"
     />
