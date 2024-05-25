@@ -1,35 +1,41 @@
 .b-clock {
+  position: absolute;
+  width: 6%;
+  height: 10.8%;
+  top: 9%;
+  right: 12%;
+
+  .clock-frame {
     position: absolute;
-    width: 6%;
-    height: 10.8%;
-    top: 9%;
-    right: 12%;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
-    .clock-frame {
-        position: absolute;
-        display: flex;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+    svg {
+      width: 100%;
+      height: 100%;
     }
+  }
 
-    .clock-hour,
-    .clock-minute {
-        position: absolute;
-        display: flex;
-        transform-origin: left center;
-    }
+  .clock-hour,
+  .clock-minute {
+    position: absolute;
+    display: flex;
+    transform-origin: left center;
+    width: 100%;
+  }
 
-    .clock-hour {
-        height: 3%;
-        top: 48.7%;
-        left: 50%;
-    }
+  .clock-hour {
+    height: 3%;
+    top: 48.7%;
+    left: 50%;
+  }
 
-    .clock-minute {
-        height: 2.7%;
-        top: 48.7%;
-        left: 50%;
-    }
+  .clock-minute {
+    height: 2.7%;
+    top: 48.7%;
+    left: 50%;
+  }
 }
