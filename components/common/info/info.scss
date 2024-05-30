@@ -11,6 +11,10 @@
 
   &.is-active {
     animation: fadeIn 0.3s ease-in forwards;
+
+    &.is-flashing {
+      animation: fadeIn 0.65s ease-in-out alternate 8;
+    }
   }
 
   &::after {
