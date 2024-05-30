@@ -7,6 +7,7 @@
             `b-info has-arrow-${infoArrow}`,
             {
                 'is-active': isInfosActive && isPartOfInfos,
+                'is-flashing': isFlashing,
             },
         ]"
         :style="{
@@ -71,6 +72,10 @@ const props = defineProps({
         type: Boolean,
         default: true,
     },
+    isFlashing: {
+        type: Boolean,
+        default: false,
+    },
     arrow: {
         type: String as PropType<"top" | "right" | "bottom" | "left">,
         default: "bottom",
@@ -108,9 +113,10 @@ const getRandomInt = (max: number) => {
 const infoArrow = ref(props.arrow);
 // set infor arrow function
 const setInfoArrow = () => {
-    infoArrow.value = props.arrowTablet && documentBreakpoint === "md"
-        ? props.arrowTablet
-        : props.arrow;
+    infoArrow.value =
+        props.arrowTablet && documentBreakpoint === "md"
+            ? props.arrowTablet
+            : props.arrow;
 };
 
 //  on resize reset infow arrow

@@ -2,6 +2,7 @@
 
 <template>
     <div
+        v-if="isMounted"
         :class="[
             'b-player',
             {
@@ -22,7 +23,7 @@
                 v-if="isYoutube"
                 ref="$playerWrapper"
                 :videoid="video.id"
-                :autoplay="false"
+                :autoplay="1"
                 :controls="1"
                 :no-cookie="true"
                 @ended="handlePause"
@@ -37,7 +38,7 @@
                 :video-id="video.id"
                 height="100%"
                 width="100%"
-                :autoplay="false"
+                :autoplay="true"
                 muted
                 :options="vimeoOptions"
                 @ended="handlePause"
@@ -103,9 +104,11 @@ const props = defineProps({
 
 const $playerWrapper = ref<HTMLElement>();
 
+const isMounted = ref(false);
 const isReady = ref(false);
 const isSlideActive = ref(props.index == swiperActiveIndex.value);
 const isPlayerPlaying = ref(false);
+const isYouTubeFirstTime = ref(true);
 const mouseMovingTimeout = ref<NodeJS.Timeout | null>(null);
 
 const isYoutube = props.video.type === "youtube";
@@ -136,7 +139,9 @@ const pause = () => {
 };
 
 const setStoreShouldBePlaying = () => {
-    setShouldBePlaying(!isPlayerPlaying.value);
+    if (isReady.value) {
+        setShouldBePlaying(!isPlayerPlaying.value);
+    }
 };
 
 const setStoreShouldBePlayingWhenBack = (value: boolean) => {
@@ -160,10 +165,16 @@ const handleIsReady = () => {
 
 const handlePlay = () => {
     setIsPlaying(true);
+
+    if (!isPlayerPlaying.value) {
+        isPlayerPlaying.value = true;
+    }
 };
 
 const handlePause = () => {
-    setIsPlaying(false);
+    if (isReady.value) {
+        setIsPlaying(false);
+    }
 };
 
 const handleMousemove = () => {
@@ -191,14 +202,6 @@ const initialiseEventListeners = () => {
 
     window.addEventListener("visibilitychange", handlePageLeave);
 };
-
-// watch(
-//     () => isReady.value,
-//     (value) => {
-//         // isPlayerPlaying.value =
-//         //     value && swiperActiveIndex.value === props.index;
-//     }
-// );
 
 watch(
     () => isPlaying.value,
@@ -242,6 +245,7 @@ watch(
 );
 
 onMounted(() => {
+    isMounted.value = true;
     initialiseEventListeners();
 });
 
