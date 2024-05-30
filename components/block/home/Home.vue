@@ -93,6 +93,7 @@
                     },
                 ]"
                 :isPartOfInfos="false"
+                :isFlashing="true"
                 arrow="right"
                 clickText="Show tips"
             />
@@ -106,6 +107,7 @@
                         'is-active': isInfoInfoActive,
                     },
                 ]"
+                :isFlashing="true"
                 arrow="right"
                 clickText="Un/mute sounds"
             />
