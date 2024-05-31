@@ -28,7 +28,7 @@
                 <li
                     v-for="(project, i) in filteredProjects"
                     :key="i"
-                    :class="`projects-list-teaser col-span-1`"
+                    class="projects-list-teaser col-span-1"
                 >
                     <LazyProjectTeaser :project="project" />
                 </li>

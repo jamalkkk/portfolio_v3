@@ -5,10 +5,7 @@
   left: 0;
   display: flex;
   align-items: center;
-
-  @include md {
-    scroll-snap-align: start;
-  }
+  scroll-snap-align: start;
 
   &.is-about-active {
     .home-about {

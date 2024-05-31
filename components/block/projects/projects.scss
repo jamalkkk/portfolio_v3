@@ -1,10 +1,10 @@
 .b-projects {
   max-width: $content-width;
   padding: $page-padding-sm;
+  scroll-snap-align: start;
 
   @include md {
     padding: $page-padding;
-    scroll-snap-align: start;
   }
 
   .projects-return {
@@ -28,6 +28,8 @@
   }
 
   .projects-list-teaser {
+    scroll-snap-align: start;
+
     &:hover {
       z-index: $z-index-2;
     }
