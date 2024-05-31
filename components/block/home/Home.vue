@@ -54,7 +54,7 @@
             ]"
         >
             <Cta
-                :is-button="true"
+                :isButton="true"
                 text="Projects"
                 :tabindex="0"
                 :onClick="scrollToProjects"
@@ -76,7 +76,7 @@
 
             <!-- Sound Button -->
             <Icon
-                :is-button="true"
+                :isButton="true"
                 :name="`volume-${isSoundActive ? 'on' : 'off'}`"
                 :size="1"
                 :tabindex="0"
