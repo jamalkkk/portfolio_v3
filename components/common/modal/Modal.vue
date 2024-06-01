@@ -11,6 +11,10 @@
         ]"
         @keydown="prevImage()"
     >
+        <!-- Loader -->
+        <div class="modal-loader">
+            <icon class="loader-icon" name="loader" :size="3" />
+        </div>
         <div class="modal-container" @click="closeModal">
             <LazyJKImage :image="currentImage" />
         </div>
