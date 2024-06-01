@@ -1,65 +1,80 @@
 .b-modal {
-    z-index: $z-index-20;
+  z-index: $z-index-20;
+  position: absolute;
+  inset: 0;
+  transition: $base-transition;
+
+  &::after {
+    content: "";
     position: absolute;
     inset: 0;
+    background-color: $color-negative;
+    opacity: 0;
     transition: $base-transition;
+    z-index: -1;
+  }
 
-    &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-color: $color-negative;
-        opacity: 0;
-        transition: $base-transition;
-        z-index: -1;
+  &.is-active::after {
+    opacity: 0.8;
+  }
+
+  .modal-container {
+    @include custom-cursor("pointer");
+
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: $page-padding-sm;
+    justify-content: center;
+
+    &:active {
+      @include custom-cursor("active");
     }
 
-    &.is-active::after {
-        opacity: 0.8;
+    .is-dark-theme & {
+      @include custom-cursor("pointer", "_dark");
+
+      &:active {
+        @include custom-cursor("active", "_dark");
+      }
+
+      img {
+        @include custom-cursor("default", "_dark");
+      }
     }
 
-    .modal-container {
-        @include custom-cursor('pointer');
-
-        position: relative;
-        display: flex;
-        width: 100%;
-        height: 100%;
-        padding: $page-padding-sm;
-        justify-content: center;
-
-        &:active {
-            @include custom-cursor('active');
-        }
-
-        .is-dark-theme & {
-            @include custom-cursor('pointer', '_dark');
-
-            &:active {
-                @include custom-cursor('active', '_dark');
-            }
-
-            img {
-                @include custom-cursor('default', '_dark');
-            }
-        }
-
-        @include md {
-            padding: $page-padding-md * 2;
-        }
-
-        @include xl {
-            padding: $page-padding * 2;
-        }
-
-        img {
-            @include custom-cursor('default');
-
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: contain;
-            align-self: center;
-            border-radius: 4px;
-        }
+    @include md {
+      padding: $page-padding-md * 2;
     }
+
+    @include xl {
+      padding: $page-padding * 2;
+    }
+
+    img {
+      @include custom-cursor("default");
+
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      align-self: center;
+      border-radius: 4px;
+    }
+  }
+
+  .modal-loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .loader-icon {
+      animation: rotateLoader 0.7s linear infinite;
+    }
+  }
 }

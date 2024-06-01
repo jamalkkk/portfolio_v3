@@ -1,72 +1,91 @@
 .b-jk-line {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    
-    &.is-centered {
-        justify-content: center;
-    }
-    
-    &.is-top,
-    &.is-bottom {
-        overflow-x: hidden;
-        height: 1.1rem;
+  position: absolute;
+  width: 100%;
+  display: flex;
 
-        svg {
-            min-width: 140rem;
-        }   
+  &.is-centered {
+    justify-content: center;
+  }
 
-        &.is-page {
-            svg {
-                position: absolute;
-            }  
-        }
-    }
-
-
-    &.is-right,
-    &.is-left {
-        overflow-y: hidden;
-        width: 1.1rem;
-        height: calc(100% + 2px);
-        top: -1px;
-
-        svg {
-            width: 100%;
-            min-height: 130rem;
-        }  
-    }
-
-    &.is-inverted {
-        svg {
-            fill: $color-negative;
-        }
-    }
-
-    &.is-top {
-        top: 0;
-        transform: rotate(180deg);
-    }
-
-    &.is-bottom {
-        bottom: 0px;
-
-        &.is-single {
-            height: .5rem;
-        }
-    }
-
-    &.is-right {
-        right: -1px;
-    }
-
-    &.is-left {
-        left: -1px;
-        transform: rotate(180deg);
-    }
+  &.is-top,
+  &.is-bottom {
+    overflow-x: hidden;
+    height: 1.1rem;
 
     svg {
-        fill: $color-primary;
-        width: 100%;
+      min-width: 140rem;
     }
+
+    &.is-page {
+      svg {
+        position: absolute;
+      }
+    }
+  }
+
+  &.is-right,
+  &.is-left {
+    overflow-y: hidden;
+    width: 1.1rem;
+    height: calc(100% + 2px);
+    top: -1px;
+
+    svg {
+      width: 100%;
+      min-height: 130rem;
+    }
+  }
+
+  &.is-inverted {
+    svg {
+      fill: $color-negative;
+    }
+  }
+
+  &.is-top {
+    top: 0;
+    transform: rotate(180deg) translateY(3px) scaleY(0.5);
+
+    @include md {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.is-bottom {
+    bottom: 0px;
+
+    transform: translateY(4px) scaleY(0.5);
+
+    @include md {
+      transform: none;
+    }
+
+    &.is-single {
+      height: 0.5rem;
+      transform: none;
+    }
+  }
+
+  &.is-right {
+    right: -1px;
+    transform: translateX(3px) scaleX(0.5);
+
+    @include md {
+      transform: none;
+    }
+  }
+
+  &.is-left {
+    left: -1px;
+    transform: rotate(180deg) translateX(3px) scaleX(0.5);
+
+    @include md {
+      transform: rotate(180deg);
+    }
+  }
+
+  svg {
+    fill: $color-primary;
+    width: 100%;
+  }
 }
