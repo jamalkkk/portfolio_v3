@@ -1,172 +1,172 @@
 $loading-timing: 5s cubic-bezier(0.31, -0.01, 0, 0.98);
 
 .b-fader {
-    @apply absolute inset-0 z-10 opacity-0 transition duration-300 ease-out;
+  @apply absolute top-0 left-0 w-full h-dvh z-10 opacity-0 transition duration-300 ease-out;
 
-    background-color: $color-primary;
+  background-color: $color-primary;
 
-    &.is-transitioning {
-        opacity: 1;
-    }
+  &.is-transitioning {
+    opacity: 1;
+  }
 }
 
 .b-loader {
-    @include custom-cursor("default");
+  @include custom-cursor("default");
 
-    z-index: $z-index-10;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: $color-negative;
-    animation: loaderFadeIn 0.3s ease-in forwards;
-    transition: $base-transition;
+  z-index: $z-index-10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: $color-negative;
+  animation: loaderFadeIn 0.3s ease-in forwards;
+  transition: $base-transition;
 
-    .is-dark-theme & {
-        @include custom-cursor("default", "_dark");
-    }
+  .is-dark-theme & {
+    @include custom-cursor("default", "_dark");
+  }
 
-    &.is-page-loading {
-        .loader-eye {
-            &.eye-left {
-                animation: eyeLeftLoading $loading-timing forwards;
-            }
-
-            &.eye-right {
-                animation: eyeRightLoading $loading-timing forwards;
-            }
-        }
-
-        .loader-line {
-            animation: lineLoading $loading-timing forwards;
-        }
-    }
-
-    &.is-page-loaded {
-        .loader-eye {
-            &.eye-left {
-                animation: eyeLeftLoaded 0.5s ease-in-out forwards;
-            }
-
-            &.eye-right {
-                animation: eyeRightLoaded 0.5s ease-in-out forwards;
-            }
-        }
-
-        .loader-line {
-            animation: lineLoaded 0.5s ease-in forwards;
-        }
-
-        .loader-button {
-            opacity: 1;
-
-            &:hover {
-                opacity: 0.5;
-            }
-        }
-
-        .loader-text {
-            animation: unset;
-        }
-    }
-
-    &.is-page-fading-out {
-        animation: loaderFadeOut 0.3s 0.1s ease-in forwards;
-
-        .loader-button {
-            opacity: 0;
-        }
-    }
-
-    .loader-frame {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .loader-container {
-        position: relative;
-        width: 80%;
-        max-width: 100rem;
-    }
-
-    .loader-face {
-        position: relative;
-        width: 14rem;
-        margin: 0 auto;
-    }
-
-    .loader-eyes {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-    }
-
+  &.is-page-loading {
     .loader-eye {
-        position: absolute;
-        display: flex;
-        width: 0.9rem;
-        height: 0.6rem;
+      &.eye-left {
+        animation: eyeLeftLoading $loading-timing forwards;
+      }
 
-        svg {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    .loader-line-wrapper {
-        position: relative;
-        width: 100%;
-        height: 0.5rem;
-        margin: 7rem 0;
-        border-radius: 5px;
+      &.eye-right {
+        animation: eyeRightLoading $loading-timing forwards;
+      }
     }
 
     .loader-line {
-        width: 0;
+      animation: lineLoading $loading-timing forwards;
+    }
+  }
+
+  &.is-page-loaded {
+    .loader-eye {
+      &.eye-left {
+        animation: eyeLeftLoaded 0.5s ease-in-out forwards;
+      }
+
+      &.eye-right {
+        animation: eyeRightLoaded 0.5s ease-in-out forwards;
+      }
     }
 
-    .loader-content {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .loader-line {
+      animation: lineLoaded 0.5s ease-in forwards;
     }
 
     .loader-button {
-        opacity: 0;
-        transition: $base-transition-3;
+      opacity: 1;
+
+      &:hover {
+        opacity: 0.5;
+      }
     }
 
     .loader-text {
-        position: absolute;
-        opacity: 0;
-        animation: fadeIn 1s 1s forwards;
-        transition: $base-transition;
+      animation: unset;
+    }
+  }
+
+  &.is-page-fading-out {
+    animation: loaderFadeOut 0.3s 0.1s ease-in forwards;
+
+    .loader-button {
+      opacity: 0;
+    }
+  }
+
+  .loader-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loader-container {
+    position: relative;
+    width: 80%;
+    max-width: 100rem;
+  }
+
+  .loader-face {
+    position: relative;
+    width: 14rem;
+    margin: 0 auto;
+  }
+
+  .loader-eyes {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  .loader-eye {
+    position: absolute;
+    display: flex;
+    width: 0.9rem;
+    height: 0.6rem;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .loader-line-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0.5rem;
+    margin: 7rem 0;
+    border-radius: 5px;
+  }
+
+  .loader-line {
+    width: 0;
+  }
+
+  .loader-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loader-button {
+    opacity: 0;
+    transition: $base-transition-3;
+  }
+
+  .loader-text {
+    position: absolute;
+    opacity: 0;
+    animation: fadeIn 1s 1s forwards;
+    transition: $base-transition;
+  }
+
+  .loader-dot {
+    opacity: 0;
+    animation: fadeIn 1s 1s forwards alternate infinite;
+
+    &:nth-of-type(2) {
+      animation-delay: 1.3s;
     }
 
-    .loader-dot {
-        opacity: 0;
-        animation: fadeIn 1s 1s forwards alternate infinite;
-
-        &:nth-of-type(2) {
-            animation-delay: 1.3s;
-        }
-
-        &:nth-of-type(3) {
-            animation-delay: 1.6s;
-        }
+    &:nth-of-type(3) {
+      animation-delay: 1.6s;
     }
+  }
 
-    .loader-note {
-        position: absolute;
-        bottom: 3rem;
+  .loader-note {
+    position: absolute;
+    bottom: 3rem;
 
-        @include md {
-            display: none;
-        }
+    @include md {
+      display: none;
     }
+  }
 }
