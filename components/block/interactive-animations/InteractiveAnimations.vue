@@ -37,8 +37,7 @@
                         class="ia-clip"
                     />
                     <Clock
-                        :isHovered="hoveredClip === 'cat'"
-                        :isClicked="clickedClip === 'cat'"
+                        :isClicked="clickedClip === 'clock'"
                         class="ia-clip"
                     />
                     <Desktop
