@@ -60,25 +60,20 @@ const updateTime = () => {
 
 const rotateHourHand = () => {
     let degree = currentHoursDeg.value;
-    let fullRotationReached = false;
+    const targetDegree = degree + 360; // One full clockwise rotation
 
     const rotate = () => {
-        if (degree > 360) {
-            degree = 0;
-            fullRotationReached = true;
+        if (degree >= targetDegree) {
+            degree = currentHoursDeg.value; // Reset to the starting position
+            hourTransform.value = `rotate(${degree}deg)`;
+            isHoursRotating.value = false; // Stop the rotation
+            return;
         }
 
         hourTransform.value = `rotate(${degree}deg)`;
-        degree++;
+        degree += 3;
 
-        if (
-            (!fullRotationReached && degree > currentHoursDeg.value) ||
-            (fullRotationReached && degree < currentHoursDeg.value)
-        ) {
-            setTimeout(rotate, 9);
-        } else {
-            isHoursRotating.value = false;
-        }
+        setTimeout(rotate, 8);
     };
 
     rotate();
@@ -86,25 +81,20 @@ const rotateHourHand = () => {
 
 const rotateMinuteHand = () => {
     let degree = currentMinutesDeg.value;
-    let fullRotationReached = false;
+    const targetDegree = degree - 720; // Two full counter-clockwise rotations
 
     const rotate = () => {
-        if (degree < -360) {
-            degree = 360;
-            fullRotationReached = true;
+        if (degree <= targetDegree) {
+            degree = currentMinutesDeg.value; // Reset to the starting position
+            minuteTransform.value = `rotate(${degree}deg)`;
+            isMinutesRotating.value = false; // Stop the rotation
+            return;
         }
 
         minuteTransform.value = `rotate(${degree}deg)`;
-        degree--;
+        degree -= 6;
 
-        if (
-            (!fullRotationReached && degree < currentMinutesDeg.value) ||
-            (fullRotationReached && degree > currentMinutesDeg.value)
-        ) {
-            setTimeout(rotate, 1);
-        } else {
-            isMinutesRotating.value = false;
-        }
+        setTimeout(rotate, 8);
     };
 
     rotate();
