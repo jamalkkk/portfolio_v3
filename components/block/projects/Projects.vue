@@ -64,37 +64,37 @@ const filteredProjects = ref<SBProjectDetails[]>([]);
 const sortProjects = (projects: SBProjectDetails[]) =>
     [...projects].sort((a, b) => parseInt(b.priority) - parseInt(a.priority));
 
+const filterProjectsByTags = (
+    projects: SBProjectDetails[],
+    tags: string[]
+): SBProjectDetails[] => {
+    return projects.filter((project) =>
+        tags.some((tag) => project.tags.includes(tag))
+    );
+};
 const getStoryblokData = async () => {
-    let projects: ISbStoryData<SBProjectDetails[]> | null =
+    let projects: ISbStoryData<SBProjectDetails>[] | null =
         await getProjectStory("/", {
             startsWith: "project/",
         });
 
-    if (Array.isArray(projects) && projects?.length) {
-        projects?.forEach((project: any, index: number) => {
-            allProjects.value[index] = project?.content?.body[0];
-            allProjects.value[index].slug = project?.full_slug;
+    if (projects && projects?.length) {
+        allProjects.value = projects.map((project: any) => {
+            const content = project?.content?.body[0];
+            content.slug = project?.full_slug;
+            return content;
         });
 
-        filteredProjects.value = sortProjects(allProjects.value);
+        const filtered = filterProjectsByTags(allProjects.value, ["featured"]);
+        filteredProjects.value = sortProjects(filtered);
         setProjects(filteredProjects.value);
     }
 };
 
 const resetProjects = (value = activeTags.value) => {
-    if (value.length) {
-        const filteredProjectsArr: SBProjectDetails[] = [];
-
-        allProjects.value.forEach((project) => {
-            if (activeTags.value.some((tag) => project.tags.includes(tag))) {
-                filteredProjectsArr.push(project);
-            }
-        });
-
-        filteredProjects.value = sortProjects(filteredProjectsArr);
-    } else {
-        filteredProjects.value = sortProjects(allProjects.value);
-    }
+    filteredProjects.value = value.length
+        ? sortProjects(filterProjectsByTags(allProjects.value, value))
+        : sortProjects(allProjects.value);
 };
 
 watch(
