@@ -33,6 +33,7 @@
                 v-show="hasSwiper"
                 class="project-details-prev swiper-button-prev"
                 :isButton="true"
+                :size="2"
                 name="return"
                 rotate="left"
             />
@@ -40,6 +41,7 @@
                 v-show="hasSwiper"
                 class="project-details-next swiper-button-next"
                 :isButton="true"
+                :size="2"
                 name="return"
             />
 

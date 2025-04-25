@@ -106,6 +106,9 @@ onMounted(() => {
     if (projects.value?.length) {
         allProjects.value = projects.value;
         filteredProjects.value = projects.value;
+
+        // Show only featured at start
+        resetProjects(["featured"]);
     } else {
         getStoryblokData();
     }

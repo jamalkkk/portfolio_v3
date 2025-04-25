@@ -23,7 +23,7 @@
                 v-if="isYoutube"
                 ref="$playerWrapper"
                 :videoid="video.id"
-                :autoplay="1"
+                :autoplay="0"
                 :controls="1"
                 :no-cookie="true"
                 @ended="handlePause"
@@ -38,7 +38,7 @@
                 :video-id="video.id"
                 height="100%"
                 width="100%"
-                :autoplay="true"
+                :autoplay="false"
                 muted
                 :options="vimeoOptions"
                 @ended="handlePause"
