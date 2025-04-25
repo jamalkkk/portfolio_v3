@@ -3,9 +3,9 @@ import type { ProjectType } from "~/types/types";
 export function useMockData() {
   const MDTags = [
     {
-      name: "animation",
-      id: 12121,
-      value: "animation",
+      name: "Featured",
+      id: 0,
+      value: "featured",
       dimension_value: null,
     },
   ];

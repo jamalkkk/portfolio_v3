@@ -55,9 +55,8 @@ const { tags } = storeToRefs(appStore);
 const { setTags } = tagsStore;
 const { activeTags } = storeToRefs(tagsStore);
 
-const isAll = ref(true);
+const isAll = ref(false);
 const areItemsSet = ref(true);
-const myTags = ref<String[]>([]);
 const selectedTags = ref<String[]>([]);
 
 const resetSelectedTags = () => {
@@ -81,7 +80,6 @@ const setUpTags = () => {
     if (!areItemsSet.value) {
         if (props.isInteractive) {
             if (tags.value.length) {
-                // myTags.value = tags.value;
                 areItemsSet.value = true;
             }
 
@@ -109,11 +107,12 @@ watch(
     }
 );
 
-// watch(() => props.projectTags, showProjectTags);
-
 watch(tags, setUpTags);
 
 onMounted(() => {
     setUpTags();
+
+    // Wait for projects to be loaded
+    setTimeout(() => toggleSelect(0), 1000);
 });
 </script>

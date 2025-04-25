@@ -15,7 +15,6 @@
         <Cta
             :isButton="true"
             :isText="true"
-            :isMedium="true"
             :text="text"
             :onClick="copy"
             :onMouseover="showNote"
