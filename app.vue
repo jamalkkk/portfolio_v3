@@ -41,6 +41,20 @@ const getStoryblokData = async () => {
     }
 };
 
+// utils/getPageTitle.ts
+
+const getPageTitleFromRoute = (routePath: string): string => {
+    const segments = routePath.split("/").filter(Boolean); // remove empty strings
+    const lastSegment = segments[segments.length - 1] || "";
+    const words = lastSegment.split("-");
+
+    const capitalizedWords = words.map(
+        (word) => word.charAt(0).toUpperCase() + word.slice(1)
+    );
+
+    return capitalizedWords.join(" ");
+};
+
 // This will be reactive when you change title/description above
 useHead({
     title: title,
@@ -112,7 +126,9 @@ watch(
 
 watchEffect(() => {
     title.value = `Jamal Khalili — ${
-        route.path.includes("project") ? "Project" : "Multimedia Artist"
+        route.path.includes("project")
+            ? getPageTitleFromRoute(route.path)
+            : "Multimedia Artist"
     }`;
 
     useHead({

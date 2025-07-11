@@ -30,7 +30,7 @@
                 <UtilRichtext
                     v-else
                     :text="item.text"
-                    class="text-center md:text-lef"
+                    class="text-center md:text-left"
                 />
             </div>
         </div>

@@ -87,7 +87,8 @@ const getStoryblokData = async () => {
 
         const filtered = filterProjectsByTags(allProjects.value, ["featured"]);
         filteredProjects.value = sortProjects(filtered);
-        setProjects(filteredProjects.value);
+
+        setProjects(projects.value);
     }
 };
 
