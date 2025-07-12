@@ -47,7 +47,7 @@
     transform: rotate(180deg) translateY(3px) scaleY(0.5);
 
     @include md {
-      transform: rotate(180deg);
+      transform: rotate(180deg) scaleX(1.1);
     }
   }
 
@@ -57,7 +57,7 @@
     transform: translateY(4px) scaleY(0.5);
 
     @include md {
-      transform: none;
+      transform: scaleX(1.1);
     }
 
     &.is-single {
@@ -71,7 +71,7 @@
     transform: translateX(3px) scaleX(0.5);
 
     @include md {
-      transform: none;
+      transform: scaleY(1.1);
     }
   }
 
@@ -80,7 +80,7 @@
     transform: rotate(180deg) translateX(3px) scaleX(0.5);
 
     @include md {
-      transform: rotate(180deg);
+      transform: rotate(180deg) scaleY(1.1);
     }
   }
 

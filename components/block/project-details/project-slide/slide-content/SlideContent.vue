@@ -7,7 +7,7 @@
         <div
             v-for="(column, i) in blok.columns"
             :key="i"
-            class="flex flex-col gap-4 lg:gap-8 justify-center lg:w-1/2 lg:overflow-y-scroll"
+            class="flex flex-col gap-4 lg:gap-8 justify-center lg:w-1/2"
         >
             <div
                 v-for="(item, j) in column.items"
