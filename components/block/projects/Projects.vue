@@ -43,7 +43,7 @@
                         :is-button="true"
                         text="Show all"
                         :tabindex="0"
-                        :on-click="() => setTags([])"
+                        :on-click="() => setIsAllActive(true)"
                     />
                 </div>
             </template>
@@ -64,7 +64,7 @@ import type { SBProjectDetails } from "~/types/types";
 
 const tagsStore = useTags();
 
-const { setTags } = tagsStore;
+const { setIsAllActive } = tagsStore;
 const { activeTags } = storeToRefs(tagsStore);
 const appStore = useApp();
 const { getProjectStory } = useStoryblokClient();

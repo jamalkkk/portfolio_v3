@@ -16,7 +16,10 @@
             ]"
         >
             <template v-if="isInteractive">
-                <Tag :isSelected="isAll" :onClick="() => (isAll = true)" />
+                <Tag
+                    :isSelected="isAllActive"
+                    :onClick="() => setIsAllActive(true)"
+                />
                 <Tag
                     v-for="(tag, i) in tags"
                     :key="i"
@@ -56,10 +59,9 @@ const tagsStore = useTags();
 
 const { tags } = storeToRefs(appStore);
 
-const { setTags } = tagsStore;
-const { activeTags } = storeToRefs(tagsStore);
+const { setTags, setIsAllActive } = tagsStore;
+const { activeTags, isAllActive } = storeToRefs(tagsStore);
 
-const isAll = ref(false);
 const areItemsSet = ref(true);
 const selectedTags = ref<String[]>([]);
 
@@ -112,17 +114,7 @@ const setUpTags = () => {
 };
 
 watch(
-    () => activeTags.value,
-    (value) => {
-        if (value.length === 0) {
-            isAll.value = true;
-            resetSelectedTags();
-        }
-    }
-);
-
-watch(
-    () => isAll.value,
+    () => isAllActive.value,
     (value) => {
         if (value) {
             resetSelectedTags();
@@ -133,7 +125,7 @@ watch(
 watch(
     () => selectedTags.value,
     (value) => {
-        isAll.value = !value.length;
+        setIsAllActive(!value.length);
         setTags(value);
     }
 );
