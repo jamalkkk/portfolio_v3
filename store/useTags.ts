@@ -15,10 +15,7 @@ export const useTags = defineStore("tags", {
   }),
   actions: {
     setTags(value: any[]) {
-      // Adjust the type according to your specific requirements
       this.activeTags = [...value];
-
-      console.log("Active Tags:", this.activeTags);
     },
     setIsAllActive(value: boolean) {
       this.isAllActive = value;
