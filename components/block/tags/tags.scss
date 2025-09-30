@@ -1,25 +1,32 @@
 .b-tags {
+  position: relative;
+  overflow: hidden;
+
+  // &.is-interactive::after {
+  //     content: '';
+  //     z-index: $z-index-1;
+  //     background: linear-gradient(90deg, rgba(255, 255, 255, 0), $color-negative);
+  //     width: 1rem;
+  //     height: 100%;
+  //     display: inline-block;
+  //     position: absolute;
+  //     right: 0;
+  //     top: 0;
+  // }
+
+  .tags-list {
+    @include scrollbars(0.5rem, $color-primary, rgba(255, 255, 255, 0));
+
+    z-index: $z-index-1;
     position: relative;
     overflow: hidden;
+    overflow-x: scroll;
 
-    // &.is-interactive::after {
-    //     content: '';
-    //     z-index: $z-index-1;
-    //     background: linear-gradient(90deg, rgba(255, 255, 255, 0), $color-negative);
-    //     width: 1rem;
-    //     height: 100%;
-    //     display: inline-block;
-    //     position: absolute;
-    //     right: 0;
-    //     top: 0;
-    // }
+    scrollbar-width: thin; /* auto | thin | none */
+    scrollbar-color: rgba(0, 0, 0, 0.4) transparent;
 
-    .tags-list {
-        @include scrollbars(.5rem, $color-primary, rgba(255, 255, 255, 0));
-
-        z-index: $z-index-1;
-        position: relative;
-        overflow-x: scroll;
-        overflow-y: hidden;
+    @include md {
+      overflow: hidden;
     }
+  }
 }

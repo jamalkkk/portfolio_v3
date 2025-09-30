@@ -26,7 +26,11 @@
                 />
             </template>
             <template v-else>
-                <Tag v-for="(tag, i) in projectTags" :key="i" :text="tag" />
+                <Tag
+                    v-for="(tag, i) in reversedProjectTags"
+                    :key="i"
+                    :text="tag"
+                />
             </template>
         </div>
     </div>
@@ -59,6 +63,23 @@ const isAll = ref(false);
 const areItemsSet = ref(true);
 const selectedTags = ref<String[]>([]);
 
+const reversedProjectTags = computed(() => {
+    // create a reversed copy
+    const reversed = [...props.projectTags].reverse();
+
+    console.log(reversed);
+
+    // check if "Featured" exists
+    const index = reversed.indexOf("featured");
+    if (index > -1) {
+        // remove it and put it at the front
+        reversed.splice(index, 1);
+        reversed.unshift("featured");
+    }
+
+    return reversed;
+});
+
 const resetSelectedTags = () => {
     selectedTags.value = [];
 };
@@ -89,6 +110,13 @@ const setUpTags = () => {
         }
     }
 };
+
+watch(
+    () => activeTags.value,
+    (value) => {
+        selectedTags.value = value;
+    }
+);
 
 watch(
     () => isAll.value,

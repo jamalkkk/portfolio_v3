@@ -21,18 +21,32 @@
 
         <Tags class="mb-5" />
         <div class="projects-list">
-            <ul
-                class="projects-list-row grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1"
-                v-if="filteredProjects.length"
-            >
-                <li
-                    v-for="(project, i) in filteredProjects"
-                    :key="i"
-                    class="projects-list-teaser col-span-1"
+            <template v-if="filteredProjects.length">
+                <ul
+                    class="projects-list-row grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1"
+                    v-if="filteredProjects.length"
                 >
-                    <LazyProjectTeaser :project="project" />
-                </li>
-            </ul>
+                    <li
+                        v-for="(project, i) in filteredProjects"
+                        :key="i"
+                        class="projects-list-teaser col-span-1"
+                    >
+                        <LazyProjectTeaser :project="project" />
+                    </li>
+                </ul>
+                <!-- About Button -->
+                <div
+                    v-if="!!activeTags.length"
+                    class="w-full flex flex-col items-center justify-center mt-8"
+                >
+                    <Cta
+                        :is-button="true"
+                        text="Show all"
+                        :tabindex="0"
+                        :on-click="() => setTags([])"
+                    />
+                </div>
+            </template>
             <JKText
                 v-else
                 class="projects-message row"
@@ -50,6 +64,7 @@ import type { SBProjectDetails } from "~/types/types";
 
 const tagsStore = useTags();
 
+const { setTags } = tagsStore;
 const { activeTags } = storeToRefs(tagsStore);
 const appStore = useApp();
 const { getProjectStory } = useStoryblokClient();
