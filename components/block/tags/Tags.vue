@@ -114,7 +114,10 @@ const setUpTags = () => {
 watch(
     () => activeTags.value,
     (value) => {
-        selectedTags.value = value;
+        if (value.length === 0) {
+            isAll.value = true;
+            resetSelectedTags();
+        }
     }
 );
 
